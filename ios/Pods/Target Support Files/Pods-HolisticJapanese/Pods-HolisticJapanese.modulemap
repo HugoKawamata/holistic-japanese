@@ -1,6 +1,0 @@
-module Pods_HolisticJapanese {
-  umbrella header "Pods-HolisticJapanese-umbrella.h"
-
-  export *
-  module * { export * }
-}
