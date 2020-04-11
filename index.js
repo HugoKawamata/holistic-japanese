@@ -1,8 +1,56 @@
+// @flow
 /**
  * @format
  */
 
-import {AppRegistry} from 'react-native';
-import {name as appName} from './app.json';
+import "react-native-gesture-handler";
+import * as React from "react";
+import { StyleSheet, AppRegistry, View, Text as NatText } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { GoogleSignin } from "@react-native-community/google-signin";
+import { Provider, connect } from "react-redux";
+
+import LoginScreen from "./src/screens/Login";
+import LearnScreen from "./src/screens/Learn";
+import store from "./src/store";
+import { name as appName } from "./app.json";
+
+GoogleSignin.configure();
+
+const Stack = createStackNavigator();
+
+const isSignedIn = async () => {
+  const isSignedIn = await GoogleSignin.isSignedIn();
+  this.setState({ isLoginScreenPresented: !isSignedIn });
+};
+
+export function App() {
+  return (
+    <Provider store={store}>
+      {/* <ApolloProvider client={apollo}> */}
+      <NavigationContainer>
+        {isSignedIn ? (
+          <Stack.Navigator>
+            <Stack.Screen name="Login" component={LoginScreen} />
+          </Stack.Navigator>
+        ) : (
+          <Stack.Navigator>
+            <Stack.Screen name="Learn" component={LearnScreen} />
+          </Stack.Navigator>
+        )}
+      </NavigationContainer>
+      {/* </ApolloProvider> */}
+    </Provider>
+  );
+}
+
+function mapStateToProps(state: StoreState) {
+  return {
+    loggedIn: state.user.loggedIn,
+  };
+}
+
+export default connect(mapStateToProps)(App);
 
 AppRegistry.registerComponent(appName, () => App);

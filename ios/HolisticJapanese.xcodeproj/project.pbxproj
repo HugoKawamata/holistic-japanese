@@ -12,14 +12,20 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1694817CFA154284A27F519B /* Lato_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C1CACC5A123436E968A8FBA /* Lato_bold.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* HolisticJapaneseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HolisticJapaneseTests.m */; };
+		4C14A2930F034514A6182AAC /* Lato.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E95CF7C1167418795CF44AD /* Lato.ttf */; };
 		732213FC19D1EB2A84B60F52 /* libPods-HolisticJapanese-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF93A8D9B7B7DCAF2A9266E /* libPods-HolisticJapanese-tvOS.a */; };
 		B04B06F1FA357D29A1275583 /* libPods-HolisticJapanese-HolisticJapaneseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 879B6B5A2F39F91AA10B3889 /* libPods-HolisticJapanese-HolisticJapaneseTests.a */; };
 		D2790126A735258EC9D189EF /* libPods-HolisticJapanese-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D47147A2BC46D5D63729E7F /* libPods-HolisticJapanese-tvOSTests.a */; };
 		D711783138E65F0C7123226F /* libPods-HolisticJapanese.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F07FB03AC778B1D55015F1 /* libPods-HolisticJapanese.a */; };
+		FFEB9F5E24414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
+		FFEB9F5F24414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
+		FFEB9F6024414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
+		FFEB9F6124414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,11 +59,13 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HolisticJapanese/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = HolisticJapanese/main.m; sourceTree = "<group>"; };
 		2A1B76BBA76204C1CF3CFD8F /* Pods-HolisticJapanese-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolisticJapanese-tvOS.release.xcconfig"; path = "Target Support Files/Pods-HolisticJapanese-tvOS/Pods-HolisticJapanese-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		2C1CACC5A123436E968A8FBA /* Lato_bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Lato_bold.ttf; path = ../assets/fonts/Lato_bold.ttf; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* HolisticJapanese-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HolisticJapanese-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* HolisticJapanese-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HolisticJapanese-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D47147A2BC46D5D63729E7F /* libPods-HolisticJapanese-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HolisticJapanese-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DAD6B55DC4A9A000CF51C5 /* Pods-HolisticJapanese-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolisticJapanese-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-HolisticJapanese-tvOS/Pods-HolisticJapanese-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5AD62A4D92BD2AC14594AAC8 /* Pods-HolisticJapanese-HolisticJapaneseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolisticJapanese-HolisticJapaneseTests.release.xcconfig"; path = "Target Support Files/Pods-HolisticJapanese-HolisticJapaneseTests/Pods-HolisticJapanese-HolisticJapaneseTests.release.xcconfig"; sourceTree = "<group>"; };
+		5E95CF7C1167418795CF44AD /* Lato.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Lato.ttf; path = ../assets/fonts/Lato.ttf; sourceTree = "<group>"; };
 		8243772FE78DAF6000595505 /* Pods-HolisticJapanese.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolisticJapanese.debug.xcconfig"; path = "Target Support Files/Pods-HolisticJapanese/Pods-HolisticJapanese.debug.xcconfig"; sourceTree = "<group>"; };
 		83F07FB03AC778B1D55015F1 /* libPods-HolisticJapanese.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HolisticJapanese.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87811C104B9534D43F491C3B /* Pods-HolisticJapanese.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolisticJapanese.release.xcconfig"; path = "Target Support Files/Pods-HolisticJapanese/Pods-HolisticJapanese.release.xcconfig"; sourceTree = "<group>"; };
@@ -67,6 +75,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FD85B0A853857795B171BF00 /* Pods-HolisticJapanese-HolisticJapaneseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolisticJapanese-HolisticJapaneseTests.debug.xcconfig"; path = "Target Support Files/Pods-HolisticJapanese-HolisticJapaneseTests/Pods-HolisticJapanese-HolisticJapaneseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +134,7 @@
 		13B07FAE1A68108700A75B9A /* HolisticJapanese */ = {
 			isa = PBXGroup;
 			children = (
+				FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -149,6 +159,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		65143DC513DF4431B6C06EFC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C1CACC5A123436E968A8FBA /* Lato_bold.ttf */,
+				5E95CF7C1167418795CF44AD /* Lato.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		6B540C20249EC8DC8E9F346A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,7 +180,6 @@
 				D4F218E7B0AD5D3263952D2F /* Pods-HolisticJapanese-tvOSTests.debug.xcconfig */,
 				A67104125F9E7AF495A63F73 /* Pods-HolisticJapanese-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -181,6 +199,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				6B540C20249EC8DC8E9F346A /* Pods */,
+				65143DC513DF4431B6C06EFC /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -209,6 +228,7 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				C5CAB1588239DD170A4D86E1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,6 +250,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				5D5A0D9F3BED77B3E81CAC5B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -331,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFEB9F5F24414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +362,9 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				FFEB9F5E24414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
+				1694817CFA154284A27F519B /* Lato_bold.ttf in Resources */,
+				4C14A2930F034514A6182AAC /* Lato.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				FFEB9F6024414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +381,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFEB9F6124414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +438,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		5D5A0D9F3BED77B3E81CAC5B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HolisticJapanese/Pods-HolisticJapanese-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HolisticJapanese/Pods-HolisticJapanese-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		715F1B0E2E8B04F72B662505 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -453,6 +498,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5CAB1588239DD170A4D86E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HolisticJapanese-HolisticJapaneseTests/Pods-HolisticJapanese-HolisticJapaneseTests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HolisticJapanese-HolisticJapaneseTests/Pods-HolisticJapanese-HolisticJapaneseTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CD4AF8A588C62C6F66C26FF2 /* [CP] Check Pods Manifest.lock */ = {

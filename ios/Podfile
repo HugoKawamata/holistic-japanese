@@ -22,6 +22,9 @@ def flipper_post_install(installer)
 end
 
 target 'HolisticJapanese' do
+  # Manually added google sign in pod
+  pod 'GoogleSignIn', '~> 5.0.2'
+
   # Pods for HolisticJapanese
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"

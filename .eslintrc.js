@@ -34,6 +34,7 @@ module.exports = {
     "react-native",
   ],
   rules: {
+    "comma-dangle": ["error", "always"],
     /* State isn't needed in constructor */
     "react/state-in-constructor": 0,
     /* Two classes is fine */
