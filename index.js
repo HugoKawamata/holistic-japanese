@@ -20,17 +20,16 @@ GoogleSignin.configure();
 
 const Stack = createStackNavigator();
 
-const isSignedIn = async () => {
-  const isSignedIn = await GoogleSignin.isSignedIn();
-  this.setState({ isLoginScreenPresented: !isSignedIn });
+type Props = {
+  loggedIn: boolean,
 };
 
-export function App() {
+export function App(props: Props) {
   return (
     <Provider store={store}>
       {/* <ApolloProvider client={apollo}> */}
       <NavigationContainer>
-        {isSignedIn ? (
+        {props.loggedIn ? (
           <Stack.Navigator>
             <Stack.Screen name="Login" component={LoginScreen} />
           </Stack.Navigator>
