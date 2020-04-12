@@ -1,10 +1,11 @@
 // @flow
 import React from "react";
-import { Text as NativeText, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import Text from "../../Text";
 import { startGenerateArray } from "./util";
 
 type Props = {|
-  furigana: string,
+  kana: string,
   text: string,
 |};
 
@@ -13,20 +14,36 @@ type FuriganaPair = {|
   text: string,
 |};
 
-export function FuriganaText(props: Props) {
-  // const furigana = "わたしのこうざをはじめる"
-  // const text = "私の講座を始める"
+const styles = StyleSheet.create({
+  wrapper: {
+    flexDirection: "row",
+  },
+  furiganisedTextWrapper: {
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  furiganaText: {
+    fontSize: 12,
+  },
+  mainText: {
+    fontSize: 22,
+  },
+});
 
-  const furiganaArray = startGenerateArray(props.furigana, props.text);
+export default function FuriganaText(props: Props) {
+  const furiganaArray = startGenerateArray(props.kana, props.text);
 
   return (
     <View style={styles.wrapper}>
-      {furiganaArray.map(({ furigana, text }) => {
+      {furiganaArray.map(({ furigana, text }) => (
         <View style={styles.furiganisedTextWrapper}>
-          <Text style={styles.furiganaText}>{furigana}</Text>
+          <Text style={styles.furiganaText}>
+            {furigana === text ? null : furigana}
+          </Text>
           <Text style={styles.mainText}>{text}</Text>
-        </View>;
-      })}
+        </View>
+      ))}
     </View>
   );
 }

@@ -1,5 +1,5 @@
 // @flow
-import { success, warning, danger, grey, purple } from "./system";
+import { success, warning, danger, grey, purple, action } from "./system";
 
 export default {
   // GENERIC NAMES

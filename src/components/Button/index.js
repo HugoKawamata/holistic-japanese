@@ -16,7 +16,7 @@ type Props = {|
   onPress: () => {},
 |};
 
-export function Button(props: Props) {
+export default function Button(props: Props) {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View
