@@ -5,6 +5,7 @@
 
 import "react-native-gesture-handler";
 import * as React from "react";
+// $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { StyleSheet, AppRegistry, View, Text as NatText } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -13,6 +14,7 @@ import { Provider, connect } from "react-redux";
 
 import LoginScreen from "./src/screens/Login";
 import LearnScreen from "./src/screens/Learn";
+import type { State as StoreState } from "./src/store/types/store";
 import store from "./src/store";
 import { name as appName } from "./app.json";
 

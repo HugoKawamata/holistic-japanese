@@ -34,6 +34,7 @@ module.exports = {
     "react-native",
   ],
   rules: {
+    /* Always dangle commas, there's no reason not to and it makes adding new stuff easier */
     "comma-dangle": ["error", "always"],
     /* State isn't needed in constructor */
     "react/state-in-constructor": 0,

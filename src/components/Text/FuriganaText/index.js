@@ -1,10 +1,13 @@
 // @flow
 import React from "react";
+// $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { View, StyleSheet } from "react-native";
 import Text from "../../Text";
 import { startGenerateArray } from "./util";
 
 type Props = {|
+  furiStyle: typeof StyleSheet,
+  textStyle: typeof StyleSheet,
   kana: string,
   text: string,
 |};
@@ -39,7 +42,7 @@ export default function FuriganaText(props: Props) {
       {furiganaArray.map(({ furigana, text }) => (
         <View style={styles.furiganisedTextWrapper}>
           <Text style={styles.furiganaText}>
-            {furigana === text ? null : furigana}
+            {furigana === text ? "" : furigana}
           </Text>
           <Text style={styles.mainText}>{text}</Text>
         </View>

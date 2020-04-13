@@ -1,6 +1,7 @@
 // @flow
 
 import React from "react";
+// $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { Text as NativeText, StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
@@ -9,11 +10,7 @@ const style = StyleSheet.create({
   },
 });
 
-type TextChildren =
-  | string
-  | Element<FormattedDate>
-  | Element<FormattedMessage>
-  | Element<FormattedTime>;
+type TextChildren = string;
 
 type Props = {|
   children: TextChildren,

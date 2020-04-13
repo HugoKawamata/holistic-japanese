@@ -73,7 +73,7 @@ unsafe-getters-setters=warn
 unnecessary-invariant=warn
 signature-verification-failure=warn
 deprecated-utility=error
-unsafe-addition=error
+; unsafe-addition=error
 
 [strict]
 deprecated-type
@@ -85,4 +85,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.122.0
+^0.112.0

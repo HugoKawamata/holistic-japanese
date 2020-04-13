@@ -1,12 +1,15 @@
 // @flow
+import type { User as GoogleAuth } from "@react-native-community/google-signin";
 
 // Non exact types because scopes may change in the future
-export type GoogleAuth = {
-  idToken: string,
-  scopes: Array<string>,
-  serverAuthCode: mixed, // No idea what this is meant to be
-  user: GoogleUser,
-};
+// export type GoogleAuth = {
+//   idToken: string,
+//   scopes: Array<string>,
+//   serverAuthCode: mixed, // No idea what this is meant to be
+//   user: GoogleUser,
+// };
+
+export type { GoogleAuth };
 
 export type GoogleUser = {
   email: string,
@@ -19,7 +22,7 @@ export type GoogleUser = {
 
 type User = {|
   email: string,
-  name: string,
+  name: ?string,
   givenName?: ?string,
   familyName?: ?string,
   userType: "google",

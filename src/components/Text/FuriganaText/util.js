@@ -185,6 +185,11 @@ const notKanji = [
   "ヾ",
 ];
 
+type FuriganaPair = {|
+  furigana: string,
+  text: string,
+|};
+
 const generateArray = (
   kana: string,
   text: string,
