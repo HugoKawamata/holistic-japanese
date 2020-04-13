@@ -14,6 +14,7 @@ import { Provider, connect } from "react-redux";
 
 import LoginScreen from "./src/screens/Login";
 import LearnScreen from "./src/screens/Learn";
+import LessonScreen from "./src/screens/Lesson";
 import type { State as StoreState } from "./src/store/types/store";
 import store from "./src/store";
 import { name as appName } from "./app.json";
@@ -38,6 +39,7 @@ export function App(props: Props) {
         ) : (
           <Stack.Navigator>
             <Stack.Screen name="Learn" component={LearnScreen} />
+            <Stack.Screen name="Lesson" component={LessonScreen} />
           </Stack.Navigator>
         )}
       </NavigationContainer>

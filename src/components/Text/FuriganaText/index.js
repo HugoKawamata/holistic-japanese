@@ -2,12 +2,13 @@
 import React from "react";
 // $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { View, StyleSheet } from "react-native";
+import { fontSize } from "../../../util/font";
 import Text from "../../Text";
 import { startGenerateArray } from "./util";
 
 type Props = {|
-  furiStyle: typeof StyleSheet,
-  textStyle: typeof StyleSheet,
+  furiStyle?: typeof StyleSheet,
+  textStyle?: typeof StyleSheet,
   kana: string,
   text: string,
 |};
@@ -27,10 +28,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   furiganaText: {
-    fontSize: 12,
+    fontSize: fontSize.furigana,
   },
   mainText: {
-    fontSize: 22,
+    fontSize: fontSize.furiganaEnabledText,
   },
 });
 

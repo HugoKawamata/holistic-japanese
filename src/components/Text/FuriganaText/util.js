@@ -196,7 +196,6 @@ const generateArray = (
   pairs: Array<FuriganaPair>,
   currentPair: FuriganaPair
 ) => {
-  console.log(kana, text, pairs, currentPair);
   if (text.length === 0 && kana.length === 0) {
     return [...pairs, currentPair];
   }
@@ -245,7 +244,6 @@ const generateArray = (
 };
 
 export const startGenerateArray = (kana: string, text: string) => {
-  console.log(kana, text);
   return generateArray(kana.slice(1), text.slice(1), [], {
     furigana: kana[0],
     text: text[0],

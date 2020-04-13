@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 });
 
 type Props = {|
-  children: React.Element<*>, // Anything goes within the button
+  children: React.Element<*> | Array<React.Element<*>>, // Anything goes within the button
   color: string,
   onPress: () => any,
 |};

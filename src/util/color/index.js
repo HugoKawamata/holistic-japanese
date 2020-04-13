@@ -8,6 +8,7 @@ export default {
   SUCCESS: success.s600,
   WARNING: warning.w500,
   ACTION: action.a500,
+  WHITE: grey.g000,
 
   // BUTTONS
   BUTTON_S: success.s600,
