@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 // $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { View, StyleSheet } from "react-native";
 import { fontSize } from "../../../util/font";
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function FuriganaText(props: Props) {
+export default function FuriganaText(props: Props): React.Node {
   const furiganaArray = startGenerateArray(props.kana, props.text);
 
   return (

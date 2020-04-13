@@ -27,7 +27,7 @@ type Props = {
   loggedIn: boolean,
 };
 
-export function App(props: Props) {
+export function App(props: Props): React.Node {
   return (
     <Provider store={store}>
       {/* <ApolloProvider client={apollo}> */}
@@ -54,6 +54,7 @@ function mapStateToProps(state: StoreState) {
   };
 }
 
+// $FlowFixMe I don't like typing these connected methods
 export default connect(mapStateToProps)(App);
 
 AppRegistry.registerComponent(appName, () => App);

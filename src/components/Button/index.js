@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-// $FlowFixMe flow 0.112.0hates react native's types and thinks it has no exports
+// $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { TouchableOpacity, StyleSheet, View } from "react-native";
 import Text from "../../components/Text";
 
@@ -18,7 +18,7 @@ type Props = {|
   onPress: () => any,
 |};
 
-export default function Button(props: Props) {
+export default function Button(props: Props): React.Node {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View

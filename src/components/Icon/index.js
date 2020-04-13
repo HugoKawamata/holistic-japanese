@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import React, { type Node } from "react";
 import NativeIcon, {
   type MaterialIconsGlyphs,
 } from "react-native-vector-icons/MaterialIcons";
@@ -10,6 +10,6 @@ type Props = {
   size: number,
 };
 
-export function Icon(props: Props) {
+export function Icon(props: Props): Node {
   return <NativeIcon name={props.name} size={props.size} color={props.color} />;
 }

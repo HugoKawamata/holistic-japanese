@@ -45,7 +45,7 @@ const googleSignIn = async () => {
   }
 };
 
-export function LoginScreen(props: Props) {
+export function LoginScreen(props: Props): React.Node {
   return (
     <View style={styles.loginScreenWrapper}>
       <Text>Login</Text>
@@ -58,6 +58,7 @@ export function LoginScreen(props: Props) {
   );
 }
 
+// $FlowFixMe I don't like typing these connected methods
 export default connect(null, {
   loadGoogleSignin,
 })(LoginScreen);

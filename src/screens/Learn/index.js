@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react";
+import React, { useState, type Node } from "react";
 // $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { StyleSheet, View } from "react-native";
 // import Icon from "../../components/Icon";
@@ -20,7 +20,7 @@ type Props = {|
   navigation: any,
 |};
 
-export default function LearnScreen(props: Props) {
+export default function LearnScreen(props: Props): Node {
   const [loading, setLoading] = useState(false);
 
   const startLesson = () => {

@@ -1,6 +1,6 @@
 // @flow
 
-import React from "react";
+import React, { type Node } from "react";
 // $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { Text as NativeText, StyleSheet } from "react-native";
 
@@ -17,7 +17,7 @@ type Props = {|
   style?: *,
 |};
 
-export default function Text(props: Props) {
+export default function Text(props: Props): Node {
   const styles = StyleSheet.flatten(
     [style.base].concat(props.style ? props.style : [])
   );

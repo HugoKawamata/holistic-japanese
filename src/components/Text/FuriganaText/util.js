@@ -243,7 +243,10 @@ const generateArray = (
   }
 };
 
-export const startGenerateArray = (kana: string, text: string) => {
+export const startGenerateArray = (
+  kana: string,
+  text: string
+): Array<FuriganaPair> => {
   return generateArray(kana.slice(1), text.slice(1), [], {
     furigana: kana[0],
     text: text[0],

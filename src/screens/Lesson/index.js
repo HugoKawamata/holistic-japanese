@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react";
+import React, { useState, type Node } from "react";
 // $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { StyleSheet, View, TextInput } from "react-native";
 import FuriganaText from "../../components/Text/FuriganaText";
@@ -16,7 +16,7 @@ type Props = {|
   },
 |};
 
-export function LessonScreen(props: Props) {
+export function LessonScreen(props: Props): Node {
   const { lesson } = props.route.params;
   if (lesson.testables.length < 2) {
     throw new Error("Lesson is too short.");
@@ -29,6 +29,7 @@ export function LessonScreen(props: Props) {
   );
 
   const [userAnswer, setUserAnswer] = useState({});
+  const [questionAnswered, setQuestionAnswered] = useState(false);
 
   const createAnswerFields = () => {
     const answer = testableQueue[0].answer;
@@ -42,7 +43,7 @@ export function LessonScreen(props: Props) {
             onChangeText={(text) =>
               setUserAnswer({
                 ...userAnswer,
-                [`input-${i}`]: text,
+                [`input-${i}`]: text.toLowerCase(),
               })
             }
           />
@@ -54,7 +55,7 @@ export function LessonScreen(props: Props) {
             style={styles.regularAnswerField}
             onChangeText={(text) =>
               setUserAnswer({
-                "input-0": text,
+                "input-0": text.toLowerCase(),
               })
             }
           />
@@ -62,7 +63,37 @@ export function LessonScreen(props: Props) {
     }
   };
 
-  const answerQuestion = () => {};
+  const answerQuestion = () => {
+    const csvAnswer = userAnswer
+      .entries()
+      .sort()
+      .reduce((acc, kvPair) => acc + "," + kvPair[1]);
+
+    if (csvAnswer === testableQueue[0].answer.text) {
+      // Answer is correct!
+      if (unqueuedTestables.length > 0) {
+        setTestableQueue([...testableQueue, unqueuedTestables[0]]);
+      }
+    } else {
+      // Answer is incorrect!
+      setTestableQueue([...testableQueue, testableQueue[0]]);
+    }
+
+    setQuestionAnswered(true);
+  };
+
+  const goToVictoryScreen = () => {
+    console.log("your name is jeff");
+  };
+
+  const nextQuestion = () => {
+    if (testableQueue.length > 1) {
+      setTestableQueue(testableQueue.slice(1));
+    } else {
+      // This was the last question
+      goToVictoryScreen();
+    }
+  };
 
   const currentTestable = testableQueue[0];
 
