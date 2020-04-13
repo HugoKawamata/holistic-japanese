@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-// $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { View, StyleSheet } from "react-native";
 import { fontSize } from "../../../util/font";
 import Text from "../../Text";

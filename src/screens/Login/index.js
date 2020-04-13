@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import { connect } from "react-redux";
-// $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { StyleSheet, View, Button } from "react-native";
 import {
   GoogleSignin,

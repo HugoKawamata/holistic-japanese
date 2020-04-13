@@ -1,5 +1,4 @@
 // @flow
-// $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { StyleSheet } from "react-native";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";

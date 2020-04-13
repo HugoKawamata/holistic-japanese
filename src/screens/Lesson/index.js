@@ -1,6 +1,5 @@
 // @flow
 import React, { useState, type Node } from "react";
-// $FlowFixMe flow 0.112.0 hates react native's types and thinks it has no exports
 import { StyleSheet, View, TextInput } from "react-native";
 import FuriganaText from "../../components/Text/FuriganaText";
 import Text from "../../components/Text";
