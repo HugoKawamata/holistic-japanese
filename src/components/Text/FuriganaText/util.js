@@ -220,8 +220,9 @@ const generateArray = (
     }
   } else {
     // The current pairs do not match, so we're currently assigning furigana to kanji
-    if (notKanji.includes(text[0])) {
+    if (notKanji.includes(text[0]) || text.length === 0) {
       // Next char in text is not kanji, so the kanji block is over
+      // OR final char in text was kanji, so the kanji block is over
       if (text[0] === kana[0]) {
         // Next letter matches, so we're done assigning furigana
         return generateArray(

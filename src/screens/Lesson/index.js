@@ -29,9 +29,10 @@ export function LessonScreen(props: Props): Node {
   );
 
   const [userAnswer, setUserAnswer] = useState({});
-  const [questionAnswered, setQuestionAnswered] = useState(false);
 
-  const createAnswerFields = () => {
+  const [result, setResult] = useState(null); // Result is null if question not answered yet
+
+  const getAnswerFields = () => {
     const answer = testableQueue[0].answer;
     switch (answer.type) {
       case "romaji":
@@ -40,6 +41,7 @@ export function LessonScreen(props: Props): Node {
             key={`input-${i}`}
             style={styles.singleCharAnswerField}
             placeholder=""
+            value={userAnswer[`input-${i}`]}
             onChangeText={(text) =>
               setUserAnswer({
                 ...userAnswer,
@@ -53,6 +55,7 @@ export function LessonScreen(props: Props): Node {
           <TextInput
             placeholder="Your answer"
             style={styles.regularAnswerField}
+            value={userAnswer["input-0"]}
             onChangeText={(text) =>
               setUserAnswer({
                 "input-0": text.toLowerCase(),
@@ -64,22 +67,36 @@ export function LessonScreen(props: Props): Node {
   };
 
   const answerQuestion = () => {
-    const csvAnswer = userAnswer
-      .entries()
+    const userInputs = Object.entries(userAnswer)
       .sort()
-      .reduce((acc, kvPair) => acc + "," + kvPair[1]);
+      .map((kvPair) => kvPair[1]); // Just get the values out (the user inputs)
+    const csvAnswer =
+      userInputs.length === 0
+        ? ""
+        : userInputs.reduce(
+            // $FlowFixMe userInput is always a string
+            (acc: string, userInput: mixed) => acc + "," + userInput
+          );
+
+    console.log(userAnswer);
+    console.log(csvAnswer);
 
     if (csvAnswer === testableQueue[0].answer.text) {
       // Answer is correct!
+
+      setResult("correct");
       if (unqueuedTestables.length > 0) {
+        // Add new testable to testing queue
         setTestableQueue([...testableQueue, unqueuedTestables[0]]);
+        // Remove that testable from the untested queue
+        setUnqueuedTestables(unqueuedTestables.slice(1));
       }
     } else {
       // Answer is incorrect!
+      setResult("incorrect");
+      // Re-add the failed testable to the back of the queue
       setTestableQueue([...testableQueue, testableQueue[0]]);
     }
-
-    setQuestionAnswered(true);
   };
 
   const goToVictoryScreen = () => {
@@ -89,9 +106,53 @@ export function LessonScreen(props: Props): Node {
   const nextQuestion = () => {
     if (testableQueue.length > 1) {
       setTestableQueue(testableQueue.slice(1));
+      setResult(null);
+      setUserAnswer({});
+      console.log(
+        testableQueue.map((t) => t.question.text),
+        unqueuedTestables.map((t) => t.question.text)
+      );
     } else {
       // This was the last question
       goToVictoryScreen();
+    }
+  };
+
+  const getButton = () => {
+    if (result != null) {
+      return (
+        <Button color={color.SUCCESS} onPress={nextQuestion}>
+          <Text>Next</Text>
+          <FuriganaText kana="つぎ" text="次" />
+        </Button>
+      );
+    } else {
+      return (
+        <Button color={color.ACTION} onPress={answerQuestion}>
+          <Text>Answer</Text>
+          <FuriganaText kana="こたえる" text="答える" />
+        </Button>
+      );
+    }
+  };
+
+  const displayResult = () => {
+    if (result === "correct") {
+      return (
+        <View>
+          <Text>Correct!</Text>
+          <FuriganaText kana="せいかい" text="正解" />
+        </View>
+      );
+    } else if (result === "incorrect") {
+      return (
+        <View>
+          <Text>Incorrect</Text>
+          <FuriganaText kana="ちがいます" text="違います" />
+        </View>
+      );
+    } else {
+      return null;
     }
   };
 
@@ -102,11 +163,9 @@ export function LessonScreen(props: Props): Node {
       <View style={styles.questionWrapper}>
         <Text style={styles.question}>{currentTestable.question.text}</Text>
       </View>
-      <View style={styles.answerFieldWrapper}>{createAnswerFields()}</View>
-      <Button color={color.ACTION} onPress={answerQuestion}>
-        <Text>Answer</Text>
-        <FuriganaText kana="こたえる" text="答える" />
-      </Button>
+      <View style={styles.answerFieldWrapper}>{getAnswerFields()}</View>
+      {getButton()}
+      {displayResult()}
     </View>
   );
 }
