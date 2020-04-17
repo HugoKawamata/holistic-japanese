@@ -21,7 +21,6 @@ GoogleSignin.configure();
 type Props = {||};
 
 export function App(props: Props): React.Node {
-  console.log(props);
   return (
     <Provider store={store}>
       <ApolloProvider client={apollo}>

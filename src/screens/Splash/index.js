@@ -17,7 +17,6 @@ type Props = {
 const Stack = createStackNavigator();
 
 export function Splash(props: Props): React.Node {
-  console.log(props);
   return (
     <NavigationContainer>
       {!props.loggedIn ? (

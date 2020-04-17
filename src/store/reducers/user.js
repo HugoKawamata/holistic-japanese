@@ -17,7 +17,6 @@ export default function reducer(
 ): State {
   switch (action.type) {
     case GOOGLE_SIGNIN:
-      console.log("doing google signin reducer");
       return {
         loggedIn: true,
         user: {

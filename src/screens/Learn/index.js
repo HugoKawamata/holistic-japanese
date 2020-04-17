@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
 
 type Props = {|
   navigation: any,
+  userEmail: string,
 |};
 
 export function LearnScreen(props: Props): Node {
@@ -62,11 +63,15 @@ export function LearnScreen(props: Props): Node {
     client
       .query({
         query: NEXT_LESSON_QUERY,
+        variables: {
+          email: props.userEmail,
+        },
       })
       .then((result) => {
+        console.log(result);
         setLoading(false);
         props.navigation.push("Lesson", {
-          lesson: result.data.lesson,
+          lesson: result.data.user.nextLesson,
         });
         return result;
       });
@@ -92,9 +97,8 @@ export function LearnScreen(props: Props): Node {
 }
 
 function mapStateToProps(state: StoreState) {
-  console.log(state);
   return {
-    userEmail: state.user.user?.user?.email, // TODO: clean this triple user crap up
+    userEmail: state.user.user?.email,
   };
 }
 
