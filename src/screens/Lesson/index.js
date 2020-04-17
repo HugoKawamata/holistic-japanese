@@ -155,6 +155,15 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
+
+  const displayNote = () => (
+    <View>
+      <Text style={styles.notes}>
+        { testableQueue[0].notes.text }
+      </Text>
+    </View>
+  )
+
   const currentTestable = testableQueue[0];
 
   return (
@@ -165,6 +174,7 @@ export function LessonScreen(props: Props): Node {
       <View style={styles.answerFieldWrapper}>{getAnswerFields()}</View>
       {getButton()}
       {displayResult()}
+      {displayNote()}
     </View>
   );
 }

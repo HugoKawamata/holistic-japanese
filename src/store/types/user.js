@@ -11,24 +11,16 @@ import type { User as GoogleAuth } from "@react-native-community/google-signin";
 
 export type { GoogleAuth };
 
-export type GoogleUser = {
-  email: string,
-  familyName?: ?string,
-  givenName?: ?string,
+export type GoogleUser = {|
   id: string,
-  name: string,
-  photo: ?string,
-};
-
-type User = {|
-  email: string,
   name: ?string,
-  givenName?: ?string,
-  familyName?: ?string,
-  userType: "google",
+  email: string,
+  photo: ?string,
+  familyName: ?string,
+  givenName: ?string,
 |};
 
 export type State = {|
   loggedIn: boolean,
-  user: ?User,
+  user: ?GoogleUser,
 |};

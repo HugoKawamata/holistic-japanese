@@ -17,14 +17,11 @@ export default function reducer(
 ): State {
   switch (action.type) {
     case GOOGLE_SIGNIN:
+      console.log("doing google signin reducer");
       return {
         loggedIn: true,
         user: {
-          email: action.payload.user.email,
-          name: action.payload.user.name,
-          givenName: action.payload.user.givenName,
-          familyName: action.payload.user.familyName,
-          userType: "google",
+          ...action.payload.user,
         },
       };
     case GOOGLE_SIGNIN_FAILED:
