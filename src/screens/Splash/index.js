@@ -21,12 +21,12 @@ export function Splash(props: Props): React.Node {
     <NavigationContainer>
       {!props.loggedIn ? (
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="ロッグイン・Login" component={LoginScreen} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
-          <Stack.Screen name="Learn" component={LearnScreen} />
-          <Stack.Screen name="Lesson" component={LessonScreen} />
+          <Stack.Screen name="ならう・Learn" component={LearnScreen} />
+          <Stack.Screen name="じゅぎょう・Lesson" component={LessonScreen} />
         </Stack.Navigator>
       )}
     </NavigationContainer>

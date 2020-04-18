@@ -75,7 +75,7 @@ export function LearnScreen(props: Props): Node {
       .then((result) => {
         console.log(result);
         setLoading(false);
-        props.navigation.push("Lesson", {
+        props.navigation.push("じゅぎょう・Lesson", {
           lesson: result.data.user.nextLesson,
         });
         return result;
@@ -85,8 +85,11 @@ export function LearnScreen(props: Props): Node {
   return (
     <View style={styles.learnScreenWrapper}>
       <Button theme="success" onPress={startLesson}>
-        <FuriganaText kana="わたしのこうざをはじめる" text="私の講座を始める" />
-        <Text style={styles.startButtonEnglish}>Start</Text>
+        <FuriganaText
+          kana="つぎのじゅぎょうをはじめる"
+          text="次の授業を始める"
+        />
+        <Text style={styles.startButtonEnglish}>Start next lesson</Text>
       </Button>
     </View>
   );
