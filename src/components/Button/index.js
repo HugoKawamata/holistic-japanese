@@ -7,17 +7,21 @@ import Text from "../Text";
 const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    borderRadius: 5,
+    alignSelf: "stretch",
+    borderRadius: 6,
     borderBottomWidth: 3,
+    flexGrow: 1,
     justifyContent: "center",
     paddingBottom: 6,
     paddingTop: 10,
-    width: "100%",
+  },
+  buttonContainer: {
+    flexDirection: "row",
   },
   buttonWrapper: {
     alignItems: "center",
-    justifyContent: "center",
     width: "80%",
+    justifyContent: "center",
   },
 });
 
@@ -69,20 +73,22 @@ export default function Button(props: Props): React.Node {
   const { buttonColor, highlightColor, borderColor } = theme[props.theme];
 
   return (
-    <TouchableOpacity style={styles.buttonWrapper} onPress={props.onPress}>
-      <View
-        style={[
-          styles.button,
-          {
-            backgroundColor: props.ghost ? "transparent" : buttonColor,
-            borderWidth: props.ghost ? 1 : 0,
-            borderBottomWidth: props.ghost ? 1 : 3,
-            borderColor: props.ghost ? buttonColor : borderColor,
-          },
-        ]}
-      >
-        {props.children}
-      </View>
-    </TouchableOpacity>
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity style={styles.buttonWrapper} onPress={props.onPress}>
+        <View
+          style={[
+            styles.button,
+            {
+              backgroundColor: props.ghost ? "transparent" : buttonColor,
+              borderWidth: props.ghost ? 1 : 0,
+              borderBottomWidth: props.ghost ? 1 : 3,
+              borderColor: props.ghost ? buttonColor : borderColor,
+            },
+          ]}
+        >
+          {props.children}
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 }

@@ -9,6 +9,7 @@ export default {
   WARNING: warning.w500,
   ACTION: action.a500,
   WHITE: grey.g000,
+  PURPLE: purple.p500,
 
   // BUTTONS
   BUTTON_S: success.s600,

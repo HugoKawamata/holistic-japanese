@@ -54,7 +54,7 @@ export const grey = {
 };
 
 export const purple = {
-  p500: "#5F3ED6",
+  p500: "#5F3ED6", // PURPLE
   p600: "#5634C7",
 };
 

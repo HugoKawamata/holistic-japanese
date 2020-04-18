@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, type Node } from "react";
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View, TextInput, Image } from "react-native";
 import FuriganaText from "../../components/Text/FuriganaText";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
@@ -119,6 +119,16 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
+  const getQuestionTypeText = () => {
+    if (
+      testableQueue[0].question.type == "J_WORD" &&
+      testableQueue[0].answer.type == "ROMAJI"
+    ) {
+      return "Type the English letters that correspond to the Japanese.";
+    }
+    return "";
+  };
+
   const getButton = () => {
     if (result != null) {
       return (
@@ -159,7 +169,20 @@ export function LessonScreen(props: Props): Node {
 
   const displayNote = () => (
     <View>
-      <Text style={styles.notes}>{testableQueue[0].notes.text}</Text>
+      <View style={styles.noteWrapper}>
+        <View style={styles.noteBubble}>
+          <Text style={styles.notes}>{testableQueue[0].notes.text}</Text>
+        </View>
+        <View style={styles.triangleWrapper}>
+          <View style={styles.triangle} />
+        </View>
+      </View>
+      <View style={styles.fyuchanWrapper}>
+        <Image
+          source={require("../../../assets/images/fyu-mouth-open.png")}
+          style={styles.fyuchan}
+        />
+      </View>
     </View>
   );
 
@@ -167,13 +190,20 @@ export function LessonScreen(props: Props): Node {
 
   return (
     <View style={styles.lessonScreenWrapper}>
-      <View style={styles.questionWrapper}>
-        <Text style={styles.question}>{currentTestable.question.text}</Text>
+      <View style={styles.topSection}>
+        <View style={styles.questionWrapper}>
+          <Text style={styles.question}>{currentTestable.question.text}</Text>
+          <View style={styles.questionTypeWrapper}>
+            <Text style={styles.questionType}>{getQuestionTypeText()}</Text>
+          </View>
+          <View style={styles.answerFieldWrapper}>{getAnswerFields()}</View>
+        </View>
+        {displayNote()}
       </View>
-      <View style={styles.answerFieldWrapper}>{getAnswerFields()}</View>
-      {getButton()}
-      {displayResult()}
-      {displayNote()}
+      <View style={styles.bottomSection}>
+        {getButton()}
+        {displayResult()}
+      </View>
     </View>
   );
 }
