@@ -55,9 +55,13 @@ export function LessonScreen(props: Props): Node {
   useEffect(() => {
     console.log("setting input refs based on", testableQueue[0]);
     setInputRefs((inputRefs) =>
-      Array(testableQueue[0].answer.text.split.length)
+      Array(testableQueue[0].answer.text.split(",").length)
         .fill()
         .map((_, i) => inputRefs[i] || createRef())
+    );
+    console.log(
+      "input refs are now ",
+      Array(testableQueue[0].answer.text.split(",").length)
     );
   }, [testableQueue[0]]);
 
@@ -69,6 +73,7 @@ export function LessonScreen(props: Props): Node {
       case "ROMAJI":
         const answerParts = answer.text.split(",");
 
+        console.log(inputRefs);
         const inputs = answerParts.map((charRomaji, i) => (
           <TextInput
             ref={inputRefs[i]}
