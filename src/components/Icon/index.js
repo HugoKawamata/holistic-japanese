@@ -10,6 +10,6 @@ type Props = {
   size: number,
 };
 
-export function Icon(props: Props): Node {
+export default function Icon(props: Props): Node {
   return <NativeIcon name={props.name} size={props.size} color={props.color} />;
 }

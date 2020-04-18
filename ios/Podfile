@@ -24,6 +24,7 @@ end
 target 'HolisticJapanese' do
   # Manually added google sign in pod
   pod 'GoogleSignIn', '~> 5.0.2'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   # Pods for HolisticJapanese
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"

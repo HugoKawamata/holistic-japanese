@@ -5,6 +5,7 @@ import { StyleSheet, View, Button } from "react-native";
 import { statusCodes } from "@react-native-community/google-signin";
 import { loadGoogleSignin } from "../../store/thunks/loaders";
 import Text from "../../components/Text";
+import Icon from "../../components/Icon";
 
 const styles = StyleSheet.create({
   loginScreenWrapper: {
