@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import color from "../../util/color";
 import { romajiHiraganaMap } from "./util";
 import styles from "./styles";
+import { PrefaceScreen } from "./preface";
 
 type Props = {|
   route: {
@@ -41,6 +42,8 @@ export function LessonScreen(props: Props): Node {
     lesson.testables.slice(0, 2)
   );
 
+  const [preface, setPreface] = useState(lesson.preface);
+
   const [userAnswer, setUserAnswer] = useState({});
 
   const [marks, setMarks] = useState(initMarks(lesson.testables));
@@ -50,6 +53,7 @@ export function LessonScreen(props: Props): Node {
   const [inputRefs, setInputRefs] = useState([]);
 
   useEffect(() => {
+    console.log("setting input refs based on", testableQueue[0]);
     setInputRefs((inputRefs) =>
       Array(testableQueue[0].answer.text.split.length)
         .fill()
@@ -273,9 +277,9 @@ export function LessonScreen(props: Props): Node {
     marks[currentTestable.question.text].marks.filter((m) => m === "correct")
       .length > 0 ? null : (
       <View>
-        <View style={styles.noteWrapper}>
-          <View style={styles.noteBubble}>
-            <Text style={styles.notes}>{currentTestable.notes.text}</Text>
+        <View style={styles.dialogueWrapper}>
+          <View style={styles.dialogueBubble}>
+            <Text style={styles.dialogue}>{currentTestable.notes.text}</Text>
           </View>
           <View style={styles.triangleWrapper}>
             <View style={styles.triangle} />
@@ -289,6 +293,10 @@ export function LessonScreen(props: Props): Node {
         </View>
       </View>
     );
+
+  if (preface.length > 0) {
+    return <PrefaceScreen preface={preface} setPreface={setPreface} />;
+  }
 
   return (
     <View style={styles.lessonScreenWrapper}>

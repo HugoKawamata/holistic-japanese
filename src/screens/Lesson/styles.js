@@ -25,6 +25,19 @@ const styles = StyleSheet.create({
     fontSize: fontSize.answerSingleChar,
     textAlign: "center",
   },
+  dialogue: {
+    color: color.WHITE,
+    lineHeight: fontSize.regular + 8,
+  },
+  dialogueBubble: {
+    backgroundColor: color.PURPLE,
+    borderRadius: 6,
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+  },
+  dialogueWrapper: {
+    width: "90%",
+  },
   fyuchan: {
     height: 100,
     width: 100,
@@ -42,17 +55,15 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flexGrow: 1,
   },
-  noteBubble: {
-    backgroundColor: color.PURPLE,
-    borderRadius: 6,
-    paddingHorizontal: 20,
-    paddingVertical: 16,
+  prefaceDialogueSectionWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexGrow: 1,
   },
-  noteWrapper: {
-    width: "90%",
-  },
-  notes: {
-    color: color.WHITE,
+  prefaceScreenWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexGrow: 1,
   },
   question: {
     fontSize: fontSize.question,
