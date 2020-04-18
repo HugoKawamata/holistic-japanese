@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, type Node } from "react";
+import React, { useState, type Node, createRef, useEffect } from "react";
 import { StyleSheet, View, TextInput, Image } from "react-native";
 import FuriganaText from "../../components/Text/FuriganaText";
 import Text from "../../components/Text";
@@ -47,35 +47,63 @@ export function LessonScreen(props: Props): Node {
 
   const [result, setResult] = useState(null); // Result is null if question not answered yet
 
+  const [inputRefs, setInputRefs] = useState([]);
+
+  useEffect(() => {
+    setInputRefs((inputRefs) =>
+      Array(testableQueue[0].answer.text.split.length)
+        .fill()
+        .map((_, i) => inputRefs[i] || createRef())
+    );
+  }, [testableQueue[0]]);
+
   const currentTestable = testableQueue[0];
 
   const getAnswerFields = () => {
     const answer = currentTestable.answer;
     switch (answer.type) {
       case "ROMAJI":
-        return answer.text.split(",").map((charRomaji, i) => (
+        const answerParts = answer.text.split(",");
+
+        const inputs = answerParts.map((charRomaji, i) => (
+          <TextInput
+            ref={inputRefs[i]}
+            style={[
+              styles.singleCharAnswerField,
+              result === "incorrect" ? styles.incorrectAnswerField : null,
+            ]}
+            editable={result == null}
+            placeholder={romajiHiraganaMap[charRomaji]}
+            value={userAnswer[`input-${i}`]}
+            onChangeText={(text) => {
+              if (Object.keys(romajiHiraganaMap).includes(text.toLowerCase())) {
+                // When text changes to a valid hiragana character's romaji, if this is the last input
+                if (answerParts.length - 1 === i) {
+                  // Blur self
+                  inputRefs[i].current.blur();
+                } else {
+                  // Otherwise, focus the next one
+                  inputRefs[i + 1].current.focus();
+                }
+              }
+              // $FlowFixMe Not sure what's happening here
+              setUserAnswer({
+                ...userAnswer,
+                [`input-${i}`]: text.toLowerCase(),
+              });
+            }}
+          />
+        ));
+
+        return answerParts.map((charRomaji, i) => (
           <View key={`input-${i}`}>
-            <TextInput
-              style={[
-                styles.singleCharAnswerField,
-                result === "incorrect" ? styles.incorrectAnswerField : null,
-              ]}
-              editable={result == null}
-              placeholder={romajiHiraganaMap[charRomaji]}
-              value={userAnswer[`input-${i}`]}
-              onChangeText={(text) => {
-                // $FlowFixMe Not sure what's happening here
-                setUserAnswer({
-                  ...userAnswer,
-                  [`input-${i}`]: text.toLowerCase(),
-                });
-              }}
-            />
+            {inputs[i]}
             {result === "incorrect" ? (
               <Text style={styles.correction}>{charRomaji}</Text>
             ) : null}
           </View>
         ));
+
       default:
         return (
           <TextInput
@@ -92,17 +120,20 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const answerQuestion = () => {
+  const getCSVAnswer = () => {
     const userInputs = Object.entries(userAnswer)
       .sort()
       .map((kvPair) => kvPair[1]); // Just get the values out (the user inputs)
-    const csvAnswer =
-      userInputs.length === 0
-        ? ""
-        : userInputs.reduce(
-            // $FlowFixMe userInput is always a string
-            (acc: string, userInput: mixed) => acc + "," + userInput
-          );
+    return userInputs.length === 0
+      ? ""
+      : userInputs.reduce(
+          // $FlowFixMe userInput is always a string
+          (acc: string, userInput: mixed) => acc + "," + userInput
+        );
+  };
+
+  const answerQuestion = () => {
+    const csvAnswer = getCSVAnswer();
 
     console.log(userAnswer);
     console.log(csvAnswer);
@@ -216,7 +247,11 @@ export function LessonScreen(props: Props): Node {
       );
     } else {
       return (
-        <Button theme="action" onPress={answerQuestion}>
+        <Button
+          theme="action"
+          onPress={answerQuestion}
+          disabled={getCSVAnswer() === ""}
+        >
           <FuriganaText kana="こたえる" text="答える" />
           <Text>Answer</Text>
         </Button>

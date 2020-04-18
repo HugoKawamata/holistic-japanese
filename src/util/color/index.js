@@ -24,6 +24,8 @@ export default {
   BUTTON_W_RIPPLE: warning.w600,
   BUTTON_D: danger.d400,
   BUTTON_D_RIPPLE: danger.d500,
+  BUTTON_DISABLED: grey.g400,
+  BUTTON_DISABLED_RIPPLE: grey.g600,
 
   // TEXT COLOURS
   TEXT_S: success.s700,

@@ -29,21 +29,21 @@ const theme = {
   // The text colours are here as a guide and not actually used in the code.
   // Text is not rendered in this component due to possible furigana text and separate english.
   action: {
-    // textColor: color.WHITE,
+    // textColor: color.TEXT,
     // ghostTextColor: color.TEXT_A,
     buttonColor: color.BUTTON_A,
     highlightColor: color.BUTTON_A_RIPPLE,
     borderColor: color.BUTTON_A_RIPPLE,
   },
   success: {
-    // textColor: color.WHITE,
+    // textColor: color.TEXT,
     // ghostTextColor: color.TEXT_S,
     buttonColor: color.BUTTON_S,
     highlightColor: color.BUTTON_S_RIPPLE,
     borderColor: color.BUTTON_S_RIPPLE,
   },
   destructive: {
-    // textColor: color.WHITE,
+    // textColor: color.TEXT,
     // ghostTextColor: color.TEXT_D,
     buttonColor: color.BUTTON_D,
     highlightColor: color.BUTTON_D_RIPPLE,
@@ -60,6 +60,7 @@ const theme = {
 
 type Props = {|
   children: React.Element<*> | Array<React.Element<*>>, // Anything goes within the button
+  disabled?: boolean,
   ghost?: boolean,
   onPress: () => any,
   theme: "action" | "success" | "destructive" | "white",
@@ -74,7 +75,10 @@ export default function Button(props: Props): React.Node {
 
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.buttonWrapper} onPress={props.onPress}>
+      <TouchableOpacity
+        style={styles.buttonWrapper}
+        onPress={props.disabled ? () => {} : props.onPress}
+      >
         <View
           style={[
             styles.button,
@@ -83,6 +87,7 @@ export default function Button(props: Props): React.Node {
               borderWidth: props.ghost ? 1 : 0,
               borderBottomWidth: props.ghost ? 1 : 3,
               borderColor: props.ghost ? buttonColor : borderColor,
+              opacity: props.disabled ? 0.6 : 1,
             },
           ]}
         >
