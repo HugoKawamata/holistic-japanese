@@ -16,6 +16,19 @@ type Props = {|
   },
 |};
 
+const initMarks = (testables) => {
+  return testables.reduce((markMap, testable) => {
+    const testableMarks = {
+      answers: [],
+      marks: [],
+    };
+    return {
+      ...markMap,
+      [testable.question.text]: testableMarks,
+    };
+  }, {});
+};
+
 export function LessonScreen(props: Props): Node {
   const { lesson } = props.route.params;
   if (lesson.testables.length < 2) {
@@ -30,26 +43,38 @@ export function LessonScreen(props: Props): Node {
 
   const [userAnswer, setUserAnswer] = useState({});
 
+  const [marks, setMarks] = useState(initMarks(lesson.testables));
+
   const [result, setResult] = useState(null); // Result is null if question not answered yet
 
+  const currentTestable = testableQueue[0];
+
   const getAnswerFields = () => {
-    const answer = testableQueue[0].answer;
+    const answer = currentTestable.answer;
     switch (answer.type) {
       case "ROMAJI":
         return answer.text.split(",").map((charRomaji, i) => (
-          <TextInput
-            key={`input-${i}`}
-            style={styles.singleCharAnswerField}
-            placeholder={romajiHiraganaMap[charRomaji]}
-            value={userAnswer[`input-${i}`]}
-            onChangeText={(text) => {
-              // $FlowFixMe Not sure what's happening here
-              setUserAnswer({
-                ...userAnswer,
-                [`input-${i}`]: text.toLowerCase(),
-              });
-            }}
-          />
+          <View key={`input-${i}`}>
+            <TextInput
+              style={[
+                styles.singleCharAnswerField,
+                result === "incorrect" ? styles.incorrectAnswerField : null,
+              ]}
+              editable={result == null}
+              placeholder={romajiHiraganaMap[charRomaji]}
+              value={userAnswer[`input-${i}`]}
+              onChangeText={(text) => {
+                // $FlowFixMe Not sure what's happening here
+                setUserAnswer({
+                  ...userAnswer,
+                  [`input-${i}`]: text.toLowerCase(),
+                });
+              }}
+            />
+            {result === "incorrect" ? (
+              <Text style={styles.correction}>{charRomaji}</Text>
+            ) : null}
+          </View>
         ));
       default:
         return (
@@ -82,21 +107,28 @@ export function LessonScreen(props: Props): Node {
     console.log(userAnswer);
     console.log(csvAnswer);
 
-    if (csvAnswer === testableQueue[0].answer.text) {
+    if (csvAnswer === currentTestable.answer.text) {
       // Answer is correct!
-
       setResult("correct");
-      if (unqueuedTestables.length > 0) {
-        // Add new testable to testing queue
-        setTestableQueue([...testableQueue, unqueuedTestables[0]]);
-        // Remove that testable from the untested queue
-        setUnqueuedTestables(unqueuedTestables.slice(1));
-      }
+      setMarks({
+        ...marks,
+        [currentTestable.question.text]: {
+          answers: [...marks[currentTestable.question.text].answers, csvAnswer],
+          marks: [...marks[currentTestable.question.text].marks, "correct"],
+        },
+      });
     } else {
       // Answer is incorrect!
       setResult("incorrect");
       // Re-add the failed testable to the back of the queue
-      setTestableQueue([...testableQueue, testableQueue[0]]);
+      // setTestableQueue([...testableQueue, currentTestable]);
+      setMarks({
+        ...marks,
+        [currentTestable.question.text]: {
+          answers: [...marks[currentTestable.question.text].answers, csvAnswer],
+          marks: [...marks[currentTestable.question.text].marks, "incorrect"],
+        },
+      });
     }
   };
 
@@ -105,8 +137,47 @@ export function LessonScreen(props: Props): Node {
   };
 
   const nextQuestion = () => {
+    let timesAnsweredCorrect = marks[
+      currentTestable.question.text
+    ].marks.filter((m) => m === "correct").length;
+
+    // If this is not the final question
     if (testableQueue.length > 1) {
-      setTestableQueue(testableQueue.slice(1));
+      console.log(timesAnsweredCorrect);
+      console.log(marks);
+      // Answered question correctly less than 3 times
+      // 1st time: We are showing the user the answer so they can learn. Add back to the end of queue. Don't add new stuff yet.
+      // 2nd time: We are showing the user a hint. Add to back of queue again. Add a new testable to the queue as well.
+      // 3rd time: Answered correctly with no hints. Good job, remove this testable from the queue.
+      if (timesAnsweredCorrect <= 1) {
+        // User is now familiar with this testable. Add to back of queue again.
+        setTestableQueue([...testableQueue.slice(1), currentTestable]);
+      }
+      if (timesAnsweredCorrect === 2) {
+        // Add new testable (if it exists) and current testable to testing queue
+        setTestableQueue(
+          [
+            ...testableQueue.slice(1),
+            unqueuedTestables.length > 0 ? unqueuedTestables[0] : null,
+            currentTestable,
+          ].filter(Boolean)
+        );
+        // Remove the new testable from the untested queue, if it exists
+        if (unqueuedTestables.length > 0) {
+          setUnqueuedTestables(unqueuedTestables.slice(1));
+        }
+      }
+      if (timesAnsweredCorrect === 3) {
+        // Add new testable to testing queue if it exists
+        setTestableQueue(
+          [
+            ...testableQueue.slice(1),
+            unqueuedTestables.length > 0 ? unqueuedTestables[0] : null,
+          ].filter(Boolean)
+        );
+        // Remove the new testable from the untested queue, if it exists
+        setUnqueuedTestables(unqueuedTestables.slice(1));
+      }
       setResult(null);
       setUserAnswer({});
       console.log(
@@ -114,15 +185,14 @@ export function LessonScreen(props: Props): Node {
         unqueuedTestables.map((t) => t.question.text)
       );
     } else {
-      // This was the last question
       goToVictoryScreen();
     }
   };
 
   const getQuestionTypeText = () => {
     if (
-      testableQueue[0].question.type == "J_WORD" &&
-      testableQueue[0].answer.type == "ROMAJI"
+      currentTestable.question.type == "J_WORD" &&
+      currentTestable.answer.type == "ROMAJI"
     ) {
       return "Type the English letters that correspond to the Japanese.";
     }
@@ -130,11 +200,18 @@ export function LessonScreen(props: Props): Node {
   };
 
   const getButton = () => {
-    if (result != null) {
+    if (result === "correct") {
       return (
         <Button theme="success" onPress={nextQuestion}>
-          <FuriganaText kana="つぎ" text="次" />
-          <Text>Next</Text>
+          <FuriganaText kana="せいかい" text="正解" />
+          <Text>Correct!</Text>
+        </Button>
+      );
+    } else if (result === "incorrect") {
+      return (
+        <Button theme="destructive" onPress={nextQuestion}>
+          <FuriganaText kana="ちがいます" text="違います" />
+          <Text>Incorrect</Text>
         </Button>
       );
     } else {
@@ -149,44 +226,34 @@ export function LessonScreen(props: Props): Node {
 
   const displayResult = () => {
     if (result === "correct") {
-      return (
-        <View>
-          <Text>Correct!</Text>
-          <FuriganaText kana="せいかい" text="正解" />
-        </View>
-      );
+      return <View></View>;
     } else if (result === "incorrect") {
-      return (
-        <View>
-          <Text>Incorrect</Text>
-          <FuriganaText kana="ちがいます" text="違います" />
-        </View>
-      );
+      return <View></View>;
     } else {
       return null;
     }
   };
 
-  const displayNote = () => (
-    <View>
-      <View style={styles.noteWrapper}>
-        <View style={styles.noteBubble}>
-          <Text style={styles.notes}>{testableQueue[0].notes.text}</Text>
+  const displayNote = () =>
+    marks[currentTestable.question.text].marks.filter((m) => m === "correct")
+      .length > 0 ? null : (
+      <View>
+        <View style={styles.noteWrapper}>
+          <View style={styles.noteBubble}>
+            <Text style={styles.notes}>{currentTestable.notes.text}</Text>
+          </View>
+          <View style={styles.triangleWrapper}>
+            <View style={styles.triangle} />
+          </View>
         </View>
-        <View style={styles.triangleWrapper}>
-          <View style={styles.triangle} />
+        <View style={styles.fyuchanWrapper}>
+          <Image
+            source={require("../../../assets/images/fyu-mouth-open.png")}
+            style={styles.fyuchan}
+          />
         </View>
       </View>
-      <View style={styles.fyuchanWrapper}>
-        <Image
-          source={require("../../../assets/images/fyu-mouth-open.png")}
-          style={styles.fyuchan}
-        />
-      </View>
-    </View>
-  );
-
-  const currentTestable = testableQueue[0];
+    );
 
   return (
     <View style={styles.lessonScreenWrapper}>

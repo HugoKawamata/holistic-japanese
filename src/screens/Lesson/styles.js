@@ -5,7 +5,10 @@ import { fontSize } from "../../util/font";
 
 const answerFieldCommon = {
   backgroundColor: color.WHITE,
+  borderRadius: 3,
+  fontFamily: "Lato",
   fontSize: fontSize.answerSingleChar,
+  textAlign: "center",
 };
 
 const styles = StyleSheet.create({
@@ -18,6 +21,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     paddingBottom: 80,
   },
+  correction: {
+    fontSize: fontSize.answerSingleChar,
+    textAlign: "center",
+  },
   fyuchan: {
     height: 100,
     width: 100,
@@ -26,6 +33,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     paddingBottom: 20,
+  },
+  incorrectAnswerField: {
+    backgroundColor: color.INCORRECT_INPUT_BG,
   },
   lessonScreenWrapper: {
     alignItems: "center",

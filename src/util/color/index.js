@@ -10,6 +10,10 @@ export default {
   ACTION: action.a500,
   WHITE: grey.g000,
   PURPLE: purple.p500,
+  PLACEHOLDER: grey.g300,
+
+  // INPUTS
+  INCORRECT_INPUT_BG: danger.d100,
 
   // BUTTONS
   BUTTON_S: success.s600,
@@ -31,6 +35,4 @@ export default {
   TEXT_M: grey.g700,
   TEXT: grey.g800,
   TEXT_DARK: grey.g999,
-
-  PLACEHOLDER: grey.g300,
 };
