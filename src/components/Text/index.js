@@ -2,9 +2,11 @@
 
 import React, { type Node } from "react";
 import { Text as NativeText, StyleSheet } from "react-native";
+import color from "../../util/color";
 
 const style = StyleSheet.create({
   base: {
+    color: color.TEXT_DARK,
     fontFamily: "Lato",
   },
 });
@@ -17,9 +19,7 @@ type Props = {|
 |};
 
 export default function Text(props: Props): Node {
-  const styles = StyleSheet.flatten(
-    [style.base].concat(props.style ? props.style : [])
-  );
+  const styles = [style.base].concat(props.style ? props.style : []);
 
   return <NativeText style={styles}>{props.children}</NativeText>;
 }

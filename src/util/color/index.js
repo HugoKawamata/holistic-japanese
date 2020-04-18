@@ -12,13 +12,24 @@ export default {
 
   // BUTTONS
   BUTTON_S: success.s600,
+  BUTTON_S_RIPPLE: success.s700,
   BUTTON_A: action.a500,
+  BUTTON_A_RIPPLE: action.a600,
   BUTTON_W: warning.w500,
+  BUTTON_W_RIPPLE: warning.w600,
   BUTTON_D: danger.d400,
+  BUTTON_D_RIPPLE: danger.d500,
 
-  // TEXT
+  // TEXT COLOURS
   TEXT_S: success.s700,
   TEXT_A: action.a600,
   TEXT_D: danger.d500,
   TEXT_W: warning.w600,
+
+  // TEXT GREY
+  TEXT_M: grey.g700,
+  TEXT: grey.g800,
+  TEXT_DARK: grey.g999,
+
+  PLACEHOLDER: grey.g300,
 };

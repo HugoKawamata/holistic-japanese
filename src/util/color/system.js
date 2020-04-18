@@ -50,7 +50,7 @@ export const grey = {
   g700: "#536171",
   g800: "#3C4754", // TEXT,
   g900: "#222B35",
-  // g999: '#11181F',
+  g999: "#11181F",
 };
 
 export const purple = {

@@ -5,6 +5,7 @@ import FuriganaText from "../../components/Text/FuriganaText";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
 import color from "../../util/color";
+import { romajiHiraganaMap } from "./util";
 import styles from "./styles";
 
 type Props = {|
@@ -34,19 +35,20 @@ export function LessonScreen(props: Props): Node {
   const getAnswerFields = () => {
     const answer = testableQueue[0].answer;
     switch (answer.type) {
-      case "romaji":
+      case "ROMAJI":
         return answer.text.split(",").map((charRomaji, i) => (
           <TextInput
             key={`input-${i}`}
             style={styles.singleCharAnswerField}
-            placeholder=""
+            placeholder={romajiHiraganaMap[charRomaji]}
             value={userAnswer[`input-${i}`]}
-            onChangeText={(text) =>
+            onChangeText={(text) => {
+              // $FlowFixMe Not sure what's happening here
               setUserAnswer({
                 ...userAnswer,
                 [`input-${i}`]: text.toLowerCase(),
-              })
-            }
+              });
+            }}
           />
         ));
       default:
@@ -120,16 +122,16 @@ export function LessonScreen(props: Props): Node {
   const getButton = () => {
     if (result != null) {
       return (
-        <Button color={color.SUCCESS} onPress={nextQuestion}>
-          <Text>Next</Text>
+        <Button theme="success" onPress={nextQuestion}>
           <FuriganaText kana="つぎ" text="次" />
+          <Text>Next</Text>
         </Button>
       );
     } else {
       return (
-        <Button color={color.ACTION} onPress={answerQuestion}>
-          <Text>Answer</Text>
+        <Button theme="action" onPress={answerQuestion}>
           <FuriganaText kana="こたえる" text="答える" />
+          <Text>Answer</Text>
         </Button>
       );
     }
@@ -155,14 +157,11 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-
   const displayNote = () => (
     <View>
-      <Text style={styles.notes}>
-        { testableQueue[0].notes.text }
-      </Text>
+      <Text style={styles.notes}>{testableQueue[0].notes.text}</Text>
     </View>
-  )
+  );
 
   const currentTestable = testableQueue[0];
 

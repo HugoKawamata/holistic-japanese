@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     flexDirection: "column",
   },
+  notes: {},
   question: {
     fontSize: fontSize.question,
   },

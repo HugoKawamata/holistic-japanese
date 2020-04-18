@@ -10,6 +10,7 @@ import Text from "../../components/Text";
 import Button from "../../components/Button";
 import FuriganaText from "../../components/Text/FuriganaText";
 import color from "../../util/color";
+import { fontSize } from "../../util/font";
 
 const NEXT_LESSON_QUERY = gql`
   query NextLesson($email: String!) {
@@ -47,6 +48,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  startButtonEnglish: {
+    fontSize: fontSize.englishButton,
+    textAlign: "center",
+  },
 });
 
 type Props = {|
@@ -79,18 +84,9 @@ export function LearnScreen(props: Props): Node {
 
   return (
     <View style={styles.learnScreenWrapper}>
-      <Button color={color.BUTTON_S} onPress={startLesson}>
-        <View style={styles.startButtonContentWrapper}>
-          <View style={styles.startButtonEnglishWrapper}>
-            <Text style={styles.startButtonEnglish}>Start</Text>
-          </View>
-          <FuriganaText
-            textStyle={styles.startButtonJapanese}
-            furiStyle={styles.startButtonFurigana}
-            kana="わたしのこうざをはじめる"
-            text="私の講座を始める"
-          />
-        </View>
+      <Button theme="success" onPress={startLesson}>
+        <FuriganaText kana="わたしのこうざをはじめる" text="私の講座を始める" />
+        <Text style={styles.startButtonEnglish}>Start</Text>
       </Button>
     </View>
   );

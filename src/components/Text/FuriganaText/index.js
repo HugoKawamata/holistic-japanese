@@ -28,9 +28,11 @@ const styles = StyleSheet.create({
   },
   furiganaText: {
     fontSize: fontSize.furigana,
+    alignItems: "center",
   },
   mainText: {
     fontSize: fontSize.furiganaEnabledText,
+    marginBottom: -4, // This is gross but japanese text has severe natural bottom padding
   },
 });
 
