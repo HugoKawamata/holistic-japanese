@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
   },
   hiraganaReferenceScreenWrapper: {
     alignItems: "center",
-    paddingTop: 30,
+    paddingTop: 15,
     width,
   },
   incompleteCell: {
@@ -64,6 +64,13 @@ export const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     width: "100%",
+  },
+  title: {
+    paddingBottom: 10,
+  },
+  titleText: {
+    color: color.TEXT_M,
+    fontSize: fontSize.title,
   },
   yAxisLabel: {
     // idk

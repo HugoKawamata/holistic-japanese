@@ -16,6 +16,7 @@ export const fontSize = {
   furigana: sizes.TINY,
   furiganaEnabledText: sizes.LARGE,
   testableNote: sizes.REGULAR,
+  title: sizes.LARGE,
   referenceTableCell: sizes.LARGE,
   regular: sizes.REGULAR,
   question: sizes.DEKKEEE,

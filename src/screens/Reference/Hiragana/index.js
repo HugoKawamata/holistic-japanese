@@ -18,6 +18,7 @@ import {
   voicedHiraganaRomajiMatrix,
   comboMatrix,
   comboRomajiMatrix,
+  columnLeadToKanaLevelMap,
 } from "./util";
 import styles from "./style";
 
@@ -29,8 +30,11 @@ export function HiraganaReferenceScreen(props: Props) {
   const kanaLevelValue = kanaLevelToIntMap["hiragana-a"];
   const { width } = Dimensions.get("window");
 
-  const getHiraganaPage = (kanaMatrix, romajiMatrix) => (
+  const getHiraganaPage = (kanaMatrix, romajiMatrix, title) => (
     <View style={styles.hiraganaReferenceScreenWrapper}>
+      <View style={styles.title}>
+        <Text style={styles.titleText}>{title}</Text>
+      </View>
       <View style={styles.xAxisRow}>
         <View style={styles.xAxisLabel}>
           <Text style={styles.xAxisText}>A</Text>
@@ -52,7 +56,9 @@ export function HiraganaReferenceScreen(props: Props) {
         {kanaMatrix.map((row, rowNum) => (
           <View style={styles.row}>
             {row.map((kana, colNum) => {
-              const complete = rowNum + 1 <= kanaLevelValue;
+              const complete =
+                columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]] <=
+                kanaLevelValue;
 
               console.log(colNum, kana);
               if (colNum === 0) {
@@ -96,12 +102,21 @@ export function HiraganaReferenceScreen(props: Props) {
     </View>
   );
 
-  const hiraganaPage = getHiraganaPage(hiraganaMatrix, hiraganaRomajiMatrix);
+  const hiraganaPage = getHiraganaPage(
+    hiraganaMatrix,
+    hiraganaRomajiMatrix,
+    "Regular Hiragana"
+  );
   const voicedHiraganaPage = getHiraganaPage(
     voicedHiraganaMatrix,
-    voicedHiraganaRomajiMatrix
+    voicedHiraganaRomajiMatrix,
+    "Voiced Hiragana"
   );
-  const comboPage = getHiraganaPage(comboMatrix, comboRomajiMatrix);
+  const comboPage = getHiraganaPage(
+    comboMatrix,
+    comboRomajiMatrix,
+    "Combo Hiragana"
+  );
 
   const pages = [hiraganaPage, voicedHiraganaPage, comboPage];
   const pageNumbers = [0, 1, 2];
