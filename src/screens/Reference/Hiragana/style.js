@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
   },
   hiraganaReferenceScreenWrapper: {
     alignItems: "center",
-    paddingTop: 15,
     width,
   },
   incompleteCell: {
@@ -53,6 +52,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   mainMatrixWrapper: {
+    marginBottom: 30,
     paddingLeft: width * 0.02,
     paddingRight: width * 0.06,
     width: width,
@@ -66,6 +66,9 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   title: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 15,
     paddingBottom: 10,
   },
   titleText: {

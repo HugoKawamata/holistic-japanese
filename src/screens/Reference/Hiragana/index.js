@@ -6,6 +6,7 @@ import {
   TextInput,
   Image,
   FlatList,
+  ScrollView,
   Dimensions,
 } from "react-native";
 import Text from "../../../components/Text";
@@ -31,7 +32,7 @@ export function HiraganaReferenceScreen(props: Props) {
   const { width } = Dimensions.get("window");
 
   const getHiraganaPage = (kanaMatrix, romajiMatrix, title) => (
-    <View style={styles.hiraganaReferenceScreenWrapper}>
+    <ScrollView>
       <View style={styles.title}>
         <Text style={styles.titleText}>{title}</Text>
       </View>
@@ -98,7 +99,7 @@ export function HiraganaReferenceScreen(props: Props) {
           </View>
         ))}
       </View>
-    </View>
+    </ScrollView>
   );
 
   const hiraganaPage = getHiraganaPage(
