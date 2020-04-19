@@ -1,0 +1,126 @@
+// @flow
+
+export const kanaLevelToIntMap = {
+  // null is considered the 0th element here
+  "hiragana-a": 1,
+  "hiragana-ka": 2,
+  "hiragana-ga": 3,
+  "hiragana-sa": 4,
+  "hiragana-za": 5,
+  "hiragana-ta": 6,
+  "hiragana-da": 7,
+  "hiragana-na": 8,
+  "hiragana-n": 9,
+  "hiragana-ha": 10,
+  "hiragana-ba": 11,
+  "hiragana-ma": 12,
+  "hiragana-wa": 13,
+  "hiragana-ya": 14,
+  "hiragana-lya": 15,
+  "hiragana-ra": 16,
+  "hiragana-pa": 17,
+
+  "katakana-a": 18,
+  "katakana-ka": 19,
+  "katakana-ga": 20,
+  "katakana-sa": 21,
+  "katakana-za": 22,
+  "katakana-ta": 23,
+  "katakana-da": 24,
+  "katakana-na": 25,
+  "katakana-n": 26,
+  "katakana-ha": 27,
+  "katakana-ba": 28,
+  "katakana-ma": 29,
+  "katakana-wa": 30,
+  "katakana-ya": 31,
+  "katakana-lya": 32,
+  "katakana-ra": 33,
+  "katakana-pa": 34,
+};
+
+export const hiraganaMatrix = [
+  ["-", "あ", "い", "う", "え", "お"],
+  ["K", "か", "き", "く", "け", "こ"],
+  ["S", "さ", "し", "す", "せ", "そ"],
+  ["T", "た", "ち", "つ", "て", "と"],
+  ["N", "な", "に", "ぬ", "ね", "の"],
+  ["H", "は", "ひ", "ふ", "へ", "ほ"],
+  ["M", "ま", "み", "む", "め", "も"],
+  ["Y", "や", "", "ゆ", "", "よ"],
+  ["R", "ら", "り", "る", "れ", "ろ"],
+  ["W", "わ", "", "", "", "を"],
+  ["N", "ん"],
+];
+
+export const hiraganaRomajiMatrix = [
+  ["a", "i", "u", "e", "o"],
+  ["ka", "ki", "ku", "ke", "ko"],
+  ["sa", "shi", "su", "se", "so"],
+  ["ta", "chi", "tsu", "te", "to"],
+  ["na", "ni", "nu", "ne", "no"],
+  ["ha", "hi", "fu", "he", "ho"],
+  ["ma", "mi", "mu", "me", "mo"],
+  ["ya", "", "yu", "", "yo"],
+  ["ra", "ri", "ru", "re", "ro"],
+  ["wa", "", "", "", "wo"],
+  ["n"],
+];
+
+export const voicedHiraganaMatrix = [
+  ["-", "", "", "", "", ""],
+  ["G", "が", "ぎ", "ぐ", "げ", "ご"],
+  ["Z", "ざ", "じ", "ず", "ぜ", "ぞ"],
+  ["D", "だ", "ぢ", "づ", "で", "ど"],
+  ["N", "", "", "", "", ""],
+  ["B", "ば", "び", "ぶ", "べ", "ぼ"],
+  ["P", "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"],
+  ["M", "", "", "", "", ""],
+  ["Y", "", "", "", "", ""],
+  ["R", "", "", "", "", ""],
+  ["W", "", "", "", "", ""],
+  ["N", "", "", "", "", ""],
+];
+
+export const voicedHiraganaRomajiMatrix = [
+  ["", "", "", "", ""],
+  ["ga", "gi", "gu", "ge", "go"],
+  ["za", "ji", "zu", "ze", "zo"],
+  ["da", "dzi", "dzu", "de", "do"],
+  ["", "", "", "", ""],
+  ["ba", "bi", "bu", "be", "bo"],
+  ["pa", "pi", "pu", "pe", "po"],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+];
+
+export const comboMatrix = [
+  ["K", "きゃ", "", "きゅ", "", "きょ"],
+  ["G", "ぎゃ", "", "ぎゅ", "", "ぎょ"],
+  ["Sh", "しゃ", "", "しゅ", "", "しょ"],
+  ["J", "じゃ", "", "じゅ", "", "じょ"],
+  ["Ch", "ちゃ", "", "ちゅ", "", "ちょ"],
+  ["N", "にゃ", "", "にゅ", "", "にょ"],
+  ["H", "ひゃ", "", "ひゅ", "", "ひょ"],
+  ["B", "びゃ", "", "びゅ", "", "びょ"],
+  ["P", "ぴゃ", "", "ぴゅ", "", "ぴょ"],
+  ["M", "みゃ", "", "みゅ", "", "みょ"],
+  ["R", "りゃ", "", "りゅ", "", "りょ"],
+];
+
+export const comboRomajiMatrix = [
+  ["kya", "", "kyu", "", "kyo"],
+  ["gya", "", "gyu", "", "gyo"],
+  ["sha", "", "shu", "", "sho"],
+  ["ja", "", "ju", "", "jo"],
+  ["cha", "", "chu", "", "cho"],
+  ["nya", "", "nyu", "", "nyo"],
+  ["hya", "", "hyu", "", "hyo"],
+  ["bya", "", "byu", "", "byo"],
+  ["pya", "", "pyu", "", "pyo"],
+  ["mya", "", "myu", "", "myo"],
+  ["rya", "", "ryu", "", "ryo"],
+];

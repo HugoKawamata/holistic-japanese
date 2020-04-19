@@ -11,6 +11,7 @@ import styles from "./styles";
 import { PrefaceScreen } from "./Preface";
 
 type Props = {|
+  navigation: any,
   route: {
     params: {
       lesson: any, // TODO: Get this from apollo generated types
@@ -185,7 +186,7 @@ export function LessonScreen(props: Props): Node {
   };
 
   const goToVictoryScreen = () => {
-    console.log("your name is jeff");
+    props.navigation.navigate("さんしょう・Reference");
   };
 
   const nextQuestion = () => {

@@ -1,0 +1,94 @@
+// @flow
+import { Dimensions, StyleSheet } from "react-native";
+import color from "../../../util/color";
+import { fontSize } from "../../../util/font";
+
+const { width } = Dimensions.get("window");
+
+const basicCell = {
+  alignItems: "center",
+  borderRadius: width * 0.16,
+  height: width * 0.14,
+  justifyContent: "center",
+  paddingVertical: 7,
+  marginHorizontal: width * 0.01,
+  marginVertical: width * 0.01,
+  width: width * 0.14,
+};
+
+const basicCellKana = {
+  fontSize: fontSize.referenceTableCell,
+  marginBottom: -6,
+};
+
+export const styles = StyleSheet.create({
+  completeCell: {
+    ...basicCell,
+    backgroundColor: color.COMPLETE_CELL,
+  },
+  completeCellKana: {
+    ...basicCellKana,
+  },
+  completeCellRomaji: {
+    fontSize: fontSize.regular,
+  },
+  hiraganaReferenceScreenWrapper: {
+    alignItems: "center",
+    paddingTop: 30,
+    width,
+  },
+  incompleteCell: {
+    ...basicCell,
+    backgroundColor: color.INCOMPLETE_CELL,
+  },
+  incompleteCellKana: {
+    ...basicCellKana,
+    color: color.TEXT_M,
+  },
+  incompleteCellRomaji: {
+    color: color.TEXT_M,
+    fontSize: fontSize.regular,
+  },
+  list: {
+    flex: 1,
+  },
+  mainMatrixWrapper: {
+    paddingLeft: width * 0.02,
+    paddingRight: width * 0.06,
+    width: width,
+  },
+  nullCell: {
+    ...basicCell,
+    backgroundColor: color.INCOMPLETE_CELL,
+  },
+  row: {
+    flexDirection: "row",
+    width: "100%",
+  },
+  yAxisLabel: {
+    // idk
+    alignItems: "center",
+    justifyContent: "center",
+    width: width * 0.1,
+  },
+  xAxisRow: {
+    flexDirection: "row",
+    height: 30,
+    paddingLeft: width * 0.1,
+    paddingRight: width * 0.06,
+  },
+  xAxisLabel: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: width * 0.01,
+    width: width * 0.14,
+  },
+  xAxisText: {
+    color: color.TEXT_L,
+  },
+  yAxisText: {
+    color: color.TEXT_L,
+  },
+});
+
+export default styles;

@@ -9,6 +9,8 @@ import type { State as StoreState } from "../../store/types/store";
 import LoginScreen from "../Login";
 import LearnScreen from "../Learn";
 import LessonScreen from "../Lesson";
+import ReferenceScreen from "../Reference";
+import HiraganaReferenceScreen from "../Reference/Hiragana";
 
 type Props = {
   loggedIn: boolean,
@@ -27,6 +29,14 @@ export function Splash(props: Props): React.Node {
         <Stack.Navigator>
           <Stack.Screen name="ならう・Learn" component={LearnScreen} />
           <Stack.Screen name="じゅぎょう・Lesson" component={LessonScreen} />
+          <Stack.Screen
+            name="さんしょう・Reference"
+            component={ReferenceScreen}
+          />
+          <Stack.Screen
+            name="ひらがな・Hiragana"
+            component={HiraganaReferenceScreen}
+          />
         </Stack.Navigator>
       )}
     </NavigationContainer>

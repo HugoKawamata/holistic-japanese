@@ -1,5 +1,13 @@
 // @flow
-import { success, warning, danger, grey, purple, action } from "./system";
+import {
+  success,
+  warning,
+  danger,
+  grey,
+  purple,
+  action,
+  yellow,
+} from "./system";
 
 export default {
   // GENERIC NAMES
@@ -35,7 +43,11 @@ export default {
   TEXT_W: warning.w600,
 
   // TEXT GREY
+  TEXT_L: grey.g400,
   TEXT_M: grey.g700,
   TEXT: grey.g800,
   TEXT_DARK: grey.g999,
+
+  COMPLETE_CELL: yellow.y500,
+  INCOMPLETE_CELL: grey.g100,
 };

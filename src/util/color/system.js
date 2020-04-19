@@ -58,6 +58,10 @@ export const purple = {
   p600: "#5634C7",
 };
 
+export const yellow = {
+  y500: "#FFCC12",
+};
+
 export const action = {
   // p050: '#EDFAFF',
   // p100: '#CAEFFC',

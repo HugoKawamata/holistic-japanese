@@ -75,9 +75,12 @@ export function LearnScreen(props: Props): Node {
       .then((result) => {
         console.log(result);
         setLoading(false);
-        props.navigation.push("じゅぎょう・Lesson", {
-          lesson: result.data.user.nextLesson,
-        });
+        props.navigation.push(
+          /*"じゅぎょう・Lesson"*/ "さんしょう・Reference",
+          {
+            lesson: result.data.user.nextLesson,
+          }
+        );
         return result;
       });
   };
