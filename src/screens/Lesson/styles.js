@@ -11,6 +11,13 @@ const answerFieldCommon = {
   textAlign: "center",
 };
 
+const dialogueBubbleShadow = {
+  shadowColor: color.SHADOW,
+  shadowOffset: { width: 10, height: 10 },
+  shadowOpacity: 0.4,
+  shadowRadius: 10,
+};
+
 const styles = StyleSheet.create({
   answerFieldWrapper: {
     flexDirection: "row",
@@ -26,11 +33,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   dialogue: {
-    color: color.WHITE,
+    color: color.TEXT,
     lineHeight: fontSize.regular + 8,
   },
   dialogueBubble: {
-    backgroundColor: color.PURPLE,
+    ...dialogueBubbleShadow,
+    backgroundColor: color.WHITE,
     borderRadius: 6,
     paddingHorizontal: 20,
     paddingVertical: 16,
@@ -55,10 +63,33 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flexGrow: 1,
   },
+  noteSection: {
+    // height: "50%",
+  },
+  prefaceBottomSection: {
+    alignItems: "center",
+    flexDirection: "column",
+    flexGrow: 1,
+    justifyContent: "flex-end",
+    paddingBottom: 80,
+  },
   prefaceDialogueSectionWrapper: {
     alignItems: "center",
     justifyContent: "center",
-    flexGrow: 1,
+  },
+  prefaceImageWrapper: {
+    paddingTop: 30,
+    height: "30%",
+    width: "90%",
+    // alignItems: "center",
+    // justifyContent: "center",
+    // backgroundColor: "#00FF00",
+    // flexGrow: 1,
+  },
+  prefaceImage: {
+    flex: 1,
+    height: undefined,
+    width: undefined,
   },
   prefaceScreenWrapper: {
     alignItems: "center",
@@ -78,6 +109,7 @@ const styles = StyleSheet.create({
   questionWrapper: {
     alignItems: "center",
     paddingBottom: 80,
+    paddingTop: 70,
   },
   regularAnswerField: {
     ...answerFieldCommon,
@@ -96,15 +128,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     flexGrow: 1,
-    justifyContent: "center",
-    // paddingTop: 70,
+    justifyContent: "flex-start",
   },
   triangle: {
+    ...dialogueBubbleShadow,
     borderTopWidth: 16,
     borderRightWidth: 10,
     borderBottomWidth: 0,
     borderLeftWidth: 10,
-    borderTopColor: color.PURPLE,
+    borderTopColor: color.WHITE,
     borderRightColor: "transparent",
     borderBottomColor: "transparent",
     borderLeftColor: "transparent",

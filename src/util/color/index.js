@@ -11,6 +11,7 @@ export default {
   WHITE: grey.g000,
   PURPLE: purple.p500,
   PLACEHOLDER: grey.g300,
+  SHADOW: grey.g800,
 
   // INPUTS
   INCORRECT_INPUT_BG: danger.d100,

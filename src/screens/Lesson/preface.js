@@ -17,25 +17,29 @@ export function PrefaceScreen(props: Props) {
   return (
     <View style={styles.prefaceScreenWrapper}>
       <View style={styles.prefaceImageWrapper}>
-        <Image style={styles.prefaceImage} source={currentPreface.image} />
+        <Image
+          style={styles.prefaceImage}
+          source={{ uri: currentPreface.image }}
+          resizeMode="contain"
+        />
       </View>
-      <View style={styles.prefaceDialogueSectionWrapper}>
-        <View style={styles.dialogueWrapper}>
-          <View style={styles.dialogueBubble}>
-            <Text style={styles.dialogue}>{currentPreface.text}</Text>
+      <View style={styles.prefaceBottomSection}>
+        <View style={styles.prefaceDialogueSectionWrapper}>
+          <View style={styles.dialogueWrapper}>
+            <View style={styles.dialogueBubble}>
+              <Text style={styles.dialogue}>{currentPreface.text}</Text>
+            </View>
+            <View style={styles.triangleWrapper}>
+              <View style={styles.triangle} />
+            </View>
           </View>
-          <View style={styles.triangleWrapper}>
-            <View style={styles.triangle} />
+          <View style={styles.fyuchanWrapper}>
+            <Image
+              style={styles.fyuchan}
+              source={require("../../../assets/images/fyu-mouth-open.png")}
+            />
           </View>
         </View>
-        <View style={styles.fyuchanWrapper}>
-          <Image
-            style={styles.fyuchan}
-            source={require("../../../assets/images/fyu-mouth-open.png")}
-          />
-        </View>
-      </View>
-      <View style={styles.bottomSection}>
         {props.preface.length === 1 ? (
           <Button
             theme="success"

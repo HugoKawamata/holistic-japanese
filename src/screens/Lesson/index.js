@@ -8,7 +8,7 @@ import Button from "../../components/Button";
 import color from "../../util/color";
 import { romajiHiraganaMap } from "./util";
 import styles from "./styles";
-import { PrefaceScreen } from "./preface";
+import { PrefaceScreen } from "./Preface";
 
 type Props = {|
   route: {
@@ -290,26 +290,42 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const displayNote = () =>
-    marks[currentTestable.question.text].marks.filter((m) => m === "correct")
-      .length > 0 ? null : (
-      <View>
-        <View style={styles.dialogueWrapper}>
-          <View style={styles.dialogueBubble}>
-            <Text style={styles.dialogue}>{currentTestable.notes.text}</Text>
-          </View>
-          <View style={styles.triangleWrapper}>
-            <View style={styles.triangle} />
-          </View>
-        </View>
-        <View style={styles.fyuchanWrapper}>
-          <Image
-            source={require("../../../assets/images/fyu-mouth-open.png")}
-            style={styles.fyuchan}
-          />
-        </View>
+  const displayNote = () => {
+    const timesAnsweredCorrect = marks[
+      currentTestable.question.text
+    ].marks.filter((m) => m === "correct").length;
+    let dialogueText = null;
+    if (result === "correct") {
+      dialogueText = "Correct!";
+    } else if (result === "incorrect") {
+      dialogueText = "Incorrect";
+    } else if (timesAnsweredCorrect === 0) {
+      // Give them the answer the first time they see the question
+      dialogueText = currentTestable.notes.text;
+    }
+    return (
+      <View style={styles.noteSection}>
+        {dialogueText == null ? null : (
+          <>
+            <View style={styles.dialogueWrapper}>
+              <View style={styles.dialogueBubble}>
+                <Text style={styles.dialogue}>{dialogueText}</Text>
+              </View>
+              <View style={styles.triangleWrapper}>
+                <View style={styles.triangle} />
+              </View>
+            </View>
+            <View style={styles.fyuchanWrapper}>
+              <Image
+                source={require("../../../assets/images/fyu-mouth-open.png")}
+                style={styles.fyuchan}
+              />
+            </View>
+          </>
+        )}
       </View>
     );
+  };
 
   if (preface.length > 0) {
     return <PrefaceScreen preface={preface} setPreface={setPreface} />;
@@ -325,9 +341,9 @@ export function LessonScreen(props: Props): Node {
           </View>
           <View style={styles.answerFieldWrapper}>{getAnswerFields()}</View>
         </View>
-        {displayNote()}
       </View>
       <View style={styles.bottomSection}>
+        {displayNote()}
         {getButton()}
         {displayResult()}
       </View>
