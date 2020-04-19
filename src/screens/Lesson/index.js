@@ -1,6 +1,7 @@
 // @flow
 import React, { useState, type Node, createRef, useEffect } from "react";
 import { StyleSheet, View, TextInput, Image } from "react-native";
+import Sound from "react-native-sound";
 import FuriganaText from "../../components/Text/FuriganaText";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
@@ -53,15 +54,10 @@ export function LessonScreen(props: Props): Node {
   const [inputRefs, setInputRefs] = useState([]);
 
   useEffect(() => {
-    console.log("setting input refs based on", testableQueue[0]);
     setInputRefs((inputRefs) =>
       Array(testableQueue[0].answer.text.split(",").length)
         .fill()
         .map((_, i) => inputRefs[i] || createRef())
-    );
-    console.log(
-      "input refs are now ",
-      Array(testableQueue[0].answer.text.split(",").length)
     );
   }, [testableQueue[0]]);
 
@@ -85,7 +81,23 @@ export function LessonScreen(props: Props): Node {
             placeholder={romajiHiraganaMap[charRomaji]}
             value={userAnswer[`input-${i}`]}
             onChangeText={(text) => {
-              if (Object.keys(romajiHiraganaMap).includes(text.toLowerCase())) {
+              const lowerText = text.toLowerCase();
+              if (Object.keys(romajiHiraganaMap).includes(lowerText)) {
+                const soundFile = `${lowerText}.mp3`;
+                const charSound = new Sound(
+                  soundFile,
+                  Sound.MAIN_BUNDLE,
+                  (error) => {
+                    if (error) {
+                      console.log(error);
+                      // do something
+                    }
+
+                    // play when loaded
+                    charSound.play();
+                  }
+                );
+                charSound.release();
                 // When text changes to a valid hiragana character's romaji, if this is the last input
                 if (answerParts.length - 1 === i) {
                   // Blur self
@@ -98,7 +110,7 @@ export function LessonScreen(props: Props): Node {
               // $FlowFixMe Not sure what's happening here
               setUserAnswer({
                 ...userAnswer,
-                [`input-${i}`]: text.toLowerCase(),
+                [`input-${i}`]: lowerText,
               });
             }}
           />
