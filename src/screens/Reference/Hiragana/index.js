@@ -60,7 +60,6 @@ export function HiraganaReferenceScreen(props: Props) {
                 columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]] <=
                 kanaLevelValue;
 
-              console.log(colNum, kana);
               if (colNum === 0) {
                 return (
                   <View style={styles.yAxisLabel}>
