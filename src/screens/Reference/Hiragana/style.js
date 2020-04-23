@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
   xAxisRow: {
     flexDirection: "row",
     height: 30,
-    paddingLeft: width * 0.1,
+    paddingLeft: width * 0.12,
     paddingRight: width * 0.06,
   },
   xAxisLabel: {
