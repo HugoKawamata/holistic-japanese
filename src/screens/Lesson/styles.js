@@ -46,14 +46,22 @@ const styles = StyleSheet.create({
   dialogueWrapper: {
     width: "90%",
   },
+  emoji: {
+    fontSize: fontSize.questionEmoji,
+  },
+  emojiWrapper: {
+    flexGrow: 1,
+  },
   fyuchan: {
     height: 100,
     width: 100,
   },
   fyuchanWrapper: {
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
     paddingBottom: 20,
+    backgroundColor: "#ff0000",
+    width: "90%",
   },
   incorrectAnswerField: {
     backgroundColor: color.INCORRECT_INPUT_BG,

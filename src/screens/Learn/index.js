@@ -29,12 +29,12 @@ const NEXT_LESSON_QUERY = gql`
         testables {
           question {
             type
+            emoji
             image
             text
           }
           answer {
             type
-            image
             text
           }
           notes {

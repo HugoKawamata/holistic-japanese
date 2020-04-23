@@ -303,6 +303,29 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
+  const displayEmojiOrImage = () => {
+    let timesAnsweredCorrect = marks[
+      currentTestable.question.text
+    ].marks.filter((m) => m === "correct").length;
+
+    // If we're displaying a note, the bottom section gets too big, so don't display the emoji here.
+    if (
+      timesAnsweredCorrect >= 2 &&
+      !(timesAnsweredCorrect === 2 && result === "correct") &&
+      currentTestable.notes?.text != null
+    ) {
+      return <View style={styles.emojiWrapper} />;
+    }
+
+    if (currentTestable.question.emoji != null) {
+      return (
+        <View style={styles.emojiWrapper}>
+          <Text style={styles.emoji}>{currentTestable.question.emoji}</Text>
+        </View>
+      );
+    }
+  };
+
   const displayNote = () => {
     const timesAnsweredCorrect = marks[
       currentTestable.question.text
@@ -319,23 +342,26 @@ export function LessonScreen(props: Props): Node {
     return (
       <View style={styles.noteSection}>
         {dialogueText == null ? null : (
-          <>
-            <View style={styles.dialogueWrapper}>
-              <View style={styles.dialogueBubble}>
-                <Text style={styles.dialogue}>{dialogueText}</Text>
-              </View>
-              <View style={styles.triangleWrapper}>
-                <View style={styles.triangle} />
-              </View>
+          <View style={styles.dialogueWrapper}>
+            <View style={styles.dialogueBubble}>
+              <Text style={styles.dialogue}>{dialogueText}</Text>
             </View>
-            <View style={styles.fyuchanWrapper}>
-              <Image
-                source={require("../../../assets/images/fyu-mouth-open.png")}
-                style={styles.fyuchan}
-              />
+            <View style={styles.triangleWrapper}>
+              <View style={styles.triangle} />
             </View>
-          </>
+          </View>
         )}
+        <View style={styles.fyuchanWrapper}>
+          {displayEmojiOrImage()}
+          <Image
+            source={
+              dialogueText == null
+                ? require("../../../assets/images/fyu-mouth-closed.png")
+                : require("../../../assets/images/fyu-mouth-open.png")
+            }
+            style={styles.fyuchan}
+          />
+        </View>
       </View>
     );
   };
