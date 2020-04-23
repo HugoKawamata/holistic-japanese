@@ -197,6 +197,7 @@ export function LessonScreen(props: Props): Node {
   };
 
   const goToVictoryScreen = () => {
+    props.navigation.navigate("Reference");
     props.navigation.navigate("Hiragana");
   };
 
