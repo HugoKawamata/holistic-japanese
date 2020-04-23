@@ -81,10 +81,6 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     height: "30%",
     width: "90%",
-    // alignItems: "center",
-    // justifyContent: "center",
-    // backgroundColor: "#00FF00",
-    // flexGrow: 1,
   },
   prefaceImage: {
     flex: 1,
@@ -93,8 +89,8 @@ const styles = StyleSheet.create({
   },
   prefaceScreenWrapper: {
     alignItems: "center",
-    justifyContent: "center",
     flexGrow: 1,
+    justifyContent: "center",
   },
   question: {
     fontSize: fontSize.question,
@@ -123,6 +119,28 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingTop: 5,
     width: 50,
+  },
+  titleImageWrapper: {
+    paddingTop: 30,
+    height: "30%",
+    paddingHorizontal: "10%",
+    width: "90%",
+  },
+  titleImage: {
+    flex: 1,
+    height: undefined,
+    width: undefined,
+  },
+  titleScreenWrapper: {
+    alignItems: "center",
+    flexGrow: 1,
+    justifyContent: "center",
+  },
+  titleTextWrapper: {
+    paddingBottom: 50,
+  },
+  titleText: {
+    fontSize: fontSize.lessonTitle,
   },
   topSection: {
     alignItems: "center",

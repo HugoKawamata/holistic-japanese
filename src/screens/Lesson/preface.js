@@ -40,24 +40,16 @@ export function PrefaceScreen(props: Props) {
             />
           </View>
         </View>
-        {props.preface.length === 1 ? (
-          <Button
-            theme="success"
-            onPress={() => props.setPreface(props.preface.slice(1))}
-          >
-            <FuriganaText kana="はじめる！" text="始める！" />
-            <Text>Start!</Text>
-          </Button>
-        ) : (
-          <Button
-            theme="action"
-            onPress={() => props.setPreface(props.preface.slice(1))}
-          >
-            <FuriganaText kana="つぎへ" text="次へ" />
-            <Text>Next</Text>
-          </Button>
-        )}
+        <Button
+          theme="action"
+          onPress={() => props.setPreface(props.preface.slice(1))}
+        >
+          <FuriganaText kana="つぎへ" text="次へ" />
+          <Text>Next</Text>
+        </Button>
       </View>
     </View>
   );
 }
+
+export default PrefaceScreen;

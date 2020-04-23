@@ -22,6 +22,10 @@ const NEXT_LESSON_QUERY = gql`
           text
           image
         }
+        titleScreen {
+          title
+          image
+        }
         testables {
           question {
             type

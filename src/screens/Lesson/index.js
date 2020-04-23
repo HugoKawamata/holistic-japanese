@@ -8,7 +8,8 @@ import Button from "../../components/Button";
 import color from "../../util/color";
 import { romajiHiraganaMap } from "./util";
 import styles from "./styles";
-import { PrefaceScreen } from "./Preface";
+import PrefaceScreen from "./Preface";
+import TitleScreen from "./Title";
 
 type Props = {|
   navigation: any,
@@ -53,6 +54,8 @@ export function LessonScreen(props: Props): Node {
   const [result, setResult] = useState(null); // Result is null if question not answered yet
 
   const [inputRefs, setInputRefs] = useState([]);
+
+  const [lessonStarted, setLessonStarted] = useState(false);
 
   useEffect(() => {
     setInputRefs((inputRefs) =>
@@ -186,7 +189,7 @@ export function LessonScreen(props: Props): Node {
   };
 
   const goToVictoryScreen = () => {
-    props.navigation.navigate("Reference");
+    props.navigation.navigate("Hiragana");
   };
 
   const nextQuestion = () => {
@@ -330,6 +333,16 @@ export function LessonScreen(props: Props): Node {
 
   if (preface.length > 0) {
     return <PrefaceScreen preface={preface} setPreface={setPreface} />;
+  }
+
+  if (!lessonStarted) {
+    return (
+      <TitleScreen
+        title={lesson.titleScreen.title}
+        image={lesson.titleScreen.image}
+        setLessonStarted={setLessonStarted}
+      />
+    );
   }
 
   return (
