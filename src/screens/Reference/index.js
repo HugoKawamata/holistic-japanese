@@ -24,7 +24,7 @@ export function ReferenceScreen(props: Props) {
   return (
     <Button
       theme="success"
-      onPress={() => props.navigation.navigate("ひらがな・Hiragana")}
+      onPress={() => props.navigation.navigate("Hiragana")}
     >
       <Text style={styles.japaneseButtonText}>ひらがな</Text>
       <Text style={styles.englishButtonText}>Hiragana</Text>

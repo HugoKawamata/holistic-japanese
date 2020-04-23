@@ -75,7 +75,7 @@ export function LearnScreen(props: Props): Node {
       .then((result) => {
         console.log(result);
         setLoading(false);
-        props.navigation.push("じゅぎょう・Lesson", {
+        props.navigation.push("Lesson", {
           lesson: result.data.user.nextLesson,
         });
         return result;

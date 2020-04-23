@@ -186,7 +186,7 @@ export function LessonScreen(props: Props): Node {
   };
 
   const goToVictoryScreen = () => {
-    props.navigation.navigate("さんしょう・Reference");
+    props.navigation.navigate("Reference");
   };
 
   const nextQuestion = () => {

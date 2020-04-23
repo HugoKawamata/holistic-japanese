@@ -52,10 +52,15 @@ function NavRootScreen() {
           headerTitle: getHeaderTitle(route),
         })}
       />
-      <NavRoot.Screen name="じゅぎょう・Lesson" component={LessonScreen} />
       <NavRoot.Screen
-        name="ひらがな・Hiragana"
+        name="Lesson"
+        component={LessonScreen}
+        options={{ title: "じゅぎょう・Lesson" }}
+      />
+      <NavRoot.Screen
+        name="Hiragana"
         component={HiraganaReferenceScreen}
+        options={{ title: "ひらがな・Hiragana" }}
       />
     </NavRoot.Navigator>
   );
