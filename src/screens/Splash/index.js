@@ -21,34 +21,54 @@ const LoginStack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
-const LearnStack = createStackNavigator();
+const NavRoot = createStackNavigator();
 
-function LearnStackScreen() {
-  return (
-    <LearnStack.Navigator>
-      <LearnStack.Screen name="ならう・Learn" component={LearnScreen} />
-      <LearnStack.Screen name="じゅぎょう・Lesson" component={LessonScreen} />
-    </LearnStack.Navigator>
-  );
+function getHeaderTitle(route) {
+  // Access the tab navigator's state using `route.state`
+  const routeName = route.state
+    ? // Get the currently active route name in the tab navigator
+      route.state.routes[route.state.index].name
+    : // If state doesn't exist, we need to default to `screen` param if available, or the initial screen
+      // In our case, it's "Feed" as that's the first screen inside the navigator
+      route.params?.screen || "Feed";
+
+  switch (routeName) {
+    case "Learn":
+      return "ならう・Learn";
+    case "Reference":
+      return "さんしょう・Reference";
+    default:
+      return "";
+  }
 }
 
-const ReferenceStack = createStackNavigator();
-
-function ReferenceStackScreen() {
+function NavRootScreen() {
   return (
-    <ReferenceStack.Navigator>
-      <ReferenceStack.Screen
-        name="さんしょう・Reference"
-        component={ReferenceScreen}
+    <NavRoot.Navigator>
+      <NavRoot.Screen
+        name="Tabs"
+        component={MainTabs}
+        options={({ route }) => ({
+          headerTitle: getHeaderTitle(route),
+        })}
       />
-      <ReferenceStack.Screen
+      <NavRoot.Screen name="じゅぎょう・Lesson" component={LessonScreen} />
+      <NavRoot.Screen
         name="ひらがな・Hiragana"
         component={HiraganaReferenceScreen}
       />
-    </ReferenceStack.Navigator>
+    </NavRoot.Navigator>
   );
 }
 
+function MainTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Learn" component={LearnScreen} />
+      <Tab.Screen name="Reference" component={ReferenceScreen} />
+    </Tab.Navigator>
+  );
+}
 export function Splash(props: Props): React.Node {
   return (
     <NavigationContainer>
@@ -57,10 +77,7 @@ export function Splash(props: Props): React.Node {
           <LoginStack.Screen name="ロッグイン・Login" component={LoginScreen} />
         </LoginStack.Navigator>
       ) : (
-        <Tab.Navigator>
-          <Tab.Screen name="Learn" component={LearnStackScreen} />
-          <Tab.Screen name="Reference" component={ReferenceStackScreen} />
-        </Tab.Navigator>
+        <NavRootScreen />
       )}
     </NavigationContainer>
   );
