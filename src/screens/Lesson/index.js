@@ -6,6 +6,10 @@ import FuriganaText from "../../components/Text/FuriganaText";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
 import color from "../../util/color";
+import type {
+  NextLesson_user_nextLesson as Lesson,
+  NextLesson_user_nextLesson_testables as Testable,
+} from "../Learn/__generated__/NextLesson";
 import { romajiHiraganaMap } from "./util";
 import styles from "./styles";
 import PrefaceScreen from "./Preface";
@@ -15,12 +19,12 @@ type Props = {|
   navigation: any,
   route: {
     params: {
-      lesson: any, // TODO: Get this from apollo generated types
+      lesson: Lesson, // TODO: Get this from apollo generated types
     },
   },
 |};
 
-const initMarks = (testables) => {
+const initMarks = (testables: $ReadOnlyArray<Testable>) => {
   return testables.reduce((markMap, testable) => {
     const testableMarks = {
       answers: [],
@@ -35,21 +39,25 @@ const initMarks = (testables) => {
 
 export function LessonScreen(props: Props): Node {
   const { lesson } = props.route.params;
-  if (lesson.testables.length < 2) {
+  if (lesson.testables == null) {
+    throw new Error("Lesson does not exist");
+  }
+  const testables = lesson.testables.filter(Boolean);
+
+  if (testables.length < 2) {
     throw new Error("Lesson is too short.");
   }
+
   const [unqueuedTestables, setUnqueuedTestables] = useState(
-    lesson.testables.slice(2)
+    testables.slice(2)
   );
-  const [testableQueue, setTestableQueue] = useState(
-    lesson.testables.slice(0, 2)
-  );
+  const [testableQueue, setTestableQueue] = useState(testables.slice(0, 2));
 
   const [preface, setPreface] = useState(lesson.preface);
 
   const [userAnswer, setUserAnswer] = useState({});
 
-  const [marks, setMarks] = useState(initMarks(lesson.testables));
+  const [marks, setMarks] = useState(initMarks(testables));
 
   const [result, setResult] = useState(null); // Result is null if question not answered yet
 
@@ -305,7 +313,7 @@ export function LessonScreen(props: Props): Node {
       dialogueText = "Incorrect";
     } else if (timesAnsweredCorrect === 0) {
       // Give them the answer the first time they see the question
-      dialogueText = currentTestable.notes.text;
+      dialogueText = currentTestable.notes?.text;
     }
     return (
       <View style={styles.noteSection}>
@@ -331,15 +339,17 @@ export function LessonScreen(props: Props): Node {
     );
   };
 
-  if (preface.length > 0) {
+  if (preface != null && preface.length > 0) {
     return <PrefaceScreen preface={preface} setPreface={setPreface} />;
   }
 
-  if (!lessonStarted) {
+  const { titleScreen } = lesson;
+
+  if (!lessonStarted && titleScreen != null) {
     return (
       <TitleScreen
-        title={lesson.titleScreen.title}
-        image={lesson.titleScreen.image}
+        title={titleScreen.title}
+        image={titleScreen.image}
         setLessonStarted={setLessonStarted}
       />
     );

@@ -8,7 +8,7 @@ import Button from "../../components/Button";
 import styles from "./styles";
 
 type Props = {|
-  image: string,
+  image: ?string,
   setLessonStarted: (boolean) => typeof undefined,
   title: string,
 |};
@@ -19,13 +19,15 @@ export function TitleScreen(props: Props) {
       <View style={styles.titleTextWrapper}>
         <Text style={styles.titleText}>{props.title}</Text>
       </View>
-      <View style={styles.titleImageWrapper}>
-        <Image
-          style={styles.titleImage}
-          source={{ uri: props.image }}
-          resizeMode="contain"
-        />
-      </View>
+      {props.image != null ? (
+        <View style={styles.titleImageWrapper}>
+          <Image
+            style={styles.titleImage}
+            source={{ uri: props.image }}
+            resizeMode="contain"
+          />
+        </View>
+      ) : null}
       <Button theme="success" onPress={() => props.setLessonStarted(true)}>
         <FuriganaText kana="はじめる！" text="始める！" />
         <Text>Start!</Text>
