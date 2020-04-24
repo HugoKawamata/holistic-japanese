@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingBottom: 20,
-    backgroundColor: "#ff0000",
     width: "90%",
   },
   incorrectAnswerField: {

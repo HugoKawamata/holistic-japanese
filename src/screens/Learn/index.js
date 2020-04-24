@@ -27,6 +27,8 @@ const NEXT_LESSON_QUERY = gql`
           image
         }
         testables {
+          objectId
+          objectType
           question {
             type
             emoji
