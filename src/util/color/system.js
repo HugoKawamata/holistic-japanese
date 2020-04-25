@@ -59,6 +59,7 @@ export const purple = {
 };
 
 export const yellow = {
+  y300: "#f0bc02",
   y500: "#FFCC12",
 };
 

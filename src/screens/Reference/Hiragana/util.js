@@ -1,4 +1,12 @@
 // @flow
+import React from "react";
+import { View, StyleSheet, Image } from "react-native";
+import type { LessonContent } from "../../Learn/__generated__/NextLesson";
+import FuriganaText from "../../../components/Text/FuriganaText";
+import Text from "../../../components/Text";
+import Button from "../../../components/Button";
+import { fontSize } from "../../../util/font";
+import color from "../../../util/color";
 
 export const kanaLevelToIntMap = {
   // null is considered the 0th element here
@@ -154,3 +162,85 @@ export const comboRomajiMatrix = [
   ["mya", "", "myu", "", "myo"],
   ["rya", "", "ryu", "", "ryo"],
 ];
+
+const styles = StyleSheet.create({
+  body: {},
+  bodyTextSymbol: {
+    fontSize: fontSize.kanaAsImage,
+    textAlign: "center",
+  },
+  bodyTextLarge: {
+    fontSize: fontSize.large,
+    textAlign: "center",
+  },
+  bodyTextRegular: {
+    color: color.TEXT_M,
+    fontSize: fontSize.regular,
+    textAlign: "center",
+  },
+  bottomSection: {
+    alignItems: "center",
+  },
+  buttonEnglish: {},
+  buttonJapanese: {},
+  image: {
+    height: 100,
+    width: 100,
+  },
+  imageWrapper: {},
+  modalTitle: {},
+  topSection: {
+    alignContent: "center",
+    flexGrow: 1,
+    justifyContent: "center",
+  },
+});
+
+const aCompletedModalContent = (closeModal: any) => (
+  <>
+    <View style={styles.topSection}>
+      <View style={styles.body}>
+        <Text style={styles.bodyTextSymbol}>あ</Text>
+        <Text style={styles.bodyTextLarge}>あ Hiragana Line Complete!</Text>
+        <Text style={styles.bodyTextRegular}>1/10 Lines Complete</Text>
+      </View>
+      {/* <View style={styles.imageWrapper}>
+        <Image
+          style={styles.image}
+          source={require("../../../../assets/images/fyu-mouth-closed.png")}
+        />
+      </View> */}
+    </View>
+    <View style={styles.bottomSection}>
+      <Button theme="success" onPress={closeModal}>
+        <Text style={styles.buttonJapanese}>いいね！</Text>
+        <Text style={styles.buttonEnglish}>Cool!</Text>
+      </Button>
+    </View>
+  </>
+);
+
+export const getModalContent = (
+  completedContent: ?LessonContent,
+  closeModal: any
+) => {
+  switch (completedContent) {
+    case "HIRAGANA_A":
+      return aCompletedModalContent(closeModal);
+    default:
+      return null;
+  }
+};
+
+const aCompletedModalTitle = (
+  <Text style={styles.modalTitle}>Congratulations!</Text>
+);
+
+export const getModalTitle = (completedContent: LessonContent) => {
+  switch (completedContent) {
+    case "HIRAGANA_A":
+      return aCompletedModalTitle;
+    default:
+      return null;
+  }
+};

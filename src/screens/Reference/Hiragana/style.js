@@ -24,6 +24,10 @@ const basicCellKana = {
 export const styles = StyleSheet.create({
   completeCell: {
     ...basicCell,
+    shadowColor: color.COMPLETE_CELL_SHADOW,
+    shadowOffset: { height: 0.5 },
+    shadowOpacity: 0.7,
+    shadowRadius: 5,
     backgroundColor: color.COMPLETE_CELL,
   },
   completeCellKana: {
@@ -56,6 +60,9 @@ export const styles = StyleSheet.create({
     paddingLeft: width * 0.02,
     paddingRight: width * 0.06,
     width: width,
+  },
+  modalTitle: {
+    fontSize: fontSize.modalTitle,
   },
   nullCell: {
     ...basicCell,

@@ -8,6 +8,7 @@ const sizes = {
   LARGE: 22,
   VERY_LARGE: 32,
   DEKKEEE: 72,
+  IMAGE: 144,
 };
 
 export const fontSize = {
@@ -15,7 +16,10 @@ export const fontSize = {
   englishButton: sizes.REGULAR,
   furigana: sizes.TINY,
   furiganaEnabledText: sizes.LARGE,
+  kanaAsImage: sizes.IMAGE,
+  large: sizes.LARGE,
   lessonTitle: sizes.VERY_LARGE,
+  modalTitle: sizes.VERY_LARGE,
   testableNote: sizes.REGULAR,
   title: sizes.LARGE,
   referenceTableCell: sizes.LARGE,

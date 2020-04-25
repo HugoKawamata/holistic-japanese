@@ -49,5 +49,6 @@ export default {
   TEXT_DARK: grey.g999,
 
   COMPLETE_CELL: yellow.y500,
+  COMPLETE_CELL_SHADOW: yellow.y300,
   INCOMPLETE_CELL: grey.g100,
 };

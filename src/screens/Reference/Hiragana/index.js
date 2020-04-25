@@ -1,7 +1,6 @@
 // @flow
 import React, { useState, type Node, createRef, useEffect } from "react";
 import {
-  StyleSheet,
   View,
   TextInput,
   Image,
@@ -9,8 +8,12 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
+import { connect } from "react-redux";
+import { type State as StoreState } from "../../../store/types/store";
+import { OverlayModal } from "../../../components/OverlayModal";
 import Text from "../../../components/Text";
 import Button from "../../../components/Button";
+import type { LessonContent } from "../../Learn/__generated__/NextLesson";
 import {
   kanaLevelToIntMap,
   hiraganaMatrix,
@@ -20,14 +23,26 @@ import {
   comboMatrix,
   comboRomajiMatrix,
   columnLeadToKanaLevelMap,
+  getModalContent,
 } from "./util";
 import styles from "./style";
 
-type Props = {|
+type OwnProps = {|
   navigation: any,
+  route: {
+    params: any,
+  },
+|};
+
+type Props = {|
+  ...OwnProps,
+  completedContent: ?LessonContent,
+  modalOpen: boolean,
 |};
 
 export function HiraganaReferenceScreen(props: Props) {
+  const [modalVisible, setModalVisible] = useState(props.modalOpen);
+
   const kanaLevelValue = kanaLevelToIntMap["HIRAGANA-A"];
   const { width } = Dimensions.get("window");
 
@@ -121,24 +136,44 @@ export function HiraganaReferenceScreen(props: Props) {
   const pages = [hiraganaPage, voicedHiraganaPage, comboPage];
   const pageNumbers = [0, 1, 2];
 
+  console.log(props);
+
   return (
     // TODO: This probably needs to be a scrollview
-    <FlatList
-      style={styles.list}
-      getItemLayout={(_, index) => ({
-        length: width,
-        offset: width * index,
-        index,
-      })}
-      scrollEventThrottle={16} // 60fps
-      horizontal
-      pagingEnabled
-      showsHorizontalScrollIndicator={false}
-      keyExtractor={(item) => item.toString()}
-      renderItem={({ item }) => pages[item]}
-      data={pageNumbers}
-    />
+    <>
+      <FlatList
+        style={styles.list}
+        getItemLayout={(_, index) => ({
+          length: width,
+          offset: width * index,
+          index,
+        })}
+        scrollEventThrottle={16} // 60fps
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        initialScrollIndex={0}
+        keyExtractor={(item) => item.toString()}
+        renderItem={({ item }) => pages[item]}
+        data={pageNumbers}
+      />
+      <OverlayModal
+        closeModal={() => setModalVisible(false)}
+        title={<Text style={styles.modalTitle}>Congratulations!</Text>}
+        visible={modalVisible}
+      >
+        {getModalContent(props.completedContent, () => setModalVisible(false))}
+      </OverlayModal>
+    </>
   );
 }
 
-export default HiraganaReferenceScreen;
+function mapStateToProps(state: StoreState, ownProps: OwnProps) {
+  return {
+    ...ownProps,
+    completedContent: ownProps.route?.params?.completedContent || null,
+    modalOpen: ownProps.route?.params?.modalOpen || false,
+  };
+}
+
+export default connect(mapStateToProps)(HiraganaReferenceScreen);
