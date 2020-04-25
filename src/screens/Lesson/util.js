@@ -1,4 +1,5 @@
 // @flow
+import type { Results, Result } from "./types";
 
 export const romajiHiraganaMap = {
   a: "あ",
@@ -213,3 +214,6 @@ export const hiraganaRomajiMap = {
   りゅ: "ryu",
   りょ: "ryo",
 };
+
+export const formatResultsForMutation = (results: Results): Array<Result> =>
+  Object.keys(results).map((charKey: string) => results[charKey]);

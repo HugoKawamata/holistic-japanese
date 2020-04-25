@@ -28,7 +28,7 @@ type Props = {|
 |};
 
 export function HiraganaReferenceScreen(props: Props) {
-  const kanaLevelValue = kanaLevelToIntMap["hiragana-a"];
+  const kanaLevelValue = kanaLevelToIntMap["HIRAGANA-A"];
   const { width } = Dimensions.get("window");
 
   const getHiraganaPage = (kanaMatrix, romajiMatrix, title) => (

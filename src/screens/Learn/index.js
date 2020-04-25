@@ -83,6 +83,7 @@ export function LearnScreen(props: Props): Node {
         setLoading(false);
         props.navigation.push("Lesson", {
           lesson: result.data.user.nextLesson,
+          userId: result.data.user.id,
         });
         return result;
       });

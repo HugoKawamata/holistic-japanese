@@ -1,7 +1,7 @@
 // @flow
 import React, { useState, type Node, createRef, useEffect } from "react";
 import { StyleSheet, View, TextInput, Image } from "react-native";
-// import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import Sound from "react-native-sound";
 import FuriganaText from "../../components/Text/FuriganaText";
@@ -12,17 +12,22 @@ import type {
   NextLesson_user_nextLesson as Lesson,
   NextLesson_user_nextLesson_testables as Testable,
 } from "../Learn/__generated__/NextLesson";
-import { romajiHiraganaMap, hiraganaRomajiMap } from "./util";
+import {
+  romajiHiraganaMap,
+  hiraganaRomajiMap,
+  formatResultsForMutation,
+} from "./util";
 import styles from "./styles";
 import PrefaceScreen from "./Preface";
 import TitleScreen from "./Title";
 
 const SEND_RESULTS = gql`
-  mutation sendResults($type: String!) {
-    addTodo(type: $type) {
-      id
-      type
-    }
+  mutation sendResults(
+    $results: [Result]!
+    $userId: ID!
+    $content: LessonContent!
+  ) {
+    addLessonResults(results: $results, userId: $userId, content: $content)
   }
 `;
 
@@ -30,26 +35,27 @@ type Props = {|
   navigation: any,
   route: {
     params: {
-      lesson: Lesson, // TODO: Get this from apollo generated types
+      lesson: Lesson,
+      userId: string,
     },
   },
 |};
 
-const initMarks = (testables: $ReadOnlyArray<Testable>) => {
-  return testables.reduce((markMap, testable) => {
-    const testableMarks = {
+const initResults = (testables: $ReadOnlyArray<Testable>) => {
+  return testables.reduce((resultMap, testable) => {
+    const testableResults = {
       answers: [],
-      results: [],
+      marks: [],
     };
     return {
-      ...markMap,
-      [testable.question.text]: testableMarks,
+      ...resultMap,
+      [testable.question.text]: testableResults,
     };
   }, {});
 };
 
 export function LessonScreen(props: Props): Node {
-  const { lesson } = props.route.params;
+  const { userId, lesson } = props.route.params;
   if (lesson.testables == null) {
     throw new Error("Lesson does not exist");
   }
@@ -68,13 +74,15 @@ export function LessonScreen(props: Props): Node {
 
   const [userAnswer, setUserAnswer] = useState({});
 
-  const [results, setResults] = useState(initMarks(testables));
+  const [results, setResults] = useState(initResults(testables));
 
-  const [currentResult, setCurrentResult] = useState(null); // Result is null if question not answered yet
+  const [currentMark, setCurrentMark] = useState(null); // Result is null if question not answered yet
 
   const [inputRefs, setInputRefs] = useState([]);
 
   const [lessonStarted, setLessonStarted] = useState(false);
+
+  const [addLessonResults, { data }] = useMutation(SEND_RESULTS);
 
   useEffect(() => {
     setInputRefs((inputRefs) =>
@@ -98,11 +106,9 @@ export function LessonScreen(props: Props): Node {
             ref={inputRefs[i]}
             style={[
               styles.singleCharAnswerField,
-              currentResult === "INCORRECT"
-                ? styles.incorrectAnswerField
-                : null,
+              currentMark === "INCORRECT" ? styles.incorrectAnswerField : null,
             ]}
-            editable={currentResult == null}
+            editable={currentMark == null}
             placeholder={romajiHiraganaMap[charRomaji]}
             value={userAnswer[`input-${i}`]}
             onChangeText={(text) => {
@@ -144,7 +150,7 @@ export function LessonScreen(props: Props): Node {
         return answerParts.map((charRomaji, i) => (
           <View key={`input-${i}`}>
             {inputs[i]}
-            {currentResult === "INCORRECT" ? (
+            {currentMark === "INCORRECT" ? (
               <Text style={styles.correction}>{charRomaji}</Text>
             ) : null}
           </View>
@@ -205,15 +211,15 @@ export function LessonScreen(props: Props): Node {
     const csvAnswer = getCSVAnswer();
     const splitAnswer = csvAnswer.split(",");
 
-    let result;
+    let mark;
     if (csvAnswer === currentTestable.answer.text) {
       // Answer is correct!
-      setCurrentResult("CORRECT");
-      result = "CORRECT";
+      setCurrentMark("CORRECT");
+      mark = "CORRECT";
     } else {
       // Answer is incorrect!
-      setCurrentResult("INCORRECT");
-      result = "INCORRECT";
+      setCurrentMark("INCORRECT");
+      mark = "INCORRECT";
     }
 
     const characterResults = splitQuestion.reduce(
@@ -231,8 +237,8 @@ export function LessonScreen(props: Props): Node {
               ...(results[`char-${char}`]?.answers || []),
               splitAnswer[index],
             ],
-            results: [
-              ...(results[`char-${char}`]?.results || []),
+            marks: [
+              ...(results[`char-${char}`]?.marks || []),
               splitAnswer[index] === hiraganaRomajiMap[char]
                 ? "CORRECT"
                 : "INCORRECT",
@@ -251,13 +257,21 @@ export function LessonScreen(props: Props): Node {
         objectType: "WORD",
         text: currentTestable.question.text,
         answers: [...results[currentTestable.question.text].answers, csvAnswer],
-        results: [...results[currentTestable.question.text].results, result],
+        marks: [...results[currentTestable.question.text].marks, mark],
       },
     });
   };
 
   const goToVictoryScreen = () => {
-    console.log(results);
+    const formattedResults = formatResultsForMutation(results);
+    console.log(formattedResults);
+    addLessonResults({
+      variables: {
+        results: formattedResults,
+        userId: userId,
+        content: lesson.content,
+      },
+    });
     props.navigation.navigate("Reference");
     props.navigation.navigate("Hiragana");
   };
@@ -265,7 +279,7 @@ export function LessonScreen(props: Props): Node {
   const nextQuestion = () => {
     let timesAnsweredCorrect = results[
       currentTestable.question.text
-    ].results.filter((m) => m === "CORRECT").length;
+    ].marks.filter((m) => m === "CORRECT").length;
 
     // If this is not the final question
     if (testableQueue.length > 1) {
@@ -304,7 +318,7 @@ export function LessonScreen(props: Props): Node {
         // Remove the new testable from the untested queue, if it exists
         setUnqueuedTestables(unqueuedTestables.slice(1));
       }
-      setCurrentResult(null);
+      setCurrentMark(null);
       setUserAnswer({});
       console.log(
         testableQueue.map((t) => t.question.text),
@@ -326,14 +340,14 @@ export function LessonScreen(props: Props): Node {
   };
 
   const getButton = () => {
-    if (currentResult === "CORRECT") {
+    if (currentMark === "CORRECT") {
       return (
         <Button theme="success" onPress={nextQuestion}>
           <FuriganaText kana="せいかい" text="正解" />
           <Text>Correct!</Text>
         </Button>
       );
-    } else if (currentResult === "INCORRECT") {
+    } else if (currentMark === "INCORRECT") {
       return (
         <Button theme="destructive" onPress={nextQuestion}>
           <FuriganaText kana="ちがいます" text="違います" />
@@ -355,9 +369,9 @@ export function LessonScreen(props: Props): Node {
   };
 
   const displayResult = () => {
-    if (currentResult === "CORRECT") {
+    if (currentMark === "CORRECT") {
       return <View></View>;
-    } else if (currentResult === "INCORRECT") {
+    } else if (currentMark === "INCORRECT") {
       return <View></View>;
     } else {
       return null;
@@ -367,12 +381,12 @@ export function LessonScreen(props: Props): Node {
   const displayEmojiOrImage = () => {
     let timesAnsweredCorrect = results[
       currentTestable.question.text
-    ].results.filter((m) => m === "CORRECT").length;
+    ].marks.filter((m) => m === "CORRECT").length;
 
     // If we're displaying a note, the bottom section gets too big, so don't display the emoji here.
     if (
       timesAnsweredCorrect >= 2 &&
-      !(timesAnsweredCorrect === 2 && currentResult === "CORRECT") &&
+      !(timesAnsweredCorrect === 2 && currentMark === "CORRECT") &&
       currentTestable.notes?.text != null
     ) {
       return <View style={styles.emojiWrapper} />;
@@ -390,11 +404,11 @@ export function LessonScreen(props: Props): Node {
   const displayNote = () => {
     const timesAnsweredCorrect = results[
       currentTestable.question.text
-    ].results.filter((m) => m === "CORRECT").length;
+    ].marks.filter((m) => m === "CORRECT").length;
     let dialogueText = null;
-    if (currentResult === "CORRECT") {
+    if (currentMark === "CORRECT") {
       dialogueText = "Correct!";
-    } else if (currentResult === "INCORRECT") {
+    } else if (currentMark === "INCORRECT") {
       dialogueText = "Incorrect";
     } else if (timesAnsweredCorrect === 0) {
       // Give them the answer the first time they see the question
