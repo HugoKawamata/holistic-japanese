@@ -4,11 +4,12 @@
 - Add sounds to lessons on answer submission "\*_ping_\* 青"
 - Add apollo type generation to server
 - Add sound files to android
+- Profile page
+- Dynamic lesson generation that incorporates weak words
+- Remove result_ids column
 
 # DONE
 
 # Citations
 
 Hiragana audio files obtained from:
-
-- Abe, Namiko. (2020, February 11). How to Pronounce Hiragana - Japanese Hiragana With Audio Files. Retrieved from https://www.thoughtco.com/how-to-pronounce-hiragana-japanese-hiragana-with-audio-files-4077351

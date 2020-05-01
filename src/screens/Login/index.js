@@ -2,7 +2,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { StyleSheet, View, Button } from "react-native";
-import { statusCodes } from "@react-native-community/google-signin";
+import {
+  statusCodes,
+  GoogleSignin,
+} from "@react-native-community/google-signin";
 import { loadGoogleSignin } from "../../store/thunks/loaders";
 import Text from "../../components/Text";
 import Icon from "../../components/Icon";
@@ -24,7 +27,9 @@ type Props = {|
 export function LoginScreen(props: Props): React.Node {
   const googleSignIn = async () => {
     try {
-      props.loadGoogleSignin();
+      GoogleSignin.hasPlayServices();
+      const signInData = await GoogleSignin.signIn();
+      props.loadGoogleSignin(signInData.idToken, signInData);
     } catch (error) {
       console.log(error);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
