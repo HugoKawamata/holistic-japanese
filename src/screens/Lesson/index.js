@@ -265,22 +265,21 @@ export function LessonScreen(props: Props): Node {
   const goToVictoryScreen = () => {
     const formattedResults = formatResultsForMutation(results);
     console.log(formattedResults);
-    // addLessonResults({
-    //   variables: {
-    //     results: formattedResults,
-    //     userId: userId,
-    //     content: lesson.content,
-    //   },
-    // });
-    props.navigation.navigate("Reference");
-    props.navigation.navigate("Hiragana", {
-      completedContent: lesson.content,
-      modalOpen: true,
+    addLessonResults({
+      variables: {
+        results: formattedResults,
+        userId: userId,
+        content: lesson.content,
+      },
     });
+    // props.navigation.navigate("Reference");
+    // props.navigation.navigate("Hiragana", {
+    //   completedContent: lesson.content,
+    //   modalOpen: true,
+    // });
   };
 
   const nextQuestion = () => {
-    goToVictoryScreen();
     let timesAnsweredCorrect = results[
       currentTestable.question.text
     ].marks.filter((m) => m === "CORRECT").length;
