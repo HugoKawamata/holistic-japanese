@@ -275,31 +275,43 @@ export function LessonScreen(props: Props): Node {
         content: lesson.content,
       },
     });
-    // props.navigation.navigate("Reference");
-    // props.navigation.navigate("Hiragana", {
-    //   completedContent: lesson.content,
-    //   modalOpen: true,
-    // });
+    props.navigation.navigate("Reference");
+    props.navigation.navigate("Hiragana", {
+      completedContent: lesson.content,
+      modalOpen: true,
+    });
+  };
+
+  // Stage 1 (show emoji and introduction)
+  // Stage 2 (show emoji)
+  // Stage 3 (show no hints)
+  // Revision words skip stage 1
+  const getQuestionStage = () => {
+    let questionStage = results[currentTestable.question.text].marks.filter(
+      (m) => m === "CORRECT"
+    ).length;
+
+    // Revision words skip stage 1
+    if (currentTestable.introduction == null) {
+      questionStage += 1;
+    }
+    return questionStage;
   };
 
   const nextQuestion = () => {
-    let timesAnsweredCorrect = results[
-      currentTestable.question.text
-    ].marks.filter((m) => m === "CORRECT").length;
-
+    // Question stage here may be bumped up 1 by the current result, since this happens after the user answers.
+    const nextTimeQuestionStage = getQuestionStage();
     // If this is not the final question
     if (testableQueue.length > 1) {
-      console.log(timesAnsweredCorrect);
-      console.log(results);
       // Answered question correctly less than 3 times
       // 1st time: We are showing the user the answer so they can learn. Add back to the end of queue. Don't add new stuff yet.
       // 2nd time: We are showing the user a hint. Add to back of queue again. Add a new testable to the queue as well.
       // 3rd time: Answered correctly with no hints. Good job, remove this testable from the queue.
-      if (timesAnsweredCorrect <= 1) {
+      if (nextTimeQuestionStage <= 1) {
         // User is now familiar with this testable. Add to back of queue again.
         setTestableQueue([...testableQueue.slice(1), currentTestable]);
       }
-      if (timesAnsweredCorrect === 2) {
+      if (nextTimeQuestionStage === 2) {
         // Add new testable (if it exists) and current testable to testing queue
         setTestableQueue(
           [
@@ -313,7 +325,7 @@ export function LessonScreen(props: Props): Node {
           setUnqueuedTestables(unqueuedTestables.slice(1));
         }
       }
-      if (timesAnsweredCorrect === 3) {
+      if (nextTimeQuestionStage === 3) {
         // Add new testable to testing queue if it exists
         setTestableQueue(
           [
@@ -385,13 +397,11 @@ export function LessonScreen(props: Props): Node {
   };
 
   const displayEmojiOrImage = () => {
-    let timesAnsweredCorrect = results[
-      currentTestable.question.text
-    ].marks.filter((m) => m === "CORRECT").length;
+    const questionStage = getQuestionStage();
 
     if (
-      timesAnsweredCorrect >= 2 &&
-      !(timesAnsweredCorrect === 2 && currentMark === "CORRECT") &&
+      questionStage >= 2 &&
+      !(questionStage === 2 && currentMark === "CORRECT") &&
       currentTestable.introduction != null
     ) {
       return <View style={styles.emojiWrapper} />;
@@ -407,15 +417,13 @@ export function LessonScreen(props: Props): Node {
   };
 
   const displayNote = () => {
-    const timesAnsweredCorrect = results[
-      currentTestable.question.text
-    ].marks.filter((m) => m === "CORRECT").length;
+    const questionStage = getQuestionStage();
     let dialogueText = null;
     if (currentMark === "CORRECT") {
       dialogueText = "Correct!";
     } else if (currentMark === "INCORRECT") {
       dialogueText = "Incorrect";
-    } else if (timesAnsweredCorrect === 0) {
+    } else if (questionStage === 0) {
       // Give them the answer the first time they see the question
       dialogueText = currentTestable.introduction;
     }
