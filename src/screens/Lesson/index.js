@@ -70,7 +70,11 @@ export function LessonScreen(props: Props): Node {
   );
   const [testableQueue, setTestableQueue] = useState(testables.slice(0, 2));
 
-  const [preface, setPreface] = useState(lesson.preface);
+  const [preface, setPreface] = useState(
+    lesson.lectures != null
+      ? lesson.lectures.filter((lec) => lec.position === "PRETEST")
+      : []
+  );
 
   const [userAnswer, setUserAnswer] = useState({});
 
@@ -100,7 +104,6 @@ export function LessonScreen(props: Props): Node {
       case "ROMAJI":
         const answerParts = answer.text.split(",");
 
-        console.log(inputRefs);
         const inputs = answerParts.map((charRomaji, i) => (
           <TextInput
             ref={inputRefs[i]}
@@ -386,11 +389,10 @@ export function LessonScreen(props: Props): Node {
       currentTestable.question.text
     ].marks.filter((m) => m === "CORRECT").length;
 
-    // If we're displaying a note, the bottom section gets too big, so don't display the emoji here.
     if (
       timesAnsweredCorrect >= 2 &&
       !(timesAnsweredCorrect === 2 && currentMark === "CORRECT") &&
-      currentTestable.notes?.text != null
+      currentTestable.introduction != null
     ) {
       return <View style={styles.emojiWrapper} />;
     }
@@ -415,7 +417,7 @@ export function LessonScreen(props: Props): Node {
       dialogueText = "Incorrect";
     } else if (timesAnsweredCorrect === 0) {
       // Give them the answer the first time they see the question
-      dialogueText = currentTestable.notes?.text;
+      dialogueText = currentTestable.introduction;
     }
     return (
       <View style={styles.noteSection}>
