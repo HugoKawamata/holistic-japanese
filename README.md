@@ -7,6 +7,8 @@
 - Profile page
 - Dynamic lesson generation that incorporates weak words
 - Remove result_ids column
+- Add results screen "Accuracy for each letter あ 80% ... Accuracy for each word"
+- Add progress bar at the top of the lesson screen
 
 # DONE
 

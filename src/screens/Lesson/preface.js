@@ -5,7 +5,7 @@ import { View, Image } from "react-native";
 import Text from "../../components/Text";
 import FuriganaText from "../../components/Text/FuriganaText";
 import Button from "../../components/Button";
-import type { NextLesson_user_nextLesson_preface as Preface } from "../Learn/__generated__/NextLesson";
+import type { NextLesson_user_nextLesson_lectures as Preface } from "../Learn/__generated__/NextLesson";
 import styles from "./styles";
 
 type Props = {|

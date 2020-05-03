@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, type Node, createRef, useEffect } from "react";
-import { StyleSheet, View, TextInput, Image } from "react-native";
+import { View, TextInput, Image } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import Sound from "react-native-sound";
@@ -19,6 +19,7 @@ import {
 } from "./util";
 import styles from "./styles";
 import PrefaceScreen from "./Preface";
+import ProgressBar from "./ProgressBar";
 import TitleScreen from "./Title";
 
 const SEND_RESULTS = gql`
@@ -70,7 +71,11 @@ export function LessonScreen(props: Props): Node {
   );
   const [testableQueue, setTestableQueue] = useState(testables.slice(0, 2));
 
-  const [preface, setPreface] = useState(lesson.preface);
+  const [preface, setPreface] = useState(
+    lesson.lectures != null
+      ? lesson.lectures.filter((lec) => lec.position === "PRETEST")
+      : []
+  );
 
   const [userAnswer, setUserAnswer] = useState({});
 
@@ -100,7 +105,6 @@ export function LessonScreen(props: Props): Node {
       case "ROMAJI":
         const answerParts = answer.text.split(",");
 
-        console.log(inputRefs);
         const inputs = answerParts.map((charRomaji, i) => (
           <TextInput
             ref={inputRefs[i]}
@@ -272,31 +276,45 @@ export function LessonScreen(props: Props): Node {
         content: lesson.content,
       },
     });
-    // props.navigation.navigate("Reference");
-    // props.navigation.navigate("Hiragana", {
-    //   completedContent: lesson.content,
-    //   modalOpen: true,
-    // });
+    props.navigation.navigate("Reference");
+    props.navigation.navigate("Hiragana", {
+      completedContent: lesson.content,
+      modalOpen: true,
+    });
+  };
+
+  // Stage 0 (show emoji and introduction)
+  // Stage 1 (show emoji)
+  // Stage 2 (show no hints)
+  // Revision words skip stage 1
+  const getQuestionStage = () => {
+    let questionStage = results[currentTestable.question.text].marks.filter(
+      (m) => m === "CORRECT"
+    ).length;
+
+    // Revision words skip stage 1
+    if (currentTestable.introduction == null) {
+      questionStage += 1;
+    }
+    return questionStage;
   };
 
   const nextQuestion = () => {
-    let timesAnsweredCorrect = results[
-      currentTestable.question.text
-    ].marks.filter((m) => m === "CORRECT").length;
-
+    // Question stage here may be bumped up 1 by the current result, since this happens after the user answers.
+    const nextTimeQuestionStage = getQuestionStage();
+    console.log("next time question stage", nextTimeQuestionStage);
+    console.log(results);
     // If this is not the final question
     if (testableQueue.length > 1) {
-      console.log(timesAnsweredCorrect);
-      console.log(results);
       // Answered question correctly less than 3 times
       // 1st time: We are showing the user the answer so they can learn. Add back to the end of queue. Don't add new stuff yet.
       // 2nd time: We are showing the user a hint. Add to back of queue again. Add a new testable to the queue as well.
       // 3rd time: Answered correctly with no hints. Good job, remove this testable from the queue.
-      if (timesAnsweredCorrect <= 1) {
+      if (nextTimeQuestionStage <= 1) {
         // User is now familiar with this testable. Add to back of queue again.
         setTestableQueue([...testableQueue.slice(1), currentTestable]);
       }
-      if (timesAnsweredCorrect === 2) {
+      if (nextTimeQuestionStage === 2) {
         // Add new testable (if it exists) and current testable to testing queue
         setTestableQueue(
           [
@@ -310,7 +328,7 @@ export function LessonScreen(props: Props): Node {
           setUnqueuedTestables(unqueuedTestables.slice(1));
         }
       }
-      if (timesAnsweredCorrect === 3) {
+      if (nextTimeQuestionStage >= 3) {
         // Add new testable to testing queue if it exists
         setTestableQueue(
           [
@@ -382,15 +400,12 @@ export function LessonScreen(props: Props): Node {
   };
 
   const displayEmojiOrImage = () => {
-    let timesAnsweredCorrect = results[
-      currentTestable.question.text
-    ].marks.filter((m) => m === "CORRECT").length;
+    const questionStage = getQuestionStage();
 
-    // If we're displaying a note, the bottom section gets too big, so don't display the emoji here.
     if (
-      timesAnsweredCorrect >= 2 &&
-      !(timesAnsweredCorrect === 2 && currentMark === "CORRECT") &&
-      currentTestable.notes?.text != null
+      questionStage >= 2 &&
+      !(questionStage === 2 && currentMark === "CORRECT") &&
+      currentTestable.introduction != null
     ) {
       return <View style={styles.emojiWrapper} />;
     }
@@ -405,17 +420,15 @@ export function LessonScreen(props: Props): Node {
   };
 
   const displayNote = () => {
-    const timesAnsweredCorrect = results[
-      currentTestable.question.text
-    ].marks.filter((m) => m === "CORRECT").length;
+    const questionStage = getQuestionStage();
     let dialogueText = null;
     if (currentMark === "CORRECT") {
       dialogueText = "Correct!";
     } else if (currentMark === "INCORRECT") {
       dialogueText = "Incorrect";
-    } else if (timesAnsweredCorrect === 0) {
+    } else if (questionStage === 0) {
       // Give them the answer the first time they see the question
-      dialogueText = currentTestable.notes?.text;
+      dialogueText = currentTestable.introduction;
     }
     return (
       <View style={styles.noteSection}>
@@ -460,8 +473,24 @@ export function LessonScreen(props: Props): Node {
     );
   }
 
+  const totalQuestions =
+    lesson.testables == null
+      ? 0
+      : lesson.testables
+          .map((testable) => (testable.introduction != null ? 3 : 2))
+          .reduce((sum, num) => sum + num);
+
+  const correctAnswers = Object.keys(results)
+    .filter((key) => results[key].objectId != null)
+    .reduce(
+      (sum, key) =>
+        sum + results[key].marks.filter((mark) => mark === "CORRECT").length,
+      0
+    );
+
   return (
     <View style={styles.lessonScreenWrapper}>
+      <ProgressBar total={totalQuestions} complete={correctAnswers} />
       <View style={styles.topSection}>
         <View style={styles.questionWrapper}>
           <Text style={styles.question}>{currentTestable.question.text}</Text>

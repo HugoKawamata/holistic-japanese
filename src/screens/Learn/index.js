@@ -18,9 +18,10 @@ const NEXT_LESSON_QUERY = gql`
       id
       nextLesson {
         content
-        preface {
+        lectures {
           text
           image
+          position
         }
         titleScreen {
           title
@@ -39,9 +40,7 @@ const NEXT_LESSON_QUERY = gql`
             type
             text
           }
-          notes {
-            text
-          }
+          introduction
         }
       }
     }
@@ -74,6 +73,7 @@ export function LearnScreen(props: Props): Node {
     client
       .query({
         query: NEXT_LESSON_QUERY,
+        fetchPolicy: "network-only",
         variables: {
           email: props.userEmail,
         },
