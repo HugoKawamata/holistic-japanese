@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, type Node, createRef, useEffect } from "react";
-import { StyleSheet, View, TextInput, Image } from "react-native";
+import { View, TextInput, Image } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import Sound from "react-native-sound";
@@ -19,6 +19,7 @@ import {
 } from "./util";
 import styles from "./styles";
 import PrefaceScreen from "./Preface";
+import ProgressBar from "./ProgressBar";
 import TitleScreen from "./Title";
 
 const SEND_RESULTS = gql`
@@ -282,9 +283,9 @@ export function LessonScreen(props: Props): Node {
     });
   };
 
-  // Stage 1 (show emoji and introduction)
-  // Stage 2 (show emoji)
-  // Stage 3 (show no hints)
+  // Stage 0 (show emoji and introduction)
+  // Stage 1 (show emoji)
+  // Stage 2 (show no hints)
   // Revision words skip stage 1
   const getQuestionStage = () => {
     let questionStage = results[currentTestable.question.text].marks.filter(
@@ -301,6 +302,8 @@ export function LessonScreen(props: Props): Node {
   const nextQuestion = () => {
     // Question stage here may be bumped up 1 by the current result, since this happens after the user answers.
     const nextTimeQuestionStage = getQuestionStage();
+    console.log("next time question stage", nextTimeQuestionStage);
+    console.log(results);
     // If this is not the final question
     if (testableQueue.length > 1) {
       // Answered question correctly less than 3 times
@@ -325,7 +328,7 @@ export function LessonScreen(props: Props): Node {
           setUnqueuedTestables(unqueuedTestables.slice(1));
         }
       }
-      if (nextTimeQuestionStage === 3) {
+      if (nextTimeQuestionStage >= 3) {
         // Add new testable to testing queue if it exists
         setTestableQueue(
           [
@@ -470,8 +473,24 @@ export function LessonScreen(props: Props): Node {
     );
   }
 
+  const totalQuestions =
+    lesson.testables == null
+      ? 0
+      : lesson.testables
+          .map((testable) => (testable.introduction != null ? 3 : 2))
+          .reduce((sum, num) => sum + num);
+
+  const correctAnswers = Object.keys(results)
+    .filter((key) => results[key].objectId != null)
+    .reduce(
+      (sum, key) =>
+        sum + results[key].marks.filter((mark) => mark === "CORRECT").length,
+      0
+    );
+
   return (
     <View style={styles.lessonScreenWrapper}>
+      <ProgressBar total={totalQuestions} complete={correctAnswers} />
       <View style={styles.topSection}>
         <View style={styles.questionWrapper}>
           <Text style={styles.question}>{currentTestable.question.text}</Text>

@@ -73,6 +73,7 @@ export function LearnScreen(props: Props): Node {
     client
       .query({
         query: NEXT_LESSON_QUERY,
+        fetchPolicy: "network-only",
         variables: {
           email: props.userEmail,
         },
