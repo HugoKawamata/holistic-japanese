@@ -17,6 +17,7 @@ import {
   hiraganaRomajiMap,
   formatResultsForMutation,
 } from "./util";
+import type { Results } from "./types";
 import styles from "./styles";
 import PrefaceScreen from "./Preface";
 import ProgressBar from "./ProgressBar";
@@ -79,7 +80,7 @@ export function LessonScreen(props: Props): Node {
 
   const [userAnswer, setUserAnswer] = useState({});
 
-  const [results, setResults] = useState(initResults(testables));
+  const [results: Results, setResults] = useState(initResults(testables));
 
   const [currentMark, setCurrentMark] = useState(null); // Result is null if question not answered yet
 
@@ -279,6 +280,7 @@ export function LessonScreen(props: Props): Node {
     props.navigation.navigate("Reference");
     props.navigation.navigate("Hiragana", {
       completedContent: lesson.content,
+      results,
       modalOpen: true,
     });
   };
