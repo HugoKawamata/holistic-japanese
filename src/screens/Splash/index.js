@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { connect } from "react-redux";
 
 import type { State as StoreState } from "../../store/types/store";
+import color from "../../util/color";
 import LoginScreen from "../Login";
 import LearnScreen from "../Learn";
 import LessonScreen from "../Lesson";
@@ -55,7 +56,16 @@ function NavRootScreen() {
       <NavRoot.Screen
         name="Lesson"
         component={LessonScreen}
-        options={{ title: "じゅぎょう・Lesson" }}
+        options={{
+          title: "", // "レッスン・Lesson",
+          headerStyle: {
+            backgroundColor: color.NAVBAR,
+          },
+          headerTintColor: color.NAVBAR_TEXT,
+          headerTitleStyle: {
+            color: color.NAVBAR_TEXT,
+          },
+        }}
       />
       <NavRoot.Screen
         name="Hiragana"

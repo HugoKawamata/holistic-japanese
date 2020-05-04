@@ -7,6 +7,7 @@ import {
   purple,
   action,
   yellow,
+  sakura,
 } from "./system";
 
 export default {
@@ -17,9 +18,18 @@ export default {
   WARNING: warning.w500,
   ACTION: action.a500,
   WHITE: grey.g000,
+  BLACK: grey.g999,
   PURPLE: purple.p500,
   PLACEHOLDER: grey.g300,
   SHADOW: grey.g800,
+
+  // For subtle emphasis
+  EMPHA_BG: sakura.sa100,
+  HINT_BG: grey.g075,
+
+  // Navbar
+  NAVBAR: sakura.sa100,
+  NAVBAR_TEXT: sakura.sa600,
 
   // INPUTS
   INCORRECT_INPUT_BG: danger.d100,

@@ -40,7 +40,7 @@ export const grey = {
   g000: "#FFFFFF", // WHITE, TEXT_WHITE
   g025: "#F7F8FA", // SCREEN_BACKGROUND (ios)
   g050: "#F0F2F5", // BORDER_UL
-  // g075: '#E6E9ED',
+  g075: "#EFF4F9",
   g100: "#DAE0E8", // BORDER_L
   g200: "#CAD2DE", // BORDER_M
   g300: "#BAC5D4", // PLACEHOLDER
@@ -74,6 +74,12 @@ export const action = {
   a700: "#288BB5",
   // p800: '#1F77A6',
   // p900: '#186294',
+};
+
+export const sakura = {
+  sa100: "#FDE4E4",
+  sa200: "#FACECE",
+  sa600: "#FF5959",
 };
 
 const getColorFromName = (name: string) => {

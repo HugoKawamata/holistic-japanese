@@ -21,57 +21,68 @@ const dialogueBubbleShadow = {
 const styles = StyleSheet.create({
   answerFieldWrapper: {
     flexDirection: "row",
+    justifyContent: "center",
   },
   bottomSection: {
     alignItems: "center",
     flexDirection: "column",
-    justifyContent: "flex-end",
+    flexGrow: 1,
+    justifyContent: "space-between",
     paddingBottom: 80,
   },
   correction: {
     fontSize: fontSize.answerSingleChar,
     textAlign: "center",
   },
-  dialogue: {
-    color: color.TEXT,
-    lineHeight: fontSize.regular + 8,
-  },
-  dialogueBubble: {
-    ...dialogueBubbleShadow,
-    backgroundColor: color.WHITE,
-    borderRadius: 6,
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-  },
-  dialogueWrapper: {
-    width: "90%",
-  },
   emoji: {
     fontSize: fontSize.questionEmoji,
   },
   emojiWrapper: {
     flexGrow: 1,
+    paddingRight: 10,
   },
-  fyuchan: {
-    height: 100,
-    width: 100,
+  header: {
+    fontSize: 28,
+    fontWeight: "bold",
   },
-  fyuchanWrapper: {
+  headerWrapper: {
+    paddingHorizontal: 20,
+    paddingTop: 20,
+  },
+  hint: {
+    color: color.BLACK,
+    flexShrink: 1,
+    fontSize: 16,
+  },
+  hintBox: {
+    alignItems: "center",
+    backgroundColor: color.HINT_BG,
+    borderRadius: 16,
     flexDirection: "row",
-    justifyContent: "space-between",
-    paddingBottom: 20,
-    width: "90%",
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    marginTop: 14,
+  },
+  hintLabel: {
+    color: color.TEXT_M,
+    fontSize: fontSize.large,
+    fontWeight: "bold",
+  },
+  hintSection: {
+    // flexShrink: 1,
+    alignItems: "stretch",
+    paddingTop: 40,
+    paddingHorizontal: 30,
+    width: "100%",
   },
   incorrectAnswerField: {
     backgroundColor: color.INCORRECT_INPUT_BG,
   },
   lessonScreenWrapper: {
-    alignItems: "center",
+    alignItems: "stretch",
+    backgroundColor: color.WHITE,
     flexDirection: "column",
     flexGrow: 1,
-  },
-  noteSection: {
-    // height: "50%",
   },
   prefaceBottomSection: {
     alignItems: "center",
@@ -101,16 +112,15 @@ const styles = StyleSheet.create({
   },
   question: {
     fontSize: fontSize.question,
-  },
-  questionTypeWrapper: {
-    paddingBottom: 20,
+    textAlign: "center",
   },
   questionType: {
     color: color.TEXT,
     fontSize: fontSize.questionType,
+    textAlign: "left",
   },
   questionWrapper: {
-    alignItems: "center",
+    alignItems: "stretch",
     paddingBottom: 80,
     paddingTop: 70,
   },
@@ -150,28 +160,12 @@ const styles = StyleSheet.create({
     fontSize: fontSize.lessonTitle,
   },
   topSection: {
-    alignItems: "center",
+    alignItems: "stretch",
+    backgroundColor: color.EMPHA_BG,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
     flexDirection: "column",
-    flexGrow: 1,
     justifyContent: "flex-start",
-  },
-  triangle: {
-    ...dialogueBubbleShadow,
-    borderTopWidth: 16,
-    borderRightWidth: 10,
-    borderBottomWidth: 0,
-    borderLeftWidth: 10,
-    borderTopColor: color.WHITE,
-    borderRightColor: "transparent",
-    borderBottomColor: "transparent",
-    borderLeftColor: "transparent",
-    marginRight: 60,
-  },
-  triangleWrapper: {
-    height: 14,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    width: "100%",
   },
 });
 

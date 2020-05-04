@@ -355,7 +355,7 @@ export function LessonScreen(props: Props): Node {
       currentTestable.question.type == "J_WORD" &&
       currentTestable.answer.type == "ROMAJI"
     ) {
-      return "Type the English letters that correspond to the Japanese.";
+      return "Translate these characters to English letters";
     }
     return "";
   };
@@ -430,31 +430,20 @@ export function LessonScreen(props: Props): Node {
       // Give them the answer the first time they see the question
       dialogueText = currentTestable.introduction;
     }
-    return (
-      <View style={styles.noteSection}>
-        {dialogueText == null ? null : (
-          <View style={styles.dialogueWrapper}>
-            <View style={styles.dialogueBubble}>
-              <Text style={styles.dialogue}>{dialogueText}</Text>
-            </View>
-            <View style={styles.triangleWrapper}>
-              <View style={styles.triangle} />
-            </View>
+
+    const visualHint = displayEmojiOrImage();
+
+    if (visualHint && currentTestable.introduction) {
+      return (
+        <View style={styles.hintSection}>
+          <Text style={styles.hintLabel}>Hint</Text>
+          <View style={styles.hintBox}>
+            <View style={styles.emojiWrapper}>{visualHint}</View>
+            <Text style={styles.hint}>{currentTestable.introduction}</Text>
           </View>
-        )}
-        <View style={styles.fyuchanWrapper}>
-          {displayEmojiOrImage()}
-          <Image
-            source={
-              dialogueText == null
-                ? require("../../../assets/images/fyu-mouth-closed.png")
-                : require("../../../assets/images/fyu-mouth-open.png")
-            }
-            style={styles.fyuchan}
-          />
         </View>
-      </View>
-    );
+      );
+    }
   };
 
   if (preface != null && preface.length > 0) {
@@ -490,13 +479,14 @@ export function LessonScreen(props: Props): Node {
 
   return (
     <View style={styles.lessonScreenWrapper}>
-      <ProgressBar total={totalQuestions} complete={correctAnswers} />
       <View style={styles.topSection}>
+        <ProgressBar total={totalQuestions} complete={correctAnswers} />
+        <View style={styles.headerWrapper}>
+          <Text style={styles.header}>レッスン・Lesson</Text>
+          <Text style={styles.questionType}>{getQuestionTypeText()}</Text>
+        </View>
         <View style={styles.questionWrapper}>
           <Text style={styles.question}>{currentTestable.question.text}</Text>
-          <View style={styles.questionTypeWrapper}>
-            <Text style={styles.questionType}>{getQuestionTypeText()}</Text>
-          </View>
           <View style={styles.answerFieldWrapper}>{getAnswerFields()}</View>
         </View>
       </View>

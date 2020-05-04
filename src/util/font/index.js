@@ -25,6 +25,6 @@ export const fontSize = {
   referenceTableCell: sizes.LARGE,
   regular: sizes.REGULAR,
   question: sizes.DEKKEEE,
-  questionEmoji: sizes.DEKKEEE,
-  questionType: sizes.SMALLISH,
+  questionEmoji: 44,
+  questionType: 16,
 };
