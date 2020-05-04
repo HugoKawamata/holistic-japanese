@@ -34,15 +34,9 @@ export function PrefaceScreen(props: Props) {
               <View style={styles.triangle} />
             </View>
           </View>
-          <View style={styles.fyuchanWrapper}>
-            <Image
-              style={styles.fyuchan}
-              source={require("../../../assets/images/fyu-mouth-open.png")}
-            />
-          </View>
         </View>
         <Button
-          theme="action"
+          theme="red"
           onPress={() => props.setPreface(props.preface.slice(1))}
         >
           <FuriganaText kana="つぎへ" text="次へ" />

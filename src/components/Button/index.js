@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     alignSelf: "stretch",
-    borderRadius: 6,
-    borderBottomWidth: 3,
+    borderRadius: 300,
     flexGrow: 1,
     justifyContent: "center",
     paddingBottom: 6,
@@ -28,13 +27,6 @@ const styles = StyleSheet.create({
 const theme = {
   // The text colours are here as a guide and not actually used in the code.
   // Text is not rendered in this component due to possible furigana text and separate english.
-  action: {
-    // textColor: color.TEXT,
-    // ghostTextColor: color.TEXT_A,
-    buttonColor: color.BUTTON_A,
-    highlightColor: color.BUTTON_A_RIPPLE,
-    borderColor: color.BUTTON_A_RIPPLE,
-  },
   success: {
     // textColor: color.TEXT,
     // ghostTextColor: color.TEXT_S,
@@ -42,12 +34,11 @@ const theme = {
     highlightColor: color.BUTTON_S_RIPPLE,
     borderColor: color.BUTTON_S_RIPPLE,
   },
-  destructive: {
-    // textColor: color.TEXT,
-    // ghostTextColor: color.TEXT_D,
-    buttonColor: color.BUTTON_D,
-    highlightColor: color.BUTTON_D_RIPPLE,
-    borderColor: color.BUTTON_D_RIPPLE,
+  red: {
+    textColor: color.WHITE,
+    ghostTextColor: color.TEXT_R,
+    buttonColor: color.BUTTON_R,
+    highlightColor: color.BUTTON_R_RIPPLE,
   },
   white: {
     // textColor: color.TEXT_M,
@@ -63,7 +54,7 @@ type Props = {|
   disabled?: boolean,
   ghost?: boolean,
   onPress: () => any,
-  theme: "action" | "success" | "destructive" | "white",
+  theme: "success" | "red" | "white",
 |};
 
 export default function Button(props: Props): React.Node {
@@ -85,7 +76,7 @@ export default function Button(props: Props): React.Node {
             {
               backgroundColor: props.ghost ? "transparent" : buttonColor,
               borderWidth: props.ghost ? 1 : 0,
-              borderBottomWidth: props.ghost ? 1 : 3,
+              borderBottomWidth: props.ghost ? 1 : 0,
               borderColor: props.ghost ? buttonColor : borderColor,
               opacity: props.disabled ? 0.6 : 1,
             },

@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingBottom: 80,
   },
+  buttonText: {
+    color: color.WHITE,
+  },
   correction: {
     fontSize: fontSize.answerSingleChar,
     textAlign: "center",
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     flexDirection: "row",
     paddingHorizontal: 16,
-    paddingVertical: 16,
+    paddingVertical: 20,
     marginTop: 14,
   },
   hintLabel: {

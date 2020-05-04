@@ -23,14 +23,14 @@ export const warning = {
   // w900: '#E65100',
 };
 
-export const danger = {
+export const red = {
   // d050: '#FFEBEB',
-  d100: "#FCC8C7",
+  r100: "#FCC8C7",
   // d200: '#FAA6A5',
   // d300: '#F58482',
-  d400: "#EB5C59", // NICE_DANGER
-  d500: "#D63C3A", // DANGER, TEXT_ERROR
-  d600: "#C42D2D",
+  r400: "#EB5C59", // NICE_RED
+  r500: "#FF5959", // RED, TEXT_ERROR
+  r600: "#C42D2D",
   // d700: '#B02328',
   // d800: '#9E1B24',
   // d900: '#8A1323',

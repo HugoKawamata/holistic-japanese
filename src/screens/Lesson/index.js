@@ -378,12 +378,17 @@ export function LessonScreen(props: Props): Node {
     } else {
       return (
         <Button
-          theme="action"
+          theme="red"
           onPress={answerRomajiQuestion}
           disabled={getCSVAnswer() === ""}
         >
-          <FuriganaText kana="こたえる" text="答える" />
-          <Text>Answer</Text>
+          <FuriganaText
+            furiStyle={styles.buttonText}
+            textStyle={styles.buttonText}
+            kana="こたえる"
+            text="答える"
+          />
+          <Text style={styles.buttonText}>Answer</Text>
         </Button>
       );
     }

@@ -2,7 +2,7 @@
 import {
   success,
   warning,
-  danger,
+  red,
   grey,
   purple,
   action,
@@ -12,8 +12,8 @@ import {
 
 export default {
   // GENERIC NAMES
-  NICE_DANGER: danger.d400,
-  DANGER: danger.d500,
+  NICE_RED: red.r400,
+  RED: red.r500,
   SUCCESS: success.s600,
   WARNING: warning.w500,
   ACTION: action.a500,
@@ -32,7 +32,7 @@ export default {
   NAVBAR_TEXT: sakura.sa600,
 
   // INPUTS
-  INCORRECT_INPUT_BG: danger.d100,
+  INCORRECT_INPUT_BG: red.r100,
 
   // BUTTONS
   BUTTON_S: success.s600,
@@ -41,15 +41,15 @@ export default {
   BUTTON_A_RIPPLE: action.a600,
   BUTTON_W: warning.w500,
   BUTTON_W_RIPPLE: warning.w600,
-  BUTTON_D: danger.d400,
-  BUTTON_D_RIPPLE: danger.d500,
+  BUTTON_R: red.r500,
+  BUTTON_R_RIPPLE: red.r500,
   BUTTON_DISABLED: grey.g400,
   BUTTON_DISABLED_RIPPLE: grey.g600,
 
   // TEXT COLOURS
   TEXT_S: success.s700,
   TEXT_A: action.a600,
-  TEXT_D: danger.d500,
+  TEXT_R: red.r500,
   TEXT_W: warning.w600,
 
   // TEXT GREY
