@@ -4,6 +4,7 @@ import React from "react";
 import { View, Image } from "react-native";
 import Text from "../../components/Text";
 import FuriganaText from "../../components/Text/FuriganaText";
+import TransformText from "../../components/Text/TransformText";
 import Button from "../../components/Button";
 import type { NextLesson_user_nextLesson_lectures as Lecture } from "../Learn/__generated__/NextLesson";
 import styles from "./styles";
@@ -31,7 +32,9 @@ export function LectureScreen(props: Props) {
         </View>
         <View style={styles.hintSection}>
           <View style={styles.hintBox}>
-            <Text style={styles.hint}>{currentLecture.text}</Text>
+            <TransformText style={styles.hint}>
+              {currentLecture.text}
+            </TransformText>
           </View>
         </View>
         <View style={styles.buttonWrapper}>

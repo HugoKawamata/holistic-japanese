@@ -59,6 +59,10 @@ const splitOnTransformable = (text, style) => {
         // The next character signals a transformable block of text
         components.push(<Text style={style}>{currentString}</Text>);
         currentString = text[i];
+      } else if (i + 1 === text.length) {
+        // This is the last letter in the text
+        currentString += text[i];
+        components.push(<Text style={style}>{currentString}</Text>);
       } else {
         currentString += text[i];
       }
