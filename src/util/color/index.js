@@ -14,6 +14,7 @@ export default {
   // For subtle emphasis
   EMPHA_BG: primary.p100,
   HINT_BG: grey.g075,
+  HIRAGANA_Q_BG: secondary.s500,
 
   // Navbar
   NAVBAR: grey.g000,
@@ -21,6 +22,7 @@ export default {
 
   // INPUTS
   INCORRECT_INPUT_BG: primary.p200,
+  INPUT_BG: grey.g075,
 
   // BUTTONS
   BUTTON_P: primary.p500,

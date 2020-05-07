@@ -4,11 +4,12 @@ import color from "../../util/color";
 import { fontSize } from "../../util/font";
 
 const answerFieldCommon = {
-  backgroundColor: color.WHITE,
+  backgroundColor: color.INPUT_BG,
   borderRadius: 3,
   fontFamily: "Lato",
   fontSize: fontSize.answerSingleChar,
   textAlign: "center",
+  minWidth: 56,
 };
 
 const dialogueBubbleShadow = {
@@ -25,6 +26,9 @@ const styles = StyleSheet.create({
   },
   bottomSection: {
     alignItems: "center",
+    backgroundColor: color.WHITE,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     flexDirection: "column",
     flexGrow: 1,
     justifyContent: "space-between",
@@ -45,6 +49,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   header: {
+    color: color.WHITE,
     fontSize: 28,
     fontWeight: "bold",
   },
@@ -75,6 +80,7 @@ const styles = StyleSheet.create({
     // flexShrink: 1,
     alignItems: "stretch",
     paddingTop: 40,
+    paddingBottom: 40,
     paddingHorizontal: 30,
     width: "100%",
   },
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
   },
   lessonScreenWrapper: {
     alignItems: "stretch",
-    backgroundColor: color.WHITE,
+    backgroundColor: color.HIRAGANA_Q_BG,
     flexDirection: "column",
     flexGrow: 1,
   },
@@ -114,6 +120,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   question: {
+    color: color.WHITE,
     fontSize: fontSize.question,
     textAlign: "center",
   },
@@ -164,9 +171,6 @@ const styles = StyleSheet.create({
   },
   topSection: {
     alignItems: "stretch",
-    backgroundColor: color.EMPHA_BG,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
     flexDirection: "column",
     justifyContent: "flex-start",
   },

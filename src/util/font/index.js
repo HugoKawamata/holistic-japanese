@@ -12,7 +12,7 @@ const sizes = {
 };
 
 export const fontSize = {
-  answerSingleChar: sizes.VERY_LARGE,
+  answerSingleChar: 38,
   englishButton: sizes.REGULAR,
   furigana: sizes.TINY,
   furiganaEnabledText: sizes.LARGE,
