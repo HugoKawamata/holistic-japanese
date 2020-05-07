@@ -91,7 +91,7 @@ export function LearnScreen(props: Props): Node {
 
   return (
     <View style={styles.learnScreenWrapper}>
-      <Button theme="success" onPress={startLesson}>
+      <Button theme="primary" onPress={startLesson}>
         <FuriganaText
           kana="つぎのじゅぎょうをはじめる"
           text="次の授業を始める"

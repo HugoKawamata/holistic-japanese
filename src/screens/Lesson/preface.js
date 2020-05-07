@@ -36,7 +36,7 @@ export function PrefaceScreen(props: Props) {
           </View>
         </View>
         <Button
-          theme="red"
+          theme="primary"
           onPress={() => props.setPreface(props.preface.slice(1))}
         >
           <FuriganaText kana="つぎへ" text="次へ" />

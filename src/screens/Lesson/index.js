@@ -363,14 +363,14 @@ export function LessonScreen(props: Props): Node {
   const getButton = () => {
     if (currentMark === "CORRECT") {
       return (
-        <Button theme="success" onPress={nextQuestion}>
+        <Button theme="primary" onPress={nextQuestion}>
           <FuriganaText kana="せいかい" text="正解" />
           <Text>Correct!</Text>
         </Button>
       );
     } else if (currentMark === "INCORRECT") {
       return (
-        <Button theme="destructive" onPress={nextQuestion}>
+        <Button theme="tertiary" onPress={nextQuestion}>
           <FuriganaText kana="ちがいます" text="違います" />
           <Text>Incorrect</Text>
         </Button>
@@ -378,7 +378,7 @@ export function LessonScreen(props: Props): Node {
     } else {
       return (
         <Button
-          theme="red"
+          theme="primary"
           onPress={answerRomajiQuestion}
           disabled={getCSVAnswer() === ""}
         >

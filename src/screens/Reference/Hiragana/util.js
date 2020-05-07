@@ -212,7 +212,7 @@ const aCompletedModalContent = (closeModal: any) => (
       </View> */}
     </View>
     <View style={styles.bottomSection}>
-      <Button theme="success" onPress={closeModal}>
+      <Button theme="primary" onPress={closeModal}>
         <Text style={styles.buttonJapanese}>いいね！</Text>
         <Text style={styles.buttonEnglish}>Cool!</Text>
       </Button>

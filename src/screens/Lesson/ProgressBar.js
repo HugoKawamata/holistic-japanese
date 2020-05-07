@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   completeSection: {
-    backgroundColor: color.SUCCESS,
+    backgroundColor: color.PRIMARY,
   },
   elseSection: {},
 });

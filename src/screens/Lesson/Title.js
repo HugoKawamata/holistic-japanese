@@ -28,7 +28,7 @@ export function TitleScreen(props: Props) {
           />
         </View>
       ) : null}
-      <Button theme="success" onPress={() => props.setLessonStarted(true)}>
+      <Button theme="primary" onPress={() => props.setLessonStarted(true)}>
         <FuriganaText kana="はじめる！" text="始める！" />
         <Text>Start!</Text>
       </Button>
