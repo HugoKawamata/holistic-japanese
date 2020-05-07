@@ -14,7 +14,7 @@ export default {
   // For subtle emphasis
   EMPHA_BG: primary.p100,
   HINT_BG: grey.g075,
-  HIRAGANA_Q_BG: secondary.s500,
+  KANA_Q_BG: secondary.s500,
 
   // Navbar
   NAVBAR: grey.g000,

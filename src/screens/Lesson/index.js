@@ -22,6 +22,7 @@ import {
 import {
   getTopSectionContent,
   getAnswerSection,
+  getHint,
   getButton,
 } from "./sectionRenderers";
 import styles from "./styles";
@@ -63,6 +64,22 @@ const initResults = (testables: $ReadOnlyArray<Testable>) => {
 };
 
 export function LessonScreen(props: Props): Node {
+  const isKanaLesson = props.route.params.lesson.content !== "OTHER";
+  props.navigation.setOptions({
+    title: isKanaLesson ? "" : "レッスン・Lesson", // If kana lesson, we show the title in the topSection
+    headerStyle: {
+      backgroundColor: isKanaLesson ? color.KANA_Q_BG : color.NAVBAR,
+      shadowRadius: 0,
+      shadowOffset: {
+        height: 0,
+      },
+    },
+    headerTintColor: isKanaLesson ? color.WHITE : color.NAVBAR_TEXT,
+    headerTitleStyle: {
+      color: isKanaLesson ? color.WHITE : color.NAVBAR_TEXT,
+    },
+  });
+
   const { userId, lesson } = props.route.params;
   if (lesson.testables == null) {
     throw new Error("Lesson does not exist");
@@ -303,6 +320,7 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
+  // TODO: Update this
   const displayResult = () => {
     if (currentMark === "CORRECT") {
       return <View></View>;
@@ -313,52 +331,7 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const displayEmojiOrImage = () => {
-    const questionStage = getQuestionStage(currentTestable, results);
-
-    if (
-      questionStage >= 2 &&
-      !(questionStage === 2 && currentMark === "CORRECT") &&
-      currentTestable.introduction != null
-    ) {
-      return <View style={styles.emojiWrapper} />;
-    }
-
-    if (currentTestable.question.emoji != null) {
-      return (
-        <View style={styles.emojiWrapper}>
-          <Text style={styles.emoji}>{currentTestable.question.emoji}</Text>
-        </View>
-      );
-    }
-  };
-
-  const displayHint = () => {
-    const questionStage = getQuestionStage(currentTestable, results);
-    let dialogueText = null;
-    if (currentMark === "CORRECT") {
-      dialogueText = "Correct!";
-    } else if (currentMark === "INCORRECT") {
-      dialogueText = "Incorrect";
-    } else if (questionStage === 0) {
-      // Give them the answer the first time they see the question
-      dialogueText = currentTestable.introduction;
-    }
-
-    const visualHint = displayEmojiOrImage();
-
-    if (visualHint && currentTestable.introduction) {
-      return (
-        <View style={styles.hintSection}>
-          <Text style={styles.hintLabel}>Hint</Text>
-          <View style={styles.hintBox}>
-            <View style={styles.emojiWrapper}>{visualHint}</View>
-            <Text style={styles.hint}>{currentTestable.introduction}</Text>
-          </View>
-        </View>
-      );
-    }
-  };
+  const questionStage = getQuestionStage(currentTestable, results);
 
   if (preface != null && preface.length > 0) {
     return <PrefaceScreen preface={preface} setPreface={setPreface} />;
@@ -382,15 +355,17 @@ export function LessonScreen(props: Props): Node {
         {getTopSectionContent(currentTestable)}
       </View>
       <View style={styles.bottomSection}>
-        {displayHint()}
+        {getHint(questionStage, currentTestable, currentMark)}
         {getAnswerSection(currentTestable, getAnswerFields())}
-        {getButton(
-          currentMark,
-          userAnswer,
-          goToNextQuestion,
-          answerRomajiQuestion
-        )}
-        {displayResult()}
+        <View style={styles.buttonWrapper}>
+          {getButton(
+            currentMark,
+            userAnswer,
+            goToNextQuestion,
+            answerRomajiQuestion
+          )}
+          {displayResult()}
+        </View>
       </View>
     </View>
   );

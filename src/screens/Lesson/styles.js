@@ -23,6 +23,12 @@ const styles = StyleSheet.create({
   answerFieldWrapper: {
     flexDirection: "row",
     justifyContent: "center",
+    paddingTop: 16,
+  },
+  buttonWrapper: {
+    alignItems: "center",
+    paddingTop: 20,
+    width: "100%",
   },
   bottomSection: {
     alignItems: "center",
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
     // flexShrink: 1,
     alignItems: "stretch",
     paddingTop: 40,
-    paddingBottom: 40,
+    paddingBottom: 50,
     paddingHorizontal: 30,
     width: "100%",
   },
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
   },
   lessonScreenWrapper: {
     alignItems: "stretch",
-    backgroundColor: color.HIRAGANA_Q_BG,
+    backgroundColor: color.KANA_Q_BG,
     flexDirection: "column",
     flexGrow: 1,
   },

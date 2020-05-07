@@ -53,20 +53,7 @@ function NavRootScreen() {
           headerTitle: getHeaderTitle(route),
         })}
       />
-      <NavRoot.Screen
-        name="Lesson"
-        component={LessonScreen}
-        options={{
-          title: "", // "レッスン・Lesson",
-          headerStyle: {
-            backgroundColor: color.NAVBAR,
-          },
-          headerTintColor: color.NAVBAR_TEXT,
-          headerTitleStyle: {
-            color: color.NAVBAR_TEXT,
-          },
-        }}
-      />
+      <NavRoot.Screen name="Lesson" component={LessonScreen} />
       <NavRoot.Screen
         name="Hiragana"
         component={HiraganaReferenceScreen}

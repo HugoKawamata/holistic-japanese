@@ -83,3 +83,55 @@ export const getButton = (
     );
   }
 };
+
+export const displayEmoji = (
+  questionStage: number,
+  currentTestable: Testable,
+  currentMark: ?("CORRECT" | "INCORRECT")
+) => {
+  if (
+    questionStage >= 2 &&
+    !(questionStage === 2 && currentMark === "CORRECT") &&
+    currentTestable.introduction != null
+  ) {
+    return <View style={styles.emojiWrapper} />;
+  }
+
+  if (currentTestable.question.emoji != null) {
+    return (
+      <View style={styles.emojiWrapper}>
+        <Text style={styles.emoji}>{currentTestable.question.emoji}</Text>
+      </View>
+    );
+  }
+};
+
+export const getHint = (
+  questionStage: number,
+  currentTestable: Testable,
+  currentMark: ?("CORRECT" | "INCORRECT")
+) => {
+  let dialogueText = null;
+  if (currentMark === "CORRECT") {
+    dialogueText = "Correct!";
+  } else if (currentMark === "INCORRECT") {
+    dialogueText = "Incorrect";
+  } else if (questionStage === 0) {
+    // Give them the answer the first time they see the question
+    dialogueText = currentTestable.introduction;
+  }
+
+  const emoji = displayEmoji(questionStage, currentTestable, currentMark);
+
+  if (emoji && currentTestable.introduction) {
+    return (
+      <View style={styles.hintSection}>
+        <Text style={styles.hintLabel}>Hint</Text>
+        <View style={styles.hintBox}>
+          <View style={styles.emojiWrapper}>{emoji}</View>
+          <Text style={styles.hint}>{currentTestable.introduction}</Text>
+        </View>
+      </View>
+    );
+  }
+};
