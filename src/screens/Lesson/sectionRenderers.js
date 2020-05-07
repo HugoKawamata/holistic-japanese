@@ -3,6 +3,7 @@ import React, { type Node } from "react";
 import { View, TextInput, Image } from "react-native";
 import Text from "../../components/Text";
 import FuriganaText from "../../components/Text/FuriganaText";
+import TransformText from "../../components/Text/TransformText";
 import Button from "../../components/Button";
 import type {
   NextLesson_user_nextLesson as Lesson,
@@ -138,7 +139,7 @@ export const getHint = (
         <Text style={styles.hintLabel}>Hint</Text>
         <View style={styles.hintBox}>
           <View style={styles.emojiWrapper}>{emoji}</View>
-          <Text style={styles.hint}>{dialogueText}</Text>
+          <TransformText style={styles.hint}>{dialogueText}</TransformText>
         </View>
       </View>
     );

@@ -32,6 +32,7 @@ export default {
 
   // TEXT COLOURS
   TEXT_P: primary.p600,
+  TEXT_HIGHLIGHT: secondary.s500,
 
   // TEXT GREY
   TEXT_L: grey.g400,
