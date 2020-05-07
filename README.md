@@ -9,6 +9,7 @@
 - Remove result_ids column
 - Add results screen "Accuracy for each letter あ 80% ... Accuracy for each word"
 - Add progress bar at the top of the lesson screen
+- Implement a checklist screen on profile which shows all the things you need to learn before you can make it inn japan
 
 # DONE
 
