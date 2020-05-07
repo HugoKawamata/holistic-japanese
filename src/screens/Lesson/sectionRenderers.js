@@ -99,11 +99,9 @@ export const displayEmoji = (
   currentTestable: Testable,
   currentMark: ?("CORRECT" | "INCORRECT")
 ) => {
-  if (
-    questionStage >= 2 &&
-    !(questionStage === 2 && currentMark === "CORRECT") &&
-    currentTestable.introduction != null
-  ) {
+  const adjustedQuestionStage =
+    currentMark === "CORRECT" ? questionStage - 1 : questionStage;
+  if (adjustedQuestionStage >= 2 && currentTestable.introduction != null) {
     return <View style={styles.emojiWrapper} />;
   }
 
@@ -121,12 +119,13 @@ export const getHint = (
   currentTestable: Testable,
   currentMark: ?("CORRECT" | "INCORRECT")
 ) => {
-  let dialogueText = null;
-  if (currentMark === "CORRECT") {
-    dialogueText = "Correct!";
-  } else if (currentMark === "INCORRECT") {
-    dialogueText = "Incorrect";
-  } else if (questionStage === 0) {
+  const adjustedQuestionStage =
+    currentMark === "CORRECT" ? questionStage - 1 : questionStage;
+  if (adjustedQuestionStage === 2) {
+    return null;
+  }
+  let dialogueText = "";
+  if (adjustedQuestionStage === 0 && currentTestable.introduction != null) {
     // Give them the answer the first time they see the question
     dialogueText = currentTestable.introduction;
   }
@@ -139,7 +138,7 @@ export const getHint = (
         <Text style={styles.hintLabel}>Hint</Text>
         <View style={styles.hintBox}>
           <View style={styles.emojiWrapper}>{emoji}</View>
-          <Text style={styles.hint}>{currentTestable.introduction}</Text>
+          <Text style={styles.hint}>{dialogueText}</Text>
         </View>
       </View>
     );
