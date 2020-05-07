@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     // marginTop: 20,
     paddingTop: 40,
     paddingBottom: 40,
+    width: "100%",
   },
   buttonText: {
     color: color.WHITE,
@@ -111,6 +112,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
     marginHorizontal: 20,
+    marginBottom: 34,
     height: "30%",
   },
   lectureImage: {
@@ -126,6 +128,7 @@ const styles = StyleSheet.create({
   },
   lectureTitle: {
     fontSize: 28,
+    paddingBottom: 34,
     textAlign: "center",
   },
   question: {
