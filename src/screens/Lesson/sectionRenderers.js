@@ -54,15 +54,25 @@ export const getButton = (
   if (currentMark === "CORRECT") {
     return (
       <Button theme="primary" onPress={goToNextQuestion}>
-        <FuriganaText kana="せいかい" text="正解" />
-        <Text>Correct!</Text>
+        <FuriganaText
+          furiStyle={styles.buttonText}
+          textStyle={styles.buttonText}
+          kana="せいかい"
+          text="正解"
+        />
+        <Text style={styles.buttonText}>Correct!</Text>
       </Button>
     );
   } else if (currentMark === "INCORRECT") {
     return (
       <Button theme="primary" onPress={goToNextQuestion}>
-        <FuriganaText kana="ちがいます" text="違います" />
-        <Text>Incorrect</Text>
+        <FuriganaText
+          furiStyle={styles.buttonText}
+          textStyle={styles.buttonText}
+          kana="ちがいます"
+          text="違います"
+        />
+        <Text style={styles.buttonText}>Incorrect</Text>
       </Button>
     );
   } else {

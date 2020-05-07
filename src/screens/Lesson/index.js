@@ -26,9 +26,8 @@ import {
   getButton,
 } from "./sectionRenderers";
 import styles from "./styles";
-import PrefaceScreen from "./Preface";
+import LectureScreen from "./Lecture";
 import ProgressBar from "./ProgressBar";
-import TitleScreen from "./Title";
 
 const SEND_RESULTS = gql`
   mutation sendResults(
@@ -95,7 +94,7 @@ export function LessonScreen(props: Props): Node {
   );
   const [testableQueue, setTestableQueue] = useState(testables.slice(0, 2));
 
-  const [preface, setPreface] = useState(
+  const [lecture, setLecture] = useState(
     lesson.lectures != null
       ? lesson.lectures.filter((lec) => lec.position === "PRETEST")
       : []
@@ -333,21 +332,10 @@ export function LessonScreen(props: Props): Node {
 
   const questionStage = getQuestionStage(currentTestable, results);
 
-  if (preface != null && preface.length > 0) {
-    return <PrefaceScreen preface={preface} setPreface={setPreface} />;
+  if (lecture != null && lecture.length > 0) {
+    return <LectureScreen lecture={lecture} setLecture={setLecture} />;
   }
 
-  const { titleScreen } = lesson;
-
-  if (!lessonStarted && titleScreen != null) {
-    return (
-      <TitleScreen
-        title={titleScreen.title}
-        image={titleScreen.image}
-        setLessonStarted={setLessonStarted}
-      />
-    );
-  }
   return (
     <View style={styles.lessonScreenWrapper}>
       <View style={styles.topSection}>

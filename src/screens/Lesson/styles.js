@@ -27,18 +27,20 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     alignItems: "center",
-    paddingTop: 20,
-    width: "100%",
+    justifyContent: "center",
+    paddingTop: 40,
   },
   bottomSection: {
-    alignItems: "center",
+    alignItems: "stretch",
     backgroundColor: color.WHITE,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     flexDirection: "column",
     flexGrow: 1,
-    justifyContent: "space-between",
-    paddingBottom: 80,
+    justifyContent: "flex-end",
+    // marginTop: 20,
+    paddingTop: 40,
+    paddingBottom: 40,
   },
   buttonText: {
     color: color.WHITE,
@@ -83,9 +85,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   hintSection: {
-    // flexShrink: 1,
     alignItems: "stretch",
-    paddingTop: 40,
+    flexGrow: 1,
     paddingBottom: 50,
     paddingHorizontal: 30,
     width: "100%",
@@ -99,31 +100,33 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flexGrow: 1,
   },
-  prefaceBottomSection: {
-    alignItems: "center",
-    flexDirection: "column",
-    flexGrow: 1,
-    justifyContent: "flex-end",
-    paddingBottom: 80,
-  },
-  prefaceDialogueSectionWrapper: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  prefaceImageWrapper: {
-    paddingTop: 30,
+  lectureImageWrapper: {
+    backgroundColor: "#242222",
+    borderBottomColor: "#B77940",
+    borderLeftColor: "#FFB35A",
+    borderRightColor: "#B77940",
+    borderTopColor: "#FFB35A",
+    borderWidth: 5,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    marginHorizontal: 20,
     height: "30%",
-    width: "90%",
   },
-  prefaceImage: {
+  lectureImage: {
     flex: 1,
     height: undefined,
     width: undefined,
   },
-  prefaceScreenWrapper: {
+  lectureScreenWrapper: {
     alignItems: "center",
+    backgroundColor: color.KANA_Q_BG,
     flexGrow: 1,
     justifyContent: "center",
+  },
+  lectureTitle: {
+    fontSize: 28,
+    textAlign: "center",
   },
   question: {
     color: color.WHITE,
@@ -133,12 +136,12 @@ const styles = StyleSheet.create({
   questionType: {
     color: color.TEXT,
     fontSize: fontSize.questionType,
-    textAlign: "left",
+    textAlign: "center",
   },
   questionWrapper: {
     alignItems: "stretch",
-    paddingBottom: 80,
-    paddingTop: 70,
+    paddingBottom: 60,
+    paddingTop: 60,
   },
   regularAnswerField: {
     ...answerFieldCommon,
@@ -153,31 +156,32 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     width: 50,
   },
-  titleImageWrapper: {
-    paddingTop: 30,
-    height: "30%",
-    paddingHorizontal: "10%",
-    width: "90%",
-  },
-  titleImage: {
-    flex: 1,
-    height: undefined,
-    width: undefined,
-  },
-  titleScreenWrapper: {
-    alignItems: "center",
-    flexGrow: 1,
-    justifyContent: "center",
-  },
-  titleTextWrapper: {
-    paddingBottom: 50,
-  },
-  titleText: {
-    fontSize: fontSize.lessonTitle,
-  },
+  // titleImageWrapper: {
+  //   paddingTop: 30,
+  //   height: "30%",
+  //   paddingHorizontal: "10%",
+  //   width: "90%",
+  // },
+  // titleImage: {
+  //   flex: 1,
+  //   height: undefined,
+  //   width: undefined,
+  // },
+  // titleScreenWrapper: {
+  //   alignItems: "center",
+  //   flexGrow: 1,
+  //   justifyContent: "center",
+  // },
+  // titleTextWrapper: {
+  //   paddingBottom: 50,
+  // },
+  // titleText: {
+  //   fontSize: fontSize.lessonTitle,
+  // },
   topSection: {
     alignItems: "stretch",
     flexDirection: "column",
+    flexShrink: 1,
     justifyContent: "flex-start",
   },
 });

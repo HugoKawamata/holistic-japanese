@@ -181,8 +181,12 @@ const styles = StyleSheet.create({
   bottomSection: {
     alignItems: "center",
   },
-  buttonEnglish: {},
-  buttonJapanese: {},
+  buttonEnglish: {
+    color: color.WHITE,
+  },
+  buttonJapanese: {
+    color: color.WHITE,
+  },
   image: {
     height: 100,
     width: 100,

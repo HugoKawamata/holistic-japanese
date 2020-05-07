@@ -4,14 +4,17 @@ import { StyleSheet, View, TextInput, Image } from "react-native";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
 import { fontSize } from "../../util/font";
+import color from "../../util/color";
 
 // TODO: When katakana gets added, make this screen do different things depending on user kana level
 
 const styles = StyleSheet.create({
   japaneseButtonText: {
+    color: color.WHITE,
     fontSize: fontSize.furiganaEnabledText,
   },
   englishButtonText: {
+    color: color.WHITE,
     fontSize: fontSize.regular,
   },
 });
