@@ -12,12 +12,7 @@ const answerFieldCommon = {
   minWidth: 56,
 };
 
-const dialogueBubbleShadow = {
-  shadowColor: color.SHADOW,
-  shadowOffset: { width: 10, height: 10 },
-  shadowOpacity: 0.4,
-  shadowRadius: 10,
-};
+const dialogueBubbleShadow = {};
 
 const styles = StyleSheet.create({
   answerFieldWrapper: {
