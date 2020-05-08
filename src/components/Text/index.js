@@ -15,13 +15,19 @@ const style = StyleSheet.create({
 
 type TextChildren = string;
 
-type Props = {|
+type Props = {
   children: TextChildren,
   style?: *,
-|};
+  [string]: any, // Allow native text props
+};
 
 export default function Text(props: Props): Node {
   const styles = [style.base].concat(props.style ? props.style : []);
 
-  return <NativeText style={styles}>{props.children}</NativeText>;
+  return (
+    // $FlowFixMe
+    <NativeText {...props} style={styles}>
+      {props.children}
+    </NativeText>
+  );
 }

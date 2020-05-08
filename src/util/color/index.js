@@ -10,6 +10,7 @@ export default {
   PURPLE: secondary.s500,
   PLACEHOLDER: grey.g300,
   SHADOW: grey.g800,
+  SCREEN_BACKGROUND: grey.g025,
 
   // For subtle emphasis
   EMPHA_BG: primary.p100,
@@ -19,6 +20,7 @@ export default {
   // Navbar
   NAVBAR: grey.g000,
   NAVBAR_TEXT: grey.g999,
+  ACTIVE_TAB_BG: primary.p050,
 
   // INPUTS
   INCORRECT_INPUT_BG: primary.p200,
@@ -31,7 +33,7 @@ export default {
   BUTTON_T_HIGHLIGHT: grey.g900,
 
   // TEXT COLOURS
-  TEXT_P: primary.p600,
+  TEXT_P: primary.p500,
   TEXT_HIGHLIGHT: secondary.s500,
 
   // TEXT GREY

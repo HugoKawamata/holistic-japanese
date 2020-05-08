@@ -1,22 +1,37 @@
 // @flow
 import * as React from "react";
-import { StyleSheet, AppRegistry, View, Text as NatText } from "react-native";
+import {
+  StyleSheet,
+  AppRegistry,
+  SafeAreaView,
+  View,
+  Text as NatText,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { connect } from "react-redux";
 
 import type { State as StoreState } from "../../store/types/store";
+import Icon from "../../components/Icon";
 import color from "../../util/color";
 import LoginScreen from "../Login";
 import LearnScreen from "../Learn";
 import LessonScreen from "../Lesson";
 import ReferenceScreen from "../Reference";
 import HiraganaReferenceScreen from "../Reference/Hiragana";
+import TabBar from "./TabBar";
 
 type Props = {
   loggedIn: boolean,
 };
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: color.WHITE,
+  },
+});
 
 const LoginStack = createStackNavigator();
 
@@ -65,23 +80,44 @@ function NavRootScreen() {
 
 function MainTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Learn" component={LearnScreen} />
-      <Tab.Screen name="Reference" component={ReferenceScreen} />
+    <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
+      <Tab.Screen
+        name="Learn"
+        component={LearnScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="book" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Reference"
+        component={ReferenceScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="find-in-page" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
 export function Splash(props: Props): React.Node {
   return (
-    <NavigationContainer>
-      {!props.loggedIn ? (
-        <LoginStack.Navigator>
-          <LoginStack.Screen name="ロッグイン・Login" component={LoginScreen} />
-        </LoginStack.Navigator>
-      ) : (
-        <NavRootScreen />
-      )}
-    </NavigationContainer>
+    <SafeAreaView style={styles.safeArea}>
+      <NavigationContainer>
+        {!props.loggedIn ? (
+          <LoginStack.Navigator>
+            <LoginStack.Screen
+              name="ロッグイン・Login"
+              component={LoginScreen}
+            />
+          </LoginStack.Navigator>
+        ) : (
+          <NavRootScreen />
+        )}
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
