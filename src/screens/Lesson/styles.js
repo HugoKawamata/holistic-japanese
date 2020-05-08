@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     flexDirection: "column",
-    flexGrow: 1,
+    flexGrow: 3,
     justifyContent: "flex-end",
     // marginTop: 20,
     paddingTop: 40,
-    paddingBottom: 40,
+    paddingBottom: 10,
     width: "100%",
   },
   buttonText: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   hintSection: {
     alignItems: "stretch",
     flexGrow: 1,
-    paddingBottom: 50,
+    paddingBottom: 40,
     paddingHorizontal: 30,
     width: "100%",
   },
@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
   },
   questionWrapper: {
     alignItems: "stretch",
-    paddingBottom: 60,
-    paddingTop: 60,
+    // paddingBottom: 60,
+    // paddingTop: 60,
   },
   regularAnswerField: {
     ...answerFieldCommon,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   topSection: {
     alignItems: "stretch",
     flexDirection: "column",
-    flexShrink: 1,
+    flexGrow: 2,
     justifyContent: "flex-start",
   },
 });

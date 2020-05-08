@@ -75,6 +75,7 @@ export function HiraganaReferenceScreen(props: Props) {
         }
 
         const kanaLevelValue = kanaLevelToIntMap[data.me.kanaLevel] || 0;
+        console.log(kanaLevelValue, data);
 
         return (
           <ScrollView>

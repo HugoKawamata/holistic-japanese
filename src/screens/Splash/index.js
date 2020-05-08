@@ -73,9 +73,9 @@ function NavRootScreen() {
       <NavRoot.Screen
         name="Tabs"
         component={MainTabs}
-        options={({ route }) => ({
-          headerTitle: getHeaderTitle(route),
-        })}
+        options={{
+          headerShown: false,
+        }}
       />
       <NavRoot.Screen name="Lesson" component={LessonScreen} />
       <NavRoot.Screen

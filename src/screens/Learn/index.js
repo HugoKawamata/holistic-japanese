@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, type Node } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import { gql } from "apollo-boost";
 import type { State as StoreState } from "../../store/types/store";
@@ -60,14 +60,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   greetingWrapper: {
-    paddingLeft: 16,
     paddingBottom: 36,
+    paddingLeft: 16,
+    paddingTop: 40,
   },
   learnScreenWrapper: {
     alignItems: "stretch",
     backgroundColor: color.WHITE,
     flexGrow: 1,
     justifyContent: "flex-start",
+  },
+  root: {
+    backgroundColor: color.WHITE,
   },
   startButtonEnglish: {
     color: color.WHITE,
@@ -96,6 +100,10 @@ const getGreeting = () => {
 export function LearnScreen(props: Props): Node {
   const [loading, setLoading] = useState(false);
 
+  props.navigation.setOptions({
+    headerShown: false,
+  });
+
   const startLesson = () => {
     setLoading(true);
 
@@ -121,48 +129,50 @@ export function LearnScreen(props: Props): Node {
   const [japaneseGreeting, englishGreeting] = getGreeting();
 
   return (
-    <View style={styles.learnScreenWrapper}>
-      <View style={styles.greetingWrapper}>
-        <Text style={styles.greeting}>{englishGreeting}</Text>
-        <Text style={styles.greetingName}>{props.userGivenName}</Text>
-      </View>
-      <SideSlider
-        heading="Intro to Japanese"
-        linkCardProps={[
-          {
-            bigText: "Next Hiragana Lesson",
-            smallText: "5 min・Beginner",
-            blockOut: false,
-            onPress: startLesson,
-          },
-          {
-            bigText: "Next Hiragana Lesson",
-            smallText: "5 min・Beginner",
-            disabled: true,
-            blockOut: false,
-            onPress: startLesson,
-          },
-        ]}
-      />
-      <SideSlider
-        heading="Unlocked after Hiragana"
-        linkCardProps={[
-          {
-            bigText: "Next Hiragana Lesson",
-            smallText: "5 min・Beginner",
-            disabled: true,
-            blockOut: false,
-            onPress: startLesson,
-          },
-          {
-            bigText: "Next Hiragana Lesson",
-            smallText: "5 min・Beginner",
-            disabled: true,
-            blockOut: false,
-            onPress: startLesson,
-          },
-        ]}
-      />
+    <View style={styles.root}>
+      <ScrollView contentContainerStyle={styles.learnScreenWrapper}>
+        <View style={styles.greetingWrapper}>
+          <Text style={styles.greeting}>{englishGreeting}</Text>
+          <Text style={styles.greetingName}>{props.userGivenName}</Text>
+        </View>
+        <SideSlider
+          heading="Intro to Japanese"
+          linkCardProps={[
+            {
+              bigText: "Next Hiragana Lesson",
+              smallText: "5 min・Beginner",
+              blockOut: false,
+              onPress: startLesson,
+            },
+            {
+              bigText: "Next Hiragana Lesson",
+              smallText: "5 min・Beginner",
+              disabled: true,
+              blockOut: false,
+              onPress: startLesson,
+            },
+          ]}
+        />
+        <SideSlider
+          heading="Unlocked after Hiragana"
+          linkCardProps={[
+            {
+              bigText: "Next Hiragana Lesson",
+              smallText: "5 min・Beginner",
+              disabled: true,
+              blockOut: false,
+              onPress: startLesson,
+            },
+            {
+              bigText: "Next Hiragana Lesson",
+              smallText: "5 min・Beginner",
+              disabled: true,
+              blockOut: false,
+              onPress: startLesson,
+            },
+          ]}
+        />
+      </ScrollView>
     </View>
   );
 }

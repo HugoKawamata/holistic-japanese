@@ -16,8 +16,8 @@ const tabButton = {
   alignItems: "center",
   flexDirection: "row",
   flexWrap: "nowrap",
-  paddingHorizontal: 20,
-  paddingVertical: 12,
+  paddingHorizontal: 12,
+  paddingVertical: 8,
 };
 
 const styles = StyleSheet.create({
@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
     backgroundColor: color.WHITE,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    paddingBottom: 16,
-    paddingHorizontal: 26,
-    paddingTop: 16,
+    paddingBottom: 8,
+    paddingHorizontal: 13,
+    paddingTop: 8,
     shadowColor: color.SHADOW,
     shadowOpacity: 0.4,
-    shadowRadius: 20,
+    shadowRadius: 16,
   },
   activeTabButton: {
     ...tabButton,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   tabLabel: {
     color: color.TEXT_P,
     fontSize: 20,
-    paddingLeft: 10,
+    paddingLeft: 5,
   },
 });
 
@@ -115,7 +115,7 @@ export function TabBarButton(props: any) {
       >
         {options.tabBarIcon({
           color: isFocused ? color.PRIMARY : color.INCOMPLETE_CELL,
-          size: 36,
+          size: 28,
         })}
         {isFocused ? (
           <Text numberOfLines={1} ellipsizeMode="clip" style={styles.tabLabel}>

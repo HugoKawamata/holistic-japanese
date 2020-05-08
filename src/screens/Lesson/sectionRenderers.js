@@ -1,6 +1,6 @@
 // @flow
 import React, { type Node } from "react";
-import { View, TextInput, Image } from "react-native";
+import { View, TextInput, Image, Dimensions } from "react-native";
 import Text from "../../components/Text";
 import FuriganaText from "../../components/Text/FuriganaText";
 import TransformText from "../../components/Text/TransformText";
@@ -13,11 +13,15 @@ import { getCSVAnswer } from "./util";
 import type { UserAnswer } from "./types";
 import styles from "./styles";
 
+const { height } = Dimensions.get("window");
+
 export const getTopSectionContent = (currentTestable: Testable) => (
   <>
-    <View style={styles.headerWrapper}>
-      <Text style={styles.header}>レッスン・Lesson</Text>
-    </View>
+    {height > 730 ? (
+      <View style={styles.headerWrapper}>
+        <Text style={styles.header}>レッスン・Lesson</Text>
+      </View>
+    ) : null}
     <View style={styles.questionWrapper}>
       <Text style={styles.question}>{currentTestable.question.text}</Text>
     </View>
