@@ -14,6 +14,7 @@ import { OverlayModal } from "../../../components/OverlayModal";
 import Text from "../../../components/Text";
 import Button from "../../../components/Button";
 import type { LessonContent } from "../../Learn/__generated__/NextLesson";
+import type { Results } from "../../Lesson/types";
 import {
   kanaLevelToIntMap,
   hiraganaMatrix,
@@ -37,6 +38,7 @@ type OwnProps = {|
 type Props = {|
   ...OwnProps,
   completedContent: ?LessonContent,
+  results: Results,
   modalOpen: boolean,
 |};
 
@@ -136,8 +138,6 @@ export function HiraganaReferenceScreen(props: Props) {
   const pages = [hiraganaPage, voicedHiraganaPage, comboPage];
   const pageNumbers = [0, 1, 2];
 
-  console.log(props);
-
   return (
     // TODO: This probably needs to be a scrollview
     <>
@@ -162,7 +162,9 @@ export function HiraganaReferenceScreen(props: Props) {
         title={<Text style={styles.modalTitle}>Congratulations!</Text>}
         visible={modalVisible}
       >
-        {getModalContent(props.completedContent, () => setModalVisible(false))}
+        {getModalContent(props.completedContent, props.results, () =>
+          setModalVisible(false)
+        )}
       </OverlayModal>
     </>
   );
@@ -172,6 +174,7 @@ function mapStateToProps(state: StoreState, ownProps: OwnProps) {
   return {
     ...ownProps,
     completedContent: ownProps.route?.params?.completedContent || null,
+    results: ownProps.route?.params?.results || null,
     modalOpen: ownProps.route?.params?.modalOpen || false,
   };
 }

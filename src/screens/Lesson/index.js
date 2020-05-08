@@ -19,6 +19,7 @@ import {
   getSplitQuestion,
   getCSVAnswer,
 } from "./util";
+import type { Results } from "./types";
 import {
   getTopSectionContent,
   getAnswerSection,
@@ -102,7 +103,7 @@ export function LessonScreen(props: Props): Node {
 
   const [userAnswer, setUserAnswer] = useState({});
 
-  const [results, setResults] = useState(initResults(testables));
+  const [results: Results, setResults] = useState(initResults(testables));
 
   const [currentMark, setCurrentMark] = useState(null); // Result is null if question not answered yet
 
@@ -266,6 +267,7 @@ export function LessonScreen(props: Props): Node {
     props.navigation.navigate("Reference");
     props.navigation.navigate("Hiragana", {
       completedContent: lesson.content,
+      results,
       modalOpen: true,
     });
   };

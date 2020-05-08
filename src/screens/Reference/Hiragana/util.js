@@ -1,7 +1,8 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import { View, StyleSheet, Image } from "react-native";
 import type { LessonContent } from "../../Learn/__generated__/NextLesson";
+import type { Results } from "../../Lesson/types";
 import FuriganaText from "../../../components/Text/FuriganaText";
 import Text from "../../../components/Text";
 import Button from "../../../components/Button";
@@ -187,6 +188,37 @@ const styles = StyleSheet.create({
   buttonJapanese: {
     color: color.WHITE,
   },
+  character: {
+    textAlign: "center",
+  },
+  characterResultContainer: {
+    padding: 4,
+  },
+  characterResult: {
+    textAlign: "center",
+  },
+  characterResults: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginBottom: 30,
+  },
+  word: {
+    textAlign: "center",
+  },
+  wordResultContainer: {
+    paddingHorizontal: 6,
+    paddingTop: 6,
+  },
+  wordResult: {
+    textAlign: "center",
+  },
+  wordResults: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginBottom: 30,
+  },
   image: {
     height: 100,
     width: 100,
@@ -200,37 +232,118 @@ const styles = StyleSheet.create({
   },
 });
 
-const aCompletedModalContent = (closeModal: any) => (
-  <>
-    <View style={styles.topSection}>
-      <View style={styles.body}>
-        <Text style={styles.bodyTextSymbol}>あ</Text>
-        <Text style={styles.bodyTextLarge}>あ Hiragana Line Complete!</Text>
-        <Text style={styles.bodyTextRegular}>1/10 Lines Complete</Text>
+type ContentProps = {
+  results: Results,
+  closeModal: any,
+  children: React.Node,
+};
+
+function CompletedModalContent(props: ContentProps) {
+  return (
+    <>
+      <View style={styles.topSection}>
+        <View style={styles.body}>
+          <Text style={styles.bodyTextLarge}>Character results</Text>
+          <View style={styles.characterResults}>
+            {Object.keys(props.results)
+              .filter((key) => props.results[key].objectType === "CHARACTER")
+              .map((key) => {
+                const accuracy =
+                  100 *
+                  (props.results[key].marks.filter((m) => m === "CORRECT")
+                    .length /
+                    props.results[key].marks.length);
+                return (
+                  <View style={styles.characterResultContainer}>
+                    <Text style={styles.character}>{key.slice(5)}</Text>
+                    <Text style={styles.characterResult}>{`${accuracy}%`}</Text>
+                  </View>
+                );
+              })}
+          </View>
+          <Text style={styles.bodyTextLarge}>Word results</Text>
+          <View style={styles.wordResults}>
+            {Object.keys(props.results)
+              .filter((key) => props.results[key].objectType === "WORD")
+              .map((key) => {
+                const accuracy =
+                  100 *
+                  (props.results[key].marks.filter((m) => m === "CORRECT")
+                    .length /
+                    props.results[key].marks.length);
+                return (
+                  <View style={styles.wordResultContainer}>
+                    <Text style={styles.word}>{key}</Text>
+                    <Text style={styles.wordResult}>{`${accuracy}%`}</Text>
+                  </View>
+                );
+              })}
+          </View>
+          {props.children}
+        </View>
       </View>
-      {/* <View style={styles.imageWrapper}>
-        <Image
-          style={styles.image}
-          source={require("../../../../assets/images/fyu-mouth-closed.png")}
-        />
-      </View> */}
-    </View>
-    <View style={styles.bottomSection}>
-      <Button theme="primary" onPress={closeModal}>
-        <Text style={styles.buttonJapanese}>いいね！</Text>
-        <Text style={styles.buttonEnglish}>Cool!</Text>
-      </Button>
-    </View>
-  </>
-);
+      <View style={styles.bottomSection}>
+        <Button theme="primary" onPress={props.closeModal}>
+          <Text style={styles.buttonJapanese}>いいね！</Text>
+          <Text style={styles.buttonEnglish}>Cool!</Text>
+        </Button>
+      </View>
+    </>
+  );
+}
 
 export const getModalContent = (
   completedContent: ?LessonContent,
+  results: Results,
   closeModal: any
 ) => {
   switch (completedContent) {
     case "HIRAGANA_A":
-      return aCompletedModalContent(closeModal);
+      return (
+        <CompletedModalContent results={results} closeModal={closeModal}>
+          <Text style={styles.bodyTextLarge}>あ Hiragana Line Complete!</Text>
+          <Text style={styles.bodyTextRegular}>1/10 Lines Complete</Text>
+        </CompletedModalContent>
+      );
+    case "HIRAGANA_KA":
+      return (
+        <CompletedModalContent results={results} closeModal={closeModal}>
+          <Text style={styles.bodyTextLarge}>か Hiragana Line Complete!</Text>
+          <Text style={styles.bodyTextRegular}>2/10 Lines Complete</Text>
+        </CompletedModalContent>
+      );
+    case "HIRAGANA_GA":
+      return (
+        <CompletedModalContent results={results} closeModal={closeModal}>
+          <Text style={styles.bodyTextLarge}>が Hiragana Line Complete!</Text>
+          <Text style={styles.bodyTextRegular}>
+            1/10 Bonus Lessons Complete
+          </Text>
+        </CompletedModalContent>
+      );
+    case "HIRAGANA_SA":
+      return (
+        <CompletedModalContent results={results} closeModal={closeModal}>
+          <Text style={styles.bodyTextLarge}>さ Hiragana Line Complete!</Text>
+          <Text style={styles.bodyTextRegular}>3/10 Lines Complete</Text>
+        </CompletedModalContent>
+      );
+    case "HIRAGANA_ZA":
+      return (
+        <CompletedModalContent results={results} closeModal={closeModal}>
+          <Text style={styles.bodyTextLarge}>ざ Hiragana Line Complete!</Text>
+          <Text style={styles.bodyTextRegular}>
+            2/10 Bonus Lessons Complete
+          </Text>
+        </CompletedModalContent>
+      );
+    case "HIRAGANA_TA":
+      return (
+        <CompletedModalContent results={results} closeModal={closeModal}>
+          <Text style={styles.bodyTextLarge}>た Hiragana Line Complete!</Text>
+          <Text style={styles.bodyTextRegular}>4/10 Lines Complete</Text>
+        </CompletedModalContent>
+      );
     default:
       return null;
   }
