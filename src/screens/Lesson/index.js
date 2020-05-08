@@ -19,16 +19,13 @@ import {
   getSplitQuestion,
   getCSVAnswer,
 } from "./util";
-<<<<<<< HEAD
 import type { Results } from "./types";
-=======
 import {
   getTopSectionContent,
   getAnswerSection,
   getHint,
   getButton,
 } from "./sectionRenderers";
->>>>>>> master
 import styles from "./styles";
 import LectureScreen from "./Lecture";
 import ProgressBar from "./ProgressBar";
