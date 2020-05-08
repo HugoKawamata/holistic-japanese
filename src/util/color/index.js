@@ -1,46 +1,38 @@
 // @flow
-import {
-  success,
-  warning,
-  danger,
-  grey,
-  purple,
-  action,
-  yellow,
-} from "./system";
+import { primary, grey, special, secondary, yellow } from "./system";
 
 export default {
   // GENERIC NAMES
-  NICE_DANGER: danger.d400,
-  DANGER: danger.d500,
-  SUCCESS: success.s600,
-  WARNING: warning.w500,
-  ACTION: action.a500,
+  SOFT_PRIMARY: primary.p400,
+  PRIMARY: primary.p500,
   WHITE: grey.g000,
-  PURPLE: purple.p500,
+  BLACK: grey.g999,
+  PURPLE: secondary.s500,
   PLACEHOLDER: grey.g300,
   SHADOW: grey.g800,
 
+  // For subtle emphasis
+  EMPHA_BG: primary.p100,
+  HINT_BG: grey.g075,
+  KANA_Q_BG: secondary.s500,
+
+  // Navbar
+  NAVBAR: grey.g000,
+  NAVBAR_TEXT: grey.g999,
+
   // INPUTS
-  INCORRECT_INPUT_BG: danger.d100,
+  INCORRECT_INPUT_BG: primary.p200,
+  INPUT_BG: grey.g075,
 
   // BUTTONS
-  BUTTON_S: success.s600,
-  BUTTON_S_RIPPLE: success.s700,
-  BUTTON_A: action.a500,
-  BUTTON_A_RIPPLE: action.a600,
-  BUTTON_W: warning.w500,
-  BUTTON_W_RIPPLE: warning.w600,
-  BUTTON_D: danger.d400,
-  BUTTON_D_RIPPLE: danger.d500,
-  BUTTON_DISABLED: grey.g400,
-  BUTTON_DISABLED_RIPPLE: grey.g600,
+  BUTTON_P: primary.p500,
+  BUTTON_P_HIGHLIGHT: primary.p500,
+  BUTTON_T: grey.g999,
+  BUTTON_T_HIGHLIGHT: grey.g900,
 
   // TEXT COLOURS
-  TEXT_S: success.s700,
-  TEXT_A: action.a600,
-  TEXT_D: danger.d500,
-  TEXT_W: warning.w600,
+  TEXT_P: primary.p600,
+  TEXT_HIGHLIGHT: secondary.s500,
 
   // TEXT GREY
   TEXT_L: grey.g400,

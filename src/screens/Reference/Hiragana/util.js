@@ -181,8 +181,12 @@ const styles = StyleSheet.create({
   bottomSection: {
     alignItems: "center",
   },
-  buttonEnglish: {},
-  buttonJapanese: {},
+  buttonEnglish: {
+    color: color.WHITE,
+  },
+  buttonJapanese: {
+    color: color.WHITE,
+  },
   image: {
     height: 100,
     width: 100,
@@ -212,7 +216,7 @@ const aCompletedModalContent = (closeModal: any) => (
       </View> */}
     </View>
     <View style={styles.bottomSection}>
-      <Button theme="success" onPress={closeModal}>
+      <Button theme="primary" onPress={closeModal}>
         <Text style={styles.buttonJapanese}>いいね！</Text>
         <Text style={styles.buttonEnglish}>Cool!</Text>
       </Button>

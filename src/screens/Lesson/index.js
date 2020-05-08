@@ -6,7 +6,6 @@ import { gql } from "apollo-boost";
 import Sound from "react-native-sound";
 import FuriganaText from "../../components/Text/FuriganaText";
 import Text from "../../components/Text";
-import Button from "../../components/Button";
 import color from "../../util/color";
 import type {
   NextLesson_user_nextLesson as Lesson,
@@ -16,11 +15,19 @@ import {
   romajiHiraganaMap,
   hiraganaRomajiMap,
   formatResultsForMutation,
+  getQuestionStage,
+  getSplitQuestion,
+  getCSVAnswer,
 } from "./util";
+import {
+  getTopSectionContent,
+  getAnswerSection,
+  getHint,
+  getButton,
+} from "./sectionRenderers";
 import styles from "./styles";
-import PrefaceScreen from "./Preface";
+import LectureScreen from "./Lecture";
 import ProgressBar from "./ProgressBar";
-import TitleScreen from "./Title";
 
 const SEND_RESULTS = gql`
   mutation sendResults(
@@ -56,6 +63,22 @@ const initResults = (testables: $ReadOnlyArray<Testable>) => {
 };
 
 export function LessonScreen(props: Props): Node {
+  const isKanaLesson = props.route.params.lesson.content !== "OTHER";
+  props.navigation.setOptions({
+    title: isKanaLesson ? "" : "レッスン・Lesson", // If kana lesson, we show the title in the topSection
+    headerStyle: {
+      backgroundColor: isKanaLesson ? color.KANA_Q_BG : color.NAVBAR,
+      shadowRadius: 0,
+      shadowOffset: {
+        height: 0,
+      },
+    },
+    headerTintColor: isKanaLesson ? color.WHITE : color.NAVBAR_TEXT,
+    headerTitleStyle: {
+      color: isKanaLesson ? color.WHITE : color.NAVBAR_TEXT,
+    },
+  });
+
   const { userId, lesson } = props.route.params;
   if (lesson.testables == null) {
     throw new Error("Lesson does not exist");
@@ -71,7 +94,7 @@ export function LessonScreen(props: Props): Node {
   );
   const [testableQueue, setTestableQueue] = useState(testables.slice(0, 2));
 
-  const [preface, setPreface] = useState(
+  const [lecture, setLecture] = useState(
     lesson.lectures != null
       ? lesson.lectures.filter((lec) => lec.position === "PRETEST")
       : []
@@ -107,6 +130,7 @@ export function LessonScreen(props: Props): Node {
 
         const inputs = answerParts.map((charRomaji, i) => (
           <TextInput
+            key={`${currentTestable.question.text}-${i}`}
             ref={inputRefs[i]}
             style={[
               styles.singleCharAnswerField,
@@ -176,43 +200,9 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const getSplitQuestion = () => {
-    if (currentTestable.question.type !== "J_WORD") {
-      throw new Error("Cannot split a question if it's not a Japanese word");
-    }
-
-    let unbrokenQuestion = currentTestable.question.text;
-    let splitQuestion = [];
-
-    // We have to go backwards due to lya/lyu/lyo
-    while (unbrokenQuestion.length > 0) {
-      let current = unbrokenQuestion[unbrokenQuestion.length - 1];
-      unbrokenQuestion = unbrokenQuestion.slice(0, unbrokenQuestion.length - 1);
-      if (Object.keys(hiraganaRomajiMap).includes(current)) {
-        splitQuestion = [current, ...splitQuestion];
-      } else {
-        current = `${unbrokenQuestion[unbrokenQuestion.length - 1]}${current}`;
-        splitQuestion = [current, ...splitQuestion];
-      }
-    }
-    return splitQuestion;
-  };
-
-  const getCSVAnswer = () => {
-    const userInputs = Object.entries(userAnswer)
-      .sort()
-      .map((kvPair) => kvPair[1]); // Just get the values out (the user inputs)
-    return userInputs.length === 0
-      ? ""
-      : userInputs.reduce(
-          // $FlowFixMe userInput is always a string
-          (acc: string, userInput: mixed) => acc + "," + userInput
-        );
-  };
-
   const answerRomajiQuestion = () => {
-    const splitQuestion = getSplitQuestion();
-    const csvAnswer = getCSVAnswer();
+    const splitQuestion = getSplitQuestion(currentTestable);
+    const csvAnswer = getCSVAnswer(userAnswer);
     const splitAnswer = csvAnswer.split(",");
 
     let mark;
@@ -228,9 +218,6 @@ export function LessonScreen(props: Props): Node {
 
     const characterResults = splitQuestion.reduce(
       (resultsMap, char: string, index: number) => {
-        console.log(index);
-        console.log(splitAnswer, char);
-        console.log(splitAnswer[index], hiraganaRomajiMap[char]);
         return {
           ...resultsMap,
           [`char-${char}`]: {
@@ -283,27 +270,9 @@ export function LessonScreen(props: Props): Node {
     });
   };
 
-  // Stage 0 (show emoji and introduction)
-  // Stage 1 (show emoji)
-  // Stage 2 (show no hints)
-  // Revision words skip stage 1
-  const getQuestionStage = () => {
-    let questionStage = results[currentTestable.question.text].marks.filter(
-      (m) => m === "CORRECT"
-    ).length;
-
-    // Revision words skip stage 1
-    if (currentTestable.introduction == null) {
-      questionStage += 1;
-    }
-    return questionStage;
-  };
-
-  const nextQuestion = () => {
+  const goToNextQuestion = () => {
     // Question stage here may be bumped up 1 by the current result, since this happens after the user answers.
-    const nextTimeQuestionStage = getQuestionStage();
-    console.log("next time question stage", nextTimeQuestionStage);
-    console.log(results);
+    const nextTimeQuestionStage = getQuestionStage(currentTestable, results);
     // If this is not the final question
     if (testableQueue.length > 1) {
       // Answered question correctly less than 3 times
@@ -350,45 +319,7 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const getQuestionTypeText = () => {
-    if (
-      currentTestable.question.type == "J_WORD" &&
-      currentTestable.answer.type == "ROMAJI"
-    ) {
-      return "Type the English letters that correspond to the Japanese.";
-    }
-    return "";
-  };
-
-  const getButton = () => {
-    if (currentMark === "CORRECT") {
-      return (
-        <Button theme="success" onPress={nextQuestion}>
-          <FuriganaText kana="せいかい" text="正解" />
-          <Text>Correct!</Text>
-        </Button>
-      );
-    } else if (currentMark === "INCORRECT") {
-      return (
-        <Button theme="destructive" onPress={nextQuestion}>
-          <FuriganaText kana="ちがいます" text="違います" />
-          <Text>Incorrect</Text>
-        </Button>
-      );
-    } else {
-      return (
-        <Button
-          theme="action"
-          onPress={answerRomajiQuestion}
-          disabled={getCSVAnswer() === ""}
-        >
-          <FuriganaText kana="こたえる" text="答える" />
-          <Text>Answer</Text>
-        </Button>
-      );
-    }
-  };
-
+  // TODO: Update this
   const displayResult = () => {
     if (currentMark === "CORRECT") {
       return <View></View>;
@@ -399,111 +330,30 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const displayEmojiOrImage = () => {
-    const questionStage = getQuestionStage();
+  const questionStage = getQuestionStage(currentTestable, results);
 
-    if (
-      questionStage >= 2 &&
-      !(questionStage === 2 && currentMark === "CORRECT") &&
-      currentTestable.introduction != null
-    ) {
-      return <View style={styles.emojiWrapper} />;
-    }
-
-    if (currentTestable.question.emoji != null) {
-      return (
-        <View style={styles.emojiWrapper}>
-          <Text style={styles.emoji}>{currentTestable.question.emoji}</Text>
-        </View>
-      );
-    }
-  };
-
-  const displayNote = () => {
-    const questionStage = getQuestionStage();
-    let dialogueText = null;
-    if (currentMark === "CORRECT") {
-      dialogueText = "Correct!";
-    } else if (currentMark === "INCORRECT") {
-      dialogueText = "Incorrect";
-    } else if (questionStage === 0) {
-      // Give them the answer the first time they see the question
-      dialogueText = currentTestable.introduction;
-    }
-    return (
-      <View style={styles.noteSection}>
-        {dialogueText == null ? null : (
-          <View style={styles.dialogueWrapper}>
-            <View style={styles.dialogueBubble}>
-              <Text style={styles.dialogue}>{dialogueText}</Text>
-            </View>
-            <View style={styles.triangleWrapper}>
-              <View style={styles.triangle} />
-            </View>
-          </View>
-        )}
-        <View style={styles.fyuchanWrapper}>
-          {displayEmojiOrImage()}
-          <Image
-            source={
-              dialogueText == null
-                ? require("../../../assets/images/fyu-mouth-closed.png")
-                : require("../../../assets/images/fyu-mouth-open.png")
-            }
-            style={styles.fyuchan}
-          />
-        </View>
-      </View>
-    );
-  };
-
-  if (preface != null && preface.length > 0) {
-    return <PrefaceScreen preface={preface} setPreface={setPreface} />;
+  if (lecture != null && lecture.length > 0) {
+    return <LectureScreen lecture={lecture} setLecture={setLecture} />;
   }
-
-  const { titleScreen } = lesson;
-
-  if (!lessonStarted && titleScreen != null) {
-    return (
-      <TitleScreen
-        title={titleScreen.title}
-        image={titleScreen.image}
-        setLessonStarted={setLessonStarted}
-      />
-    );
-  }
-
-  const totalQuestions =
-    lesson.testables == null
-      ? 0
-      : lesson.testables
-          .map((testable) => (testable.introduction != null ? 3 : 2))
-          .reduce((sum, num) => sum + num);
-
-  const correctAnswers = Object.keys(results)
-    .filter((key) => results[key].objectId != null)
-    .reduce(
-      (sum, key) =>
-        sum + results[key].marks.filter((mark) => mark === "CORRECT").length,
-      0
-    );
 
   return (
     <View style={styles.lessonScreenWrapper}>
-      <ProgressBar total={totalQuestions} complete={correctAnswers} />
       <View style={styles.topSection}>
-        <View style={styles.questionWrapper}>
-          <Text style={styles.question}>{currentTestable.question.text}</Text>
-          <View style={styles.questionTypeWrapper}>
-            <Text style={styles.questionType}>{getQuestionTypeText()}</Text>
-          </View>
-          <View style={styles.answerFieldWrapper}>{getAnswerFields()}</View>
-        </View>
+        <ProgressBar testables={lesson.testables} results={results} />
+        {getTopSectionContent(currentTestable)}
       </View>
       <View style={styles.bottomSection}>
-        {displayNote()}
-        {getButton()}
-        {displayResult()}
+        {getHint(questionStage, currentTestable, currentMark)}
+        {getAnswerSection(currentTestable, getAnswerFields())}
+        <View style={styles.buttonWrapper}>
+          {getButton(
+            currentMark,
+            userAnswer,
+            goToNextQuestion,
+            answerRomajiQuestion
+          )}
+          {displayResult()}
+        </View>
       </View>
     </View>
   );

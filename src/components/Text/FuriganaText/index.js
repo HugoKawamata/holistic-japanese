@@ -44,10 +44,10 @@ export default function FuriganaText(props: Props): React.Node {
       {furiganaArray.map(({ furigana, text }) => (
         // TODO: This key may repeat itself, come up with a better solution
         <View key={`${furigana}-${text}`} style={styles.furiganisedTextWrapper}>
-          <Text style={styles.furiganaText}>
+          <Text style={[styles.furiganaText, props.furiStyle]}>
             {furigana === text ? "" : furigana}
           </Text>
-          <Text style={styles.mainText}>{text}</Text>
+          <Text style={[styles.mainText, props.textStyle]}>{text}</Text>
         </View>
       ))}
     </View>

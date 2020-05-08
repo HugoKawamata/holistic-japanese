@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { connect } from "react-redux";
 
 import type { State as StoreState } from "../../store/types/store";
+import color from "../../util/color";
 import LoginScreen from "../Login";
 import LearnScreen from "../Learn";
 import LessonScreen from "../Lesson";
@@ -52,11 +53,7 @@ function NavRootScreen() {
           headerTitle: getHeaderTitle(route),
         })}
       />
-      <NavRoot.Screen
-        name="Lesson"
-        component={LessonScreen}
-        options={{ title: "じゅぎょう・Lesson" }}
-      />
+      <NavRoot.Screen name="Lesson" component={LessonScreen} />
       <NavRoot.Screen
         name="Hiragana"
         component={HiraganaReferenceScreen}

@@ -1,5 +1,6 @@
 // @flow
-import type { Results, Result } from "./types";
+import type { NextLesson_user_nextLesson_testables as Testable } from "../Learn/__generated__/NextLesson";
+import type { Results, Result, UserAnswer } from "./types";
 
 export const romajiHiraganaMap = {
   a: "あ",
@@ -217,3 +218,56 @@ export const hiraganaRomajiMap = {
 
 export const formatResultsForMutation = (results: Results): Array<Result> =>
   Object.keys(results).map((charKey: string) => results[charKey]);
+
+// Stage 0 (show emoji and introduction)
+// Stage 1 (show emoji)
+// Stage 2 (show no hints)
+// Revision words skip stage 1
+export const getQuestionStage = (
+  currentTestable: Testable,
+  results: Results
+) => {
+  let questionStage = results[currentTestable.question.text].marks.filter(
+    (m) => m === "CORRECT"
+  ).length;
+
+  // Revision words skip stage 1
+  if (currentTestable.introduction == null) {
+    questionStage += 1;
+  }
+  return questionStage;
+};
+
+export const getSplitQuestion = (currentTestable: Testable) => {
+  if (currentTestable.question.type !== "J_WORD") {
+    throw new Error("Cannot split a question if it's not a Japanese word");
+  }
+
+  let unbrokenQuestion = currentTestable.question.text;
+  let splitQuestion = [];
+
+  // We have to go backwards due to lya/lyu/lyo
+  while (unbrokenQuestion.length > 0) {
+    let current = unbrokenQuestion[unbrokenQuestion.length - 1];
+    unbrokenQuestion = unbrokenQuestion.slice(0, unbrokenQuestion.length - 1);
+    if (Object.keys(hiraganaRomajiMap).includes(current)) {
+      splitQuestion = [current, ...splitQuestion];
+    } else {
+      current = `${unbrokenQuestion[unbrokenQuestion.length - 1]}${current}`;
+      splitQuestion = [current, ...splitQuestion];
+    }
+  }
+  return splitQuestion;
+};
+
+export const getCSVAnswer = (userAnswer: UserAnswer) => {
+  const userInputs = Object.entries(userAnswer)
+    .sort()
+    .map((kvPair) => kvPair[1]); // Just get the values out (the user inputs)
+  return userInputs.length === 0
+    ? ""
+    : userInputs.reduce(
+        // $FlowFixMe userInput is always a string
+        (acc: string, userInput: mixed) => acc + "," + userInput
+      );
+};
