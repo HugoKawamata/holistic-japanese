@@ -60,7 +60,16 @@ function getHeaderTitle(route) {
 
 function NavRootScreen() {
   return (
-    <NavRoot.Navigator>
+    <NavRoot.Navigator
+      screenOptions={{
+        headerStyle: {
+          shadowRadius: 0,
+          shadowOffset: {
+            height: 0,
+          },
+        },
+      }}
+    >
       <NavRoot.Screen
         name="Tabs"
         component={MainTabs}

@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingHorizontal: 26,
     paddingTop: 16,
+    shadowColor: color.SHADOW,
+    shadowOpacity: 0.4,
+    shadowRadius: 20,
   },
   activeTabButton: {
     ...tabButton,
@@ -55,8 +58,7 @@ export function TabBarButton(props: any) {
   React.useEffect(() => {
     Animated.spring(anim, {
       toValue: props.state.index === index ? 1 : 0,
-      // tension: 10,
-      bounciness: 12,
+      bounciness: 8,
       useNativeDriver: false,
     }).start();
   }, [props.state.index]);
@@ -92,7 +94,10 @@ export function TabBarButton(props: any) {
   return (
     <Animated.View
       style={{
-        backgroundColor: color.ACTIVE_TAB_BG,
+        backgroundColor: anim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [color.WHITE, color.ACTIVE_TAB_BG],
+        }),
         borderRadius: 50,
         maxWidth: anim.interpolate({
           inputRange: [0, 1],

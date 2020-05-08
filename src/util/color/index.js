@@ -9,7 +9,7 @@ export default {
   BLACK: grey.g999,
   PURPLE: secondary.s500,
   PLACEHOLDER: grey.g300,
-  SHADOW: grey.g800,
+  SHADOW: grey.g300,
   SCREEN_BACKGROUND: grey.g025,
 
   // For subtle emphasis
