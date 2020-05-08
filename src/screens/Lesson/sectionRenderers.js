@@ -54,7 +54,7 @@ export const getButton = (
 ) => {
   if (currentMark === "CORRECT") {
     return (
-      <Button theme="primary" onPress={goToNextQuestion}>
+      <Button theme="secondary" onPress={goToNextQuestion}>
         <FuriganaText
           furiStyle={styles.buttonText}
           textStyle={styles.buttonText}
@@ -66,7 +66,7 @@ export const getButton = (
     );
   } else if (currentMark === "INCORRECT") {
     return (
-      <Button theme="primary" onPress={goToNextQuestion}>
+      <Button theme="tertiary" onPress={goToNextQuestion}>
         <FuriganaText
           furiStyle={styles.buttonText}
           textStyle={styles.buttonText}

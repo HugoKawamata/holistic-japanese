@@ -268,6 +268,7 @@ export function LessonScreen(props: Props): Node {
     props.navigation.navigate("Hiragana", {
       completedContent: lesson.content,
       results,
+      testables: lesson.testables,
       modalOpen: true,
     });
   };

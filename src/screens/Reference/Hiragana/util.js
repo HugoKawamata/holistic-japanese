@@ -1,7 +1,10 @@
 // @flow
 import * as React from "react";
 import { View, StyleSheet, Image } from "react-native";
-import type { LessonContent } from "../../Learn/__generated__/NextLesson";
+import type {
+  LessonContent,
+  NextLesson_user_nextLesson_testables as Testable,
+} from "../../Learn/__generated__/NextLesson";
 import type { Results } from "../../Lesson/types";
 import FuriganaText from "../../../components/Text/FuriganaText";
 import Text from "../../../components/Text";
@@ -11,41 +14,41 @@ import color from "../../../util/color";
 
 export const kanaLevelToIntMap = {
   // null is considered the 0th element here
-  "HIRAGANA-A": 1,
-  "HIRAGANA-KA": 2,
-  "HIRAGANA-GA": 3,
-  "HIRAGANA-SA": 4,
-  "HIRAGANA-ZA": 5,
-  "HIRAGANA-TA": 6,
-  "HIRAGANA-DA": 7,
-  "HIRAGANA-NA": 8,
-  "HIRAGANA-N": 9,
-  "HIRAGANA-HA": 10,
-  "HIRAGANA-BA": 11,
-  "HIRAGANA-MA": 12,
-  "HIRAGANA-WA": 13,
-  "HIRAGANA-YA": 14,
-  "HIRAGANA-LYA": 15,
-  "HIRAGANA-RA": 16,
-  "HIRAGANA-PA": 17,
+  HIRAGANA_A: 1,
+  HIRAGANA_KA: 2,
+  HIRAGANA_GA: 3,
+  HIRAGANA_SA: 4,
+  HIRAGANA_ZA: 5,
+  HIRAGANA_TA: 6,
+  HIRAGANA_DA: 7,
+  HIRAGANA_NA: 8,
+  HIRAGANA_N: 9,
+  HIRAGANA_HA: 10,
+  HIRAGANA_BA: 11,
+  HIRAGANA_MA: 12,
+  HIRAGANA_WA: 13,
+  HIRAGANA_YA: 14,
+  HIRAGANA_LYA: 15,
+  HIRAGANA_RA: 16,
+  HIRAGANA_PA: 17,
 
-  "KATAKANA-A": 18,
-  "KATAKANA-KA": 19,
-  "KATAKANA-GA": 20,
-  "KATAKANA-SA": 21,
-  "KATAKANA-ZA": 22,
-  "KATAKANA-TA": 23,
-  "KATAKANA-DA": 24,
-  "KATAKANA-NA": 25,
-  "KATAKANA-N": 26,
-  "KATAKANA-HA": 27,
-  "KATAKANA-BA": 28,
-  "KATAKANA-MA": 29,
-  "KATAKANA-WA": 30,
-  "KATAKANA-YA": 31,
-  "KATAKANA-LYA": 32,
-  "KATAKANA-RA": 33,
-  "KATAKANA-PA": 34,
+  KATAKANA_A: 18,
+  KATAKANA_KA: 19,
+  KATAKANA_GA: 20,
+  KATAKANA_SA: 21,
+  KATAKANA_ZA: 22,
+  KATAKANA_TA: 23,
+  KATAKANA_DA: 24,
+  KATAKANA_NA: 25,
+  KATAKANA_N: 26,
+  KATAKANA_HA: 27,
+  KATAKANA_BA: 28,
+  KATAKANA_MA: 29,
+  KATAKANA_WA: 30,
+  KATAKANA_YA: 31,
+  KATAKANA_LYA: 32,
+  KATAKANA_RA: 33,
+  KATAKANA_PA: 34,
 };
 
 export const columnLeadToKanaLevelMap = {
@@ -188,35 +191,33 @@ const styles = StyleSheet.create({
   buttonJapanese: {
     color: color.WHITE,
   },
-  character: {
-    textAlign: "center",
-  },
-  characterResultContainer: {
-    padding: 4,
-  },
-  characterResult: {
-    textAlign: "center",
-  },
-  characterResults: {
+  leftCol: {
     flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    marginBottom: 30,
+  },
+  emoji: {
+    marginTop: -4,
+    paddingRight: 14,
   },
   word: {
     textAlign: "center",
+    marginBottom: -4,
   },
   wordResultContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
     paddingHorizontal: 6,
     paddingTop: 6,
   },
   wordResult: {
-    textAlign: "center",
+    flexGrow: 1,
+    textAlign: "right",
   },
   wordResults: {
-    flexDirection: "row",
+    flexDirection: "column",
     flexWrap: "wrap",
     justifyContent: "center",
+    marginTop: 20,
     marginBottom: 30,
   },
   image: {
@@ -233,9 +234,10 @@ const styles = StyleSheet.create({
 });
 
 type ContentProps = {
-  results: Results,
   closeModal: any,
   children: React.Node,
+  results: Results,
+  testables: $ReadOnlyArray<Testable>,
 };
 
 function CompletedModalContent(props: ContentProps) {
@@ -243,25 +245,7 @@ function CompletedModalContent(props: ContentProps) {
     <>
       <View style={styles.topSection}>
         <View style={styles.body}>
-          <Text style={styles.bodyTextLarge}>Character results</Text>
-          <View style={styles.characterResults}>
-            {Object.keys(props.results)
-              .filter((key) => props.results[key].objectType === "CHARACTER")
-              .map((key) => {
-                const accuracy =
-                  100 *
-                  (props.results[key].marks.filter((m) => m === "CORRECT")
-                    .length /
-                    props.results[key].marks.length);
-                return (
-                  <View style={styles.characterResultContainer}>
-                    <Text style={styles.character}>{key.slice(5)}</Text>
-                    <Text style={styles.characterResult}>{`${accuracy}%`}</Text>
-                  </View>
-                );
-              })}
-          </View>
-          <Text style={styles.bodyTextLarge}>Word results</Text>
+          <Text style={styles.bodyTextLarge}>Results</Text>
           <View style={styles.wordResults}>
             {Object.keys(props.results)
               .filter((key) => props.results[key].objectType === "WORD")
@@ -273,7 +257,13 @@ function CompletedModalContent(props: ContentProps) {
                     props.results[key].marks.length);
                 return (
                   <View style={styles.wordResultContainer}>
-                    <Text style={styles.word}>{key}</Text>
+                    <View style={styles.leftCol}>
+                      <Text style={styles.emoji}>
+                        {props.testables.find((t) => t.question.text === key)
+                          ?.question.emoji || ""}
+                      </Text>
+                      <Text style={styles.word}>{key}</Text>
+                    </View>
                     <Text style={styles.wordResult}>{`${accuracy}%`}</Text>
                   </View>
                 );
@@ -295,26 +285,39 @@ function CompletedModalContent(props: ContentProps) {
 export const getModalContent = (
   completedContent: ?LessonContent,
   results: Results,
+  testables: $ReadOnlyArray<Testable>,
   closeModal: any
 ) => {
   switch (completedContent) {
     case "HIRAGANA_A":
       return (
-        <CompletedModalContent results={results} closeModal={closeModal}>
+        <CompletedModalContent
+          results={results}
+          closeModal={closeModal}
+          testables={testables}
+        >
           <Text style={styles.bodyTextLarge}>あ Hiragana Line Complete!</Text>
           <Text style={styles.bodyTextRegular}>1/10 Lines Complete</Text>
         </CompletedModalContent>
       );
     case "HIRAGANA_KA":
       return (
-        <CompletedModalContent results={results} closeModal={closeModal}>
+        <CompletedModalContent
+          results={results}
+          closeModal={closeModal}
+          testables={testables}
+        >
           <Text style={styles.bodyTextLarge}>か Hiragana Line Complete!</Text>
           <Text style={styles.bodyTextRegular}>2/10 Lines Complete</Text>
         </CompletedModalContent>
       );
     case "HIRAGANA_GA":
       return (
-        <CompletedModalContent results={results} closeModal={closeModal}>
+        <CompletedModalContent
+          results={results}
+          closeModal={closeModal}
+          testables={testables}
+        >
           <Text style={styles.bodyTextLarge}>が Hiragana Line Complete!</Text>
           <Text style={styles.bodyTextRegular}>
             1/10 Bonus Lessons Complete
@@ -323,14 +326,22 @@ export const getModalContent = (
       );
     case "HIRAGANA_SA":
       return (
-        <CompletedModalContent results={results} closeModal={closeModal}>
+        <CompletedModalContent
+          results={results}
+          closeModal={closeModal}
+          testables={testables}
+        >
           <Text style={styles.bodyTextLarge}>さ Hiragana Line Complete!</Text>
           <Text style={styles.bodyTextRegular}>3/10 Lines Complete</Text>
         </CompletedModalContent>
       );
     case "HIRAGANA_ZA":
       return (
-        <CompletedModalContent results={results} closeModal={closeModal}>
+        <CompletedModalContent
+          results={results}
+          closeModal={closeModal}
+          testables={testables}
+        >
           <Text style={styles.bodyTextLarge}>ざ Hiragana Line Complete!</Text>
           <Text style={styles.bodyTextRegular}>
             2/10 Bonus Lessons Complete
@@ -339,7 +350,11 @@ export const getModalContent = (
       );
     case "HIRAGANA_TA":
       return (
-        <CompletedModalContent results={results} closeModal={closeModal}>
+        <CompletedModalContent
+          results={results}
+          closeModal={closeModal}
+          testables={testables}
+        >
           <Text style={styles.bodyTextLarge}>た Hiragana Line Complete!</Text>
           <Text style={styles.bodyTextRegular}>4/10 Lines Complete</Text>
         </CompletedModalContent>

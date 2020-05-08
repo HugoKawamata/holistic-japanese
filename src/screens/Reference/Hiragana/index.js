@@ -9,11 +9,16 @@ import {
   Dimensions,
 } from "react-native";
 import { connect } from "react-redux";
+import { gql } from "apollo-boost";
+import { Query as ApolloQuery } from "@apollo/react-components";
 import { type State as StoreState } from "../../../store/types/store";
 import { OverlayModal } from "../../../components/OverlayModal";
 import Text from "../../../components/Text";
 import Button from "../../../components/Button";
-import type { LessonContent } from "../../Learn/__generated__/NextLesson";
+import type {
+  LessonContent,
+  NextLesson_user_nextLesson_testables as Testable,
+} from "../../Learn/__generated__/NextLesson";
 import type { Results } from "../../Lesson/types";
 import {
   kanaLevelToIntMap,
@@ -39,84 +44,112 @@ type Props = {|
   ...OwnProps,
   completedContent: ?LessonContent,
   results: Results,
+  testables: $ReadOnlyArray<Testable>,
   modalOpen: boolean,
 |};
+
+const KANA_LEVEL_QUERY = gql`
+  query KanaLevelQuery {
+    me {
+      kanaLevel
+    }
+  }
+`;
+
+const KanaLevelQuery: Class<ApolloQuery<TKanaLevelQuery, {}>> = ApolloQuery;
 
 export function HiraganaReferenceScreen(props: Props) {
   const [modalVisible, setModalVisible] = useState(props.modalOpen);
 
-  const kanaLevelValue = kanaLevelToIntMap["HIRAGANA-A"];
   const { width } = Dimensions.get("window");
 
   const getHiraganaPage = (kanaMatrix, romajiMatrix, title) => (
-    <ScrollView>
-      <View style={styles.title}>
-        <Text style={styles.titleText}>{title}</Text>
-      </View>
-      <View style={styles.xAxisRow}>
-        <View style={styles.xAxisLabel}>
-          <Text style={styles.xAxisText}>A</Text>
-        </View>
-        <View style={styles.xAxisLabel}>
-          <Text style={styles.xAxisText}>I</Text>
-        </View>
-        <View style={styles.xAxisLabel}>
-          <Text style={styles.xAxisText}>U</Text>
-        </View>
-        <View style={styles.xAxisLabel}>
-          <Text style={styles.xAxisText}>E</Text>
-        </View>
-        <View style={styles.xAxisLabel}>
-          <Text style={styles.xAxisText}>O</Text>
-        </View>
-      </View>
-      <View style={styles.mainMatrixWrapper}>
-        {kanaMatrix.map((row, rowNum) => (
-          <View style={styles.row}>
-            {row.map((kana, colNum) => {
-              const complete =
-                columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]] <=
-                kanaLevelValue;
+    <KanaLevelQuery query={KANA_LEVEL_QUERY} fetchPolicy="cache-and-network">
+      {({ loading, data, error }) => {
+        if (loading && (!data || Object.keys(data).length === 0)) {
+          return null; // TODO: loading state
+        }
 
-              if (colNum === 0) {
-                return (
-                  <View style={styles.yAxisLabel}>
-                    <Text style={styles.yAxisText}>{kana}</Text>
-                  </View>
-                );
-              }
+        if (error != null || !data || !data.me) {
+          return null; // TODO: error state
+        }
 
-              return kana == "" ? (
-                <View style={styles.nullCell} />
-              ) : (
-                <View
-                  style={complete ? styles.completeCell : styles.incompleteCell}
-                >
-                  <Text
-                    style={
-                      complete
-                        ? styles.completeCellKana
-                        : styles.incompleteCellKana
+        const kanaLevelValue = kanaLevelToIntMap[data.me.kanaLevel] || 0;
+
+        return (
+          <ScrollView>
+            <View style={styles.title}>
+              <Text style={styles.titleText}>{title}</Text>
+            </View>
+            <View style={styles.xAxisRow}>
+              <View style={styles.xAxisLabel}>
+                <Text style={styles.xAxisText}>A</Text>
+              </View>
+              <View style={styles.xAxisLabel}>
+                <Text style={styles.xAxisText}>I</Text>
+              </View>
+              <View style={styles.xAxisLabel}>
+                <Text style={styles.xAxisText}>U</Text>
+              </View>
+              <View style={styles.xAxisLabel}>
+                <Text style={styles.xAxisText}>E</Text>
+              </View>
+              <View style={styles.xAxisLabel}>
+                <Text style={styles.xAxisText}>O</Text>
+              </View>
+            </View>
+            <View style={styles.mainMatrixWrapper}>
+              {kanaMatrix.map((row, rowNum) => (
+                <View style={styles.row}>
+                  {row.map((kana, colNum) => {
+                    const complete =
+                      columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]] <=
+                      kanaLevelValue;
+
+                    if (colNum === 0) {
+                      return (
+                        <View style={styles.yAxisLabel}>
+                          <Text style={styles.yAxisText}>{kana}</Text>
+                        </View>
+                      );
                     }
-                  >
-                    {kana}
-                  </Text>
-                  <Text
-                    style={
-                      complete
-                        ? styles.completeCellRomaji
-                        : styles.incompleteCellRomaji
-                    }
-                  >
-                    {romajiMatrix[rowNum][colNum - 1]}
-                  </Text>
+
+                    return kana == "" ? (
+                      <View style={styles.nullCell} />
+                    ) : (
+                      <View
+                        style={
+                          complete ? styles.completeCell : styles.incompleteCell
+                        }
+                      >
+                        <Text
+                          style={
+                            complete
+                              ? styles.completeCellKana
+                              : styles.incompleteCellKana
+                          }
+                        >
+                          {kana}
+                        </Text>
+                        <Text
+                          style={
+                            complete
+                              ? styles.completeCellRomaji
+                              : styles.incompleteCellRomaji
+                          }
+                        >
+                          {romajiMatrix[rowNum][colNum - 1]}
+                        </Text>
+                      </View>
+                    );
+                  })}
                 </View>
-              );
-            })}
-          </View>
-        ))}
-      </View>
-    </ScrollView>
+              ))}
+            </View>
+          </ScrollView>
+        );
+      }}
+    </KanaLevelQuery>
   );
 
   const hiraganaPage = getHiraganaPage(
@@ -162,8 +195,11 @@ export function HiraganaReferenceScreen(props: Props) {
         title={<Text style={styles.modalTitle}>Congratulations!</Text>}
         visible={modalVisible}
       >
-        {getModalContent(props.completedContent, props.results, () =>
-          setModalVisible(false)
+        {getModalContent(
+          props.completedContent,
+          props.results,
+          props.testables,
+          () => setModalVisible(false)
         )}
       </OverlayModal>
     </>
@@ -175,6 +211,7 @@ function mapStateToProps(state: StoreState, ownProps: OwnProps) {
     ...ownProps,
     completedContent: ownProps.route?.params?.completedContent || null,
     results: ownProps.route?.params?.results || null,
+    testables: ownProps.route?.params?.testables || null,
     modalOpen: ownProps.route?.params?.modalOpen || false,
   };
 }
