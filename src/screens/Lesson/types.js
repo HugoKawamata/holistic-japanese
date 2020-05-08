@@ -11,3 +11,7 @@ export type Result = {
   answers: any,
   marks: Array<"CORRECT" | "INCORRECT">,
 };
+
+export type UserAnswer = {
+  [key: string]: string,
+};

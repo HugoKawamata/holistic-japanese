@@ -19,6 +19,7 @@ const NEXT_LESSON_QUERY = gql`
       nextLesson {
         content
         lectures {
+          title
           text
           image
           position
@@ -48,12 +49,16 @@ const NEXT_LESSON_QUERY = gql`
 `;
 
 const styles = StyleSheet.create({
+  buttonText: {
+    color: color.WHITE,
+  },
   learnScreenWrapper: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
   startButtonEnglish: {
+    color: color.WHITE,
     fontSize: fontSize.englishButton,
     textAlign: "center",
   },
@@ -91,8 +96,10 @@ export function LearnScreen(props: Props): Node {
 
   return (
     <View style={styles.learnScreenWrapper}>
-      <Button theme="success" onPress={startLesson}>
+      <Button theme="primary" onPress={startLesson}>
         <FuriganaText
+          furiStyle={styles.buttonText}
+          textStyle={styles.buttonText}
           kana="つぎのじゅぎょうをはじめる"
           text="次の授業を始める"
         />

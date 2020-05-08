@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     alignSelf: "stretch",
-    borderRadius: 6,
-    borderBottomWidth: 3,
+    borderRadius: 300,
     flexGrow: 1,
     justifyContent: "center",
     paddingBottom: 6,
@@ -28,50 +27,36 @@ const styles = StyleSheet.create({
 const theme = {
   // The text colours are here as a guide and not actually used in the code.
   // Text is not rendered in this component due to possible furigana text and separate english.
-  action: {
-    // textColor: color.TEXT,
-    // ghostTextColor: color.TEXT_A,
-    buttonColor: color.BUTTON_A,
-    highlightColor: color.BUTTON_A_RIPPLE,
-    borderColor: color.BUTTON_A_RIPPLE,
+  primary: {
+    // textColor: color.WHITE,
+    buttonColor: color.BUTTON_P,
+    highlightColor: color.BUTTON_P_HIGHLIGHT,
   },
-  success: {
-    // textColor: color.TEXT,
-    // ghostTextColor: color.TEXT_S,
-    buttonColor: color.BUTTON_S,
-    highlightColor: color.BUTTON_S_RIPPLE,
-    borderColor: color.BUTTON_S_RIPPLE,
+  secondary: {
+    // textColor: color.TEXT_P,
+    buttonColor: color.BUTTON_P,
+    highlightColor: color.BUTTON_P_HIGHLIGHT,
   },
-  destructive: {
-    // textColor: color.TEXT,
-    // ghostTextColor: color.TEXT_D,
-    buttonColor: color.BUTTON_D,
-    highlightColor: color.BUTTON_D_RIPPLE,
-    borderColor: color.BUTTON_D_RIPPLE,
-  },
-  white: {
-    // textColor: color.TEXT_M,
-    // ghostTextColor: color.TEXT_M,
-    buttonColor: color.BUTTON_W,
-    highlightColor: color.BUTTON_W_RIPPLE,
-    borderColor: color.PLACEHOLDER,
+  tertiary: {
+    // textColor: color.WHITE,
+    buttonColor: color.BUTTON_T,
+    highlightColor: color.BUTTON_T_HIGHLIGHT,
   },
 };
 
 type Props = {|
   children: React.Element<*> | Array<React.Element<*>>, // Anything goes within the button
   disabled?: boolean,
-  ghost?: boolean,
   onPress: () => any,
-  theme: "action" | "success" | "destructive" | "white",
+  theme: "primary" | "secondary" | "tertiary",
 |};
 
 export default function Button(props: Props): React.Node {
-  const getTextColor = (ghostTextColor: string, textColor: string) => {
-    props.ghost ? ghostTextColor : textColor;
+  const getTextColor = (textColor: string) => {
+    textColor;
   };
 
-  const { buttonColor, highlightColor, borderColor } = theme[props.theme];
+  const { buttonColor, highlightColor } = theme[props.theme];
 
   return (
     <View style={styles.buttonContainer}>
@@ -83,10 +68,10 @@ export default function Button(props: Props): React.Node {
           style={[
             styles.button,
             {
-              backgroundColor: props.ghost ? "transparent" : buttonColor,
-              borderWidth: props.ghost ? 1 : 0,
-              borderBottomWidth: props.ghost ? 1 : 3,
-              borderColor: props.ghost ? buttonColor : borderColor,
+              backgroundColor: buttonColor,
+              borderWidth: props.theme === "secondary" ? 1 : 0,
+              borderColor:
+                props.theme === "secondary" ? buttonColor : "transparent",
               opacity: props.disabled ? 0.6 : 1,
             },
           ]}
