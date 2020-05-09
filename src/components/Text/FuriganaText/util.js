@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 // const furigana = "わたしのこうざをはじめる"
 // const text = "私の講座を始める"
@@ -199,7 +199,7 @@ const generateArray = (
   if (text.length === 0 && kana.length === 0) {
     return [...pairs, currentPair];
   }
-  let newCurrentPair = currentPair;
+  const newCurrentPair = currentPair;
 
   if (newCurrentPair.furigana === newCurrentPair.text) {
     // Check if next char is different
@@ -212,36 +212,32 @@ const generateArray = (
         [...pairs, newCurrentPair],
         { furigana: kana[0], text: text[0] }
       );
-    } else {
-      // Keep going adding chars to current pair
-      newCurrentPair.furigana += kana[0];
-      newCurrentPair.text += text[0];
-      return generateArray(kana.slice(1), text.slice(1), pairs, newCurrentPair);
     }
-  } else {
-    // The current pairs do not match, so we're currently assigning furigana to kanji
-    if (notKanji.includes(text[0]) || text.length === 0) {
-      // Next char in text is not kanji, so the kanji block is over
-      // OR final char in text was kanji, so the kanji block is over
-      if (text[0] === kana[0]) {
-        // Next letter matches, so we're done assigning furigana
-        return generateArray(
-          kana.slice(1),
-          text.slice(1),
-          [...pairs, newCurrentPair],
-          { furigana: kana[0], text: text[0] }
-        );
-      } else {
-        // Keep assigning kana to this kanji
-        newCurrentPair.furigana += kana[0];
-        return generateArray(kana.slice(1), text, pairs, newCurrentPair);
-      }
-    } else {
-      // Next char in text is still kanji
-      newCurrentPair.text += text[0];
-      return generateArray(kana, text.slice(1), pairs, newCurrentPair);
-    }
+    // Keep going adding chars to current pair
+    newCurrentPair.furigana += kana[0];
+    newCurrentPair.text += text[0];
+    return generateArray(kana.slice(1), text.slice(1), pairs, newCurrentPair);
   }
+  // The current pairs do not match, so we're currently assigning furigana to kanji
+  if (notKanji.includes(text[0]) || text.length === 0) {
+    // Next char in text is not kanji, so the kanji block is over
+    // OR final char in text was kanji, so the kanji block is over
+    if (text[0] === kana[0]) {
+      // Next letter matches, so we're done assigning furigana
+      return generateArray(
+        kana.slice(1),
+        text.slice(1),
+        [...pairs, newCurrentPair],
+        { furigana: kana[0], text: text[0] }
+      );
+    }
+    // Keep assigning kana to this kanji
+    newCurrentPair.furigana += kana[0];
+    return generateArray(kana.slice(1), text, pairs, newCurrentPair);
+  }
+  // Next char in text is still kanji
+  newCurrentPair.text += text[0];
+  return generateArray(kana, text.slice(1), pairs, newCurrentPair);
 };
 
 export const startGenerateArray = (

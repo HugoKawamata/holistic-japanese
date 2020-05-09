@@ -17,7 +17,7 @@ type ProfileScreenNavigationProp = StackNavigationProp<
   "Profile"
 >;
 
-type Props = {
+export type Props = {
   route: ProfileScreenRouteProp,
   navigation: ProfileScreenNavigationProp,
 };

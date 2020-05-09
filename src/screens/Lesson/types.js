@@ -1,15 +1,15 @@
-// @flow
-
-export type Results = {
-  [key: string]: Result,
-};
+/* @flow */
 
 export type Result = {
   objectId: ?number,
   objectType: "WORD" | "CHARACTER",
   text: string,
-  answers: any,
+  answers: string,
   marks: Array<"CORRECT" | "INCORRECT">,
+};
+
+export type Results = {
+  [key: string]: Result,
 };
 
 export type UserAnswer = {

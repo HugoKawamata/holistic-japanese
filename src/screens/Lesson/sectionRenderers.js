@@ -1,14 +1,11 @@
-// @flow
+/* @flow */
 import React, { type Node } from "react";
-import { View, TextInput, Image, Dimensions } from "react-native";
+import { View, Dimensions } from "react-native";
 import Text from "../../components/Text";
 import FuriganaText from "../../components/Text/FuriganaText";
 import TransformText from "../../components/Text/TransformText";
 import Button from "../../components/Button";
-import type {
-  NextLesson_user_nextLesson as Lesson,
-  NextLesson_user_nextLesson_testables as Testable,
-} from "../Learn/__generated__/NextLesson";
+import type { NextLesson_user_nextLesson_testables as Testable } from "../Learn/__generated__/NextLesson";
 import { getCSVAnswer } from "./util";
 import type { UserAnswer } from "./types";
 import styles from "./styles";
@@ -30,8 +27,8 @@ export const getTopSectionContent = (currentTestable: Testable) => (
 
 export const getQuestionTypeText = (currentTestable: Testable) => {
   if (
-    currentTestable.question.type == "J_WORD" &&
-    currentTestable.answer.type == "ROMAJI"
+    currentTestable.question.type === "J_WORD" &&
+    currentTestable.answer.type === "ROMAJI"
   ) {
     return "Translate these characters to English letters";
   }
@@ -68,7 +65,8 @@ export const getButton = (
         <Text style={styles.buttonText}>Correct!</Text>
       </Button>
     );
-  } else if (currentMark === "INCORRECT") {
+  }
+  if (currentMark === "INCORRECT") {
     return (
       <Button theme="tertiary" onPress={goToNextQuestion}>
         <FuriganaText
@@ -80,23 +78,22 @@ export const getButton = (
         <Text style={styles.buttonText}>Incorrect</Text>
       </Button>
     );
-  } else {
-    return (
-      <Button
-        theme="primary"
-        onPress={answerRomajiQuestion}
-        disabled={getCSVAnswer(userAnswer) === ""}
-      >
-        <FuriganaText
-          furiStyle={styles.buttonText}
-          textStyle={styles.buttonText}
-          kana="こたえる"
-          text="答える"
-        />
-        <Text style={styles.buttonText}>Answer</Text>
-      </Button>
-    );
   }
+  return (
+    <Button
+      theme="primary"
+      onPress={answerRomajiQuestion}
+      disabled={getCSVAnswer(userAnswer) === ""}
+    >
+      <FuriganaText
+        furiStyle={styles.buttonText}
+        textStyle={styles.buttonText}
+        kana="こたえる"
+        text="答える"
+      />
+      <Text style={styles.buttonText}>Answer</Text>
+    </Button>
+  );
 };
 
 export const displayEmoji = (
@@ -117,6 +114,7 @@ export const displayEmoji = (
       </View>
     );
   }
+  return null;
 };
 
 export const getHint = (
@@ -148,4 +146,5 @@ export const getHint = (
       </View>
     );
   }
+  return null;
 };

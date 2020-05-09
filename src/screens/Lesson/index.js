@@ -1,10 +1,11 @@
-// @flow
+/* @flow */
 import React, { useState, type Node, createRef, useEffect } from "react";
-import { View, TextInput, Image } from "react-native";
+import { View, TextInput } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import { connect } from "react-redux";
 import Sound from "react-native-sound";
-import FuriganaText from "../../components/Text/FuriganaText";
+import { type State as StoreState } from "../../store/types/store";
 import Text from "../../components/Text";
 import color from "../../util/color";
 import type {
@@ -28,7 +29,7 @@ import {
 } from "./sectionRenderers";
 import styles from "./styles";
 import LectureScreen from "./Lecture";
-import ProgressBar from "./ProgressBar";
+// import ProgressBar from "./ProgressBar";
 
 const SEND_RESULTS = gql`
   mutation sendResults(
@@ -40,14 +41,20 @@ const SEND_RESULTS = gql`
   }
 `;
 
-type Props = {|
-  navigation: any,
+type OwnProps = {|
+  navigation: any, // eslint-disable-line flowtype/no-weak-types
   route: {
     params: {
       lesson: Lesson,
       userId: string,
     },
   },
+|};
+
+type Props = {|
+  ...OwnProps,
+  lesson: Lesson,
+  userId: string,
 |};
 
 const initResults = (testables: $ReadOnlyArray<Testable>) => {
@@ -64,8 +71,9 @@ const initResults = (testables: $ReadOnlyArray<Testable>) => {
 };
 
 export function LessonScreen(props: Props): Node {
-  const isKanaLesson = props.route.params.lesson.content !== "OTHER";
-  props.navigation.setOptions({
+  const { lesson, userId, navigation } = props;
+  const isKanaLesson = lesson.content !== "OTHER";
+  navigation.setOptions({
     title: isKanaLesson ? "" : "レッスン・Lesson", // If kana lesson, we show the title in the topSection
     headerStyle: {
       backgroundColor: isKanaLesson ? color.KANA_Q_BG : color.NAVBAR,
@@ -80,7 +88,6 @@ export function LessonScreen(props: Props): Node {
     },
   });
 
-  const { userId, lesson } = props.route.params;
   if (lesson.testables == null) {
     throw new Error("Lesson does not exist");
   }
@@ -109,28 +116,27 @@ export function LessonScreen(props: Props): Node {
 
   const [inputRefs, setInputRefs] = useState([]);
 
-  const [lessonStarted, setLessonStarted] = useState(false);
-
-  const [addLessonResults, { data }] = useMutation(SEND_RESULTS);
+  const [addLessonResults] = useMutation(SEND_RESULTS);
 
   useEffect(() => {
-    setInputRefs((inputRefs) =>
+    setInputRefs((refs) =>
       Array(testableQueue[0].answer.text.split(",").length)
         .fill()
-        .map((_, i) => inputRefs[i] || createRef())
+        .map((_, i) => refs[i] || createRef())
     );
   }, [testableQueue[0]]);
 
   const currentTestable = testableQueue[0];
 
   const getAnswerFields = () => {
-    const answer = currentTestable.answer;
+    const { answer } = currentTestable;
     switch (answer.type) {
-      case "ROMAJI":
+      case "ROMAJI": {
         const answerParts = answer.text.split(",");
 
         const inputs = answerParts.map((charRomaji, i) => (
           <TextInput
+            // eslint-disable-next-line react/no-array-index-key
             key={`${currentTestable.question.text}-${i}`}
             ref={inputRefs[i]}
             style={[
@@ -149,7 +155,6 @@ export function LessonScreen(props: Props): Node {
                   Sound.MAIN_BUNDLE,
                   (error) => {
                     if (error) {
-                      console.log(error);
                       // do something
                     }
 
@@ -177,6 +182,7 @@ export function LessonScreen(props: Props): Node {
         ));
 
         return answerParts.map((charRomaji, i) => (
+          /* eslint-disable-next-line react/no-array-index-key */
           <View key={`input-${i}`}>
             {inputs[i]}
             {currentMark === "INCORRECT" ? (
@@ -184,7 +190,7 @@ export function LessonScreen(props: Props): Node {
             ) : null}
           </View>
         ));
-
+      }
       default:
         return (
           <TextInput
@@ -256,11 +262,10 @@ export function LessonScreen(props: Props): Node {
 
   const goToVictoryScreen = () => {
     const formattedResults = formatResultsForMutation(results);
-    console.log(formattedResults);
     addLessonResults({
       variables: {
         results: formattedResults,
-        userId: userId,
+        userId,
         content: lesson.content,
       },
     });
@@ -313,10 +318,6 @@ export function LessonScreen(props: Props): Node {
       }
       setCurrentMark(null);
       setUserAnswer({});
-      console.log(
-        testableQueue.map((t) => t.question.text),
-        unqueuedTestables.map((t) => t.question.text)
-      );
     } else {
       goToVictoryScreen();
     }
@@ -326,11 +327,11 @@ export function LessonScreen(props: Props): Node {
   const displayResult = () => {
     if (currentMark === "CORRECT") {
       return <View></View>;
-    } else if (currentMark === "INCORRECT") {
-      return <View></View>;
-    } else {
-      return null;
     }
+    if (currentMark === "INCORRECT") {
+      return <View></View>;
+    }
+    return null;
   };
 
   const questionStage = getQuestionStage(currentTestable, results);
@@ -362,4 +363,11 @@ export function LessonScreen(props: Props): Node {
   );
 }
 
-export default LessonScreen;
+function mapStateToProps(state: StoreState, ownProps: OwnProps) {
+  return {
+    lesson: ownProps.route?.params?.lesson || null,
+    userId: ownProps.route?.params?.userId || null,
+  };
+}
+
+export default connect(mapStateToProps)(LessonScreen);

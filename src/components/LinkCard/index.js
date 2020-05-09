@@ -1,8 +1,7 @@
-// @flow
+/* @flow */
 import * as React from "react";
 import { TouchableOpacity, StyleSheet, View } from "react-native";
 import color from "../../util/color";
-import { fontSize } from "../../util/font";
 import Text from "../Text";
 
 const styles = StyleSheet.create({
@@ -27,27 +26,28 @@ const styles = StyleSheet.create({
 
 export type Props = {|
   bigText: string,
-  blockOut: boolean,
+  // blockOut: boolean,
   disabled?: boolean,
-  onPress: () => any,
+  onPress: () => mixed,
   smallText: string,
 |};
 
 export default function LinkCard(props: Props): React.Node {
-  const getTextColor = (textColor: string) => {
-    textColor;
-  };
-
+  const { disabled, bigText, smallText, onPress } = props;
   return (
-    <View style={{ opacity: props.disabled ? 0.5 : 1 }}>
+    <View style={{ opacity: disabled ? 0.5 : 1 }}>
       <TouchableOpacity
-        activeOpacity={props.disabled ? 1 : 0.2}
+        activeOpacity={disabled ? 1 : 0.2}
         style={styles.card}
-        onPress={props.disabled ? () => {} : props.onPress}
+        onPress={disabled ? () => {} : onPress}
       >
-        <Text style={styles.bigText}>{props.bigText}</Text>
-        <Text style={styles.smallText}>{props.smallText}</Text>
+        <Text style={styles.bigText}>{bigText}</Text>
+        <Text style={styles.smallText}>{smallText}</Text>
       </TouchableOpacity>
     </View>
   );
 }
+
+LinkCard.defaultProps = {
+  disabled: false,
+};

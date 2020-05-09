@@ -1,12 +1,11 @@
-// @flow
+/* @flow */
 import * as React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet } from "react-native";
 import type {
   LessonContent,
   NextLesson_user_nextLesson_testables as Testable,
 } from "../../Learn/__generated__/NextLesson";
 import type { Results } from "../../Lesson/types";
-import FuriganaText from "../../../components/Text/FuriganaText";
 import Text from "../../../components/Text";
 import Button from "../../../components/Button";
 import { fontSize } from "../../../util/font";
@@ -234,20 +233,21 @@ const styles = StyleSheet.create({
 });
 
 type ContentProps = {
-  closeModal: any,
+  closeModal: () => typeof undefined,
   children: React.Node,
   results: Results,
   testables: $ReadOnlyArray<Testable>,
 };
 
 function CompletedModalContent(props: ContentProps) {
+  const { results, testables, children, closeModal } = props;
   return (
     <>
       <View style={styles.topSection}>
         <View style={styles.body}>
           <Text style={styles.bodyTextLarge}>Results</Text>
           <View style={styles.wordResults}>
-            {Object.keys(props.results)
+            {Object.keys(results)
               .filter((key) => props.results[key].objectType === "WORD")
               .map((key) => {
                 const accuracy =
@@ -256,10 +256,10 @@ function CompletedModalContent(props: ContentProps) {
                     .length /
                     props.results[key].marks.length);
                 return (
-                  <View style={styles.wordResultContainer}>
+                  <View key={key} style={styles.wordResultContainer}>
                     <View style={styles.leftCol}>
                       <Text style={styles.emoji}>
-                        {props.testables.find((t) => t.question.text === key)
+                        {testables.find((t) => t.question.text === key)
                           ?.question.emoji || ""}
                       </Text>
                       <Text style={styles.word}>{key}</Text>
@@ -269,11 +269,11 @@ function CompletedModalContent(props: ContentProps) {
                 );
               })}
           </View>
-          {props.children}
+          {children}
         </View>
       </View>
       <View style={styles.bottomSection}>
-        <Button theme="primary" onPress={props.closeModal}>
+        <Button theme="primary" onPress={closeModal}>
           <Text style={styles.buttonJapanese}>いいね！</Text>
           <Text style={styles.buttonEnglish}>Cool!</Text>
         </Button>
@@ -286,7 +286,7 @@ export const getModalContent = (
   completedContent: ?LessonContent,
   results: Results,
   testables: $ReadOnlyArray<Testable>,
-  closeModal: any
+  closeModal: () => typeof undefined
 ) => {
   switch (completedContent) {
     case "HIRAGANA_A":

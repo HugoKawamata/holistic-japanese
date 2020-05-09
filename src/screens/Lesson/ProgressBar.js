@@ -1,9 +1,9 @@
-// @flow
-import React, { useState, type Node, createRef, useEffect } from "react";
+/* @flow */
+import React from "react";
 import { View, StyleSheet } from "react-native";
 import color from "../../util/color";
 import type { NextLesson_user_nextLesson_testables as Testable } from "../Learn/__generated__/NextLesson";
-import type { Results, Result } from "./types";
+import type { Results } from "./types";
 
 type Props = {|
   results: Results,
@@ -23,14 +23,15 @@ const styles = StyleSheet.create({
 });
 
 function ProgressBar(props: Props) {
+  const { testables, results } = props;
   const totalQuestions =
-    props.testables == null
+    testables == null
       ? 0
-      : props.testables
+      : testables
           .map((testable) => (testable.introduction != null ? 3 : 2))
           .reduce((sum, num) => sum + num);
 
-  const correctAnswers = Object.keys(props.results)
+  const correctAnswers = Object.keys(results)
     .filter((key) => props.results[key].objectId != null)
     .reduce(
       (sum, key) =>

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import React, { useState, type Node } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import { connect } from "react-redux";
@@ -6,9 +6,7 @@ import { gql } from "apollo-boost";
 import type { State as StoreState } from "../../store/types/store";
 import client from "../../apollo";
 import Text from "../../components/Text";
-import Button from "../../components/Button";
 import SideSlider from "../../components/SideSlider";
-import FuriganaText from "../../components/Text/FuriganaText";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
 
@@ -82,7 +80,7 @@ const styles = StyleSheet.create({
 });
 
 type Props = {|
-  navigation: any,
+  navigation: any, // eslint-disable-line flowtype/no-weak-types
   userEmail: string,
   userGivenName: string,
 |};
@@ -91,21 +89,26 @@ const getGreeting = () => {
   const hours = new Date().getHours();
   if (hours >= 4 && hours < 11) {
     return ["おはよう", "Good morning,"];
-  } else if (hours >= 11 && hours < 5) {
-    return ["こんにちは", "Hello,"];
-  } else {
-    return ["こんばんは", "Good evening,"];
   }
+  if (hours >= 11 && hours < 5) {
+    return ["こんにちは", "Hello,"];
+  }
+  return ["こんばんは", "Good evening,"];
 };
 
 export function LearnScreen(props: Props): Node {
   const [loading, setLoading] = useState(false);
 
-  props.navigation.setOptions({
+  const { navigation, userGivenName } = props;
+  navigation.setOptions({
     headerShown: false,
   });
 
   const startLesson = () => {
+    if (loading) {
+      return;
+    }
+
     setLoading(true);
 
     client
@@ -117,7 +120,6 @@ export function LearnScreen(props: Props): Node {
         },
       })
       .then((result) => {
-        console.log(result);
         setLoading(false);
         props.navigation.push("Lesson", {
           lesson: result.data.user.nextLesson,
@@ -127,29 +129,29 @@ export function LearnScreen(props: Props): Node {
       });
   };
 
-  const [japaneseGreeting, englishGreeting] = getGreeting();
+  const [, englishGreeting] = getGreeting();
 
   return (
     <View style={styles.root}>
       <ScrollView contentContainerStyle={styles.learnScreenWrapper}>
         <View style={styles.greetingWrapper}>
           <Text style={styles.greeting}>{englishGreeting}</Text>
-          <Text style={styles.greetingName}>{props.userGivenName}</Text>
+          <Text style={styles.greetingName}>{userGivenName}</Text>
         </View>
         <SideSlider
           heading="Intro to Japanese"
           linkCardProps={[
             {
+              key: "1",
               bigText: "Next Hiragana Lesson",
               smallText: "5 min・Beginner",
-              blockOut: false,
               onPress: startLesson,
             },
             {
+              key: "2",
               bigText: "Next Hiragana Lesson",
               smallText: "5 min・Beginner",
               disabled: true,
-              blockOut: false,
               onPress: startLesson,
             },
           ]}
@@ -158,17 +160,17 @@ export function LearnScreen(props: Props): Node {
           heading="Unlocked after Hiragana"
           linkCardProps={[
             {
+              key: "3",
               bigText: "Next Hiragana Lesson",
               smallText: "5 min・Beginner",
               disabled: true,
-              blockOut: false,
               onPress: startLesson,
             },
             {
+              key: "4",
               bigText: "Next Hiragana Lesson",
               smallText: "5 min・Beginner",
               disabled: true,
-              blockOut: false,
               onPress: startLesson,
             },
           ]}

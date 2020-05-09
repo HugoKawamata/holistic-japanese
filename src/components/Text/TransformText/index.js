@@ -1,9 +1,8 @@
-// @flow
+/* @flow */
 import * as React from "react";
 import { View, StyleSheet, Text as NativeText } from "react-native";
-import { fontSize } from "../../../util/font";
 import color from "../../../util/color";
-import Text from "../../Text";
+import Text from "..";
 
 type Props = {|
   children: string,
@@ -40,7 +39,7 @@ const getStyle = (transformableType, style) => {
 const splitOnTransformable = (text, style) => {
   const transformableChars = ['"', "_"];
   let currentString = "";
-  let components = [];
+  const components = [];
   for (let i = 0; i < text.length; i += 1) {
     if (transformableChars.includes(currentString[0])) {
       if (text[i] === currentString[0]) {
@@ -55,6 +54,7 @@ const splitOnTransformable = (text, style) => {
       }
     } else {
       // We are currently in a regular block of text
+      // eslint-disable-next-line no-lonely-if
       if (transformableChars.includes(text[i])) {
         // The next character signals a transformable block of text
         components.push(<Text style={style}>{currentString}</Text>);
@@ -72,7 +72,8 @@ const splitOnTransformable = (text, style) => {
 };
 
 export default function FuriganaText(props: Props): React.Node {
-  const textBlocks = splitOnTransformable(props.children, props.style);
+  const { children, style } = props;
+  const textBlocks = splitOnTransformable(children, style);
 
   return (
     <View style={styles.wrapper}>

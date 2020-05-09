@@ -1,20 +1,12 @@
-// @flow
-import React, { useState, type Node, createRef, useEffect } from "react";
-import {
-  View,
-  TextInput,
-  Image,
-  FlatList,
-  ScrollView,
-  Dimensions,
-} from "react-native";
+/* @flow */
+import React, { useState } from "react";
+import { View, FlatList, ScrollView, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import { gql } from "apollo-boost";
 import { Query as ApolloQuery } from "@apollo/react-components";
 import { type State as StoreState } from "../../../store/types/store";
 import { OverlayModal } from "../../../components/OverlayModal";
 import Text from "../../../components/Text";
-import Button from "../../../components/Button";
 import type {
   LessonContent,
   NextLesson_user_nextLesson_testables as Testable,
@@ -35,9 +27,8 @@ import type { KanaLevelQuery as TKanaLevelQuery } from "./__generated__/KanaLeve
 import styles from "./style";
 
 type OwnProps = {|
-  navigation: any,
   route: {
-    params: any,
+    params: any, // eslint-disable-line flowtype/no-weak-types
   },
 |};
 
@@ -57,10 +48,11 @@ const KANA_LEVEL_QUERY = gql`
   }
 `;
 
-const KanaLevelQuery: Class<ApolloQuery<TKanaLevelQuery, {}>> = ApolloQuery;
+const KanaLevelQuery: ApolloQuery<TKanaLevelQuery, {}> = ApolloQuery;
 
 export function HiraganaReferenceScreen(props: Props) {
-  const [modalVisible, setModalVisible] = useState(props.modalOpen);
+  const { modalOpen, completedContent, results, testables } = props;
+  const [modalVisible, setModalVisible] = useState(modalOpen);
 
   const { width } = Dimensions.get("window");
 
@@ -105,7 +97,7 @@ export function HiraganaReferenceScreen(props: Props) {
               </View>
               <View style={styles.mainMatrixWrapper}>
                 {kanaMatrix.map((row, rowNum) => (
-                  <View style={styles.row}>
+                  <View style={styles.row} key={row[0]}>
                     {row.map((kana, colNum) => {
                       const complete =
                         columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]] <=
@@ -119,7 +111,7 @@ export function HiraganaReferenceScreen(props: Props) {
                         );
                       }
 
-                      return kana == "" ? (
+                      return kana === "" ? (
                         <View style={styles.nullCell} />
                       ) : (
                         <View
@@ -203,11 +195,8 @@ export function HiraganaReferenceScreen(props: Props) {
         title={<Text style={styles.modalTitle}>Congratulations!</Text>}
         visible={modalVisible}
       >
-        {getModalContent(
-          props.completedContent,
-          props.results,
-          props.testables,
-          () => setModalVisible(false)
+        {getModalContent(completedContent, results, testables, () =>
+          setModalVisible(false)
         )}
       </OverlayModal>
     </>

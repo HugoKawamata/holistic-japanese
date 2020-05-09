@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import type { NextLesson_user_nextLesson_testables as Testable } from "../Learn/__generated__/NextLesson";
 import type { Results, Result, UserAnswer } from "./types";
 
@@ -268,6 +268,6 @@ export const getCSVAnswer = (userAnswer: UserAnswer) => {
     ? ""
     : userInputs.reduce(
         // $FlowFixMe userInput is always a string
-        (acc: string, userInput: mixed) => acc + "," + userInput
+        (acc: string, userInput: mixed) => `${acc},${userInput}`
       );
 };

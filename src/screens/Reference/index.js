@@ -1,14 +1,7 @@
-// @flow
-import React, { useState, type Node } from "react";
+/* @flow */
+import React, { type Node } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
-import { connect } from "react-redux";
-import { gql } from "apollo-boost";
-import type { State as StoreState } from "../../store/types/store";
-import client from "../../apollo";
-import Text from "../../components/Text";
-import Button from "../../components/Button";
 import SideSlider from "../../components/SideSlider";
-import FuriganaText from "../../components/Text/FuriganaText";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
 
@@ -35,13 +28,11 @@ const styles = StyleSheet.create({
 });
 
 type Props = {|
-  navigation: any,
-  userEmail: string,
+  navigation: any, // eslint-disable-line flowtype/no-weak-types
 |};
 
 export function LearnScreen(props: Props): Node {
-  const [loading, setLoading] = useState(false);
-
+  // eslint-disable-next-line react/destructuring-assignment
   props.navigation.setOptions({
     headerShown: false,
   });
@@ -53,16 +44,16 @@ export function LearnScreen(props: Props): Node {
           heading="Characters"
           linkCardProps={[
             {
+              key: "1",
               bigText: "ひらがな",
               smallText: "Hiragana",
-              blockOut: false,
               onPress: () => props.navigation.navigate("Hiragana"),
             },
             {
+              key: "2",
               bigText: "カタカナ",
               smallText: "Katakana",
               disabled: true,
-              blockOut: false,
               onPress: () => {},
             },
           ]}
@@ -71,17 +62,17 @@ export function LearnScreen(props: Props): Node {
           heading="Conversation"
           linkCardProps={[
             {
+              key: "3",
               bigText: "ことば",
               smallText: "Words",
               disabled: true,
-              blockOut: false,
               onPress: () => {},
             },
             {
+              key: "4",
               bigText: "ぶんけい",
               smallText: "Sentence patterns",
               disabled: true,
-              blockOut: false,
               onPress: () => {},
             },
           ]}
@@ -91,11 +82,4 @@ export function LearnScreen(props: Props): Node {
   );
 }
 
-function mapStateToProps(state: StoreState) {
-  return {
-    userEmail: state.user.user?.email,
-    userGivenName: state.user.user?.givenName,
-  };
-}
-
-export default connect(mapStateToProps)(LearnScreen);
+export default LearnScreen;

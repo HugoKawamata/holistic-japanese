@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 import React from "react";
 import { View, Image } from "react-native";
@@ -11,12 +11,12 @@ import styles from "./styles";
 
 type Props = {|
   lecture: $ReadOnlyArray<Lecture>,
-  setLecture: (any) => typeof undefined,
+  setLecture: ($ReadOnlyArray<Lecture>) => typeof undefined,
 |};
 
 export function LectureScreen(props: Props) {
-  const currentLecture = props.lecture[0];
-  console.log(props);
+  const { lecture } = props;
+  const currentLecture = lecture[0];
   return (
     <View style={styles.lectureScreenWrapper}>
       <View style={styles.bottomSection}>
@@ -40,7 +40,7 @@ export function LectureScreen(props: Props) {
         <View style={styles.buttonWrapper}>
           <Button
             theme="primary"
-            onPress={() => props.setLecture(props.lecture.slice(1))}
+            onPress={() => props.setLecture(lecture.slice(1))}
           >
             <FuriganaText
               furiStyle={styles.buttonText}

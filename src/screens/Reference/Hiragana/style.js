@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { Dimensions, StyleSheet } from "react-native";
 import color from "../../../util/color";
 import { fontSize } from "../../../util/font";
@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
     paddingLeft: width * 0.02,
     paddingRight: width * 0.06,
-    width: width,
+    width,
   },
   modalTitle: {
     fontSize: fontSize.modalTitle,

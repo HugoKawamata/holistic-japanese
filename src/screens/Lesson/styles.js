@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { StyleSheet } from "react-native";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
@@ -11,8 +11,6 @@ const answerFieldCommon = {
   textAlign: "center",
   minWidth: 56,
 };
-
-const dialogueBubbleShadow = {};
 
 const styles = StyleSheet.create({
   answerFieldWrapper: {

@@ -1,17 +1,13 @@
-// @flow
+/* @flow */
 import * as React from "react";
 import {
   StyleSheet,
   View,
-  Image,
   Modal,
-  ScrollView,
   TouchableOpacity,
   Dimensions,
 } from "react-native";
 import color from "../../util/color";
-import Text from "../Text";
-import Button from "../Button";
 import Icon from "../Icon";
 
 const { height, width } = Dimensions.get("window");
@@ -43,25 +39,22 @@ const styles = StyleSheet.create({
 
 type Props = {|
   children: ?(React.Element<*> | Array<React.Element<*>>),
-  closeModal: any,
+  closeModal: () => typeof undefined,
   visible: boolean,
   title: React.Element<*> | Array<React.Element<*>>,
 |};
 
 export function OverlayModal(props: Props) {
+  const { visible, closeModal, title, children } = props;
   return (
-    <Modal
-      transparent
-      visible={props.visible}
-      onRequestClose={props.closeModal}
-    >
-      <TouchableOpacity style={styles.modalWrapper} onPress={props.closeModal}>
+    <Modal transparent visible={visible} onRequestClose={closeModal}>
+      <TouchableOpacity style={styles.modalWrapper} onPress={closeModal}>
         <View style={styles.modalCloseButton}>
-          <Icon name="close" size={14} color={"#ff0000"} />
+          <Icon name="close" size={14} color={color.PRIMARY} />
         </View>
         <View style={styles.content}>
-          <View style={styles.modalHeaderWrapper}>{props.title}</View>
-          {props.children}
+          <View style={styles.modalHeaderWrapper}>{title}</View>
+          {children}
         </View>
       </TouchableOpacity>
     </Modal>

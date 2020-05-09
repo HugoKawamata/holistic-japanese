@@ -1,8 +1,7 @@
-// @flow
+/* @flow */
 import * as React from "react";
 import { TouchableOpacity, StyleSheet, View } from "react-native";
 import color from "../../util/color";
-import Text from "../Text";
 
 const styles = StyleSheet.create({
   button: {
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const theme = {
+const themes = {
   // The text colours are here as a guide and not actually used in the code.
   // Text is not rendered in this component due to possible furigana text and separate english.
   primary: {
@@ -47,38 +46,38 @@ const theme = {
 type Props = {|
   children: React.Element<*> | Array<React.Element<*>>, // Anything goes within the button
   disabled?: boolean,
-  onPress: () => any,
+  onPress: () => mixed,
   theme: "primary" | "secondary" | "tertiary",
 |};
 
 export default function Button(props: Props): React.Node {
-  const getTextColor = (textColor: string) => {
-    textColor;
-  };
-
-  const { buttonColor, highlightColor } = theme[props.theme];
+  const { theme, disabled, onPress, children } = props;
+  const { buttonColor } = themes[theme];
 
   return (
     <View style={styles.buttonContainer}>
       <TouchableOpacity
         style={styles.buttonWrapper}
-        onPress={props.disabled ? () => {} : props.onPress}
+        onPress={disabled ? () => {} : onPress}
       >
         <View
           style={[
             styles.button,
             {
               backgroundColor: buttonColor,
-              borderWidth: props.theme === "secondary" ? 1 : 0,
-              borderColor:
-                props.theme === "secondary" ? buttonColor : "transparent",
-              opacity: props.disabled ? 0.6 : 1,
+              borderWidth: theme === "secondary" ? 1 : 0,
+              borderColor: theme === "secondary" ? buttonColor : "transparent",
+              opacity: disabled ? 0.6 : 1,
             },
           ]}
         >
-          {props.children}
+          {children}
         </View>
       </TouchableOpacity>
     </View>
   );
 }
+
+Button.defaultProps = {
+  disabled: false,
+};

@@ -1,19 +1,14 @@
-// @flow
+/* @flow */
 import * as React from "react";
 import { View, StyleSheet } from "react-native";
 import { fontSize } from "../../../util/font";
-import Text from "../../Text";
+import Text from "..";
 import { startGenerateArray } from "./util";
 
 type Props = {|
   furiStyle?: typeof StyleSheet,
   textStyle?: typeof StyleSheet,
   kana: string,
-  text: string,
-|};
-
-type FuriganaPair = {|
-  furigana: string,
   text: string,
 |};
 
@@ -37,7 +32,8 @@ const styles = StyleSheet.create({
 });
 
 export default function FuriganaText(props: Props): React.Node {
-  const furiganaArray = startGenerateArray(props.kana, props.text);
+  const { kana, text: japanese } = props;
+  const furiganaArray = startGenerateArray(kana, japanese);
 
   return (
     <View style={styles.wrapper}>
@@ -53,3 +49,8 @@ export default function FuriganaText(props: Props): React.Node {
     </View>
   );
 }
+
+FuriganaText.defaultProps = {
+  furiStyle: null,
+  textStyle: null,
+};
