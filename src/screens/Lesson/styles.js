@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
   lectureTitle: {
     fontSize: 28,
     paddingBottom: 34,
+    paddingHorizontal: 20,
     textAlign: "center",
   },
   question: {

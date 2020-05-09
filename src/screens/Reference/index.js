@@ -1,38 +1,101 @@
 // @flow
-import React, { useState, type Node, createRef, useEffect } from "react";
-import { StyleSheet, View, TextInput, Image } from "react-native";
+import React, { useState, type Node } from "react";
+import { StyleSheet, View, ScrollView } from "react-native";
+import { connect } from "react-redux";
+import { gql } from "apollo-boost";
+import type { State as StoreState } from "../../store/types/store";
+import client from "../../apollo";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
-import { fontSize } from "../../util/font";
+import SideSlider from "../../components/SideSlider";
+import FuriganaText from "../../components/Text/FuriganaText";
 import color from "../../util/color";
-
-// TODO: When katakana gets added, make this screen do different things depending on user kana level
+import { fontSize } from "../../util/font";
 
 const styles = StyleSheet.create({
-  japaneseButtonText: {
+  buttonText: {
     color: color.WHITE,
-    fontSize: fontSize.furiganaEnabledText,
   },
-  englishButtonText: {
+  referenceScreenWrapper: {
+    alignItems: "stretch",
+    backgroundColor: color.WHITE,
+    paddingTop: 40,
+    flexGrow: 1,
+    justifyContent: "flex-start",
+  },
+  root: {
+    backgroundColor: color.WHITE,
+    flexGrow: 1,
+  },
+  startButtonEnglish: {
     color: color.WHITE,
-    fontSize: fontSize.regular,
+    fontSize: fontSize.englishButton,
+    textAlign: "center",
   },
 });
 
 type Props = {|
   navigation: any,
+  userEmail: string,
 |};
 
-export function ReferenceScreen(props: Props) {
+export function LearnScreen(props: Props): Node {
+  const [loading, setLoading] = useState(false);
+
+  props.navigation.setOptions({
+    headerShown: false,
+  });
+
   return (
-    <Button
-      theme="primary"
-      onPress={() => props.navigation.navigate("Hiragana")}
-    >
-      <Text style={styles.japaneseButtonText}>ひらがな</Text>
-      <Text style={styles.englishButtonText}>Hiragana</Text>
-    </Button>
+    <View style={styles.root}>
+      <ScrollView contentContainerStyle={styles.referenceScreenWrapper}>
+        <SideSlider
+          heading="Characters"
+          linkCardProps={[
+            {
+              bigText: "ひらがな",
+              smallText: "Hiragana",
+              blockOut: false,
+              onPress: () => props.navigation.navigate("Hiragana"),
+            },
+            {
+              bigText: "カタカナ",
+              smallText: "Katakana",
+              disabled: true,
+              blockOut: false,
+              onPress: () => {},
+            },
+          ]}
+        />
+        <SideSlider
+          heading="Conversation"
+          linkCardProps={[
+            {
+              bigText: "ことば",
+              smallText: "Words",
+              disabled: true,
+              blockOut: false,
+              onPress: () => {},
+            },
+            {
+              bigText: "ぶんけい",
+              smallText: "Sentence patterns",
+              disabled: true,
+              blockOut: false,
+              onPress: () => {},
+            },
+          ]}
+        />
+      </ScrollView>
+    </View>
   );
 }
 
-export default ReferenceScreen;
+function mapStateToProps(state: StoreState) {
+  return {
+    userEmail: state.user.user?.email,
+    userGivenName: state.user.user?.givenName,
+  };
+}
+
+export default connect(mapStateToProps)(LearnScreen);

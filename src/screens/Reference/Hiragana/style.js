@@ -38,6 +38,7 @@ export const styles = StyleSheet.create({
   },
   hiraganaReferenceScreenWrapper: {
     alignItems: "center",
+    backgroundColor: color.WHITE,
     width,
   },
   incompleteCell: {
@@ -67,6 +68,10 @@ export const styles = StyleSheet.create({
   nullCell: {
     ...basicCell,
     backgroundColor: color.INCOMPLETE_CELL,
+  },
+  root: {
+    backgroundColor: color.WHITE,
+    flexGrow: 1,
   },
   row: {
     flexDirection: "row",

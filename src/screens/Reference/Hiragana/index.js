@@ -31,6 +31,7 @@ import {
   columnLeadToKanaLevelMap,
   getModalContent,
 } from "./util";
+import type { KanaLevelQuery as TKanaLevelQuery } from "./__generated__/KanaLevelQuery";
 import styles from "./style";
 
 type OwnProps = {|
@@ -75,79 +76,85 @@ export function HiraganaReferenceScreen(props: Props) {
         }
 
         const kanaLevelValue = kanaLevelToIntMap[data.me.kanaLevel] || 0;
-        console.log(kanaLevelValue, data);
 
         return (
-          <ScrollView>
-            <View style={styles.title}>
-              <Text style={styles.titleText}>{title}</Text>
-            </View>
-            <View style={styles.xAxisRow}>
-              <View style={styles.xAxisLabel}>
-                <Text style={styles.xAxisText}>A</Text>
+          <View style={styles.root}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.hiraganaReferenceScreenWrapper}
+            >
+              <View style={styles.title}>
+                <Text style={styles.titleText}>{title}</Text>
               </View>
-              <View style={styles.xAxisLabel}>
-                <Text style={styles.xAxisText}>I</Text>
+              <View style={styles.xAxisRow}>
+                <View style={styles.xAxisLabel}>
+                  <Text style={styles.xAxisText}>A</Text>
+                </View>
+                <View style={styles.xAxisLabel}>
+                  <Text style={styles.xAxisText}>I</Text>
+                </View>
+                <View style={styles.xAxisLabel}>
+                  <Text style={styles.xAxisText}>U</Text>
+                </View>
+                <View style={styles.xAxisLabel}>
+                  <Text style={styles.xAxisText}>E</Text>
+                </View>
+                <View style={styles.xAxisLabel}>
+                  <Text style={styles.xAxisText}>O</Text>
+                </View>
               </View>
-              <View style={styles.xAxisLabel}>
-                <Text style={styles.xAxisText}>U</Text>
-              </View>
-              <View style={styles.xAxisLabel}>
-                <Text style={styles.xAxisText}>E</Text>
-              </View>
-              <View style={styles.xAxisLabel}>
-                <Text style={styles.xAxisText}>O</Text>
-              </View>
-            </View>
-            <View style={styles.mainMatrixWrapper}>
-              {kanaMatrix.map((row, rowNum) => (
-                <View style={styles.row}>
-                  {row.map((kana, colNum) => {
-                    const complete =
-                      columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]] <=
-                      kanaLevelValue;
+              <View style={styles.mainMatrixWrapper}>
+                {kanaMatrix.map((row, rowNum) => (
+                  <View style={styles.row}>
+                    {row.map((kana, colNum) => {
+                      const complete =
+                        columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]] <=
+                        kanaLevelValue;
 
-                    if (colNum === 0) {
-                      return (
-                        <View style={styles.yAxisLabel}>
-                          <Text style={styles.yAxisText}>{kana}</Text>
+                      if (colNum === 0) {
+                        return (
+                          <View style={styles.yAxisLabel}>
+                            <Text style={styles.yAxisText}>{kana}</Text>
+                          </View>
+                        );
+                      }
+
+                      return kana == "" ? (
+                        <View style={styles.nullCell} />
+                      ) : (
+                        <View
+                          style={
+                            complete
+                              ? styles.completeCell
+                              : styles.incompleteCell
+                          }
+                        >
+                          <Text
+                            style={
+                              complete
+                                ? styles.completeCellKana
+                                : styles.incompleteCellKana
+                            }
+                          >
+                            {kana}
+                          </Text>
+                          <Text
+                            style={
+                              complete
+                                ? styles.completeCellRomaji
+                                : styles.incompleteCellRomaji
+                            }
+                          >
+                            {romajiMatrix[rowNum][colNum - 1]}
+                          </Text>
                         </View>
                       );
-                    }
-
-                    return kana == "" ? (
-                      <View style={styles.nullCell} />
-                    ) : (
-                      <View
-                        style={
-                          complete ? styles.completeCell : styles.incompleteCell
-                        }
-                      >
-                        <Text
-                          style={
-                            complete
-                              ? styles.completeCellKana
-                              : styles.incompleteCellKana
-                          }
-                        >
-                          {kana}
-                        </Text>
-                        <Text
-                          style={
-                            complete
-                              ? styles.completeCellRomaji
-                              : styles.incompleteCellRomaji
-                          }
-                        >
-                          {romajiMatrix[rowNum][colNum - 1]}
-                        </Text>
-                      </View>
-                    );
-                  })}
-                </View>
-              ))}
-            </View>
-          </ScrollView>
+                    })}
+                  </View>
+                ))}
+              </View>
+            </ScrollView>
+          </View>
         );
       }}
     </KanaLevelQuery>

@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
   },
   root: {
     backgroundColor: color.WHITE,
+    flexGrow: 1,
   },
   startButtonEnglish: {
     color: color.WHITE,

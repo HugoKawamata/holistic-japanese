@@ -16,7 +16,7 @@ const tabButton = {
   alignItems: "center",
   flexDirection: "row",
   flexWrap: "nowrap",
-  paddingHorizontal: 12,
+  paddingHorizontal: 16,
   paddingVertical: 8,
 };
 
