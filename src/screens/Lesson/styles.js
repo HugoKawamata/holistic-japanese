@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 0,
     paddingTop: 5,
-    width: 50,
+    width: 60,
   },
   // titleImageWrapper: {
   //   paddingTop: 30,

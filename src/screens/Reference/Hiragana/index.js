@@ -97,7 +97,7 @@ export function HiraganaReferenceScreen(props: Props) {
               </View>
               <View style={styles.mainMatrixWrapper}>
                 {kanaMatrix.map((row, rowNum) => (
-                  <View style={styles.row} key={row[0]}>
+                  <View style={styles.row} key={row[1] || row[0]}>
                     {row.map((kana, colNum) => {
                       const complete =
                         columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]] <=

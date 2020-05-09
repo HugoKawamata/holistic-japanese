@@ -10,6 +10,9 @@ type Props = {|
 |};
 
 const styles = StyleSheet.create({
+  bold: {
+    fontWeight: "bold",
+  },
   highlight: {
     fontWeight: "bold",
     color: color.TEXT_HIGHLIGHT,
@@ -31,13 +34,15 @@ const getStyle = (transformableType, style) => {
       return [style, styles.highlight];
     case "_":
       return [style, styles.italic];
+    case "*":
+      return [style, styles.bold];
     default:
       return style;
   }
 };
 
 const splitOnTransformable = (text, style) => {
-  const transformableChars = ['"', "_"];
+  const transformableChars = ['"', "_", "*"];
   let currentString = "";
   const components = [];
   for (let i = 0; i < text.length; i += 1) {
