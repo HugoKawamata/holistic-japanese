@@ -216,6 +216,7 @@ export const hiraganaRomajiMap = {
   りゃ: "rya",
   りゅ: "ryu",
   りょ: "ryo",
+  っ: "ltsu",
 };
 
 export const formatResultsForMutation = (results: Results): Array<Result> =>
