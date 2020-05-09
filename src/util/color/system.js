@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 export const primary = {
   p050: "#FDE4E4",

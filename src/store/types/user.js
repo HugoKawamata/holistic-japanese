@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import type { User as GoogleAuth } from "@react-native-community/google-signin";
 
 // Non exact types because scopes may change in the future

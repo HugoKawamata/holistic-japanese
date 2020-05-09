@@ -33,6 +33,7 @@ module.exports = {
     "react-hooks",
     "react-native",
   ],
+  ignorePatterns: ["**/__generated__/**"],
   rules: {
     /* I like naming components/styles and then exporting them as default */
     "import/no-named-as-default": 0,

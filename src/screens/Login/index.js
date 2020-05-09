@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import * as React from "react";
 import { connect } from "react-redux";
 import { StyleSheet, View, Button } from "react-native";
@@ -8,7 +8,6 @@ import {
 } from "@react-native-community/google-signin";
 import { loadGoogleSignin } from "../../store/thunks/loaders";
 import Text from "../../components/Text";
-import Icon from "../../components/Icon";
 
 const styles = StyleSheet.create({
   loginScreenWrapper: {
@@ -21,6 +20,7 @@ const styles = StyleSheet.create({
 type Props = {|
   loadGoogleSignin: typeof loadGoogleSignin,
   // This is ok to be untyped, we dont do anything with it internally
+  // eslint-disable-next-line flowtype/no-weak-types
   navigation: any,
 |};
 
@@ -31,6 +31,7 @@ export function LoginScreen(props: Props): React.Node {
       const signInData = await GoogleSignin.signIn();
       props.loadGoogleSignin(signInData.idToken, signInData);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow

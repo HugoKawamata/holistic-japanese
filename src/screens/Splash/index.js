@@ -1,12 +1,6 @@
-// @flow
+/* @flow */
 import * as React from "react";
-import {
-  StyleSheet,
-  AppRegistry,
-  SafeAreaView,
-  View,
-  Text as NatText,
-} from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -39,23 +33,36 @@ const Tab = createBottomTabNavigator();
 
 const NavRoot = createStackNavigator();
 
-function getHeaderTitle(route) {
-  // Access the tab navigator's state using `route.state`
-  const routeName = route.state
-    ? // Get the currently active route name in the tab navigator
-      route.state.routes[route.state.index].name
-    : // If state doesn't exist, we need to default to `screen` param if available, or the initial screen
-      // In our case, it's "Feed" as that's the first screen inside the navigator
-      route.params?.screen || "Feed";
+type TabProps = {|
+  color: string,
+  size: number,
+|};
 
-  switch (routeName) {
-    case "Learn":
-      return "ならう・Learn";
-    case "Reference":
-      return "さんしょう・Reference";
-    default:
-      return "";
-  }
+function MainTabs() {
+  return (
+    <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
+      <Tab.Screen
+        name="Learn"
+        component={LearnScreen}
+        options={{
+          // eslint-disable-next-line react/display-name
+          tabBarIcon: ({ color: tabColor, size }: TabProps) => (
+            <Icon name="book" color={tabColor} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Reference"
+        component={ReferenceScreen}
+        options={{
+          // eslint-disable-next-line react/display-name
+          tabBarIcon: ({ color: tabColor, size }: TabProps) => (
+            <Icon name="find-in-page" color={tabColor} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
 }
 
 function NavRootScreen() {
@@ -87,35 +94,12 @@ function NavRootScreen() {
   );
 }
 
-function MainTabs() {
-  return (
-    <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
-      <Tab.Screen
-        name="Learn"
-        component={LearnScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="book" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Reference"
-        component={ReferenceScreen}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="find-in-page" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
 export function Splash(props: Props): React.Node {
+  const { loggedIn } = props;
   return (
     <SafeAreaView style={styles.safeArea}>
       <NavigationContainer>
-        {!props.loggedIn ? (
+        {!loggedIn ? (
           <LoginStack.Navigator>
             <LoginStack.Screen
               name="ロッグイン・Login"

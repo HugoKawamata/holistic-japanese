@@ -1,10 +1,8 @@
-// @flow
-import { type GoogleAuth } from "../types/user";
+/* @flow */
+import { type GoogleAuth } from "./user";
 
 export const GOOGLE_SIGNIN = "GOOGLE_SIGNIN";
 export const GOOGLE_SIGNIN_FAILED = "GOOGLE_SIGNIN_FAILED";
-
-export type Actions = GoogleSigninFailed | GoogleSignin;
 
 export type GoogleSignin = {
   payload: GoogleAuth, // TODO: Get the type of whatever comes back from google
@@ -14,3 +12,5 @@ export type GoogleSignin = {
 export type GoogleSigninFailed = {
   type: typeof GOOGLE_SIGNIN_FAILED,
 };
+
+export type Actions = GoogleSigninFailed | GoogleSignin;

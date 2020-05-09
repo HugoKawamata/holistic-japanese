@@ -1,5 +1,5 @@
-// @flow
-import { primary, grey, special, secondary, yellow } from "./system";
+/* @flow */
+import { primary, grey, secondary, yellow } from "./system";
 
 export default {
   // GENERIC NAMES

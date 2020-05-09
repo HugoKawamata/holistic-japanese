@@ -1,14 +1,10 @@
-// @flow
-/**
- * @format
- */
+/* @flow */
 
 import "react-native-gesture-handler";
 import * as React from "react";
-import { StyleSheet, AppRegistry, View, Text as NatText } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { AppRegistry } from "react-native";
 import { GoogleSignin } from "@react-native-community/google-signin";
-import { Provider, connect } from "react-redux";
+import { Provider } from "react-redux";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 import apollo from "./src/apollo";
@@ -18,9 +14,7 @@ import { name as appName } from "./app.json";
 
 GoogleSignin.configure();
 
-type Props = {||};
-
-export function App(props: Props): React.Node {
+export function App(): React.Node {
   return (
     <Provider store={store}>
       <ApolloProvider client={apollo}>

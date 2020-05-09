@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import {
   type Actions,
   GOOGLE_SIGNIN,
@@ -11,10 +11,7 @@ const initialState: State = {
   user: null,
 };
 
-export default function reducer(
-  state: State = initialState,
-  action: Actions
-): State {
+export default function reducer(state: State, action: Actions): State {
   switch (action.type) {
     case GOOGLE_SIGNIN:
       return {

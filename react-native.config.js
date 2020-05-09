@@ -1,4 +1,4 @@
-/* @fl.ow */
+/* @flow */
 module.exports = {
   project: {
     ios: {},

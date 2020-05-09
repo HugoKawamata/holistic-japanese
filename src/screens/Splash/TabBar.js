@@ -1,14 +1,6 @@
-// @flow
-import React, { useRef, useEffect } from "react";
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  LayoutAnimation,
-  UIManager,
-  Platform,
-  Animated,
-} from "react-native";
+/* @flow */
+import React, { useRef } from "react";
+import { View, TouchableOpacity, StyleSheet, Animated } from "react-native";
 import Text from "../../components/Text";
 import color from "../../util/color";
 
@@ -49,10 +41,12 @@ const styles = StyleSheet.create({
   },
 });
 
+// This is all handled by navigation
+// eslint-disable-next-line flowtype/no-weak-types
 export function TabBarButton(props: any) {
   const { descriptors, route, index, state, navigation } = props;
 
-  const anim = useRef(new Animated.Value(props.state.index === index ? 1 : 0))
+  const anim = useRef(new Animated.Value(state.index === index ? 1 : 0))
     .current;
 
   React.useEffect(() => {
@@ -61,10 +55,11 @@ export function TabBarButton(props: any) {
       bounciness: 8,
       useNativeDriver: false,
     }).start();
-  }, [props.state.index]);
+  }, [state.index]);
 
   const { options } = descriptors[route.key];
   const label =
+    // eslint-disable-next-line no-nested-ternary
     options.tabBarLabel !== undefined
       ? options.tabBarLabel
       : options.title !== undefined
@@ -128,12 +123,14 @@ export function TabBarButton(props: any) {
 }
 
 // Don't worry about types in the destructured props here. This is all
-// handled by react-navigation. $FlowFixMe
-export default function TabBar({ state, descriptors, navigation }) {
+// handled by react-navigation.
+// eslint-disable-next-line flowtype/no-weak-types
+export default function TabBar({ state, descriptors, navigation }: any) {
   return (
     <View style={styles.tabBarWrapper}>
       {state.routes.map((route, index) => (
         <TabBarButton
+          key={route.name}
           route={route}
           index={index}
           descriptors={descriptors}
