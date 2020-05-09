@@ -13,6 +13,7 @@ import type {
   NextLesson_user_nextLesson_testables as Testable,
 } from "../Learn/__generated__/NextLesson";
 import {
+  possibleSokuon,
   romajiHiraganaMap,
   hiraganaRomajiMap,
   formatResultsForMutation,
@@ -143,8 +144,9 @@ export function LessonScreen(props: Props): Node {
               styles.singleCharAnswerField,
               currentMark === "INCORRECT" ? styles.incorrectAnswerField : null,
             ]}
+            autoCorrect={false}
             editable={currentMark == null}
-            placeholder={romajiHiraganaMap[charRomaji]}
+            placeholder={romajiHiraganaMap[charRomaji] || "っ"}
             value={userAnswer[`input-${i}`]}
             onChangeText={(text) => {
               const lowerText = text.toLowerCase();
@@ -164,6 +166,15 @@ export function LessonScreen(props: Props): Node {
                 );
                 charSound.release();
                 // When text changes to a valid hiragana character's romaji, if this is the last input
+                if (answerParts.length - 1 === i) {
+                  // Blur self
+                  inputRefs[i].current.blur();
+                } else {
+                  // Otherwise, focus the next one
+                  inputRefs[i + 1].current.focus();
+                }
+              } else if (possibleSokuon.includes(charRomaji)) {
+                // If this is the last input
                 if (answerParts.length - 1 === i) {
                   // Blur self
                   inputRefs[i].current.blur();
@@ -278,11 +289,45 @@ export function LessonScreen(props: Props): Node {
     });
   };
 
+  const showMidrollLecture = (nextTestable: Testable) => {
+    const numUniqueQuestionsAnswered = Object.keys(results).filter(
+      (key) =>
+        results[key].objectType === "WORD" && results[key].marks.length > 0
+    ).length;
+    // Short circuit unless the current testable is one we haven't seen
+    if (results[nextTestable.question.text].marks.length > 0) {
+      return;
+    }
+    if (numUniqueQuestionsAnswered === 1) {
+      setLecture(
+        lesson.lectures != null
+          ? lesson.lectures.filter((lec) => lec.position === "BEFORE_SECOND")
+          : []
+      );
+      return;
+    }
+    if (numUniqueQuestionsAnswered === 2) {
+      setLecture(
+        lesson.lectures != null
+          ? lesson.lectures.filter((lec) => lec.position === "BEFORE_THIRD")
+          : []
+      );
+    }
+    if (numUniqueQuestionsAnswered === 3) {
+      setLecture(
+        lesson.lectures != null
+          ? lesson.lectures.filter((lec) => lec.position === "BEFORE_FOURTH")
+          : []
+      );
+    }
+  };
+
   const goToNextQuestion = () => {
     // Question stage here may be bumped up 1 by the current result, since this happens after the user answers.
     const nextTimeQuestionStage = getQuestionStage(currentTestable, results);
     // If this is not the final question
     if (testableQueue.length > 1) {
+      const nextTestable = testableQueue[1];
       // Answered question correctly less than 3 times
       // 1st time: We are showing the user the answer so they can learn. Add back to the end of queue. Don't add new stuff yet.
       // 2nd time: We are showing the user a hint. Add to back of queue again. Add a new testable to the queue as well.
@@ -318,20 +363,12 @@ export function LessonScreen(props: Props): Node {
       }
       setCurrentMark(null);
       setUserAnswer({});
+
+      // If we have any midroll lectures that need to appear, show them
+      showMidrollLecture(nextTestable);
     } else {
       goToVictoryScreen();
     }
-  };
-
-  // TODO: Update this
-  const displayResult = () => {
-    if (currentMark === "CORRECT") {
-      return <View></View>;
-    }
-    if (currentMark === "INCORRECT") {
-      return <View></View>;
-    }
-    return null;
   };
 
   const questionStage = getQuestionStage(currentTestable, results);
@@ -356,7 +393,6 @@ export function LessonScreen(props: Props): Node {
             goToNextQuestion,
             answerRomajiQuestion
           )}
-          {displayResult()}
         </View>
       </View>
     </View>
