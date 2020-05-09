@@ -29,6 +29,8 @@ export default {
   // BUTTONS
   BUTTON_P: primary.p500,
   BUTTON_P_HIGHLIGHT: primary.p500,
+  BUTTON_S: secondary.s500,
+  BUTTON_S_HIGHLIGHT: secondary.s500,
   BUTTON_T: grey.g999,
   BUTTON_T_HIGHLIGHT: grey.g900,
 

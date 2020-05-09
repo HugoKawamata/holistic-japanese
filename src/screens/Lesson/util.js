@@ -2,6 +2,8 @@
 import type { NextLesson_user_nextLesson_testables as Testable } from "../Learn/__generated__/NextLesson";
 import type { Results, Result, UserAnswer } from "./types";
 
+export const possibleSokuon = ["k", "g", "s", "z", "t", "d", "h", "b", "p"];
+
 export const romajiHiraganaMap = {
   a: "あ",
   i: "い",

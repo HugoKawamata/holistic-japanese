@@ -33,8 +33,8 @@ const themes = {
   },
   secondary: {
     // textColor: color.TEXT_P,
-    buttonColor: color.BUTTON_P,
-    highlightColor: color.BUTTON_P_HIGHLIGHT,
+    buttonColor: color.BUTTON_S,
+    highlightColor: color.BUTTON_S_HIGHLIGHT,
   },
   tertiary: {
     // textColor: color.WHITE,
