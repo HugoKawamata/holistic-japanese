@@ -378,24 +378,26 @@ export function LessonScreen(props: Props): Node {
   }
 
   return (
-    <View style={styles.lessonScreenWrapper}>
-      <View style={styles.topSection}>
-        {/* <ProgressBar testables={lesson.testables} results={results} /> */}
-        {getTopSectionContent(currentTestable)}
-      </View>
-      <View style={styles.bottomSection}>
-        {getHint(questionStage, currentTestable, currentMark)}
-        {getAnswerSection(currentTestable, getAnswerFields())}
-        <View style={styles.buttonWrapper}>
-          {getButton(
-            currentMark,
-            userAnswer,
-            goToNextQuestion,
-            answerRomajiQuestion
-          )}
+    <>
+      <View style={styles.lessonScreenWrapper}>
+        <View style={styles.topSection}>
+          {/* <ProgressBar testables={lesson.testables} results={results} /> */}
+          {getTopSectionContent(currentTestable)}
+        </View>
+        <View style={styles.bottomSection}>
+          {getHint(questionStage, currentTestable, currentMark)}
+          {getAnswerSection(currentTestable, getAnswerFields())}
+          <View style={styles.buttonWrapper}>
+            {getButton(
+              currentMark,
+              userAnswer,
+              goToNextQuestion,
+              answerRomajiQuestion
+            )}
+          </View>
         </View>
       </View>
-    </View>
+    </>
   );
 }
 

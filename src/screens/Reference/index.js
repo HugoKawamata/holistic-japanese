@@ -2,12 +2,22 @@
 import React, { type Node } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import SideSlider from "../../components/SideSlider";
+import Text from "../../components/Text";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
 
 const styles = StyleSheet.create({
   buttonText: {
     color: color.WHITE,
+  },
+  heading: {
+    fontSize: fontSize.lessonTitle,
+    fontWeight: "bold",
+  },
+  headingWrapper: {
+    paddingBottom: 36,
+    paddingLeft: 16,
+    paddingTop: 40,
   },
   referenceScreenWrapper: {
     alignItems: "stretch",
@@ -40,6 +50,9 @@ export function LearnScreen(props: Props): Node {
   return (
     <View style={styles.root}>
       <ScrollView contentContainerStyle={styles.referenceScreenWrapper}>
+        <View style={styles.headingWrapper}>
+          <Text style={styles.heading}>Reference</Text>
+        </View>
         <SideSlider
           heading="Characters"
           linkCardProps={[

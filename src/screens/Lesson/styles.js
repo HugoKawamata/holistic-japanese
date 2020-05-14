@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   hint: {
     color: color.BLACK,
     flexShrink: 1,
-    fontSize: 16,
+    fontSize: 18,
   },
   hintBox: {
     alignItems: "center",
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   questionWrapper: {
     alignItems: "stretch",
     // paddingBottom: 60,
-    // paddingTop: 60,
+    paddingTop: 40,
   },
   regularAnswerField: {
     ...answerFieldCommon,
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 0,
     paddingTop: 5,
-    width: 60,
+    minWidth: 60,
   },
   // titleImageWrapper: {
   //   paddingTop: 30,
