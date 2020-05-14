@@ -12,10 +12,11 @@ export default {
   SHADOW: grey.g300,
   SCREEN_BACKGROUND: grey.g025,
 
-  // For subtle emphasis
+  // Backgrounds
   EMPHA_BG: primary.p100,
   HINT_BG: grey.g075,
   KANA_Q_BG: secondary.s500,
+  LOGIN_BACKGROUND: secondary.s600,
 
   // Navbar
   NAVBAR: grey.g000,

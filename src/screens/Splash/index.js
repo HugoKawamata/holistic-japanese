@@ -25,6 +25,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.WHITE,
   },
+  safeAreaLoginTop: {
+    flex: 0,
+    backgroundColor: color.LOGIN_BACKGROUND,
+  },
+  safeAreaLoginBottom: {
+    flex: 1,
+    backgroundColor: color.LOGIN_BACKGROUND,
+  },
 });
 
 const LoginStack = createStackNavigator();
@@ -97,20 +105,25 @@ function NavRootScreen() {
 export function Splash(props: Props): React.Node {
   const { loggedIn } = props;
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <NavigationContainer>
-        {!loggedIn ? (
-          <LoginStack.Navigator>
-            <LoginStack.Screen
-              name="ロッグイン・Login"
-              component={LoginScreen}
-            />
-          </LoginStack.Navigator>
-        ) : (
+    <NavigationContainer>
+      {!loggedIn ? (
+        <>
+          <SafeAreaView style={styles.safeAreaLoginTop} />
+          <SafeAreaView style={styles.safeAreaLoginBottom}>
+            <LoginStack.Navigator>
+              <LoginStack.Screen
+                name="ロッグイン・Login"
+                component={LoginScreen}
+              />
+            </LoginStack.Navigator>
+          </SafeAreaView>
+        </>
+      ) : (
+        <SafeAreaView style={styles.safeArea}>
           <NavRootScreen />
-        )}
-      </NavigationContainer>
-    </SafeAreaView>
+        </SafeAreaView>
+      )}
+    </NavigationContainer>
   );
 }
 
