@@ -120,7 +120,7 @@ export const voicedHiraganaMatrix = [
   ["Y", "", "", "", "", ""],
   ["R", "", "", "", "", ""],
   ["W", "", "", "", "", ""],
-  ["N", "", "", "", "", ""],
+  // ["N", "", "", "", "", ""],
 ];
 
 export const voicedHiraganaRomajiMatrix = [
@@ -135,7 +135,7 @@ export const voicedHiraganaRomajiMatrix = [
   ["", "", "", "", ""],
   ["", "", "", "", ""],
   ["", "", "", "", ""],
-  ["", "", "", "", ""],
+  // ["", "", "", "", ""],
 ];
 
 export const comboMatrix = [

@@ -285,13 +285,13 @@ export function LessonScreen(props: Props): Node {
         setLessonId: lesson.id,
       },
     });
-    // props.navigation.navigate("Reference");
-    // props.navigation.navigate("Hiragana", {
-    //   completedContent: lesson.id,
-    //   results,
-    //   testables: lesson.testables,
-    //   modalOpen: true,
-    // });
+    props.navigation.navigate("Reference");
+    props.navigation.navigate("Hiragana", {
+      completedContent: lesson.id,
+      results,
+      testables: lesson.testables,
+      modalOpen: true,
+    });
   };
 
   const showMidrollLecture = (nextTestable: Testable) => {
