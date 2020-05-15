@@ -36,9 +36,13 @@ const SEND_RESULTS = gql`
   mutation sendResults(
     $results: [Result]!
     $userId: ID!
-    $content: LessonContent!
+    $setLessonId: LessonContent!
   ) {
-    addLessonResults(results: $results, userId: $userId, content: $content)
+    addLessonResults(
+      results: $results
+      userId: $userId
+      setLessonId: $setLessonId
+    )
   }
 `;
 
@@ -278,16 +282,16 @@ export function LessonScreen(props: Props): Node {
       variables: {
         results: formattedResults,
         userId,
-        content: lesson.id,
+        setLessonId: lesson.id,
       },
     });
-    props.navigation.navigate("Reference");
-    props.navigation.navigate("Hiragana", {
-      completedContent: lesson.id,
-      results,
-      testables: lesson.testables,
-      modalOpen: true,
-    });
+    // props.navigation.navigate("Reference");
+    // props.navigation.navigate("Hiragana", {
+    //   completedContent: lesson.id,
+    //   results,
+    //   testables: lesson.testables,
+    //   modalOpen: true,
+    // });
   };
 
   const showMidrollLecture = (nextTestable: Testable) => {
