@@ -9,8 +9,8 @@ import { OverlayModal } from "../../../components/OverlayModal";
 import Text from "../../../components/Text";
 import type {
   LessonContent,
-  NextLesson_user_nextLesson_testables as Testable,
-} from "../../Learn/__generated__/NextLesson";
+  AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
+} from "../../Learn/__generated__/AvailableLessons";
 import type { Results } from "../../Lesson/types";
 import {
   kanaLevelToIntMap,
@@ -43,7 +43,7 @@ type Props = {|
 const KANA_LEVEL_QUERY = gql`
   query KanaLevelQuery {
     me {
-      kanaLevel
+      id
     }
   }
 `;

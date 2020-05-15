@@ -9,9 +9,9 @@ import { type State as StoreState } from "../../store/types/store";
 import Text from "../../components/Text";
 import color from "../../util/color";
 import type {
-  NextLesson_user_nextLesson as Lesson,
-  NextLesson_user_nextLesson_testables as Testable,
-} from "../Learn/__generated__/NextLesson";
+  AvailableLessons_user_availableCourses_availableLessons as Lesson,
+  AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
+} from "../Learn/__generated__/AvailableLessons";
 import {
   possibleSokuon,
   romajiHiraganaMap,
@@ -73,7 +73,7 @@ const initResults = (testables: $ReadOnlyArray<Testable>) => {
 
 export function LessonScreen(props: Props): Node {
   const { lesson, userId, navigation } = props;
-  const isKanaLesson = lesson.content !== "OTHER";
+  const isKanaLesson = lesson.id !== "OTHER";
   navigation.setOptions({
     title: isKanaLesson ? "" : "レッスン・Lesson", // If kana lesson, we show the title in the topSection
     headerStyle: {

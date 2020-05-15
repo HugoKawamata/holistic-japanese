@@ -5,7 +5,7 @@ import Text from "../../components/Text";
 import FuriganaText from "../../components/Text/FuriganaText";
 import TransformText from "../../components/Text/TransformText";
 import Button from "../../components/Button";
-import type { NextLesson_user_nextLesson_testables as Testable } from "../Learn/__generated__/NextLesson";
+import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../Learn/__generated__/AvailableLessons";
 import { getCSVAnswer } from "./util";
 import type { UserAnswer } from "./types";
 import styles from "./styles";
