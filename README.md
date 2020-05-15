@@ -7,6 +7,7 @@
 - Add results screen "Accuracy for each letter あ 80% ... Accuracy for each word"
 - Implement a checklist screen on profile which shows all the things you need to learn before you can make it inn japan
 - Add persistor
+- Replay old lessons
 
 sai ideas
 

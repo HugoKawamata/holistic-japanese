@@ -273,16 +273,17 @@ export function LessonScreen(props: Props): Node {
 
   const goToVictoryScreen = () => {
     const formattedResults = formatResultsForMutation(results);
+    // TODO: await this so we always get the right highlights in the next screen
     addLessonResults({
       variables: {
         results: formattedResults,
         userId,
-        content: lesson.content,
+        content: lesson.id,
       },
     });
     props.navigation.navigate("Reference");
     props.navigation.navigate("Hiragana", {
-      completedContent: lesson.content,
+      completedContent: lesson.id,
       results,
       testables: lesson.testables,
       modalOpen: true,

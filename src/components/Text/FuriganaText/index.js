@@ -6,8 +6,8 @@ import Text from "..";
 import { startGenerateArray } from "./util";
 
 type Props = {|
-  furiStyle?: typeof StyleSheet,
-  textStyle?: typeof StyleSheet,
+  furiStyle?: ?typeof StyleSheet,
+  textStyle?: ?typeof StyleSheet,
   kana: string,
   text: string,
 |};
