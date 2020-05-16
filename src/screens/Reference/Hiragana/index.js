@@ -43,7 +43,11 @@ type Props = {|
 const KANA_LEVEL_QUERY = gql`
   query KanaLevelQuery {
     me {
-      id
+      course(id: "HIRAGANA") {
+        completedLessons {
+          id
+        }
+      }
     }
   }
 `;
@@ -57,17 +61,26 @@ export function HiraganaReferenceScreen(props: Props) {
   const { width } = Dimensions.get("window");
 
   const getHiraganaPage = (kanaMatrix, romajiMatrix, title) => (
-    <KanaLevelQuery query={KANA_LEVEL_QUERY} fetchPolicy="cache-and-network">
+    <KanaLevelQuery query={KANA_LEVEL_QUERY} fetchPolicy="no-cache">
       {({ loading, data, error }) => {
+        let completedLines = [];
         if (loading && (!data || Object.keys(data).length === 0)) {
-          return null; // TODO: loading state
+          // TODO: loading
         }
 
-        if (error != null || !data || !data.me) {
-          return null; // TODO: error state
+        if (
+          !(
+            error != null ||
+            !data ||
+            !data.me ||
+            !data.me.course ||
+            !data.me.course.completedLessons
+          )
+        ) {
+          completedLines = data.me.course.completedLessons
+            .filter(Boolean)
+            .map((lesson) => lesson.id);
         }
-
-        const kanaLevelValue = kanaLevelToIntMap[data.me.kanaLevel] || 0;
 
         return (
           <View style={styles.root}>
@@ -99,9 +112,9 @@ export function HiraganaReferenceScreen(props: Props) {
                 {kanaMatrix.map((row, rowNum) => (
                   <View style={styles.row} key={row[1] || row[0]}>
                     {row.map((kana, colNum) => {
-                      const complete =
-                        columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]] <=
-                        kanaLevelValue;
+                      const complete = completedLines.includes(
+                        columnLeadToKanaLevelMap[kanaMatrix[rowNum][1]]
+                      );
 
                       if (colNum === 0) {
                         return (
