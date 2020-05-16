@@ -41,13 +41,18 @@ const themes = {
     buttonColor: color.BUTTON_T,
     highlightColor: color.BUTTON_T_HIGHLIGHT,
   },
+  primary_ghost: {
+    // textColor: color.WHITE,
+    buttonColor: color.BUTTON_P,
+    highlightColor: color.BUTTON_P_HIGHLIGHT,
+  },
 };
 
 type Props = {|
   children: React.Element<*> | Array<React.Element<*>>, // Anything goes within the button
   disabled?: boolean,
   onPress: () => mixed,
-  theme: "primary" | "secondary" | "tertiary",
+  theme: "primary" | "secondary" | "tertiary" | "primary_ghost",
 |};
 
 export default function Button(props: Props): React.Node {
@@ -64,9 +69,11 @@ export default function Button(props: Props): React.Node {
           style={[
             styles.button,
             {
-              backgroundColor: buttonColor,
-              borderWidth: theme === "secondary" ? 1 : 0,
-              borderColor: theme === "secondary" ? buttonColor : "transparent",
+              backgroundColor:
+                theme === "primary_ghost" ? color.WHITE : buttonColor,
+              borderWidth: theme === "primary_ghost" ? 3 : 0,
+              borderColor:
+                theme === "primary_ghost" ? buttonColor : "transparent",
               opacity: disabled ? 0.6 : 1,
             },
           ]}

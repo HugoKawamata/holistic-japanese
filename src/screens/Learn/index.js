@@ -1,54 +1,71 @@
 /* @flow */
-import React, { useState, type Node } from "react";
+import React, { type Node } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import { gql } from "apollo-boost";
+import { Query as ApolloQuery } from "@apollo/react-components";
 import type { State as StoreState } from "../../store/types/store";
 import client from "../../apollo";
 import Text from "../../components/Text";
+import Button from "../../components/Button";
 import SideSlider from "../../components/SideSlider";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
+import FuriganaText from "../../components/Text/FuriganaText";
+import type {
+  AvailableLessons as TAvailableLessonsQuery,
+  AvailableLessons_user_availableCourses_availableLessons as Lesson,
+} from "./__generated__/AvailableLessons";
 
-const NEXT_LESSON_QUERY = gql`
-  query NextLesson($email: String!) {
+const AVAILABLE_LESSONS_QUERY = gql`
+  query AvailableLessons($email: String!) {
     user(email: $email) {
       id
-      nextLesson {
-        content
-        lectures {
-          title
-          text
-          image
-          position
-        }
-        titleScreen {
-          title
-          image
-        }
-        testables {
-          objectId
-          objectType
-          question {
-            type
-            emoji
+      availableCourses {
+        id
+        title
+        availableLessons {
+          id
+          lectures {
+            title
+            text
             image
-            text
+            position
           }
-          answer {
-            type
-            text
+          title
+          image
+          testables {
+            objectId
+            objectType
+            question {
+              type
+              emoji
+              image
+              text
+            }
+            answer {
+              type
+              text
+            }
+            introduction
           }
-          introduction
         }
       }
     }
   }
 `;
 
+const AvailableLessonsQuery: ApolloQuery<
+  TAvailableLessonsQuery,
+  {}
+> = ApolloQuery;
+
 const styles = StyleSheet.create({
   buttonText: {
-    color: color.WHITE,
+    color: color.TEXT_P,
+  },
+  buttonWrapper: {
+    alignItems: "center",
   },
   greeting: {
     fontSize: fontSize.lessonTitle,
@@ -96,34 +113,27 @@ const getGreeting = () => {
   return ["こんばんは", "Good evening,"];
 };
 
-export function LearnScreen(props: Props): Node {
-  const [loading, setLoading] = useState(false);
+const allLessons = () => {};
 
-  const { navigation, userGivenName } = props;
+export function LearnScreen(props: Props): Node {
+  const { navigation, userGivenName, userEmail } = props;
   navigation.setOptions({
     headerShown: false,
   });
 
-  const startLesson = () => {
-    if (loading) {
-      return;
-    }
-
-    setLoading(true);
-
+  const startLesson = (userId: string, lesson: Lesson) => {
     client
       .query({
-        query: NEXT_LESSON_QUERY,
+        query: AVAILABLE_LESSONS_QUERY,
         fetchPolicy: "network-only",
         variables: {
           email: props.userEmail,
         },
       })
       .then((result) => {
-        setLoading(false);
         props.navigation.push("Lesson", {
-          lesson: result.data.user.nextLesson,
-          userId: result.data.user.id,
+          lesson,
+          userId,
         });
         return result;
       });
@@ -132,51 +142,65 @@ export function LearnScreen(props: Props): Node {
   const [, englishGreeting] = getGreeting();
 
   return (
-    <View style={styles.root}>
-      <ScrollView contentContainerStyle={styles.learnScreenWrapper}>
-        <View style={styles.greetingWrapper}>
-          <Text style={styles.greeting}>{englishGreeting}</Text>
-          <Text style={styles.greetingName}>{userGivenName}</Text>
-        </View>
-        <SideSlider
-          heading="Intro to Japanese"
-          linkCardProps={[
-            {
-              key: "1",
-              bigText: "Next Hiragana Lesson",
-              smallText: "5 min・Beginner",
-              onPress: startLesson,
-            },
-            {
-              key: "2",
-              bigText: "Next Hiragana Lesson",
-              smallText: "5 min・Beginner",
-              disabled: true,
-              onPress: startLesson,
-            },
-          ]}
-        />
-        <SideSlider
-          heading="Unlocked after Hiragana"
-          linkCardProps={[
-            {
-              key: "3",
-              bigText: "Next Hiragana Lesson",
-              smallText: "5 min・Beginner",
-              disabled: true,
-              onPress: startLesson,
-            },
-            {
-              key: "4",
-              bigText: "Next Hiragana Lesson",
-              smallText: "5 min・Beginner",
-              disabled: true,
-              onPress: startLesson,
-            },
-          ]}
-        />
-      </ScrollView>
-    </View>
+    <AvailableLessonsQuery
+      query={AVAILABLE_LESSONS_QUERY}
+      variables={{ email: userEmail }}
+      fetchPolicy="cache-and-network"
+    >
+      {({ loading, data, error }) => {
+        if (loading && (!data || Object.keys(data).length === 0)) {
+          return null; // TODO: loading state
+        }
+
+        if (
+          error != null ||
+          !data ||
+          !data.user ||
+          !data.user.availableCourses
+        ) {
+          return null; // TODO: error state
+        }
+
+        const { user } = data;
+        const courses = data.user.availableCourses;
+
+        return (
+          <View style={styles.root}>
+            <ScrollView contentContainerStyle={styles.learnScreenWrapper}>
+              <View style={styles.greetingWrapper}>
+                <Text style={styles.greeting}>{englishGreeting}</Text>
+                <Text style={styles.greetingName}>{userGivenName}</Text>
+              </View>
+              {courses.map((course) => {
+                return (
+                  <SideSlider
+                    key={course.id}
+                    heading={course.title}
+                    linkCardProps={course.availableLessons.map((lesson) => ({
+                      key: lesson.id,
+                      bigText: lesson.title,
+                      smallText: "5 min・Beginner",
+                      onPress: () => startLesson(user.id, lesson),
+                    }))}
+                  />
+                );
+              })}
+              <View style={styles.buttonWrapper}>
+                <Button theme="primary_ghost" onPress={allLessons}>
+                  <FuriganaText
+                    textStyle={styles.buttonText}
+                    furiStyle={styles.buttonText}
+                    kana="すべてかんせいしたレッスン"
+                    text="すべて完成したレッスン"
+                  />
+                  <Text style={styles.buttonText}>All Completed Lessons</Text>
+                </Button>
+              </View>
+            </ScrollView>
+          </View>
+        );
+      }}
+    </AvailableLessonsQuery>
   );
 }
 

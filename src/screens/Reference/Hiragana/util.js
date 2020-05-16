@@ -3,8 +3,8 @@ import * as React from "react";
 import { View, StyleSheet } from "react-native";
 import type {
   LessonContent,
-  NextLesson_user_nextLesson_testables as Testable,
-} from "../../Learn/__generated__/NextLesson";
+  AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
+} from "../../Learn/__generated__/AvailableLessons";
 import type { Results } from "../../Lesson/types";
 import Text from "../../../components/Text";
 import Button from "../../../components/Button";
@@ -51,33 +51,33 @@ export const kanaLevelToIntMap = {
 };
 
 export const columnLeadToKanaLevelMap = {
-  あ: 1,
-  か: 2,
-  が: 3,
-  さ: 4,
-  ざ: 5,
-  た: 6,
-  だ: 7,
-  な: 8,
-  ん: 9,
-  は: 10,
-  ば: 11,
-  ま: 12,
-  わ: 13,
-  や: 14,
-  きゃ: 15,
-  ぎゃ: 15,
-  しゃ: 15,
-  じゃ: 15,
-  ちゃ: 15,
-  にゃ: 15,
-  ひゃ: 15,
-  びゃ: 15,
-  ぴゃ: 15,
-  みゃ: 15,
-  りゃ: 15,
-  ら: 16,
-  ぱ: 17,
+  あ: "HIRAGANA_A",
+  か: "HIRAGANA_KA",
+  が: "HIRAGANA_GA",
+  さ: "HIRAGANA_SA",
+  ざ: "HIRAGANA_ZA",
+  た: "HIRAGANA_TA",
+  だ: "HIRAGANA_DA",
+  な: "HIRAGANA_NA",
+  ん: "HIRAGANA_N",
+  は: "HIRAGANA_HA",
+  ば: "HIRAGANA_BA",
+  ま: "HIRAGANA_MA",
+  わ: "HIRAGANA_WA",
+  や: "HIRAGANA_YA",
+  きゃ: "HIRAGANA_LYA",
+  ぎゃ: "HIRAGANA_LYA",
+  しゃ: "HIRAGANA_LYA",
+  じゃ: "HIRAGANA_LYA",
+  ちゃ: "HIRAGANA_LYA",
+  にゃ: "HIRAGANA_LYA",
+  ひゃ: "HIRAGANA_LYA",
+  びゃ: "HIRAGANA_LYA",
+  ぴゃ: "HIRAGANA_LYA",
+  みゃ: "HIRAGANA_LYA",
+  りゃ: "HIRAGANA_LYA",
+  ら: "HIRAGANA_RA",
+  ぱ: "HIRAGANA_PA",
 };
 
 export const hiraganaMatrix = [
@@ -120,7 +120,7 @@ export const voicedHiraganaMatrix = [
   ["Y", "", "", "", "", ""],
   ["R", "", "", "", "", ""],
   ["W", "", "", "", "", ""],
-  ["N", "", "", "", "", ""],
+  // ["N", "", "", "", "", ""],
 ];
 
 export const voicedHiraganaRomajiMatrix = [
@@ -135,7 +135,7 @@ export const voicedHiraganaRomajiMatrix = [
   ["", "", "", "", ""],
   ["", "", "", "", ""],
   ["", "", "", "", ""],
-  ["", "", "", "", ""],
+  // ["", "", "", "", ""],
 ];
 
 export const comboMatrix = [

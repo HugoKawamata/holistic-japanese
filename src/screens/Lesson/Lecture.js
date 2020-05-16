@@ -6,7 +6,7 @@ import Text from "../../components/Text";
 import FuriganaText from "../../components/Text/FuriganaText";
 import TransformText from "../../components/Text/TransformText";
 import Button from "../../components/Button";
-import type { NextLesson_user_nextLesson_lectures as Lecture } from "../Learn/__generated__/NextLesson";
+import type { AvailableLessons_user_availableCourses_availableLessons_lectures as Lecture } from "../Learn/__generated__/AvailableLessons";
 import styles from "./styles";
 
 type Props = {|

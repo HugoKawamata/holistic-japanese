@@ -2,7 +2,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import color from "../../util/color";
-import type { NextLesson_user_nextLesson_testables as Testable } from "../Learn/__generated__/NextLesson";
+import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../Learn/__generated__/AvailableLessons";
 import type { Results } from "./types";
 
 type Props = {|

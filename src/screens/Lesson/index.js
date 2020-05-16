@@ -9,9 +9,9 @@ import { type State as StoreState } from "../../store/types/store";
 import Text from "../../components/Text";
 import color from "../../util/color";
 import type {
-  NextLesson_user_nextLesson as Lesson,
-  NextLesson_user_nextLesson_testables as Testable,
-} from "../Learn/__generated__/NextLesson";
+  AvailableLessons_user_availableCourses_availableLessons as Lesson,
+  AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
+} from "../Learn/__generated__/AvailableLessons";
 import {
   possibleSokuon,
   romajiHiraganaMap,
@@ -36,9 +36,13 @@ const SEND_RESULTS = gql`
   mutation sendResults(
     $results: [Result]!
     $userId: ID!
-    $content: LessonContent!
+    $setLessonId: LessonContent!
   ) {
-    addLessonResults(results: $results, userId: $userId, content: $content)
+    addLessonResults(
+      results: $results
+      userId: $userId
+      setLessonId: $setLessonId
+    )
   }
 `;
 
@@ -73,7 +77,7 @@ const initResults = (testables: $ReadOnlyArray<Testable>) => {
 
 export function LessonScreen(props: Props): Node {
   const { lesson, userId, navigation } = props;
-  const isKanaLesson = lesson.content !== "OTHER";
+  const isKanaLesson = lesson.id !== "OTHER";
   navigation.setOptions({
     title: isKanaLesson ? "" : "レッスン・Lesson", // If kana lesson, we show the title in the topSection
     headerStyle: {
@@ -273,16 +277,17 @@ export function LessonScreen(props: Props): Node {
 
   const goToVictoryScreen = () => {
     const formattedResults = formatResultsForMutation(results);
+    // TODO: await this so we always get the right highlights in the next screen
     addLessonResults({
       variables: {
         results: formattedResults,
         userId,
-        content: lesson.content,
+        setLessonId: lesson.id,
       },
     });
     props.navigation.navigate("Reference");
     props.navigation.navigate("Hiragana", {
-      completedContent: lesson.content,
+      completedContent: lesson.id,
       results,
       testables: lesson.testables,
       modalOpen: true,

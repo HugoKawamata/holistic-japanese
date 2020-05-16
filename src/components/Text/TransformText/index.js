@@ -49,7 +49,7 @@ const splitOnTransformable = (text, style) => {
     if (transformableChars.includes(currentString[0])) {
       if (text[i] === currentString[0]) {
         components.push(
-          <Text style={getStyle(currentString[0], style)}>
+          <Text key={i} style={getStyle(currentString[0], style)}>
             {currentString.slice(1)}
           </Text>
         );
@@ -62,12 +62,20 @@ const splitOnTransformable = (text, style) => {
       // eslint-disable-next-line no-lonely-if
       if (transformableChars.includes(text[i])) {
         // The next character signals a transformable block of text
-        components.push(<Text style={style}>{currentString}</Text>);
+        components.push(
+          <Text key={i} style={style}>
+            {currentString}
+          </Text>
+        );
         currentString = text[i];
       } else if (i + 1 === text.length) {
         // This is the last letter in the text
         currentString += text[i];
-        components.push(<Text style={style}>{currentString}</Text>);
+        components.push(
+          <Text key={i} style={style}>
+            {currentString}
+          </Text>
+        );
       } else {
         currentString += text[i];
       }
@@ -76,7 +84,7 @@ const splitOnTransformable = (text, style) => {
   return components;
 };
 
-export default function FuriganaText(props: Props): React.Node {
+export default function TransformText(props: Props): React.Node {
   const { children, style } = props;
   const textBlocks = splitOnTransformable(children, style);
 
