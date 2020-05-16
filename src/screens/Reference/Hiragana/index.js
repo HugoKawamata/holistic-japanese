@@ -13,7 +13,6 @@ import type {
 } from "../../Learn/__generated__/AvailableLessons";
 import type { Results } from "../../Lesson/types";
 import {
-  kanaLevelToIntMap,
   hiraganaMatrix,
   hiraganaRomajiMatrix,
   voicedHiraganaMatrix,
