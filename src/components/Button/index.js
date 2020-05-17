@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     borderRadius: 300,
     flexGrow: 1,
     justifyContent: "center",
-    paddingBottom: 6,
+    paddingBottom: 10,
     paddingTop: 10,
   },
   buttonContainer: {

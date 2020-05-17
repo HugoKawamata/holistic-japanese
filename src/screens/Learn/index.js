@@ -21,9 +21,23 @@ const AVAILABLE_LESSONS_QUERY = gql`
   query AvailableLessons($email: String!) {
     user(email: $email) {
       id
+      nextUnlockCourses {
+        id
+        title
+        lessons {
+          id
+          title
+          image
+        }
+      }
       availableCourses {
         id
         title
+        nextUnlockLessons {
+          id
+          title
+          image
+        }
         availableLessons {
           id
           lectures {
@@ -62,7 +76,7 @@ const AvailableLessonsQuery: ApolloQuery<
 
 const styles = StyleSheet.create({
   buttonText: {
-    color: color.TEXT_P,
+    color: color.WHITE,
   },
   buttonWrapper: {
     alignItems: "center",
@@ -84,6 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.WHITE,
     flexGrow: 1,
     justifyContent: "flex-start",
+    paddingBottom: 30,
   },
   root: {
     backgroundColor: color.WHITE,
@@ -163,6 +178,7 @@ export function LearnScreen(props: Props): Node {
 
         const { user } = data;
         const courses = data.user.availableCourses;
+        const { nextUnlockCourses } = data.user;
 
         return (
           <View style={styles.root}>
@@ -176,23 +192,42 @@ export function LearnScreen(props: Props): Node {
                   <SideSlider
                     key={course.id}
                     heading={course.title}
-                    linkCardProps={course.availableLessons.map((lesson) => ({
+                    linkCardProps={course.availableLessons
+                      .map((lesson) => ({
+                        key: lesson.id,
+                        bigText: lesson.title,
+                        smallText: "5 min・Beginner",
+                        onPress: () => startLesson(user.id, lesson),
+                      }))
+                      .concat(
+                        course.nextUnlockLessons.map((lesson) => ({
+                          key: lesson.id,
+                          bigText: lesson.title,
+                          smallText: "Locked",
+                          onPress: () => {},
+                          disabled: true,
+                        }))
+                      )}
+                  />
+                );
+              })}
+              {nextUnlockCourses.map((course) => {
+                return (
+                  <SideSlider
+                    key={course.id}
+                    heading={course.title}
+                    linkCardProps={course.lessons.map((lesson) => ({
                       key: lesson.id,
                       bigText: lesson.title,
-                      smallText: "5 min・Beginner",
-                      onPress: () => startLesson(user.id, lesson),
+                      smallText: "Locked",
+                      onPress: () => {},
+                      disabled: true,
                     }))}
                   />
                 );
               })}
               <View style={styles.buttonWrapper}>
-                <Button theme="primary_ghost" onPress={allLessons}>
-                  <FuriganaText
-                    textStyle={styles.buttonText}
-                    furiStyle={styles.buttonText}
-                    kana="すべてかんせいしたレッスン"
-                    text="すべて完成したレッスン"
-                  />
+                <Button theme="tertiary" onPress={allLessons}>
                   <Text style={styles.buttonText}>All Completed Lessons</Text>
                 </Button>
               </View>
