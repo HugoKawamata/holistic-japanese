@@ -145,7 +145,7 @@ export function LearnScreen(props: Props): Node {
     <AvailableLessonsQuery
       query={AVAILABLE_LESSONS_QUERY}
       variables={{ email: userEmail }}
-      fetchPolicy="cache-and-network"
+      fetchPolicy="network-only"
     >
       {({ loading, data, error }) => {
         if (loading && (!data || Object.keys(data).length === 0)) {

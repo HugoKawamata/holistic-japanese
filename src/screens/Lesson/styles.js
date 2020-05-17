@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   lessonScreenWrapper: {
     alignItems: "stretch",
     backgroundColor: color.KANA_Q_BG,
+    justifyContent: "flex-end",
     flexDirection: "column",
     flexGrow: 1,
   },
@@ -137,8 +138,8 @@ const styles = StyleSheet.create({
   },
   questionWrapper: {
     alignItems: "stretch",
-    // paddingBottom: 60,
-    paddingTop: 40,
+    justifyContent: "center",
+    flexGrow: 1,
   },
   regularAnswerField: {
     ...answerFieldCommon,
@@ -153,32 +154,14 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     minWidth: 60,
   },
-  // titleImageWrapper: {
-  //   paddingTop: 30,
-  //   height: "30%",
-  //   paddingHorizontal: "10%",
-  //   width: "90%",
-  // },
-  // titleImage: {
-  //   flex: 1,
-  //   height: undefined,
-  //   width: undefined,
-  // },
-  // titleScreenWrapper: {
-  //   alignItems: "center",
-  //   flexGrow: 1,
-  //   justifyContent: "center",
-  // },
-  // titleTextWrapper: {
-  //   paddingBottom: 50,
-  // },
-  // titleText: {
-  //   fontSize: fontSize.lessonTitle,
-  // },
+  safeAreaView: {
+    flexGrow: 1,
+    backgroundColor: color.WHITE,
+  },
   topSection: {
     alignItems: "stretch",
     flexDirection: "column",
-    flexGrow: 2,
+    flexGrow: 3,
     justifyContent: "flex-start",
   },
 });

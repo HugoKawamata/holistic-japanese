@@ -1,6 +1,12 @@
 /* @flow */
 import React, { useState, type Node, createRef, useEffect } from "react";
-import { View, TextInput } from "react-native";
+import {
+  View,
+  TextInput,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { connect } from "react-redux";
@@ -379,12 +385,19 @@ export function LessonScreen(props: Props): Node {
   const questionStage = getQuestionStage(currentTestable, results);
 
   if (lecture != null && lecture.length > 0) {
-    return <LectureScreen lecture={lecture} setLecture={setLecture} />;
+    return (
+      <SafeAreaView style={styles.safeAreaView}>
+        <LectureScreen lecture={lecture} setLecture={setLecture} />
+      </SafeAreaView>
+    );
   }
 
   return (
-    <>
-      <View style={styles.lessonScreenWrapper}>
+    <SafeAreaView style={styles.safeAreaView}>
+      <KeyboardAvoidingView
+        style={styles.lessonScreenWrapper}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <View style={styles.topSection}>
           {/* <ProgressBar testables={lesson.testables} results={results} /> */}
           {getTopSectionContent(currentTestable)}
@@ -401,8 +414,8 @@ export function LessonScreen(props: Props): Node {
             )}
           </View>
         </View>
-      </View>
-    </>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 

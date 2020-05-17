@@ -48,28 +48,30 @@ type TabProps = {|
 
 function MainTabs() {
   return (
-    <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
-      <Tab.Screen
-        name="Learn"
-        component={LearnScreen}
-        options={{
-          // eslint-disable-next-line react/display-name
-          tabBarIcon: ({ color: tabColor, size }: TabProps) => (
-            <Icon name="book" color={tabColor} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Reference"
-        component={ReferenceScreen}
-        options={{
-          // eslint-disable-next-line react/display-name
-          tabBarIcon: ({ color: tabColor, size }: TabProps) => (
-            <Icon name="find-in-page" color={tabColor} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    <SafeAreaView style={styles.safeArea}>
+      <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
+        <Tab.Screen
+          name="Learn"
+          component={LearnScreen}
+          options={{
+            // eslint-disable-next-line react/display-name
+            tabBarIcon: ({ color: tabColor, size }: TabProps) => (
+              <Icon name="book" color={tabColor} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Reference"
+          component={ReferenceScreen}
+          options={{
+            // eslint-disable-next-line react/display-name
+            tabBarIcon: ({ color: tabColor, size }: TabProps) => (
+              <Icon name="find-in-page" color={tabColor} size={size} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </SafeAreaView>
   );
 }
 
@@ -119,9 +121,7 @@ export function Splash(props: Props): React.Node {
           </SafeAreaView>
         </>
       ) : (
-        <SafeAreaView style={styles.safeArea}>
-          <NavRootScreen />
-        </SafeAreaView>
+        <NavRootScreen />
       )}
     </NavigationContainer>
   );
