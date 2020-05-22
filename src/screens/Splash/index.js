@@ -13,6 +13,7 @@ import LoginScreen from "../Login";
 import LearnScreen from "../Learn";
 import LessonScreen from "../Lesson";
 import ReferenceScreen from "../Reference";
+import ProfileScreen from "../Profile";
 import HiraganaReferenceScreen from "../Reference/Hiragana";
 import TabBar from "./TabBar";
 
@@ -67,6 +68,16 @@ function MainTabs() {
             // eslint-disable-next-line react/display-name
             tabBarIcon: ({ color: tabColor, size }: TabProps) => (
               <Icon name="find-in-page" color={tabColor} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{
+            // eslint-disable-next-line react/display-name
+            tabBarIcon: ({ color: tabColor, size }: TabProps) => (
+              <Icon name="account-circle" color={tabColor} size={size} />
             ),
           }}
         />

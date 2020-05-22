@@ -28,3 +28,22 @@ export function loadGoogleSignin(
       });
   };
 }
+
+export function logout() {
+  return (dispatch: Dispatch) => {
+    fetch(
+      "http://ec2-52-63-127-15.ap-southeast-2.compute.amazonaws.com:4000/logout",
+      {
+        method: "POST",
+      }
+    )
+      .then(() => {
+        dispatch({ type: "LOGOUT" });
+      })
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.error("LOGOUT failed", err);
+        dispatch({ type: "LOGOUT_FAILED" });
+      });
+  };
+}

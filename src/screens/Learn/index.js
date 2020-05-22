@@ -11,7 +11,6 @@ import Button from "../../components/Button";
 import SideSlider from "../../components/SideSlider";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
-import FuriganaText from "../../components/Text/FuriganaText";
 import type {
   AvailableLessons as TAvailableLessonsQuery,
   AvailableLessons_user_availableCourses_availableLessons as Lesson,

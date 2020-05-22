@@ -3,6 +3,8 @@ import {
   type Actions,
   GOOGLE_SIGNIN,
   GOOGLE_SIGNIN_FAILED,
+  LOGOUT,
+  LOGOUT_FAILED,
 } from "../types/thunks";
 import type { State } from "../types/user";
 
@@ -25,6 +27,15 @@ export default function reducer(state: State, action: Actions): State {
         loggedIn: false,
         user: null,
       };
+    case LOGOUT: {
+      return {
+        loggedIn: false,
+        user: null,
+      };
+    }
+    case LOGOUT_FAILED: {
+      return state;
+    }
     default:
       return initialState;
   }
