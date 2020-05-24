@@ -10,10 +10,11 @@ import { AppRegistry } from "react-native";
 import { GoogleSignin } from "@react-native-community/google-signin";
 import { Provider } from "react-redux";
 import { ApolloProvider } from "@apollo/react-hooks";
+import { PersistGate } from "redux-persist/integration/react";
 
 import SplashScreen from "./src/screens/Splash";
 import LoadingScreen from "./src/screens/Loading";
-import store from "./src/store";
+import getStore from "./src/store";
 import { name as appName } from "./app.json";
 
 GoogleSignin.configure();
@@ -60,11 +61,14 @@ export class App extends React.Component<Props, State> {
     if (!loaded) {
       return <LoadingScreen />;
     }
+    const { store, persistor } = getStore();
     return (
       <Provider store={store}>
-        <ApolloProvider client={apolloClient}>
-          <SplashScreen />
-        </ApolloProvider>
+        <PersistGate loading={loaded} persistor={persistor}>
+          <ApolloProvider client={apolloClient}>
+            <SplashScreen />
+          </ApolloProvider>
+        </PersistGate>
       </Provider>
     );
   }
