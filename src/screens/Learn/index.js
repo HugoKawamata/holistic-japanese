@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { gql } from "apollo-boost";
 import { Query as ApolloQuery } from "@apollo/react-components";
 import type { State as StoreState } from "../../store/types/store";
-import client from "../../apollo";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
 import SideSlider from "../../components/SideSlider";
@@ -136,21 +135,10 @@ export function LearnScreen(props: Props): Node {
   });
 
   const startLesson = (userId: string, lesson: Lesson) => {
-    client
-      .query({
-        query: AVAILABLE_LESSONS_QUERY,
-        fetchPolicy: "network-only",
-        variables: {
-          email: props.userEmail,
-        },
-      })
-      .then((result) => {
-        props.navigation.push("Lesson", {
-          lesson,
-          userId,
-        });
-        return result;
-      });
+    props.navigation.push("Lesson", {
+      lesson,
+      userId,
+    });
   };
 
   const [, englishGreeting] = getGreeting();
