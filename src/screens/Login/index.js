@@ -8,6 +8,7 @@ import {
   ImageBackground,
   Dimensions,
 } from "react-native";
+import Snackbar from "react-native-snackbar";
 import LinearGradient from "react-native-linear-gradient";
 import {
   statusCodes,
@@ -80,18 +81,30 @@ export function LoginScreen(props: Props): React.Node {
       const signInData = await GoogleSignin.signIn();
       props.loadGoogleSignin(signInData.idToken, signInData);
       setLoading(false);
-    } catch (error) {
+    } catch (err) {
       setLoading(false);
       // eslint-disable-next-line no-console
-      console.log(error);
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      console.log(err);
+      if (err.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
-      } else if (error.code === statusCodes.IN_PROGRESS) {
+      } else if (err.code === statusCodes.IN_PROGRESS) {
         // operation (e.g. sign in) is in progress already
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        Snackbar.show({
+          text: "Already signing in. Please wait.",
+          duration: Snackbar.LENGTH_LONG,
+        });
+      } else if (err.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         // play services not available or outdated
+        Snackbar.show({
+          text: "Could not reach Google. Please try again.",
+          duration: Snackbar.LENGTH_LONG,
+        });
       } else {
         // some other error happened
+        Snackbar.show({
+          text: "Error signing in. Please try again.",
+          duration: Snackbar.LENGTH_LONG,
+        });
       }
     }
   };
