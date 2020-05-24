@@ -7,10 +7,7 @@ import { Query as ApolloQuery } from "@apollo/react-components";
 import { type State as StoreState } from "../../../store/types/store";
 import { OverlayModal } from "../../../components/OverlayModal";
 import Text from "../../../components/Text";
-import type {
-  LessonContent,
-  AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
-} from "../../Learn/__generated__/AvailableLessons";
+import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { Results } from "../../Lesson/types";
 import {
   hiraganaMatrix,
@@ -33,7 +30,7 @@ type OwnProps = {|
 
 type Props = {|
   ...OwnProps,
-  completedContent: ?LessonContent,
+  completedContent: ?string,
   results: Results,
   testables: $ReadOnlyArray<Testable>,
   modalOpen: boolean,

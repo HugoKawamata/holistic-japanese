@@ -42,7 +42,7 @@ const SEND_RESULTS = gql`
   mutation sendResults(
     $results: [Result]!
     $userId: ID!
-    $setLessonId: LessonContent!
+    $setLessonId: String!
   ) {
     addLessonResults(
       results: $results

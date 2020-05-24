@@ -9,6 +9,7 @@ import Text from "../../components/Text";
 import { fontSize } from "../../util/font";
 import color from "../../util/color";
 import Button from "../../components/Button";
+import type { MyInfo as TMyInfoQuery } from "./__generated__/MyInfo";
 
 const styles = StyleSheet.create({
   heading: {
@@ -47,11 +48,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   profileImage: {
-    height: 200,
-    width: 200,
-    borderRadius: 100,
-    borderWidth: 2,
-    borderColor: color.INCOMPLETE_CELL,
+    height: 100,
+    width: 100,
+    borderRadius: 50,
   },
   profileImageWrapper: {
     alignItems: "center",
@@ -128,6 +127,6 @@ export function ProfileScreen(props: Props) {
   );
 }
 
-export default connect({
+export default connect(null, {
   logout,
 })(ProfileScreen);

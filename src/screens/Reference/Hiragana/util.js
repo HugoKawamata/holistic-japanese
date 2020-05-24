@@ -1,10 +1,7 @@
 /* @flow */
 import * as React from "react";
 import { View, StyleSheet } from "react-native";
-import type {
-  LessonContent,
-  AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
-} from "../../Learn/__generated__/AvailableLessons";
+import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { Results } from "../../Lesson/types";
 import Text from "../../../components/Text";
 import Button from "../../../components/Button";
@@ -283,7 +280,7 @@ function CompletedModalContent(props: ContentProps) {
 }
 
 export const getModalContent = (
-  completedContent: ?LessonContent,
+  completedContent: ?string,
   results: Results,
   testables: $ReadOnlyArray<Testable>,
   closeModal: () => typeof undefined
@@ -368,7 +365,7 @@ const aCompletedModalTitle = (
   <Text style={styles.modalTitle}>Congratulations!</Text>
 );
 
-export const getModalTitle = (completedContent: LessonContent) => {
+export const getModalTitle = (completedContent: string) => {
   switch (completedContent) {
     case "HIRAGANA_A":
       return aCompletedModalTitle;
