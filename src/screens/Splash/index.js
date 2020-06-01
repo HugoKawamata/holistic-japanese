@@ -11,6 +11,7 @@ import Icon from "../../components/Icon";
 import color from "../../util/color";
 import LoginScreen from "../Login";
 import LearnScreen from "../Learn";
+import CompletedLessonsScreen from "../CompletedLessons";
 import LessonScreen from "../Lesson";
 import ReferenceScreen from "../Reference";
 import ProfileScreen from "../Profile";
@@ -106,6 +107,10 @@ function NavRootScreen() {
         }}
       />
       <NavRoot.Screen name="Lesson" component={LessonScreen} />
+      <NavRoot.Screen
+        name="Completed Lessons"
+        component={CompletedLessonsScreen}
+      />
       <NavRoot.Screen
         name="Hiragana"
         component={HiraganaReferenceScreen}

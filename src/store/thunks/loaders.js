@@ -7,17 +7,14 @@ export function loadGoogleSignin(
   googleAuth: GoogleAuth
 ): mixed {
   return (dispatch: Dispatch) => {
-    fetch(
-      "http://ec2-52-63-127-15.ap-southeast-2.compute.amazonaws.com:4000/login",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          id_token: idToken,
-        },
-      }
-    )
+    fetch("https://www.issei.com.au/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        id_token: idToken,
+      },
+    })
       .then(() => {
         dispatch({ type: "GOOGLE_SIGNIN", payload: googleAuth });
       })
@@ -31,12 +28,9 @@ export function loadGoogleSignin(
 
 export function logout() {
   return (dispatch: Dispatch) => {
-    fetch(
-      "http://ec2-52-63-127-15.ap-southeast-2.compute.amazonaws.com:4000/logout",
-      {
-        method: "POST",
-      }
-    )
+    fetch("https://www.issei.com.au/logout", {
+      method: "POST",
+    })
       .then(() => {
         dispatch({ type: "LOGOUT" });
       })

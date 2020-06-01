@@ -36,8 +36,7 @@ export class App extends React.Component<Props, State> {
 
     const client = new ApolloClient({
       cache,
-      uri:
-        "http://ec2-52-63-127-15.ap-southeast-2.compute.amazonaws.com:4000/graphql",
+      uri: "https://www.issei.com.au/graphql",
     });
 
     try {

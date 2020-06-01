@@ -1,42 +1,57 @@
 /* @flow */
 import React, { type Node } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
-import { connect } from "react-redux";
 import { gql } from "apollo-boost";
+import { connect } from "react-redux";
 import { Query as ApolloQuery } from "@apollo/react-components";
 import type { State as StoreState } from "../../store/types/store";
-import Text from "../../components/Text";
-import Button from "../../components/Button";
 import SideSlider from "../../components/SideSlider";
+import Text from "../../components/Text";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
 import type {
-  AvailableLessons as TAvailableLessonsQuery,
-  AvailableLessons_user_availableCourses_availableLessons as Lesson,
-} from "./__generated__/AvailableLessons";
+  CompletedLessons as TCompletedLessonsQuery,
+  CompletedLessons_user_completedCourses_completedLessons as Lesson,
+} from "./__generated__/CompletedLessons";
 
-const AVAILABLE_LESSONS_QUERY = gql`
-  query AvailableLessons($email: String!) {
+const COMPLETED_LESSONS_QUERY = gql`
+  query CompletedLessons($email: String!) {
     user(email: $email) {
       id
-      nextUnlockCourses {
+      completedCourses {
         id
         title
         lessons {
           id
+          lectures {
+            title
+            text
+            image
+            position
+          }
           title
           image
+          testables {
+            objectId
+            objectType
+            question {
+              type
+              emoji
+              image
+              text
+            }
+            answer {
+              type
+              text
+            }
+            introduction
+          }
         }
       }
       availableCourses {
         id
         title
-        nextUnlockLessons {
-          id
-          title
-          image
-        }
-        availableLessons {
+        completedLessons {
           id
           lectures {
             title
@@ -67,8 +82,8 @@ const AVAILABLE_LESSONS_QUERY = gql`
   }
 `;
 
-const AvailableLessonsQuery: ApolloQuery<
-  TAvailableLessonsQuery,
+const CompletedLessonsQuery: ApolloQuery<
+  TCompletedLessonsQuery,
   {}
 > = ApolloQuery;
 
@@ -79,19 +94,16 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     alignItems: "center",
   },
-  greeting: {
-    fontSize: fontSize.lessonTitle,
-  },
-  greetingName: {
+  heading: {
     fontSize: fontSize.lessonTitle,
     fontWeight: "bold",
   },
-  greetingWrapper: {
+  headingWrapper: {
     paddingBottom: 36,
     paddingLeft: 16,
     paddingTop: 40,
   },
-  learnScreenWrapper: {
+  completedLessonsScreenWrapper: {
     alignItems: "stretch",
     backgroundColor: color.WHITE,
     flexGrow: 1,
@@ -112,29 +124,10 @@ const styles = StyleSheet.create({
 type Props = {|
   navigation: any, // eslint-disable-line flowtype/no-weak-types
   userEmail: string,
-  userGivenName: string,
 |};
 
-const getGreeting = () => {
-  const hours = new Date().getHours();
-  if (hours >= 4 && hours < 11) {
-    return ["おはよう", "Good morning,"];
-  }
-  if (hours >= 11 && hours < 5) {
-    return ["こんにちは", "Hello,"];
-  }
-  return ["こんばんは", "Good evening,"];
-};
-
-export function LearnScreen(props: Props): Node {
-  const { navigation, userGivenName, userEmail } = props;
-  navigation.setOptions({
-    headerShown: false,
-  });
-
-  const allLessons = () => {
-    props.navigation.push("Completed Lessons");
-  };
+export function CompletedLessonsScreen(props: Props): Node {
+  const { userEmail } = props;
 
   const startLesson = (userId: string, lesson: Lesson) => {
     props.navigation.push("Lesson", {
@@ -143,15 +136,14 @@ export function LearnScreen(props: Props): Node {
     });
   };
 
-  const [, englishGreeting] = getGreeting();
-
   return (
-    <AvailableLessonsQuery
-      query={AVAILABLE_LESSONS_QUERY}
+    <CompletedLessonsQuery
+      query={COMPLETED_LESSONS_QUERY}
       variables={{ email: userEmail }}
       fetchPolicy="network-only"
     >
       {({ loading, data, error }) => {
+        console.log(data);
         if (loading && (!data || Object.keys(data).length === 0)) {
           return null; // TODO: loading state
         }
@@ -166,41 +158,31 @@ export function LearnScreen(props: Props): Node {
         }
 
         const { user } = data;
-        const courses = data.user.availableCourses;
-        const { nextUnlockCourses } = data.user;
+        const { availableCourses, completedCourses } = data.user;
 
         return (
           <View style={styles.root}>
-            <ScrollView contentContainerStyle={styles.learnScreenWrapper}>
-              <View style={styles.greetingWrapper}>
-                <Text style={styles.greeting}>{englishGreeting}</Text>
-                <Text style={styles.greetingName}>{userGivenName}</Text>
+            <ScrollView
+              contentContainerStyle={styles.completedLessonsScreenWrapper}
+            >
+              <View style={styles.headingWrapper}>
+                <Text style={styles.heading}>All Completed Lessons</Text>
               </View>
-              {courses.map((course) => {
+              {availableCourses.map((course) => {
                 return (
                   <SideSlider
                     key={course.id}
                     heading={course.title}
-                    linkCardProps={course.availableLessons
-                      .map((lesson) => ({
-                        key: lesson.id,
-                        bigText: lesson.title,
-                        smallText: "5 min・Beginner",
-                        onPress: () => startLesson(user.id, lesson),
-                      }))
-                      .concat(
-                        course.nextUnlockLessons.map((lesson) => ({
-                          key: lesson.id,
-                          bigText: lesson.title,
-                          smallText: "Locked",
-                          onPress: () => {},
-                          disabled: true,
-                        }))
-                      )}
+                    linkCardProps={course.completedLessons.map((lesson) => ({
+                      key: lesson.id,
+                      bigText: lesson.title,
+                      smallText: "5 min・Beginner",
+                      onPress: () => startLesson(user.id, lesson),
+                    }))}
                   />
                 );
               })}
-              {nextUnlockCourses.map((course) => {
+              {(completedCourses || []).map((course) => {
                 return (
                   <SideSlider
                     key={course.id}
@@ -208,31 +190,24 @@ export function LearnScreen(props: Props): Node {
                     linkCardProps={course.lessons.map((lesson) => ({
                       key: lesson.id,
                       bigText: lesson.title,
-                      smallText: "Locked",
+                      smallText: "5 min・Beginner",
                       onPress: () => {},
-                      disabled: true,
                     }))}
                   />
                 );
               })}
-              <View style={styles.buttonWrapper}>
-                <Button theme="tertiary" onPress={allLessons}>
-                  <Text style={styles.buttonText}>All Completed Lessons</Text>
-                </Button>
-              </View>
             </ScrollView>
           </View>
         );
       }}
-    </AvailableLessonsQuery>
+    </CompletedLessonsQuery>
   );
 }
 
 function mapStateToProps(state: StoreState) {
   return {
     userEmail: state.user.user?.email,
-    userGivenName: state.user.user?.givenName,
   };
 }
 
-export default connect(mapStateToProps)(LearnScreen);
+export default connect(mapStateToProps)(CompletedLessonsScreen);

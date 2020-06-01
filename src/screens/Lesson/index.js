@@ -281,10 +281,10 @@ export function LessonScreen(props: Props): Node {
     });
   };
 
-  const goToVictoryScreen = () => {
+  const goToVictoryScreen = async () => {
     const formattedResults = formatResultsForMutation(results);
     // TODO: await this so we always get the right highlights in the next screen
-    addLessonResults({
+    await addLessonResults({
       variables: {
         results: formattedResults,
         userId,
