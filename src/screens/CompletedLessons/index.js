@@ -143,7 +143,6 @@ export function CompletedLessonsScreen(props: Props): Node {
       fetchPolicy="network-only"
     >
       {({ loading, data, error }) => {
-        console.log(data);
         if (loading && (!data || Object.keys(data).length === 0)) {
           return null; // TODO: loading state
         }

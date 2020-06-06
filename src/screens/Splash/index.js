@@ -13,6 +13,7 @@ import LoginScreen from "../Login";
 import LearnScreen from "../Learn";
 import CompletedLessonsScreen from "../CompletedLessons";
 import LessonScreen from "../Lesson";
+import IntroductionScreen from "../Introduction";
 import ReferenceScreen from "../Reference";
 import ProfileScreen from "../Profile";
 import HiraganaReferenceScreen from "../Reference/Hiragana";
@@ -110,6 +111,11 @@ function NavRootScreen() {
       <NavRoot.Screen
         name="Completed Lessons"
         component={CompletedLessonsScreen}
+      />
+      <NavRoot.Screen
+        name="Introduction"
+        component={IntroductionScreen}
+        options={{ title: "Introduction" }}
       />
       <NavRoot.Screen
         name="Hiragana"
