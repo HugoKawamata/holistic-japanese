@@ -2,6 +2,7 @@
 import React, { type Node } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import { connect } from "react-redux";
+import { Duration } from "luxon";
 import { gql } from "apollo-boost";
 import { Query as ApolloQuery } from "@apollo/react-components";
 import type { State as StoreState } from "../../store/types/store";
@@ -19,6 +20,7 @@ const AVAILABLE_LESSONS_QUERY = gql`
   query AvailableLessons($email: String!) {
     user(email: $email) {
       id
+      createdAt
       nextUnlockCourses {
         id
         title
@@ -46,6 +48,8 @@ const AVAILABLE_LESSONS_QUERY = gql`
           }
           title
           image
+          skillLevel
+          timeEstimate
           testables {
             objectId
             objectType
@@ -169,6 +173,11 @@ export function LearnScreen(props: Props): Node {
         const courses = data.user.availableCourses;
         const { nextUnlockCourses } = data.user;
 
+        // If the user was created less than 5 minutes ago, show the introduction
+        if (+new Date() - user.createdAt < 3600 * 5) {
+          props.navigation.push("Introduction");
+        }
+
         return (
           <View style={styles.root}>
             <ScrollView contentContainerStyle={styles.learnScreenWrapper}>
@@ -185,7 +194,9 @@ export function LearnScreen(props: Props): Node {
                       .map((lesson) => ({
                         key: lesson.id,
                         bigText: lesson.title,
-                        smallText: "5 min・Beginner",
+                        smallText: `${Duration.fromMillis(
+                          lesson.timeEstimate * 1000
+                        ).toFormat("m 'min'")}・${lesson.skillLevel}`,
                         onPress: () => startLesson(user.id, lesson),
                       }))
                       .concat(

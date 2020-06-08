@@ -32,9 +32,16 @@ const styles = StyleSheet.create({
     fontSize: fontSize.large,
   },
   profileDataLabel: {
-    color: color.TEXT,
-    fontSize: fontSize.large,
+    color: color.TEXT_M,
+    fontSize: fontSize.regular,
+  },
+  profileDataLabelWrapper: {
+    alignItems: "center",
+    backgroundColor: color.HINT_BG,
+    borderRadius: 15,
     marginRight: 10,
+    paddingVertical: 3,
+    paddingHorizontal: 15,
   },
   profileDataRow: {
     justifyContent: "space-between",
@@ -54,7 +61,7 @@ const styles = StyleSheet.create({
   },
   profileImageWrapper: {
     alignItems: "center",
-    marginBottom: 40,
+    marginBottom: 80,
   },
   profileScreenWrapper: {
     alignItems: "stretch",
@@ -74,6 +81,16 @@ const MY_INFO_QUERY = gql`
       picture
       name
       email
+      availableCourses {
+        completedLessons {
+          id
+        }
+      }
+      completedCourses {
+        completedLessons {
+          id
+        }
+      }
     }
   }
 `;
@@ -88,6 +105,17 @@ export function ProfileScreen(props: Props) {
   return (
     <MyInfoQuery query={MY_INFO_QUERY} fetchPolicy="cache-and-network">
       {({ data }) => {
+        const completedCoursesCount = data?.me?.completedCourses?.length || 0;
+        const completedLessonsCount =
+          data?.me?.completedCourses.reduce(
+            (acc, c) => acc + (c?.completedLessons?.length || 0),
+            0
+          ) +
+          data?.me?.availableCourses.reduce(
+            (acc, c) => acc + (c?.completedLessons?.length || 0),
+            0
+          );
+
         return (
           <View style={styles.profileScreenWrapper}>
             <View style={styles.headingWrapper}>
@@ -106,12 +134,28 @@ export function ProfileScreen(props: Props) {
             </View>
             <View style={styles.profileDataWrapper}>
               <View style={styles.profileDataRow}>
-                <Text style={styles.profileDataLabel}>Name</Text>
+                <View style={styles.profileDataLabelWrapper}>
+                  <Text style={styles.profileDataLabel}>Name</Text>
+                </View>
                 <Text style={styles.profileData}>{data?.me?.name || ""}</Text>
               </View>
               <View style={styles.profileDataRow}>
-                <Text style={styles.profileDataLabel}>Email</Text>
+                <View style={styles.profileDataLabelWrapper}>
+                  <Text style={styles.profileDataLabel}>Email</Text>
+                </View>
                 <Text style={styles.profileData}>{data?.me?.email || ""}</Text>
+              </View>
+              <View style={styles.profileDataRow}>
+                <View style={styles.profileDataLabelWrapper}>
+                  <Text style={styles.profileDataLabel}>Completed Lessons</Text>
+                </View>
+                <Text style={styles.profileData}>{completedLessonsCount}</Text>
+              </View>
+              <View style={styles.profileDataRow}>
+                <View style={styles.profileDataLabelWrapper}>
+                  <Text style={styles.profileDataLabel}>Completed Courses</Text>
+                </View>
+                <Text style={styles.profileData}>{completedCoursesCount}</Text>
               </View>
             </View>
             <View style={styles.logoutWrapper}>
