@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   headingWrapper: {
     paddingBottom: 36,
     paddingLeft: 16,
-    paddingTop: 40,
+    // paddingTop: 40,
   },
   referenceScreenWrapper: {
     alignItems: "stretch",

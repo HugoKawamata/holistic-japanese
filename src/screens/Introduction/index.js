@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { useState } from "react";
-import { View, Image, StyleSheet, ImageBackground } from "react-native";
+import { View, StyleSheet, ImageBackground } from "react-native";
 import Text from "../../components/Text";
 import FuriganaText from "../../components/Text/FuriganaText";
 import Button from "../../components/Button";
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: fontSize.modalTitle,
-    // fontWeight: "800",
   },
   image: {
     alignItems: "center",
@@ -138,6 +137,7 @@ export function IntroductionScreen(props: Props) {
         <View style={styles.genericWrapper}>
           <View style={styles.progressDots}>
             {introduction.map((_, i) => (
+              // eslint-disable-next-line react/no-array-index-key
               <View style={styles.dotWrapper} key={i}>
                 <Icon
                   name="fiber-manual-record"

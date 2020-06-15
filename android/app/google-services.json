@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "354006981273",
+    "firebase_url": "https://holistic-japanese.firebaseio.com",
+    "project_id": "holistic-japanese",
+    "storage_bucket": "holistic-japanese.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354006981273:android:7d9632304cb0a80fa73608",
+        "android_client_info": {
+          "package_name": "com.holisticjapanese"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354006981273-8o7mtscnr2e3hr9ahi8e1rrbk3q3gmcg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.holisticjapanese",
+            "certificate_hash": "602900aac0990fb14a732d9105d46fc2d04bcad2"
+          }
+        },
+        {
+          "client_id": "354006981273-356fst3cf5l3onu6kujr28uu2uaf63hp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.holisticjapanese",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "354006981273-utivai667se5bu2p9hk3u3pbajvll8kk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxMYHS9YWXyIKZRn9D-TqjxKIEdQkHGME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354006981273-utivai667se5bu2p9hk3u3pbajvll8kk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "354006981273-kn7kg38568f9i3r6rgbad3823ljbqqcm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.HolisticJapanese"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

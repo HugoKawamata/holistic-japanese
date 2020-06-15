@@ -57,6 +57,7 @@ type OwnProps = {|
   route: {
     params: {
       lesson: Lesson,
+      refetch: () => {},
       userId: string,
     },
   },
@@ -65,6 +66,7 @@ type OwnProps = {|
 type Props = {|
   ...OwnProps,
   lesson: Lesson,
+  refetch: () => {},
   userId: string,
 |};
 
@@ -86,12 +88,14 @@ export function LessonScreen(props: Props): Node {
   const isKanaLesson = lesson.id !== "OTHER";
   navigation.setOptions({
     title: isKanaLesson ? "" : "レッスン・Lesson", // If kana lesson, we show the title in the topSection
+    // headerTransparent: true,
     headerStyle: {
       backgroundColor: isKanaLesson ? color.KANA_Q_BG : color.NAVBAR,
       shadowRadius: 0,
       shadowOffset: {
         height: 0,
       },
+      elevation: 0,
     },
     headerTintColor: isKanaLesson ? color.WHITE : color.NAVBAR_TEXT,
     headerTitleStyle: {
@@ -154,6 +158,9 @@ export function LessonScreen(props: Props): Node {
               styles.singleCharAnswerField,
               currentMark === "INCORRECT" ? styles.incorrectAnswerField : null,
             ]}
+            keyboardType={
+              Platform.OS === "android" ? "visible-password" : "default"
+            } // Prevents autocorrect on android
             autoCorrect={false}
             editable={currentMark == null}
             placeholder={romajiHiraganaMap[charRomaji] || "っ"}
@@ -291,6 +298,7 @@ export function LessonScreen(props: Props): Node {
         setLessonId: lesson.id,
       },
     });
+    props.refetch();
     props.navigation.navigate("Reference");
     props.navigation.navigate("Hiragana", {
       completedContent: lesson.id,
@@ -421,6 +429,7 @@ export function LessonScreen(props: Props): Node {
 
 function mapStateToProps(state: StoreState, ownProps: OwnProps) {
   return {
+    refetch: ownProps.route?.params?.refetch || null,
     lesson: ownProps.route?.params?.lesson || null,
     userId: ownProps.route?.params?.userId || null,
   };

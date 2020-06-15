@@ -140,10 +140,11 @@ export function LearnScreen(props: Props): Node {
     props.navigation.push("Completed Lessons");
   };
 
-  const startLesson = (userId: string, lesson: Lesson) => {
+  const startLesson = (userId: string, lesson: Lesson, refetch: () => {}) => {
     props.navigation.push("Lesson", {
       lesson,
       userId,
+      refetch,
     });
   };
 
@@ -155,7 +156,7 @@ export function LearnScreen(props: Props): Node {
       variables={{ email: userEmail }}
       fetchPolicy="network-only"
     >
-      {({ loading, data, error }) => {
+      {({ loading, data, error, refetch }) => {
         if (loading && (!data || Object.keys(data).length === 0)) {
           return null; // TODO: loading state
         }
@@ -197,7 +198,7 @@ export function LearnScreen(props: Props): Node {
                         smallText: `${Duration.fromMillis(
                           lesson.timeEstimate * 1000
                         ).toFormat("m 'min'")}・${lesson.skillLevel}`,
-                        onPress: () => startLesson(user.id, lesson),
+                        onPress: () => startLesson(user.id, lesson, refetch),
                       }))
                       .concat(
                         course.nextUnlockLessons.map((lesson) => ({
