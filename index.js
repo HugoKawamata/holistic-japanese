@@ -6,7 +6,7 @@ import ApolloClient from "apollo-boost";
 import AsyncStorage from "@react-native-community/async-storage";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
-import { AppRegistry } from "react-native";
+import { AppRegistry, Platform } from "react-native";
 import { GoogleSignin } from "@react-native-community/google-signin";
 import { Provider } from "react-redux";
 import { ApolloProvider } from "@apollo/react-hooks";
@@ -17,13 +17,27 @@ import LoadingScreen from "./src/screens/Loading";
 import getStore from "./src/store";
 import { name as appName } from "./app.json";
 
-GoogleSignin.configure();
+if (Platform.OS === "ios") {
+  GoogleSignin.configure();
+} else {
+  GoogleSignin.configure({
+    // scopes: [
+    //   "https://www.googleapis.com/auth/userinfo.email",
+    //   "https://www.googleapis.com/auth/userinfo.profile",
+    // ],
+    webClientId:
+      "354006981273-utivai667se5bu2p9hk3u3pbajvll8kk.apps.googleusercontent.com",
+  });
+}
 
 type Props = {||};
 type State = {|
   apolloClient: mixed,
   loaded: boolean,
 |};
+
+// $FlowFixMe
+console.disableYellowBox = true; // eslint-disable-line no-console
 
 export class App extends React.Component<Props, State> {
   state = {
