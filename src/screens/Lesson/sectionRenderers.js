@@ -138,7 +138,7 @@ export const getHint = (
   if (emoji && currentTestable.introduction) {
     return (
       <View style={styles.hintSection}>
-        <Text style={styles.hintLabel}>Hint</Text>
+        {/* <Text style={styles.hintLabel}>Hint</Text> */}
         <View style={styles.hintBox}>
           <View style={styles.emojiWrapper}>{emoji}</View>
           <TransformText style={styles.hint}>{dialogueText}</TransformText>

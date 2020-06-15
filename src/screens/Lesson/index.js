@@ -57,6 +57,7 @@ type OwnProps = {|
   route: {
     params: {
       lesson: Lesson,
+      refetch: () => {},
       userId: string,
     },
   },
@@ -65,6 +66,7 @@ type OwnProps = {|
 type Props = {|
   ...OwnProps,
   lesson: Lesson,
+  refetch: () => {},
   userId: string,
 |};
 
@@ -296,6 +298,7 @@ export function LessonScreen(props: Props): Node {
         setLessonId: lesson.id,
       },
     });
+    props.refetch();
     props.navigation.navigate("Reference");
     props.navigation.navigate("Hiragana", {
       completedContent: lesson.id,
@@ -426,6 +429,7 @@ export function LessonScreen(props: Props): Node {
 
 function mapStateToProps(state: StoreState, ownProps: OwnProps) {
   return {
+    refetch: ownProps.route?.params?.refetch || null,
     lesson: ownProps.route?.params?.lesson || null,
     userId: ownProps.route?.params?.userId || null,
   };
