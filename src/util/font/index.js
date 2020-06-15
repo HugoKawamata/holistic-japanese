@@ -16,6 +16,7 @@ export const fontSize = {
   englishButton: sizes.REGULAR,
   furigana: sizes.TINY,
   furiganaEnabledText: sizes.LARGE,
+  hint: sizes.SMALLISH,
   kanaAsImage: sizes.IMAGE,
   large: sizes.LARGE,
   lessonTitle: sizes.VERY_LARGE,

@@ -8,15 +8,15 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: color.INCOMPLETE_CELL,
     borderRadius: 10,
-    height: 160,
+    height: 140,
     justifyContent: "flex-end",
     marginHorizontal: 16,
     paddingHorizontal: 14,
     paddingBottom: 10,
-    width: 260,
+    width: 230,
   },
   bigText: {
-    fontWeight: "500",
+    fontWeight: "bold",
   },
   smallText: {
     fontSize: 16,

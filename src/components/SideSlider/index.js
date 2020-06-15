@@ -2,14 +2,15 @@
 import * as React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
 import color from "../../util/color";
+import { fontSize } from "../../util/font";
 import Text from "../Text";
 import Icon from "../Icon";
 import LinkCard, { type Props as LinkCardProps } from "../LinkCard";
 
 const styles = StyleSheet.create({
   heading: {
-    fontSize: 26,
-    fontWeight: "600",
+    fontSize: fontSize.large,
+    fontWeight: "bold",
   },
   headingWrapper: {
     alignItems: "center",

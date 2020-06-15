@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   profileData: {
     color: color.TEXT,
-    fontSize: fontSize.large,
+    fontSize: fontSize.regular,
   },
   profileDataLabel: {
     color: color.TEXT_M,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   profileImageWrapper: {
     alignItems: "center",
-    marginBottom: 80,
+    marginBottom: 40,
   },
   profileScreenWrapper: {
     alignItems: "stretch",

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   hint: {
     color: color.BLACK,
     flexShrink: 1,
-    fontSize: 18,
+    fontSize: fontSize.hint,
   },
   hintBox: {
     alignItems: "center",
@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     paddingTop: 5,
     minWidth: 60,
+    maxWidth: 60,
   },
   safeAreaView: {
     flexGrow: 1,
