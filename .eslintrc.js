@@ -107,6 +107,8 @@ module.exports = {
     ],
     /* there are no 'valid hrefs' on mobile */
     "jsx-a11y/anchor-is-valid": 0,
+    /* this does not apply for react native */
+    "jsx-a11y/accessible-emoji": 0,
     /* this is no longer a valid rule https://github.com/yannickcr/eslint-plugin-react/issues/1707 */
     "react/no-did-update-set-state": 0,
     /* if you disable an eslint rule, you must re-enable it */

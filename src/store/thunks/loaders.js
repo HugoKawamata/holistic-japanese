@@ -26,6 +26,30 @@ export function loadGoogleSignin(
   };
 }
 
+export function nukeAccount(email) {
+  return (dispatch: Dispatch) => {
+    fetch("https://www.issei.com.au/nuke_account", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        confirmation: "WHO's thhe MAn now dog?",
+      }),
+    })
+      .then(() => {
+        dispatch({ type: "LOGOUT" });
+      })
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.error("LOGOUT failed", err);
+        dispatch({ type: "LOGOUT_FAILED" });
+      });
+  };
+}
+
 export function logout() {
   return (dispatch: Dispatch) => {
     fetch("https://www.issei.com.au/logout", {

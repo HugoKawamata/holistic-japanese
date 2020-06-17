@@ -60,3 +60,5 @@ export function OverlayModal(props: Props) {
     </Modal>
   );
 }
+
+export default OverlayModal;

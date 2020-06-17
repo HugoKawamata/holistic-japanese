@@ -1,17 +1,28 @@
 /* @flow */
-import React from "react";
+import React, { useState } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import { gql } from "apollo-boost";
 import { Query as ApolloQuery } from "@apollo/react-components";
 import { connect } from "react-redux";
-import { logout } from "../../store/thunks/loaders";
+import { nukeAccount, logout } from "../../store/thunks/loaders";
 import Text from "../../components/Text";
+import OverlayModal from "../../components/OverlayModal";
 import { fontSize } from "../../util/font";
 import color from "../../util/color";
 import Button from "../../components/Button";
 import type { MyInfo as TMyInfoQuery } from "./__generated__/MyInfo";
 
 const styles = StyleSheet.create({
+  dangerIcon: {
+    fontSize: 60,
+  },
+  deleteButtonText: {
+    color: color.PRIMARY,
+  },
+  deleteButtonWrapper: {
+    alignItems: "center",
+    marginTop: 10,
+  },
   heading: {
     fontSize: fontSize.lessonTitle,
     fontWeight: "bold",
@@ -26,6 +37,11 @@ const styles = StyleSheet.create({
   },
   japaneseButtonText: {
     color: color.WHITE,
+  },
+  nukeAccountContainer: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexGrow: 1,
   },
   profileData: {
     color: color.TEXT,
@@ -72,6 +88,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 40,
   },
+  safeButtonText: {
+    color: color.WHITE,
+    fontSize: fontSize.large,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  safeButtonWrapper: {
+    alignItems: "center",
+  },
+  subtitle: {
+    color: color.TEXT,
+    fontSize: fontSize.regular,
+    textAlign: "center",
+  },
+  warningWrapper: {
+    alignItems: "center",
+    paddingTop: 30,
+  },
 });
 
 const MY_INFO_QUERY = gql`
@@ -99,9 +133,12 @@ const MyInfoQuery: ApolloQuery<TMyInfoQuery, {}> = ApolloQuery;
 
 type Props = {|
   logout: typeof logout,
+  nukeAccount: typeof nukeAccount,
 |};
 
 export function ProfileScreen(props: Props) {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <MyInfoQuery query={MY_INFO_QUERY} fetchPolicy="cache-and-network">
       {({ data }) => {
@@ -164,6 +201,49 @@ export function ProfileScreen(props: Props) {
                 <Text style={styles.englishButtonText}>Logout</Text>
               </Button>
             </View>
+            <View style={styles.logoutWrapper}>
+              <Button
+                theme="primary_ghost"
+                onPress={() => setModalVisible(true)}
+              >
+                <Text style={styles.deleteButtonText}>
+                  Delete All Account Data
+                </Text>
+              </Button>
+            </View>
+            <OverlayModal
+              closeModal={() => setModalVisible(false)}
+              title={<Text style={styles.modalTitle}>Are you sure?</Text>}
+              visible={modalVisible}
+            >
+              <View style={styles.nukeAccountContainer}>
+                <View style={styles.warningWrapper}>
+                  <Text style={styles.subtitle}>
+                    This will permanently delete all of your progress, results,
+                    and account data!
+                  </Text>
+                  <Text style={styles.dangerIcon}>⚠️</Text>
+                  <View style={styles.deleteButtonWrapper}>
+                    <Button
+                      theme="primary_ghost"
+                      onPress={() => props.nukeAccount(data?.me?.email)}
+                    >
+                      <Text style={styles.deleteButtonText}>
+                        Delete all my progress
+                      </Text>
+                    </Button>
+                  </View>
+                </View>
+                <View style={styles.safeButtonWrapper}>
+                  <Button
+                    theme="secondary"
+                    onPress={() => setModalVisible(false)}
+                  >
+                    <Text style={styles.safeButtonText}>Back to safety</Text>
+                  </Button>
+                </View>
+              </View>
+            </OverlayModal>
           </View>
         );
       }}
@@ -173,4 +253,5 @@ export function ProfileScreen(props: Props) {
 
 export default connect(null, {
   logout,
+  nukeAccount,
 })(ProfileScreen);
