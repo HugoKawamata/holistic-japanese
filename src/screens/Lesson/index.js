@@ -222,7 +222,7 @@ export function LessonScreen(props: Props): Node {
       default:
         return (
           <TextInput
-            placeholder="Your answer"
+            placeholder="Translate here"
             style={styles.regularAnswerField}
             value={userAnswer["input-0"]}
             onChangeText={(text) =>

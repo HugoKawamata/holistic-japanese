@@ -7,9 +7,6 @@ const answerFieldCommon = {
   backgroundColor: color.INPUT_BG,
   borderRadius: 3,
   fontFamily: "Lato",
-  fontSize: fontSize.answerSingleChar,
-  textAlign: "center",
-  minWidth: 56,
 };
 
 const styles = StyleSheet.create({
@@ -143,9 +140,14 @@ const styles = StyleSheet.create({
   },
   regularAnswerField: {
     ...answerFieldCommon,
+    fontSize: fontSize.regular,
+    minWidth: "80%",
+    minHeight: 80,
+    paddingHorizontal: 15,
   },
   singleCharAnswerField: {
     ...answerFieldCommon,
+    fontSize: fontSize.answerSingleChar,
     marginLeft: 10,
     marginRight: 10,
     paddingBottom: 5,
@@ -154,6 +156,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     minWidth: 60,
     maxWidth: 60,
+    textAlign: "center",
   },
   safeAreaView: {
     flexGrow: 1,

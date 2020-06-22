@@ -53,11 +53,21 @@ const AVAILABLE_LESSONS_QUERY = gql`
           testables {
             objectId
             objectType
+            wordId
+            context {
+              person
+              location
+              speaker
+              japanese
+              furigana
+              english
+            }
             question {
               type
               emoji
               image
               text
+              furigana
             }
             answer {
               type

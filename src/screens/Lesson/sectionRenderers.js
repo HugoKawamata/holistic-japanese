@@ -12,18 +12,57 @@ import styles from "./styles";
 
 const { height } = Dimensions.get("window");
 
-export const getTopSectionContent = (currentTestable: Testable) => (
-  <>
-    {height > 730 ? (
-      <View style={styles.headerWrapper}>
-        <Text style={styles.header}>レッスン・Lesson</Text>
+export const getTopSectionContent = (currentTestable: Testable) => {
+  console.log(currentTestable);
+  if (currentTestable.question.type === "KANA_WORD") {
+    return (
+      <>
+        {height > 730 ? (
+          <View style={styles.headerWrapper}>
+            <Text style={styles.header}>レッスン・Lesson</Text>
+          </View>
+        ) : null}
+        <View style={styles.questionWrapper}>
+          <Text style={styles.question}>{currentTestable.question.text}</Text>
+        </View>
+      </>
+    );
+  }
+  if (["E_SENTENCE", "J_SENTENCE"].includes(currentTestable.question.type)) {
+    const hasJapanese =
+      currentTestable.context.japanese != null &&
+      currentTestable.context.japanese !== "";
+    return (
+      <View style={styles.questionWrapper}>
+        <View style={styles.contextBubbleWrapper}>
+          <View style={styles.speakerNameWrapper}>
+            <Text style={styles.speakerName}>
+              {currentTestable.context.speaker}
+            </Text>
+          </View>
+          <View style={styles.contextBubble}>
+            {hasJapanese ? (
+              <FuriganaText
+                textStyle={styles.contextJapanese}
+                furiStyle={styles.contextFurigana}
+                text={currentTestable.context.japanese}
+                hiragana={currentTestable.context.furigana}
+              />
+            ) : null}
+            {/* If theres no japanese in the context, render the english as big as japanese normally is */}
+            <Text
+              style={
+                hasJapanese ? styles.contextEnglish : styles.contextJapanese
+              }
+            >
+              {currentTestable.context.english}
+            </Text>
+          </View>
+        </View>
       </View>
-    ) : null}
-    <View style={styles.questionWrapper}>
-      <Text style={styles.question}>{currentTestable.question.text}</Text>
-    </View>
-  </>
-);
+    );
+  }
+};
 
 export const getQuestionTypeText = (currentTestable: Testable) => {
   if (
