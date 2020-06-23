@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   Platform,
+  ImageBackground,
 } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
@@ -33,6 +34,8 @@ import {
   getAnswerSection,
   getHint,
   getButton,
+  getBackgroundImage,
+  getSentenceQuestion,
 } from "./sectionRenderers";
 import styles from "./styles";
 import LectureScreen from "./Lecture";
@@ -399,28 +402,36 @@ export function LessonScreen(props: Props): Node {
     );
   }
 
+  console.log(currentTestable);
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <KeyboardAvoidingView
         style={styles.lessonScreenWrapper}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <View style={styles.topSection}>
-          {/* <ProgressBar testables={lesson.testables} results={results} /> */}
-          {getTopSectionContent(currentTestable)}
-        </View>
-        <View style={styles.bottomSection}>
-          {getHint(questionStage, currentTestable, currentMark)}
-          {getAnswerSection(currentTestable, getAnswerFields())}
-          <View style={styles.buttonWrapper}>
-            {getButton(
-              currentMark,
-              userAnswer,
-              goToNextQuestion,
-              answerRomajiQuestion
-            )}
+        <ImageBackground
+          style={styles.backgroundImage}
+          source={getBackgroundImage(currentTestable.context?.location)}
+        >
+          <View style={styles.topSection}>
+            {/* <ProgressBar testables={lesson.testables} results={results} /> */}
+            {getTopSectionContent(currentTestable)}
           </View>
-        </View>
+          <View style={styles.bottomSection}>
+            {getHint(questionStage, currentTestable, currentMark)}
+            {getSentenceQuestion(currentTestable)}
+            {getAnswerSection(currentTestable, getAnswerFields())}
+            <View style={styles.buttonWrapper}>
+              {getButton(
+                currentMark,
+                userAnswer,
+                goToNextQuestion,
+                answerRomajiQuestion
+              )}
+            </View>
+          </View>
+        </ImageBackground>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

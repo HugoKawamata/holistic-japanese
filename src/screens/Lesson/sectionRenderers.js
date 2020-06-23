@@ -13,7 +13,6 @@ import styles from "./styles";
 const { height } = Dimensions.get("window");
 
 export const getTopSectionContent = (currentTestable: Testable) => {
-  console.log(currentTestable);
   if (currentTestable.question.type === "KANA_WORD") {
     return (
       <>
@@ -30,14 +29,14 @@ export const getTopSectionContent = (currentTestable: Testable) => {
   }
   if (["E_SENTENCE", "J_SENTENCE"].includes(currentTestable.question.type)) {
     const hasJapanese =
-      currentTestable.context.japanese != null &&
-      currentTestable.context.japanese !== "";
+      currentTestable.context?.japanese != null &&
+      currentTestable.context?.japanese !== "";
     return (
       <View style={styles.questionWrapper}>
         <View style={styles.contextBubbleWrapper}>
           <View style={styles.speakerNameWrapper}>
             <Text style={styles.speakerName}>
-              {currentTestable.context.speaker}
+              {currentTestable.context?.speaker || ""}
             </Text>
           </View>
           <View style={styles.contextBubble}>
@@ -45,8 +44,8 @@ export const getTopSectionContent = (currentTestable: Testable) => {
               <FuriganaText
                 textStyle={styles.contextJapanese}
                 furiStyle={styles.contextFurigana}
-                text={currentTestable.context.japanese}
-                hiragana={currentTestable.context.furigana}
+                text={currentTestable.context?.japanese || ""}
+                kana={currentTestable.context?.furigana || ""}
               />
             ) : null}
             {/* If theres no japanese in the context, render the english as big as japanese normally is */}
@@ -55,7 +54,7 @@ export const getTopSectionContent = (currentTestable: Testable) => {
                 hasJapanese ? styles.contextEnglish : styles.contextJapanese
               }
             >
-              {currentTestable.context.english}
+              {currentTestable.context?.english || ""}
             </Text>
           </View>
         </View>
@@ -77,14 +76,15 @@ export const getQuestionTypeText = (currentTestable: Testable) => {
 export const getAnswerSection = (
   currentTestable: Testable,
   fields: Array<Node> | Node
-) => (
-  <>
-    <Text style={styles.questionType}>
-      {getQuestionTypeText(currentTestable)}
-    </Text>
-    <View style={styles.answerFieldWrapper}>{fields}</View>
-  </>
-);
+) => {
+  const text = getQuestionTypeText(currentTestable);
+  return (
+    <>
+      {text !== "" ? <Text style={styles.prompt}>{text}</Text> : null}
+      <View style={styles.answerFieldWrapper}>{fields}</View>
+    </>
+  );
+};
 
 export const getButton = (
   currentMark: ?("CORRECT" | "INCORRECT"),
@@ -95,12 +95,6 @@ export const getButton = (
   if (currentMark === "CORRECT") {
     return (
       <Button theme="secondary" onPress={goToNextQuestion}>
-        <FuriganaText
-          furiStyle={styles.buttonText}
-          textStyle={styles.buttonText}
-          kana="せいかい"
-          text="正解"
-        />
         <Text style={styles.buttonText}>Correct!</Text>
       </Button>
     );
@@ -108,12 +102,6 @@ export const getButton = (
   if (currentMark === "INCORRECT") {
     return (
       <Button theme="tertiary" onPress={goToNextQuestion}>
-        <FuriganaText
-          furiStyle={styles.buttonText}
-          textStyle={styles.buttonText}
-          kana="ちがいます"
-          text="違います"
-        />
         <Text style={styles.buttonText}>Incorrect</Text>
       </Button>
     );
@@ -124,12 +112,6 @@ export const getButton = (
       onPress={answerRomajiQuestion}
       disabled={getCSVAnswer(userAnswer) === ""}
     >
-      <FuriganaText
-        furiStyle={styles.buttonText}
-        textStyle={styles.buttonText}
-        kana="こたえる"
-        text="答える"
-      />
       <Text style={styles.buttonText}>Answer</Text>
     </Button>
   );
@@ -186,4 +168,37 @@ export const getHint = (
     );
   }
   return null;
+};
+
+export const getSentenceQuestion = (currentTestable: Testable) => {
+  return (
+    <View style={styles.sentenceQuestionWrapper}>
+      <View style={styles.promptWrapper}>
+        <Text style={styles.prompt}>
+          {currentTestable.question?.prompt || ""}
+        </Text>
+      </View>
+      <View style={styles.questionBubbleWrapper}>
+        <View style={styles.questionBubble}>
+          {currentTestable.question.furigana != null &&
+          currentTestable.question.furigana !== "" ? (
+            <FuriganaText
+              text={currentTestable.question.text}
+              kana={currentTestable.question.furigana}
+              textStyle={styles.questionBubbleText}
+              furiStyle={styles.questionBubbleFurigana}
+            />
+          ) : (
+            <Text style={styles.questionBubbleText}>
+              {currentTestable.question.text}
+            </Text>
+          )}
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export const getBackgroundImage = (location: ?string) => {
+  return location == null ? null : require("../../../assets/images/akiba.jpg");
 };

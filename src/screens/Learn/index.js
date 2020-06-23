@@ -68,6 +68,7 @@ const AVAILABLE_LESSONS_QUERY = gql`
               image
               text
               furigana
+              prompt
             }
             answer {
               type
