@@ -10,6 +10,11 @@ const answerFieldCommon = {
 };
 
 export const sharedStyles = StyleSheet.create({
+  answerFieldWrapper: {
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingTop: 16,
+  },
   bottomSection: {
     alignItems: "stretch",
     backgroundColor: color.WHITE,
@@ -57,6 +62,20 @@ export const sharedStyles = StyleSheet.create({
     paddingBottom: 40,
     paddingHorizontal: 30,
     width: "100%",
+  },
+  prompt: {
+    color: color.TEXT,
+    fontSize: fontSize.questionType,
+    textAlign: "center",
+  },
+  promptWrapper: {
+    alignItems: "stretch",
+  },
+  topSection: {
+    alignItems: "stretch",
+    flexDirection: "column",
+    flexGrow: 3,
+    justifyContent: "flex-start",
   },
 });
 

@@ -10,9 +10,7 @@ import {
   getAnswerSection,
   getHint,
   getButton,
-  getSentenceQuestion,
 } from "./sectionRenderers";
-import styles from "./styles";
 
 type Props = {|
   children: React.Node, // Children is always the answer field node
@@ -78,7 +76,7 @@ export function WordLesson(props: Props) {
 
     props.setResults({
       ...results,
-      // $FlowFixM this is fine, I think it just doesn't like two spreads of inexact literals
+      // $FlowFixMe this is fine, I think it just doesn't like two spreads of inexact literals
       ...characterResults,
       [currentTestable.question.text]: {
         objectId: currentTestable.objectId,
@@ -92,13 +90,12 @@ export function WordLesson(props: Props) {
 
   return (
     <>
-      <View style={styles.topSection}>
+      <View style={sharedStyles.topSection}>
         {/* <ProgressBar testables={lesson.testables} results={results} /> */}
         {getTopSectionContent(currentTestable)}
       </View>
       <View style={sharedStyles.bottomSection}>
         {getHint(questionStage, currentTestable, currentMark)}
-        {getSentenceQuestion(currentTestable)}
         {getAnswerSection(currentTestable, children)}
         <View style={sharedStyles.buttonWrapper}>
           {getButton(

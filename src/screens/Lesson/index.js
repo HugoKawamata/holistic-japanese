@@ -28,6 +28,7 @@ import {
 import type { Results } from "./types";
 import styles from "./styles";
 import LectureScreen from "./Lecture";
+import SentenceLesson from "./SentenceLesson";
 import WordLesson from "./WordLesson";
 // import ProgressBar from "./ProgressBar";
 
@@ -353,18 +354,32 @@ export function LessonScreen(props: Props): Node {
           style={styles.backgroundImage}
           source={getBackgroundImage(currentTestable.context?.location)}
         >
-          <WordLesson
-            currentMark={currentMark}
-            currentTestable={currentTestable}
-            goToNextQuestion={goToNextQuestion}
-            questionStage={questionStage}
-            results={results}
-            setCurrentMark={setCurrentMark}
-            setResults={setResults}
-            userAnswer={userAnswer}
-          >
-            {getAnswerFields()}
-          </WordLesson>
+          {["KANA_WORD", "J_WORD"].includes(currentTestable.question.type) ? (
+            <WordLesson
+              currentMark={currentMark}
+              currentTestable={currentTestable}
+              goToNextQuestion={goToNextQuestion}
+              questionStage={questionStage}
+              results={results}
+              setCurrentMark={setCurrentMark}
+              setResults={setResults}
+              userAnswer={userAnswer}
+            >
+              {getAnswerFields()}
+            </WordLesson>
+          ) : (
+            <SentenceLesson
+              currentMark={currentMark}
+              currentTestable={currentTestable}
+              goToNextQuestion={goToNextQuestion}
+              results={results}
+              setCurrentMark={setCurrentMark}
+              setResults={setResults}
+              userAnswer={userAnswer}
+            >
+              {getAnswerFields()}
+            </SentenceLesson>
+          )}
         </ImageBackground>
       </KeyboardAvoidingView>
     </SafeAreaView>

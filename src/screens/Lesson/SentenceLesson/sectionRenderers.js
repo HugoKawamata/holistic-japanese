@@ -2,6 +2,7 @@
 import React, { type Node } from "react";
 import { View, Dimensions } from "react-native";
 import Text from "../../../components/Text";
+import FuriganaText from "../../../components/Text/FuriganaText";
 import TransformText from "../../../components/Text/TransformText";
 import Button from "../../../components/Button";
 import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
@@ -13,17 +14,35 @@ import styles from "./styles";
 const { height } = Dimensions.get("window");
 
 export const getTopSectionContent = (currentTestable: Testable) => {
+  const hasJapanese =
+    currentTestable.context?.japanese != null &&
+    currentTestable.context?.japanese !== "";
   return (
-    <>
-      {height > 730 ? (
-        <View style={styles.headerWrapper}>
-          <Text style={styles.header}>レッスン・Lesson</Text>
+    <View style={styles.contextWrapper}>
+      <View style={styles.contextBubbleWrapper}>
+        <View style={styles.speakerNameWrapper}>
+          <Text style={styles.speakerName}>
+            {currentTestable.context?.speaker || ""}
+          </Text>
         </View>
-      ) : null}
-      <View style={styles.questionWrapper}>
-        <Text style={styles.question}>{currentTestable.question.text}</Text>
+        <View style={styles.contextBubble}>
+          {hasJapanese ? (
+            <FuriganaText
+              textStyle={styles.contextJapanese}
+              furiStyle={styles.contextFurigana}
+              text={currentTestable.context?.japanese || ""}
+              kana={currentTestable.context?.furigana || ""}
+            />
+          ) : null}
+          {/* If theres no japanese in the context, render the english as big as japanese normally is */}
+          <Text
+            style={hasJapanese ? styles.contextEnglish : styles.contextJapanese}
+          >
+            {currentTestable.context?.english || ""}
+          </Text>
+        </View>
       </View>
-    </>
+    </View>
   );
 };
 
@@ -81,57 +100,31 @@ export const getButton = (
   );
 };
 
-export const displayEmoji = (
-  questionStage: number,
-  currentTestable: Testable,
-  currentMark: ?("CORRECT" | "INCORRECT")
-) => {
-  const adjustedQuestionStage =
-    currentMark === "CORRECT" ? questionStage - 1 : questionStage;
-  if (adjustedQuestionStage >= 2 && currentTestable.introduction != null) {
-    return <View style={styles.emojiWrapper} />;
-  }
-
-  if (currentTestable.question.emoji != null) {
-    return (
-      <View style={styles.emojiWrapper}>
-        <Text style={styles.emoji}>{currentTestable.question.emoji}</Text>
+export const getSentenceQuestion = (currentTestable: Testable) => {
+  return (
+    <View style={styles.sentenceQuestionWrapper}>
+      <View style={sharedStyles.promptWrapper}>
+        <Text style={sharedStyles.prompt}>
+          {currentTestable.question?.prompt || ""}
+        </Text>
       </View>
-    );
-  }
-  return null;
-};
-
-export const getHint = (
-  questionStage: number,
-  currentTestable: Testable,
-  currentMark: ?("CORRECT" | "INCORRECT")
-) => {
-  const adjustedQuestionStage =
-    currentMark === "CORRECT" ? questionStage - 1 : questionStage;
-  if (adjustedQuestionStage === 2) {
-    return null;
-  }
-  let dialogueText = "";
-  if (adjustedQuestionStage === 0 && currentTestable.introduction != null) {
-    // Give them the answer the first time they see the question
-    dialogueText = currentTestable.introduction;
-  }
-
-  const emoji = displayEmoji(questionStage, currentTestable, currentMark);
-
-  if (emoji && currentTestable.introduction) {
-    return (
-      <View style={sharedStyles.hintSection}>
-        {/* <Text style={styles.hintLabel}>Hint</Text> */}
-        <View style={sharedStyles.hintBox}>
-          <View style={styles.emojiWrapper}>{emoji}</View>
-          <TransformText style={sharedStyles.hint}>
-            {dialogueText}
-          </TransformText>
+      <View style={styles.questionBubbleWrapper}>
+        <View style={styles.questionBubble}>
+          {currentTestable.question.furigana != null &&
+          currentTestable.question.furigana !== "" ? (
+            <FuriganaText
+              text={currentTestable.question.text}
+              kana={currentTestable.question.furigana}
+              textStyle={styles.questionBubbleText}
+              furiStyle={styles.questionBubbleFurigana}
+            />
+          ) : (
+            <Text style={styles.questionBubbleText}>
+              {currentTestable.question.text}
+            </Text>
+          )}
         </View>
       </View>
-    );
-  }
-  return null;
+    </View>
+  );
 };
