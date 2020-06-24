@@ -1,13 +1,14 @@
 /* @flow */
 import React, { type Node } from "react";
 import { View, Dimensions } from "react-native";
-import Text from "../../components/Text";
-import FuriganaText from "../../components/Text/FuriganaText";
-import TransformText from "../../components/Text/TransformText";
-import Button from "../../components/Button";
-import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../Learn/__generated__/AvailableLessons";
-import { getCSVAnswer } from "./util";
-import type { UserAnswer } from "./types";
+import Text from "../../../components/Text";
+import FuriganaText from "../../../components/Text/FuriganaText";
+import TransformText from "../../../components/Text/TransformText";
+import Button from "../../../components/Button";
+import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
+import { getCSVAnswer } from "../util";
+import type { UserAnswer } from "../types";
+import { sharedStyles } from "../styles";
 import styles from "./styles";
 
 const { height } = Dimensions.get("window");
@@ -61,6 +62,7 @@ export const getTopSectionContent = (currentTestable: Testable) => {
       </View>
     );
   }
+  return null;
 };
 
 export const getQuestionTypeText = (currentTestable: Testable) => {
@@ -95,14 +97,14 @@ export const getButton = (
   if (currentMark === "CORRECT") {
     return (
       <Button theme="secondary" onPress={goToNextQuestion}>
-        <Text style={styles.buttonText}>Correct!</Text>
+        <Text style={sharedStyles.buttonText}>Correct!</Text>
       </Button>
     );
   }
   if (currentMark === "INCORRECT") {
     return (
       <Button theme="tertiary" onPress={goToNextQuestion}>
-        <Text style={styles.buttonText}>Incorrect</Text>
+        <Text style={sharedStyles.buttonText}>Incorrect</Text>
       </Button>
     );
   }
@@ -112,7 +114,7 @@ export const getButton = (
       onPress={answerRomajiQuestion}
       disabled={getCSVAnswer(userAnswer) === ""}
     >
-      <Text style={styles.buttonText}>Answer</Text>
+      <Text style={sharedStyles.buttonText}>Answer</Text>
     </Button>
   );
 };
@@ -158,11 +160,13 @@ export const getHint = (
 
   if (emoji && currentTestable.introduction) {
     return (
-      <View style={styles.hintSection}>
+      <View style={sharedStyles.hintSection}>
         {/* <Text style={styles.hintLabel}>Hint</Text> */}
-        <View style={styles.hintBox}>
+        <View style={sharedStyles.hintBox}>
           <View style={styles.emojiWrapper}>{emoji}</View>
-          <TransformText style={styles.hint}>{dialogueText}</TransformText>
+          <TransformText style={sharedStyles.hint}>
+            {dialogueText}
+          </TransformText>
         </View>
       </View>
     );
@@ -197,8 +201,4 @@ export const getSentenceQuestion = (currentTestable: Testable) => {
       </View>
     </View>
   );
-};
-
-export const getBackgroundImage = (location: ?string) => {
-  return location == null ? null : require("../../../assets/images/akiba.jpg");
 };

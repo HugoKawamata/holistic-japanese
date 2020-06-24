@@ -22,23 +22,13 @@ import type {
 import {
   possibleSokuon,
   romajiHiraganaMap,
-  hiraganaRomajiMap,
   formatResultsForMutation,
   getQuestionStage,
-  getSplitQuestion,
-  getCSVAnswer,
 } from "./util";
 import type { Results } from "./types";
-import {
-  getTopSectionContent,
-  getAnswerSection,
-  getHint,
-  getButton,
-  getBackgroundImage,
-  getSentenceQuestion,
-} from "./sectionRenderers";
 import styles from "./styles";
 import LectureScreen from "./Lecture";
+import WordLesson from "./WordLesson";
 // import ProgressBar from "./ProgressBar";
 
 const SEND_RESULTS = gql`
@@ -84,6 +74,10 @@ const initResults = (testables: $ReadOnlyArray<Testable>) => {
       [testable.question.text]: testableResults,
     };
   }, {});
+};
+
+export const getBackgroundImage = (location: ?string) => {
+  return location == null ? null : require("../../../assets/images/akiba.jpg");
 };
 
 export function LessonScreen(props: Props): Node {
@@ -238,59 +232,6 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const answerRomajiQuestion = () => {
-    const splitQuestion = getSplitQuestion(currentTestable);
-    const csvAnswer = getCSVAnswer(userAnswer);
-    const splitAnswer = csvAnswer.split(",");
-
-    let mark;
-    if (csvAnswer === currentTestable.answer.text) {
-      // Answer is correct!
-      setCurrentMark("CORRECT");
-      mark = "CORRECT";
-    } else {
-      // Answer is incorrect!
-      setCurrentMark("INCORRECT");
-      mark = "INCORRECT";
-    }
-
-    const characterResults = splitQuestion.reduce(
-      (resultsMap, char: string, index: number) => {
-        return {
-          ...resultsMap,
-          [`char-${char}`]: {
-            objectId: null,
-            objectType: "CHARACTER",
-            text: char,
-            answers: [
-              ...(results[`char-${char}`]?.answers || []),
-              splitAnswer[index],
-            ],
-            marks: [
-              ...(results[`char-${char}`]?.marks || []),
-              splitAnswer[index] === hiraganaRomajiMap[char]
-                ? "CORRECT"
-                : "INCORRECT",
-            ],
-          },
-        };
-      },
-      {}
-    );
-
-    setResults({
-      ...results,
-      ...characterResults,
-      [currentTestable.question.text]: {
-        objectId: currentTestable.objectId,
-        objectType: "WORD",
-        text: currentTestable.question.text,
-        answers: [...results[currentTestable.question.text].answers, csvAnswer],
-        marks: [...results[currentTestable.question.text].marks, mark],
-      },
-    });
-  };
-
   const goToVictoryScreen = async () => {
     const formattedResults = formatResultsForMutation(results);
     await addLessonResults({
@@ -402,8 +343,6 @@ export function LessonScreen(props: Props): Node {
     );
   }
 
-  console.log(currentTestable);
-
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <KeyboardAvoidingView
@@ -414,23 +353,18 @@ export function LessonScreen(props: Props): Node {
           style={styles.backgroundImage}
           source={getBackgroundImage(currentTestable.context?.location)}
         >
-          <View style={styles.topSection}>
-            {/* <ProgressBar testables={lesson.testables} results={results} /> */}
-            {getTopSectionContent(currentTestable)}
-          </View>
-          <View style={styles.bottomSection}>
-            {getHint(questionStage, currentTestable, currentMark)}
-            {getSentenceQuestion(currentTestable)}
-            {getAnswerSection(currentTestable, getAnswerFields())}
-            <View style={styles.buttonWrapper}>
-              {getButton(
-                currentMark,
-                userAnswer,
-                goToNextQuestion,
-                answerRomajiQuestion
-              )}
-            </View>
-          </View>
+          <WordLesson
+            currentMark={currentMark}
+            currentTestable={currentTestable}
+            goToNextQuestion={goToNextQuestion}
+            questionStage={questionStage}
+            results={results}
+            setCurrentMark={setCurrentMark}
+            setResults={setResults}
+            userAnswer={userAnswer}
+          >
+            {getAnswerFields()}
+          </WordLesson>
         </ImageBackground>
       </KeyboardAvoidingView>
     </SafeAreaView>
