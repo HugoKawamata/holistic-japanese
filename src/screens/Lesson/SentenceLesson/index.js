@@ -1,6 +1,8 @@
 /* @flow */
 import * as React from "react";
 import { View } from "react-native";
+import color from "../../../util/color";
+import Icon from "../../../components/Icon";
 import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { UserAnswer, Results } from "../types";
 import { getSplitQuestion, hiraganaRomajiMap, getCSVAnswer } from "../util";
@@ -11,6 +13,7 @@ import {
   getButton,
   getSentenceQuestion,
 } from "./sectionRenderers";
+import styles from "./styles";
 
 type Props = {|
   children: React.Node, // Children is always the answer field node
@@ -89,19 +92,23 @@ export function SentenceLesson(props: Props) {
   return (
     <>
       <View style={sharedStyles.topSection}>
-        {/* <ProgressBar testables={lesson.testables} results={results} /> */}
         {getTopSectionContent(currentTestable)}
       </View>
-      <View style={sharedStyles.bottomSection}>
+      <View style={styles.bottomSection}>
         {getSentenceQuestion(currentTestable)}
+        <View style={styles.downChevWrapper}>
+          <Icon name="expand-more" size={32} color={color.TEXT_L} />
+        </View>
         {getAnswerSection(currentTestable, children)}
-        <View style={sharedStyles.buttonWrapper}>
-          {getButton(
-            currentMark,
-            userAnswer,
-            goToNextQuestion,
-            answerRomajiQuestion
-          )}
+        <View style={sharedStyles.buttonSection}>
+          <View style={sharedStyles.buttonWrapper}>
+            {getButton(
+              currentMark,
+              userAnswer,
+              goToNextQuestion,
+              answerRomajiQuestion
+            )}
+          </View>
         </View>
       </View>
     </>

@@ -225,7 +225,7 @@ export function LessonScreen(props: Props): Node {
             value={userAnswer["input-0"]}
             onChangeText={(text) =>
               setUserAnswer({
-                "input-0": text.toLowerCase(),
+                "input-0": text,
               })
             }
           />

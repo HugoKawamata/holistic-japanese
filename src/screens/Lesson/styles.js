@@ -5,12 +5,11 @@ import { fontSize } from "../../util/font";
 
 const answerFieldCommon = {
   backgroundColor: color.INPUT_BG,
-  borderRadius: 3,
   fontFamily: "Lato",
 };
 
 export const sharedStyles = StyleSheet.create({
-  answerFieldWrapper: {
+  answerFieldsWrapper: {
     flexDirection: "row",
     justifyContent: "center",
     paddingTop: 16,
@@ -28,11 +27,15 @@ export const sharedStyles = StyleSheet.create({
     paddingBottom: 10,
     width: "100%",
   },
+  buttonSection: {
+    alignItems: "center",
+  },
   buttonWrapper: {
     alignItems: "center",
     justifyContent: "center",
     paddingTop: 40,
     paddingBottom: 20,
+    width: "70%",
   },
   buttonText: {
     color: color.WHITE,
@@ -101,6 +104,7 @@ const myStyles = StyleSheet.create({
   },
   regularAnswerField: {
     ...answerFieldCommon,
+    borderRadius: 16,
     fontSize: fontSize.regular,
     minWidth: "80%",
     minHeight: 80,
@@ -108,6 +112,7 @@ const myStyles = StyleSheet.create({
   },
   singleCharAnswerField: {
     ...answerFieldCommon,
+    borderRadius: 3,
     fontSize: fontSize.answerSingleChar,
     marginLeft: 10,
     marginRight: 10,

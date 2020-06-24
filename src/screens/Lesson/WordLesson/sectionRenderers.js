@@ -45,7 +45,7 @@ export const getAnswerSection = (
   return (
     <>
       {text !== "" ? <Text style={sharedStyles.prompt}>{text}</Text> : null}
-      <View style={sharedStyles.answerFieldWrapper}>{fields}</View>
+      <View style={sharedStyles.answerFieldsWrapper}>{fields}</View>
     </>
   );
 };

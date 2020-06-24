@@ -11,8 +11,6 @@ import type { UserAnswer } from "../types";
 import { sharedStyles } from "../styles";
 import styles from "./styles";
 
-const { height } = Dimensions.get("window");
-
 export const getTopSectionContent = (currentTestable: Testable) => {
   const hasJapanese =
     currentTestable.context?.japanese != null &&
@@ -46,27 +44,11 @@ export const getTopSectionContent = (currentTestable: Testable) => {
   );
 };
 
-export const getQuestionTypeText = (currentTestable: Testable) => {
-  if (
-    currentTestable.question.type === "J_WORD" &&
-    currentTestable.answer.type === "ROMAJI"
-  ) {
-    return "Translate these characters to English letters";
-  }
-  return "";
-};
-
 export const getAnswerSection = (
   currentTestable: Testable,
   fields: Array<Node> | Node
 ) => {
-  const text = getQuestionTypeText(currentTestable);
-  return (
-    <>
-      {text !== "" ? <Text style={sharedStyles.prompt}>{text}</Text> : null}
-      <View style={sharedStyles.answerFieldWrapper}>{fields}</View>
-    </>
-  );
+  return <View style={styles.answerFieldWrapper}>{fields}</View>;
 };
 
 export const getButton = (

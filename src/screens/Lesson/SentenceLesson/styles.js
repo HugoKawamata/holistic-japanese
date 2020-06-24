@@ -4,6 +4,22 @@ import color from "../../../util/color";
 import { fontSize } from "../../../util/font";
 
 const styles = StyleSheet.create({
+  answerFieldWrapper: {
+    paddingHorizontal: 30,
+    paddingTop: 10,
+  },
+  bottomSection: {
+    alignItems: "stretch",
+    backgroundColor: color.WHITE,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    // marginTop: 20,
+    paddingTop: 40,
+    paddingBottom: 10,
+    width: "100%",
+  },
   contextBubble: {
     backgroundColor: color.HINT_BG,
     borderRadius: 16,
@@ -23,6 +39,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexGrow: 1,
   },
+  downChevWrapper: {
+    alignItems: "center",
+  },
   questionBubble: {
     alignItems: "center",
     backgroundColor: color.HINT_BG,
@@ -34,7 +53,7 @@ const styles = StyleSheet.create({
   questionBubbleWrapper: {
     alignItems: "stretch",
     flexGrow: 1,
-    paddingBottom: 40,
+    paddingBottom: 10,
     paddingHorizontal: 30,
     width: "100%",
   },

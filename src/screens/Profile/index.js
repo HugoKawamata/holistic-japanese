@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
   japaneseButtonText: {
     color: color.WHITE,
   },
+  modalTitle: {
+    fontSize: fontSize.title,
+  },
   nukeAccountContainer: {
     alignItems: "center",
     justifyContent: "space-between",
