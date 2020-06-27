@@ -2,13 +2,15 @@
 // const furigana = "わたしのこうざをはじめる"
 // const text = "私の講座を始める"
 export const notKanji = [
-  "(",
-  "[",
+  // "(",
+  // "[",
+  // "<",
   // "(", // Particles can only be kana. Parens are used
   // ")", // to wrap particles.
   // "。",
   // "！",
   // "？",
+  "　",
   "ぁ",
   "あ",
   "ぃ",
@@ -191,5 +193,5 @@ export const notKanji = [
   "ヾ",
 ];
 
-export const highlightersOpen = ["[", "("];
-export const highlightersClosed = ["]", ")"];
+export const highlightersOpen = ["[", "(", "<"];
+export const highlightersClosed = ["]", ")", ">"];

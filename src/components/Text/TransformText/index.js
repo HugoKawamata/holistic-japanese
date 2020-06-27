@@ -14,12 +14,23 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: "bold",
   },
+  focus: {
+    fontWeight: "bold",
+    color: color.SOFT_PRIMARY,
+  },
   highlight: {
     fontWeight: "bold",
     color: color.TEXT_HIGHLIGHT,
   },
   italic: {
     fontStyle: "italic",
+  },
+  known: {
+    fontWeight: "bold",
+    color: color.TEXT_KNOWN,
+  },
+  particle: {
+    color: color.TEXT_M,
   },
   wrapper: {
     flexDirection: "row",
@@ -41,6 +52,8 @@ const getCloseChar = (transformableType, style) => {
       return ")";
     case "[": // Known words in Japanese
       return "]";
+    case "<": // Known words in Japanese
+      return ">";
     default:
       return style;
   }
@@ -55,16 +68,18 @@ const getStyle = (transformableType, style) => {
     case "*": // Bold, normal color
       return [style, styles.bold];
     case "(": // Particles in Japanese
-      return [style, styles.bold];
+      return [style, styles.particle];
     case "[": // Known words in Japanese
-      return [style, styles.bold];
+      return [style, styles.known];
+    case "<": // Known words in Japanese
+      return [style, styles.focus];
     default:
       return style;
   }
 };
 
 const splitOnTransformable = (text, style) => {
-  const transformableChars = ['"', "_", "*", "(", "["];
+  const transformableChars = ['"', "_", "*", "(", "[", "<"];
   let currentString = "";
   const components = [];
   for (let i = 0; i < text.length; i += 1) {

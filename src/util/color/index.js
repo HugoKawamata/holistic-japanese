@@ -1,5 +1,5 @@
 /* @flow */
-import { primary, grey, secondary, yellow } from "./system";
+import { primary, grey, secondary, yellow, special } from "./system";
 
 export default {
   // GENERIC NAMES
@@ -38,6 +38,7 @@ export default {
   // TEXT COLOURS
   TEXT_P: primary.p500,
   TEXT_HIGHLIGHT: secondary.s500,
+  TEXT_KNOWN: special.x400,
 
   // TEXT GREY
   TEXT_L: grey.g400,

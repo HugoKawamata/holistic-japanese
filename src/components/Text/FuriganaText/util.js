@@ -18,6 +18,15 @@ const generateArray = (
   }
   const newCurrentPair = currentPair;
 
+  if (newCurrentPair.text === "　" && newCurrentPair.furigana === "　") {
+    return generateArray(
+      kana.slice(1),
+      text.slice(1),
+      [...pairs, newCurrentPair],
+      { furigana: kana[0], text: text[0] }
+    );
+  }
+
   if (highlightersOpen.includes(newCurrentPair.text[0])) {
     // Next char is closing the highlight for both text and kana
     if (highlightersClosed.includes(text[0])) {
@@ -46,7 +55,7 @@ const generateArray = (
     // Check if next char is different
     // Current pairs match, so we're getting through a stretch of kana
     if (text[0] !== kana[0]) {
-      // Next letter of text different to next letter of kana, abort and start new pair
+      // Next letter of text different to next letter of kana, finish and start new pair
       return generateArray(
         kana.slice(1),
         text.slice(1),
