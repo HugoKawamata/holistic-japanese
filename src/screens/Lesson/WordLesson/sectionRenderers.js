@@ -4,7 +4,9 @@ import { View, Dimensions } from "react-native";
 import Text from "../../../components/Text";
 import TransformText from "../../../components/Text/TransformText";
 import Button from "../../../components/Button";
+import Icon from "../../../components/Icon";
 import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
+import color from "../../../util/color";
 import { getCSVAnswer } from "../util";
 import type { UserAnswer } from "../types";
 import { sharedStyles } from "../styles";
@@ -18,8 +20,13 @@ export const getTopSectionContent = (currentTestable: Testable) => {
       {height > 730 ? (
         <View style={styles.headerWrapper}>
           <Text style={styles.header}>レッスン・Lesson</Text>
+          <Icon color={color.WHITE} name="keyboard-return" size={32} />
         </View>
-      ) : null}
+      ) : (
+        <View style={styles.exitWrapper}>
+          <Icon color={color.WHITE} name="keyboard-return" size={32} />
+        </View>
+      )}
       <View style={styles.questionWrapper}>
         <Text style={styles.question}>{currentTestable.question.text}</Text>
       </View>

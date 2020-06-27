@@ -42,6 +42,17 @@ const styles = StyleSheet.create({
   downChevWrapper: {
     alignItems: "center",
   },
+  exitWrapper: {
+    alignItems: "center",
+    backgroundColor: "rgba(88, 88, 88, 0.2)",
+    borderRadius: 50,
+    height: 45,
+    justifyContent: "center",
+    marginTop: 10,
+    marginLeft: 10,
+    padding: 5,
+    width: 45,
+  },
   questionBubble: {
     alignItems: "center",
     backgroundColor: color.HINT_BG,

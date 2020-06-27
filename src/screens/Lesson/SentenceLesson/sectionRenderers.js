@@ -4,6 +4,8 @@ import { View } from "react-native";
 import Text from "../../../components/Text";
 import FuriganaText from "../../../components/Text/FuriganaText";
 import Button from "../../../components/Button";
+import Icon from "../../../components/Icon";
+import color from "../../../util/color";
 import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import { getCSVAnswer } from "../util";
 import type { UserAnswer } from "../types";
@@ -15,31 +17,38 @@ export const getTopSectionContent = (currentTestable: Testable) => {
     currentTestable.context?.japanese != null &&
     currentTestable.context?.japanese !== "";
   return (
-    <View style={styles.contextWrapper}>
-      <View style={styles.contextBubbleWrapper}>
-        <View style={styles.speakerNameWrapper}>
-          <Text style={styles.speakerName}>
-            {currentTestable.context?.speaker || ""}
-          </Text>
-        </View>
-        <View style={styles.contextBubble}>
-          {hasJapanese ? (
-            <FuriganaText
-              textStyle={styles.contextJapanese}
-              furiStyle={styles.contextFurigana}
-              text={currentTestable.context?.japanese || ""}
-              kana={currentTestable.context?.furigana || ""}
-            />
-          ) : null}
-          {/* If theres no japanese in the context, render the english as big as japanese normally is */}
-          <Text
-            style={hasJapanese ? styles.contextEnglish : styles.contextJapanese}
-          >
-            {currentTestable.context?.english || ""}
-          </Text>
+    <>
+      <View style={styles.exitWrapper}>
+        <Icon color={color.WHITE} name="keyboard-return" size={32} />
+      </View>
+      <View style={styles.contextWrapper}>
+        <View style={styles.contextBubbleWrapper}>
+          <View style={styles.speakerNameWrapper}>
+            <Text style={styles.speakerName}>
+              {currentTestable.context?.speaker || ""}
+            </Text>
+          </View>
+          <View style={styles.contextBubble}>
+            {hasJapanese ? (
+              <FuriganaText
+                textStyle={styles.contextJapanese}
+                furiStyle={styles.contextFurigana}
+                text={currentTestable.context?.japanese || ""}
+                kana={currentTestable.context?.furigana || ""}
+              />
+            ) : null}
+            {/* If theres no japanese in the context, render the english as big as japanese normally is */}
+            <Text
+              style={
+                hasJapanese ? styles.contextEnglish : styles.contextJapanese
+              }
+            >
+              {currentTestable.context?.english || ""}
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
+    </>
   );
 };
 

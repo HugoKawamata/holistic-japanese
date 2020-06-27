@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingRight: 10,
   },
+  exitWrapper: {
+    marginTop: 10,
+    marginLeft: 10,
+  },
   header: {
     color: color.WHITE,
     fontSize: 28,
