@@ -3,7 +3,12 @@ import * as React from "react";
 import { View } from "react-native";
 import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { UserAnswer, Results } from "../types";
-import { getSplitQuestion, hiraganaRomajiMap, getCSVAnswer } from "../util";
+import {
+  getSplitQuestion,
+  hiraganaRomajiMap,
+  getCSVAnswer,
+  getKeyForTestable,
+} from "../util";
 import { sharedStyles } from "../styles";
 import {
   getTopSectionContent,
@@ -82,8 +87,11 @@ export function WordLesson(props: Props) {
         objectId: currentTestable.objectId,
         objectType: "WORD",
         text: currentTestable.question.text,
-        answers: [...results[currentTestable.question.text].answers, csvAnswer],
-        marks: [...results[currentTestable.question.text].marks, mark],
+        answers: [
+          ...results[getKeyForTestable(currentTestable)].answers,
+          csvAnswer,
+        ],
+        marks: [...results[getKeyForTestable(currentTestable)].marks, mark],
       },
     });
   };

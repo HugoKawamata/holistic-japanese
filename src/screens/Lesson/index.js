@@ -24,6 +24,7 @@ import {
   romajiHiraganaMap,
   formatResultsForMutation,
   getQuestionStage,
+  getKeyForTestable,
 } from "./util";
 import type { Results } from "./types";
 import styles from "./styles";
@@ -70,9 +71,15 @@ const initResults = (testables: $ReadOnlyArray<Testable>) => {
       answers: [],
       marks: [],
     };
+    if (testable.objectType === "WORD") {
+      return {
+        ...resultMap,
+        [testable.question.text]: testableResults,
+      };
+    }
     return {
       ...resultMap,
-      [testable.question.text]: testableResults,
+      [`testable-${testable.objectId}`]: testableResults,
     };
   }, {});
 };
@@ -275,7 +282,7 @@ export function LessonScreen(props: Props): Node {
         results[key].objectType === "WORD" && results[key].marks.length > 0
     ).length;
     // Short circuit unless the current testable is one we haven't seen
-    if (results[nextTestable.question.text].marks.length > 0) {
+    if (results[getKeyForTestable(currentTestable)].marks.length > 0) {
       return;
     }
     if (numUniqueQuestionsAnswered === 1) {

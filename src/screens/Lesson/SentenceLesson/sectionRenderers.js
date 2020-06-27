@@ -96,8 +96,8 @@ export const getSentenceQuestion = (currentTestable: Testable) => {
             <FuriganaText
               text={currentTestable.question.text}
               kana={currentTestable.question.furigana}
-              textStyle={styles.questionBubbleText}
-              furiStyle={styles.questionBubbleFurigana}
+              // textStyle={styles.questionBubbleText}
+              // furiStyle={styles.questionBubbleFurigana}
             />
           ) : (
             <Text style={styles.questionBubbleText}>

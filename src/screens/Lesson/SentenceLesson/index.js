@@ -5,7 +5,7 @@ import color from "../../../util/color";
 import Icon from "../../../components/Icon";
 import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { UserAnswer, Results } from "../types";
-import { getSplitQuestion, hiraganaRomajiMap, getCSVAnswer } from "../util";
+import { getKeyForTestable } from "../util";
 import { sharedStyles } from "../styles";
 import {
   getTopSectionContent,
@@ -35,61 +35,37 @@ export function SentenceLesson(props: Props) {
     results,
     userAnswer,
   } = props;
-  const answerRomajiQuestion = () => {
-    const splitQuestion = getSplitQuestion(currentTestable);
-    const csvAnswer = getCSVAnswer(userAnswer);
-    const splitAnswer = csvAnswer.split(",");
-
+  const answerQuestion = () => {
+    const possibleAnswers = currentTestable.answer.text
+      .split("/")
+      .map((ans) => ans.toLowerCase());
+    const cleanUserAnswer = userAnswer["input-0"]
+      .toLowerCase()
+      .replace("’", "")
+      .trim();
     let mark;
-    if (csvAnswer === currentTestable.answer.text) {
-      // Answer is correct!
+
+    if (possibleAnswers.includes(cleanUserAnswer)) {
       props.setCurrentMark("CORRECT");
       mark = "CORRECT";
     } else {
-      // Answer is incorrect!
       props.setCurrentMark("INCORRECT");
       mark = "INCORRECT";
     }
 
-    const characterResults = splitQuestion.reduce(
-      (resultsMap, char: string, index: number) => {
-        return {
-          ...resultsMap,
-          [`char-${char}`]: {
-            objectId: null,
-            objectType: "CHARACTER",
-            text: char,
-            answers: [
-              ...(results[`char-${char}`]?.answers || []),
-              splitAnswer[index],
-            ],
-            marks: [
-              ...(results[`char-${char}`]?.marks || []),
-              splitAnswer[index] === hiraganaRomajiMap[char]
-                ? "CORRECT"
-                : "INCORRECT",
-            ],
-          },
-        };
-      },
-      {}
-    );
-
+    const key: string = getKeyForTestable(currentTestable);
     props.setResults({
       ...results,
-      // $FlowFixMe this is fine, I think it just doesn't like two spreads of inexact literals
-      ...characterResults,
-      [currentTestable.question.text]: {
+      [key]: {
         objectId: currentTestable.objectId,
-        objectType: "WORD",
+        objectType: "TESTABLE",
         text: currentTestable.question.text,
-        answers: [...results[currentTestable.question.text].answers, csvAnswer],
-        marks: [...results[currentTestable.question.text].marks, mark],
+        answers: [...results[key].answers, userAnswer],
+        marks: [...results[key].marks, mark],
       },
     });
   };
 
-  console.log(currentTestable);
   return (
     <>
       <View style={sharedStyles.topSection}>
@@ -107,7 +83,7 @@ export function SentenceLesson(props: Props) {
               currentMark,
               userAnswer,
               goToNextQuestion,
-              answerRomajiQuestion
+              answerQuestion
             )}
           </View>
         </View>

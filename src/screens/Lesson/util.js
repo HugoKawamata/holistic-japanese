@@ -219,6 +219,16 @@ export const hiraganaRomajiMap = {
   っ: "ltsu",
 };
 
+export const getKeyForTestable = (testable: Testable): string => {
+  if (testable.objectType === "TESTABLE") {
+    return `testable-${testable.objectId}`;
+  }
+  if (testable.objectType === "WORD") {
+    return testable.question.text;
+  }
+  return testable.objectId;
+};
+
 export const formatResultsForMutation = (results: Results): Array<Result> =>
   Object.keys(results).map((charKey: string) => results[charKey]);
 
@@ -230,7 +240,7 @@ export const getQuestionStage = (
   currentTestable: Testable,
   results: Results
 ) => {
-  let questionStage = results[currentTestable.question.text].marks.filter(
+  let questionStage = results[getKeyForTestable(currentTestable)].marks.filter(
     (m) => m === "CORRECT"
   ).length;
 
