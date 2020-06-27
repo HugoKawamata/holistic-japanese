@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 10,
     padding: 5,
+    position: "absolute",
     width: 45,
   },
   questionBubble: {
