@@ -16,6 +16,7 @@ import {
   getHint,
   getButton,
 } from "./sectionRenderers";
+import styles from "./styles";
 
 type Props = {|
   children: React.Node, // Children is always the answer field node
@@ -102,17 +103,19 @@ export function WordLesson(props: Props) {
         {/* <ProgressBar testables={lesson.testables} results={results} /> */}
         {getTopSectionContent(currentTestable)}
       </View>
-      <View style={sharedStyles.bottomSection}>
-        {getHint(questionStage, currentTestable, currentMark)}
-        {getAnswerSection(currentTestable, children)}
-        <View style={sharedStyles.buttonSection}>
-          <View style={sharedStyles.buttonWrapper}>
-            {getButton(
-              currentMark,
-              userAnswer,
-              goToNextQuestion,
-              answerRomajiQuestion
-            )}
+      <View style={styles.bottomSectionBackground}>
+        <View style={sharedStyles.bottomSection}>
+          {getHint(questionStage, currentTestable, currentMark)}
+          {getAnswerSection(currentTestable, children)}
+          <View style={sharedStyles.buttonSection}>
+            <View style={sharedStyles.buttonWrapper}>
+              {getButton(
+                currentMark,
+                userAnswer,
+                goToNextQuestion,
+                answerRomajiQuestion
+              )}
+            </View>
           </View>
         </View>
       </View>

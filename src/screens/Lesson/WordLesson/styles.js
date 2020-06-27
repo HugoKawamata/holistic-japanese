@@ -4,6 +4,9 @@ import color from "../../../util/color";
 import { fontSize } from "../../../util/font";
 
 const styles = StyleSheet.create({
+  bottomSectionBackground: {
+    backgroundColor: color.KANA_Q_BG,
+  },
   emoji: {
     fontSize: fontSize.questionEmoji,
   },
@@ -28,6 +31,12 @@ const styles = StyleSheet.create({
   questionWrapper: {
     alignItems: "stretch",
     justifyContent: "center",
+    flexGrow: 1,
+  },
+  topSectionInterior: {
+    backgroundColor: color.KANA_Q_BG,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     flexGrow: 1,
   },
 });

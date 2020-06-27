@@ -380,6 +380,7 @@ export function LessonScreen(props: Props): Node {
       >
         <ImageBackground
           style={styles.backgroundImage}
+          imageStyle={styles.backgroundImage}
           source={getBackgroundImage(currentTestable.context?.location)}
         >
           {["KANA_WORD", "J_WORD"].includes(currentTestable.question.type) ? (

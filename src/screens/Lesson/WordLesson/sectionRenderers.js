@@ -14,7 +14,7 @@ const { height } = Dimensions.get("window");
 
 export const getTopSectionContent = (currentTestable: Testable) => {
   return (
-    <>
+    <View style={styles.topSectionInterior}>
       {height > 730 ? (
         <View style={styles.headerWrapper}>
           <Text style={styles.header}>レッスン・Lesson</Text>
@@ -23,7 +23,7 @@ export const getTopSectionContent = (currentTestable: Testable) => {
       <View style={styles.questionWrapper}>
         <Text style={styles.question}>{currentTestable.question.text}</Text>
       </View>
-    </>
+    </View>
   );
 };
 

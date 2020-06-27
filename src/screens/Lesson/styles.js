@@ -23,7 +23,7 @@ export const sharedStyles = StyleSheet.create({
     flexGrow: 3,
     justifyContent: "flex-end",
     // marginTop: 20,
-    paddingTop: 40,
+    paddingTop: 30,
     paddingBottom: 10,
     width: "100%",
   },
@@ -86,6 +86,8 @@ const myStyles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     alignItems: "stretch",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     justifyContent: "center",
   },
   correction: {
@@ -97,7 +99,6 @@ const myStyles = StyleSheet.create({
   },
   lessonScreenWrapper: {
     alignItems: "stretch",
-    backgroundColor: color.KANA_Q_BG,
     justifyContent: "flex-end",
     flexDirection: "column",
     flexGrow: 1,
