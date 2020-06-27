@@ -219,6 +219,12 @@ export const hiraganaRomajiMap = {
   っ: "ltsu",
 };
 
+// This is so that if the user types "n" for anything other than "ん", it doesn't
+// move the ref to the next text input field
+export const nChecker = (lowerText: string, charRomaji: string) => {
+  return (lowerText === "n" && charRomaji === "n") || lowerText !== "n";
+};
+
 export const getKeyForTestable = (testable: Testable): string => {
   if (testable.objectType === "TESTABLE") {
     return `testable-${testable.objectId}`;

@@ -25,6 +25,7 @@ import {
   formatResultsForMutation,
   getQuestionStage,
   getKeyForTestable,
+  nChecker,
 } from "./util";
 import type { Results } from "./types";
 import styles from "./styles";
@@ -189,7 +190,10 @@ export function LessonScreen(props: Props): Node {
             value={userAnswer[`input-${i}`]}
             onChangeText={(text) => {
               const lowerText = text.toLowerCase();
-              if (Object.keys(romajiHiraganaMap).includes(lowerText)) {
+              if (
+                Object.keys(romajiHiraganaMap).includes(lowerText) &&
+                nChecker(lowerText, charRomaji)
+              ) {
                 const soundFile = `${lowerText}.mp3`;
                 const charSound = new Sound(
                   soundFile,
@@ -282,7 +286,7 @@ export function LessonScreen(props: Props): Node {
         results[key].objectType === "WORD" && results[key].marks.length > 0
     ).length;
     // Short circuit unless the current testable is one we haven't seen
-    if (results[getKeyForTestable(currentTestable)].marks.length > 0) {
+    if (results[getKeyForTestable(nextTestable)].marks.length > 0) {
       return;
     }
     if (numUniqueQuestionsAnswered === 1) {
