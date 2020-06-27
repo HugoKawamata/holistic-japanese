@@ -22,11 +22,15 @@ const generateArray = (
     // Next char is closing the highlight for both text and kana
     if (highlightersClosed.includes(text[0])) {
       if (text[0] === kana[0]) {
+        newCurrentPair.text += text[0];
+        newCurrentPair.furigana += kana[0];
         return generateArray(
-          kana.slice(1),
-          text.slice(1),
+          kana.slice(2),
+          text.slice(2),
           [...pairs, newCurrentPair],
-          { furigana: kana[0], text: text[0] }
+          // It's possible we overshoot here, since we dont know two chars ahead
+          // so we default to empty string
+          { furigana: kana[1] || "", text: text[1] || "" }
         );
       }
       // Next char closes text highlight, but there are still more kana

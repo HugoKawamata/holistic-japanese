@@ -6,6 +6,7 @@ import Text from "..";
 
 type Props = {|
   children: string,
+  noWrapper?: ?boolean, // For single word transforms
   style: typeof StyleSheet | Array<?typeof StyleSheet>,
 |};
 
@@ -106,8 +107,12 @@ const splitOnTransformable = (text, style) => {
 };
 
 export default function TransformText(props: Props): React.Node {
-  const { children, style } = props;
+  const { children, noWrapper, style } = props;
   const textBlocks = splitOnTransformable(children, style);
+
+  if (noWrapper) {
+    return <NativeText>{textBlocks}</NativeText>;
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -115,3 +120,7 @@ export default function TransformText(props: Props): React.Node {
     </View>
   );
 }
+
+TransformText.defaultProps = {
+  noWrapper: false,
+};
