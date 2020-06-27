@@ -6,7 +6,7 @@ import Text from "..";
 
 type Props = {|
   children: string,
-  style: typeof StyleSheet,
+  style: typeof StyleSheet | Array<?typeof StyleSheet>,
 |};
 
 const styles = StyleSheet.create({
@@ -28,13 +28,34 @@ const styles = StyleSheet.create({
   },
 });
 
+const getCloseChar = (transformableType, style) => {
+  switch (transformableType) {
+    case '"': // For English, purple and bold
+      return '"';
+    case "_": // Italics, normal color
+      return "_";
+    case "*": // Bold, normal color
+      return "*";
+    case "(": // Particles in Japanese
+      return ")";
+    case "[": // Known words in Japanese
+      return "]";
+    default:
+      return style;
+  }
+};
+
 const getStyle = (transformableType, style) => {
   switch (transformableType) {
-    case '"':
+    case '"': // For English, purple and bold
       return [style, styles.highlight];
-    case "_":
+    case "_": // Italics, normal color
       return [style, styles.italic];
-    case "*":
+    case "*": // Bold, normal color
+      return [style, styles.bold];
+    case "(": // Particles in Japanese
+      return [style, styles.bold];
+    case "[": // Known words in Japanese
       return [style, styles.bold];
     default:
       return style;
@@ -42,12 +63,12 @@ const getStyle = (transformableType, style) => {
 };
 
 const splitOnTransformable = (text, style) => {
-  const transformableChars = ['"', "_", "*"];
+  const transformableChars = ['"', "_", "*", "(", "["];
   let currentString = "";
   const components = [];
   for (let i = 0; i < text.length; i += 1) {
     if (transformableChars.includes(currentString[0])) {
-      if (text[i] === currentString[0]) {
+      if (text[i] === getCloseChar(currentString[0])) {
         components.push(
           <Text key={i} style={getStyle(currentString[0], style)}>
             {currentString.slice(1)}

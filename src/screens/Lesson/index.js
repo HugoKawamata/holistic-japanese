@@ -104,7 +104,24 @@ export function LessonScreen(props: Props): Node {
   if (lesson.testables == null) {
     throw new Error("Lesson does not exist");
   }
-  const testables = lesson.testables.filter(Boolean);
+  const testables = lesson.testables.filter(Boolean).sort((a, b) => {
+    if (a.orderInLesson != null && b.orderInLesson != null) {
+      if (a.orderInLesson < b.orderInLesson) {
+        return -1;
+      }
+      if (a.orderInLesson > b.orderInLesson) {
+        return 1;
+      }
+      return 0;
+    }
+    if (a.objectId < b.objectId) {
+      return -1;
+    }
+    if (a.objectId > b.objectId) {
+      return 1;
+    }
+    return 0;
+  });
 
   if (testables.length < 2) {
     throw new Error("Lesson is too short.");

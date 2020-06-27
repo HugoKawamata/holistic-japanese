@@ -1,9 +1,8 @@
 /* @flow */
 import React, { type Node } from "react";
-import { View, Dimensions } from "react-native";
+import { View } from "react-native";
 import Text from "../../../components/Text";
 import FuriganaText from "../../../components/Text/FuriganaText";
-import TransformText from "../../../components/Text/TransformText";
 import Button from "../../../components/Button";
 import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import { getCSVAnswer } from "../util";

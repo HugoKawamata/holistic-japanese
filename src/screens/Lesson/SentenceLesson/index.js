@@ -89,6 +89,7 @@ export function SentenceLesson(props: Props) {
     });
   };
 
+  console.log(currentTestable);
   return (
     <>
       <View style={sharedStyles.topSection}>

@@ -54,6 +54,7 @@ const AVAILABLE_LESSONS_QUERY = gql`
             objectId
             objectType
             wordId
+            orderInLesson
             context {
               person
               location
