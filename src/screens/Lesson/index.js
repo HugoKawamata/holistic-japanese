@@ -371,6 +371,7 @@ export function LessonScreen(props: Props): Node {
       </SafeAreaView>
     );
   }
+  console.log(results);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
