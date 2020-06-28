@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     padding: 5,
     position: "absolute",
     width: 45,
+    zIndex: 1,
   },
   questionBubble: {
     // alignItems: "center",
