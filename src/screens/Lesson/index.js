@@ -16,6 +16,7 @@ import { type State as StoreState } from "../../store/types/store";
 import Text from "../../components/Text";
 import color from "../../util/color";
 import type {
+  AvailableLessons_user_splots as Splots,
   AvailableLessons_user_availableCourses_availableLessons as Lesson,
   AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
 } from "../Learn/__generated__/AvailableLessons";
@@ -55,6 +56,7 @@ type OwnProps = {|
       lesson: Lesson,
       refetch: () => {},
       userId: string,
+      splots: Splots,
     },
   },
 |};
@@ -63,6 +65,7 @@ type Props = {|
   ...OwnProps,
   lesson: Lesson,
   refetch: () => {},
+  splots: Splots,
   userId: string,
 |};
 
@@ -90,7 +93,7 @@ export const getBackgroundImage = (location: ?string) => {
 };
 
 export function LessonScreen(props: Props): Node {
-  const { lesson, userId, navigation } = props;
+  const { lesson, userId, navigation, splots } = props;
   const isKanaLesson = lesson.id !== "OTHER";
   navigation.setOptions({
     title: isKanaLesson ? "" : "レッスン・Lesson", // If kana lesson, we show the title in the topSection
@@ -313,7 +316,33 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const goToNextQuestion = () => {
+  const nextQuestion = () => {
+    // This is not the final question
+    if (testableQueue.length > 1) {
+      const nextTestable = testableQueue[1];
+      setTestableQueue(
+        [
+          ...testableQueue.slice(1),
+          unqueuedTestables.length > 0 ? unqueuedTestables[0] : null,
+        ].filter(Boolean)
+      );
+
+      // Remove the new testable from the untested queue, if it exists
+      if (unqueuedTestables.length > 0) {
+        setUnqueuedTestables(unqueuedTestables.slice(1));
+      }
+
+      setCurrentMark(null);
+      setUserAnswer({});
+
+      // If we have any midroll lectures that need to appear, show them
+      showMidrollLecture(nextTestable);
+    } else {
+      goToVictoryScreen();
+    }
+  };
+
+  const nextQuestionKanaLesson = () => {
     // Question stage here may be bumped up 1 by the current result, since this happens after the user answers.
     const nextTimeQuestionStage = getQuestionStage(currentTestable, results);
     // If this is not the final question
@@ -371,7 +400,6 @@ export function LessonScreen(props: Props): Node {
       </SafeAreaView>
     );
   }
-  console.log(results);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -388,7 +416,11 @@ export function LessonScreen(props: Props): Node {
             <WordLesson
               currentMark={currentMark}
               currentTestable={currentTestable}
-              goToNextQuestion={goToNextQuestion}
+              goToNextQuestion={
+                ["HIRAGANA", "KATAKANA"].includes(lesson.id)
+                  ? nextQuestionKanaLesson
+                  : nextQuestion
+              }
               questionStage={questionStage}
               results={results}
               setCurrentMark={setCurrentMark}
@@ -401,10 +433,11 @@ export function LessonScreen(props: Props): Node {
             <SentenceLesson
               currentMark={currentMark}
               currentTestable={currentTestable}
-              goToNextQuestion={goToNextQuestion}
+              goToNextQuestion={nextQuestion}
               results={results}
               setCurrentMark={setCurrentMark}
               setResults={setResults}
+              splots={splots}
               userAnswer={userAnswer}
             >
               {getAnswerFields()}
@@ -421,6 +454,7 @@ function mapStateToProps(state: StoreState, ownProps: OwnProps) {
     refetch: ownProps.route?.params?.refetch || null,
     lesson: ownProps.route?.params?.lesson || null,
     userId: ownProps.route?.params?.userId || null,
+    splots: ownProps.route?.params?.splots || null,
   };
 }
 

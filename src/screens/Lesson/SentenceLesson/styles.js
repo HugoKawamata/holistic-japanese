@@ -31,6 +31,12 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     marginHorizontal: 16,
   },
+  contextFurigana: {
+    fontSize: fontSize.smallish,
+  },
+  contextEnglish: {
+    fontSize: fontSize.smallish,
+  },
   contextJapanese: {
     fontSize: fontSize.regular,
   },
@@ -55,13 +61,14 @@ const styles = StyleSheet.create({
     width: 45,
   },
   questionBubble: {
-    alignItems: "center",
+    // alignItems: "center",
     backgroundColor: color.HINT_BG,
     borderRadius: 16,
     paddingHorizontal: 16,
     paddingVertical: 20,
     marginTop: 14,
   },
+  questionBubbleText: {},
   questionBubbleWrapper: {
     alignItems: "stretch",
     flexGrow: 1,
@@ -69,6 +76,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     width: "100%",
   },
+  sentenceQuestionWrapper: {},
   speakerName: {
     fontSize: fontSize.hint,
     flexShrink: 1,

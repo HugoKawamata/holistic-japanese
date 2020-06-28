@@ -3,7 +3,10 @@ import * as React from "react";
 import { View } from "react-native";
 import color from "../../../util/color";
 import Icon from "../../../components/Icon";
-import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
+import type {
+  AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
+  AvailableLessons_user_splots as Splots,
+} from "../../Learn/__generated__/AvailableLessons";
 import type { UserAnswer, Results } from "../types";
 import { getKeyForTestable } from "../util";
 import { sharedStyles } from "../styles";
@@ -23,6 +26,7 @@ type Props = {|
   results: Results,
   setCurrentMark: ("CORRECT" | "INCORRECT" | null | typeof undefined) => void,
   setResults: (Results) => void,
+  splots: Splots,
   userAnswer: UserAnswer,
 |};
 
@@ -35,17 +39,41 @@ export function SentenceLesson(props: Props) {
     results,
     userAnswer,
   } = props;
-  const answerQuestion = () => {
-    const possibleAnswers = currentTestable.answer.text
-      .split("/")
-      .map((ans) => ans.toLowerCase());
-    const cleanUserAnswer = userAnswer["input-0"]
+  const addSplotsToAnswers = (answer: string) => {
+    let formatted = answer;
+    if (props.splots.me != null) {
+      formatted = formatted.replace("{me}", props.splots.me);
+    }
+    if (props.splots.meFuri != null) {
+      formatted = formatted.replace("{me_furi}", props.splots.meFuri);
+    }
+    return formatted;
+  };
+
+  const cleanPossibleAnswers = (possibleAnswers: Array<string>) => {
+    return possibleAnswers.map((possibleAnswer) => {
+      return addSplotsToAnswers(
+        // eslint-disable-next-line no-irregular-whitespace
+        possibleAnswer.replace(/[.()　]/g, "").toLowerCase()
+      );
+    });
+  };
+
+  const cleanUserAnswer = (answer: string) => {
+    return answer
       .toLowerCase()
-      .replace("’", "")
+      .replace(/[’.!?]/, "")
       .trim();
+  };
+
+  const answerQuestion = () => {
+    const possibleAnswers = cleanPossibleAnswers(
+      currentTestable.answer.text.split("/")
+    );
+    const cleanedAnswer = cleanUserAnswer(userAnswer["input-0"]);
     let mark;
 
-    if (possibleAnswers.includes(cleanUserAnswer)) {
+    if (possibleAnswers.includes(cleanedAnswer)) {
       props.setCurrentMark("CORRECT");
       mark = "CORRECT";
     } else {

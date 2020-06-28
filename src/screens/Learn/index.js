@@ -14,6 +14,7 @@ import { fontSize } from "../../util/font";
 import type {
   AvailableLessons as TAvailableLessonsQuery,
   AvailableLessons_user_availableCourses_availableLessons as Lesson,
+  AvailableLessons_user_splots as Splots,
 } from "./__generated__/AvailableLessons";
 
 const AVAILABLE_LESSONS_QUERY = gql`
@@ -78,6 +79,10 @@ const AVAILABLE_LESSONS_QUERY = gql`
             introduction
           }
         }
+      }
+      splots {
+        me
+        meFuri
       }
     }
   }
@@ -152,11 +157,17 @@ export function LearnScreen(props: Props): Node {
     props.navigation.push("Completed Lessons");
   };
 
-  const startLesson = (userId: string, lesson: Lesson, refetch: () => {}) => {
+  const startLesson = (
+    userId: string,
+    lesson: Lesson,
+    refetch: () => {},
+    splots: Splots
+  ) => {
     props.navigation.push("Lesson", {
       lesson,
       userId,
       refetch,
+      splots,
     });
   };
 
@@ -210,7 +221,8 @@ export function LearnScreen(props: Props): Node {
                         smallText: `${Duration.fromMillis(
                           lesson.timeEstimate * 1000
                         ).toFormat("m 'min'")}・${lesson.skillLevel}`,
-                        onPress: () => startLesson(user.id, lesson, refetch),
+                        onPress: () =>
+                          startLesson(user.id, lesson, refetch, user.splots),
                       }))
                       .concat(
                         course.nextUnlockLessons.map((lesson) => ({

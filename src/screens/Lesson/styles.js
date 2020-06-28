@@ -121,6 +121,7 @@ const myStyles = StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 0,
     paddingTop: 5,
+    minHeight: 50,
     minWidth: 50,
     maxWidth: 70,
     textAlign: "center",
