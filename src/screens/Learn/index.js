@@ -18,8 +18,8 @@ import type {
 } from "./__generated__/AvailableLessons";
 
 const AVAILABLE_LESSONS_QUERY = gql`
-  query AvailableLessons($email: String!) {
-    user(email: $email) {
+  query AvailableLessons {
+    me {
       id
       createdAt
       nextUnlockCourses {
@@ -184,21 +184,16 @@ export function LearnScreen(props: Props): Node {
           return null; // TODO: loading state
         }
 
-        if (
-          error != null ||
-          !data ||
-          !data.user ||
-          !data.user.availableCourses
-        ) {
+        if (error != null || !data || !data.me || !data.me.availableCourses) {
           return null; // TODO: error state
         }
 
-        const { user } = data;
-        const courses = data.user.availableCourses;
-        const { nextUnlockCourses } = data.user;
+        const { me } = data;
+        const courses = data.me.availableCourses;
+        const { nextUnlockCourses } = data.me;
 
-        // If the user was created less than 5 minutes ago, show the introduction
-        if (+new Date() - user.createdAt < 3600 * 5) {
+        // If the me was created less than 5 minutes ago, show the introduction
+        if (+new Date() - me.createdAt < 60 * 1000 * 5) {
           props.navigation.push("Introduction");
         }
 
@@ -222,7 +217,7 @@ export function LearnScreen(props: Props): Node {
                           lesson.timeEstimate * 1000
                         ).toFormat("m 'min'")}・${lesson.skillLevel}`,
                         onPress: () =>
-                          startLesson(user.id, lesson, refetch, user.splots),
+                          startLesson(me.id, lesson, refetch, me.splots),
                       }))
                       .concat(
                         course.nextUnlockLessons.map((lesson) => ({

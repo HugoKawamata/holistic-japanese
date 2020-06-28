@@ -15,8 +15,8 @@ import type {
 } from "./__generated__/CompletedLessons";
 
 const COMPLETED_LESSONS_QUERY = gql`
-  query CompletedLessons($email: String!) {
-    user(email: $email) {
+  query CompletedLessons {
+    me {
       id
       completedCourses {
         id
@@ -147,17 +147,12 @@ export function CompletedLessonsScreen(props: Props): Node {
           return null; // TODO: loading state
         }
 
-        if (
-          error != null ||
-          !data ||
-          !data.user ||
-          !data.user.availableCourses
-        ) {
+        if (error != null || !data || !data.me || !data.me.availableCourses) {
           return null; // TODO: error state
         }
 
-        const { user } = data;
-        const { availableCourses, completedCourses } = data.user;
+        const { me } = data;
+        const { availableCourses, completedCourses } = data.me;
 
         return (
           <View style={styles.root}>
@@ -176,7 +171,7 @@ export function CompletedLessonsScreen(props: Props): Node {
                       key: lesson.id,
                       bigText: lesson.title,
                       smallText: "5 min・Beginner",
-                      onPress: () => startLesson(user.id, lesson),
+                      onPress: () => startLesson(me.id, lesson),
                     }))}
                   />
                 );
