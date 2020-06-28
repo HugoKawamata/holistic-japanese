@@ -14,6 +14,8 @@ import { connect } from "react-redux";
 import Sound from "react-native-sound";
 import { type State as StoreState } from "../../store/types/store";
 import Text from "../../components/Text";
+import Button from "../../components/Button";
+import OverlayModal from "../../components/OverlayModal";
 import color from "../../util/color";
 import type {
   AvailableLessons_user_splots as Splots,
@@ -156,6 +158,8 @@ export function LessonScreen(props: Props): Node {
   const [currentMark, setCurrentMark] = useState(null); // Result is null if question not answered yet
 
   const [inputRefs, setInputRefs] = useState([]);
+
+  const [exitModalVisible, setExitModalVisible] = useState(false);
 
   const [addLessonResults] = useMutation(SEND_RESULTS);
 
@@ -421,6 +425,7 @@ export function LessonScreen(props: Props): Node {
                   ? nextQuestionKanaLesson
                   : nextQuestion
               }
+              setExitModalVisible={setExitModalVisible}
               questionStage={questionStage}
               results={results}
               setCurrentMark={setCurrentMark}
@@ -434,6 +439,7 @@ export function LessonScreen(props: Props): Node {
               currentMark={currentMark}
               currentTestable={currentTestable}
               goToNextQuestion={nextQuestion}
+              setExitModalVisible={setExitModalVisible}
               results={results}
               setCurrentMark={setCurrentMark}
               setResults={setResults}
@@ -445,6 +451,33 @@ export function LessonScreen(props: Props): Node {
           )}
         </ImageBackground>
       </KeyboardAvoidingView>
+      <OverlayModal
+        closeModal={() => setExitModalVisible(false)}
+        title={
+          <Text style={styles.exitModalTitle}>
+            Are you sure you want to quit?
+          </Text>
+        }
+        visible={exitModalVisible}
+      >
+        <Text>You'll lose all your progress so far.</Text>
+        <View style={styles.exitModalBottom}>
+          <View style={styles.modalButtonWrapper}>
+            <Button
+              theme="primary_ghost"
+              onPress={() => {
+                setExitModalVisible(false);
+                props.navigation.navigate("Learn");
+              }}
+            >
+              <Text style={styles.buttonQuit}>Quit Lesson</Text>
+            </Button>
+          </View>
+          <Button theme="secondary" onPress={() => setExitModalVisible(false)}>
+            <Text style={styles.buttonContinue}>Continue Lesson</Text>
+          </Button>
+        </View>
+      </OverlayModal>
     </SafeAreaView>
   );
 }

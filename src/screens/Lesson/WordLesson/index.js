@@ -23,6 +23,7 @@ type Props = {|
   currentMark: ?("CORRECT" | "INCORRECT"),
   currentTestable: Testable,
   goToNextQuestion: () => void,
+  setExitModalVisible: (boolean) => void,
   questionStage: number,
   results: Results,
   setCurrentMark: ("CORRECT" | "INCORRECT" | null | typeof undefined) => void,
@@ -36,6 +37,7 @@ export function WordLesson(props: Props) {
     currentMark,
     currentTestable,
     goToNextQuestion,
+    setExitModalVisible,
     questionStage,
     results,
     userAnswer,
@@ -101,7 +103,7 @@ export function WordLesson(props: Props) {
     <>
       <View style={sharedStyles.topSection}>
         {/* <ProgressBar testables={lesson.testables} results={results} /> */}
-        {getTopSectionContent(currentTestable)}
+        {getTopSectionContent(currentTestable, setExitModalVisible)}
       </View>
       <View style={styles.bottomSectionBackground}>
         <View style={sharedStyles.bottomSection}>

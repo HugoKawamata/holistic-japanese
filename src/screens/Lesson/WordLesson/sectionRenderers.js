@@ -1,6 +1,6 @@
 /* @flow */
 import React, { type Node } from "react";
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, TouchableOpacity } from "react-native";
 import Text from "../../../components/Text";
 import TransformText from "../../../components/Text/TransformText";
 import Button from "../../../components/Button";
@@ -14,18 +14,26 @@ import styles from "./styles";
 
 const { height } = Dimensions.get("window");
 
-export const getTopSectionContent = (currentTestable: Testable) => {
+export const getTopSectionContent = (
+  currentTestable: Testable,
+  setExitModalVisible: (boolean) => void
+) => {
   return (
     <View style={styles.topSectionInterior}>
       {height > 730 ? (
         <View style={styles.headerWrapper}>
           <Text style={styles.header}>レッスン・Lesson</Text>
-          <Icon color={color.WHITE} name="keyboard-return" size={32} />
+          <TouchableOpacity onPress={() => setExitModalVisible(true)}>
+            <Icon color={color.WHITE} name="keyboard-return" size={32} />
+          </TouchableOpacity>
         </View>
       ) : (
-        <View style={styles.exitWrapper}>
+        <TouchableOpacity
+          style={styles.exitWrapper}
+          onPress={() => setExitModalVisible(true)}
+        >
           <Icon color={color.WHITE} name="keyboard-return" size={32} />
-        </View>
+        </TouchableOpacity>
       )}
       <View style={styles.questionWrapper}>
         <Text style={styles.question}>{currentTestable.question.text}</Text>

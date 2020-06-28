@@ -90,9 +90,24 @@ const myStyles = StyleSheet.create({
     borderTopRightRadius: 30,
     justifyContent: "center",
   },
+  buttonContinue: {
+    color: color.WHITE,
+    fontWeight: "bold",
+  },
+  buttonQuit: {
+    color: color.TEXT_P,
+  },
   correction: {
     fontSize: fontSize.answerSingleChar,
     textAlign: "center",
+  },
+  exitModalBottom: {
+    alignItems: "center",
+    flexGrow: 1,
+    justifyContent: "flex-end",
+  },
+  exitModalTitle: {
+    fontSize: fontSize.title,
   },
   incorrectAnswerField: {
     backgroundColor: color.INCORRECT_INPUT_BG,
@@ -102,6 +117,10 @@ const myStyles = StyleSheet.create({
     justifyContent: "flex-end",
     flexDirection: "column",
     flexGrow: 1,
+  },
+  modalButtonWrapper: {
+    alignItems: "center",
+    marginBottom: 20,
   },
   regularAnswerField: {
     ...answerFieldCommon,

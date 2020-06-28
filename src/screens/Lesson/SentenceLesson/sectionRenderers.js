@@ -1,6 +1,6 @@
 /* @flow */
 import React, { type Node } from "react";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import Text from "../../../components/Text";
 import FuriganaText from "../../../components/Text/FuriganaText";
 import Button from "../../../components/Button";
@@ -12,15 +12,21 @@ import type { UserAnswer } from "../types";
 import { sharedStyles } from "../styles";
 import styles from "./styles";
 
-export const getTopSectionContent = (currentTestable: Testable) => {
+export const getTopSectionContent = (
+  currentTestable: Testable,
+  setExitModalVisible: (boolean) => void
+) => {
   const hasJapanese =
     currentTestable.context?.japanese != null &&
     currentTestable.context?.japanese !== "";
   return (
     <>
-      <View style={styles.exitWrapper}>
+      <TouchableOpacity
+        style={styles.exitWrapper}
+        onPress={() => setExitModalVisible(true)}
+      >
         <Icon color={color.WHITE} name="keyboard-return" size={32} />
-      </View>
+      </TouchableOpacity>
       <View style={styles.contextWrapper}>
         <View style={styles.contextBubbleWrapper}>
           <View style={styles.speakerNameWrapper}>

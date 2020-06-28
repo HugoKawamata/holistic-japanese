@@ -23,6 +23,7 @@ type Props = {|
   currentMark: ?("CORRECT" | "INCORRECT"),
   currentTestable: Testable,
   goToNextQuestion: () => void,
+  setExitModalVisible: (boolean) => void,
   results: Results,
   setCurrentMark: ("CORRECT" | "INCORRECT" | null | typeof undefined) => void,
   setResults: (Results) => void,
@@ -36,6 +37,7 @@ export function SentenceLesson(props: Props) {
     currentMark,
     currentTestable,
     goToNextQuestion,
+    setExitModalVisible,
     results,
     userAnswer,
   } = props;
@@ -97,7 +99,7 @@ export function SentenceLesson(props: Props) {
   return (
     <>
       <View style={sharedStyles.topSection}>
-        {getTopSectionContent(currentTestable)}
+        {getTopSectionContent(currentTestable, setExitModalVisible)}
       </View>
       <View style={styles.bottomSection}>
         {getSentenceQuestion(currentTestable)}

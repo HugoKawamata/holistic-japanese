@@ -193,11 +193,11 @@ export function LearnScreen(props: Props): Node {
         const { nextUnlockCourses } = data.me;
 
         // If the me was created less than 5 minutes ago, show the introduction
-        // if (+new Date() - me.createdAt < 60 * 1000 * 5) {
-        props.navigation.push("Introduction", {
-          refetch,
-        });
-        // }
+        if (+new Date() - me.createdAt < 60 * 1000 * 5) {
+          props.navigation.push("Introduction", {
+            refetch,
+          });
+        }
 
         return (
           <View style={styles.root}>
