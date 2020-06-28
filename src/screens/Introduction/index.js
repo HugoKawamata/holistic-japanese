@@ -73,20 +73,27 @@ const styles = StyleSheet.create({
 
 const SEND_GENDER = gql`
   mutation sendGender($userEmail: String!, $gender: String!) {
-    sendGender(userId: $userEmail, gender: $gender) {
-      me {
-        gender
-        splots {
-          me
-          meFuri
-        }
+    sendGender(userEmail: $userEmail, gender: $gender) {
+      gender
+      splots {
+        me
+        meFuri
       }
     }
   }
 `;
 
+type OwnProps = {|
+  route: {
+    params: {
+      refetch: () => {},
+    },
+  },
+|};
+
 type Props = {|
   navigation: any, // eslint-disable-line flowtype/no-weak-types
+  refetch: () => {},
   userEmail: string,
 |};
 
@@ -138,7 +145,7 @@ const introduction = [
 ];
 
 export function IntroductionScreen(props: Props) {
-  const { userEmail } = props;
+  const { refetch, userEmail } = props;
   const [pageNumber, setPageNumber] = useState(0);
   const [sendGender] = useMutation(SEND_GENDER);
 
@@ -155,7 +162,13 @@ export function IntroductionScreen(props: Props) {
   const getButton = (type: "start" | "gender" | "next") => {
     if (type === "start") {
       return (
-        <Button theme="primary" onPress={next}>
+        <Button
+          theme="primary"
+          onPress={() => {
+            refetch();
+            next();
+          }}
+        >
           <FuriganaText
             furiStyle={styles.buttonText}
             textStyle={styles.buttonText}
@@ -174,9 +187,11 @@ export function IntroductionScreen(props: Props) {
               theme="primary"
               onPress={() =>
                 sendGender({
-                  userEmail,
-                  gender: "F",
-                }).then(() => next)
+                  variables: {
+                    userEmail,
+                    gender: "F",
+                  },
+                }).then(() => next())
               }
             >
               <Text style={styles.buttonText}>Female</Text>
@@ -187,9 +202,11 @@ export function IntroductionScreen(props: Props) {
               theme="secondary"
               onPress={() =>
                 sendGender({
-                  userEmail,
-                  gender: "F",
-                }).then(() => next)
+                  variables: {
+                    userEmail,
+                    gender: "F",
+                  },
+                }).then(() => next())
               }
             >
               <Text style={styles.buttonText}>Male</Text>
@@ -200,9 +217,11 @@ export function IntroductionScreen(props: Props) {
               theme="tertiary"
               onPress={() =>
                 sendGender({
-                  userEmail,
-                  gender: "F",
-                }).then(() => next)
+                  variables: {
+                    userEmail,
+                    gender: "F",
+                  },
+                }).then(() => next())
               }
             >
               <Text style={styles.buttonText}>Other/Rather not say</Text>
@@ -268,9 +287,10 @@ export function IntroductionScreen(props: Props) {
   );
 }
 
-function mapStateToProps(state: StoreState) {
+function mapStateToProps(state: StoreState, ownProps: OwnProps) {
   return {
     userEmail: state.user.user?.email,
+    refetch: ownProps.route?.params?.refetch || null,
   };
 }
 
