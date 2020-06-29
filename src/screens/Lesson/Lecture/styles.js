@@ -3,6 +3,20 @@ import { StyleSheet } from "react-native";
 import color from "../../../util/color";
 
 const styles = StyleSheet.create({
+  lectureBackButtonWrapper: {
+    flexShrink: 3,
+  },
+  lectureNextButtonWrapper: {
+    flexShrink: 1,
+  },
+  lectureButtonSection: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingTop: 40,
+    paddingBottom: 20,
+    width: "100%",
+  },
   lectureImageWrapper: {
     backgroundColor: "#242222",
     borderBottomColor: "#B77940",
@@ -24,7 +38,7 @@ const styles = StyleSheet.create({
   },
   lectureScreenWrapper: {
     alignItems: "center",
-    backgroundColor: color.KANA_Q_BG,
+    backgroundColor: color.WHITE,
     flexGrow: 1,
     justifyContent: "center",
   },
@@ -33,6 +47,12 @@ const styles = StyleSheet.create({
     paddingBottom: 34,
     paddingHorizontal: 20,
     textAlign: "center",
+  },
+  noLectureBackButton: {
+    opacity: 0,
+  },
+  redButtonText: {
+    color: color.PRIMARY,
   },
 });
 

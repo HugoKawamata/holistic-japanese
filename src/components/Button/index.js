@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
+    justifyContent: "center",
   },
   buttonWrapper: {
     alignItems: "center",

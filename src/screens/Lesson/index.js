@@ -18,9 +18,9 @@ import Button from "../../components/Button";
 import OverlayModal from "../../components/OverlayModal";
 import color from "../../util/color";
 import type {
-  AvailableLessons_user_splots as Splots,
-  AvailableLessons_user_availableCourses_availableLessons as Lesson,
-  AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
+  AvailableLessons_me_splots as Splots,
+  AvailableLessons_me_availableCourses_availableLessons as Lesson,
+  AvailableLessons_me_availableCourses_availableLessons_testables as Testable,
 } from "../Learn/__generated__/AvailableLessons";
 import {
   possibleSokuon,
@@ -99,7 +99,6 @@ export function LessonScreen(props: Props): Node {
   const isKanaLesson = lesson.id !== "OTHER";
   navigation.setOptions({
     title: isKanaLesson ? "" : "レッスン・Lesson", // If kana lesson, we show the title in the topSection
-    // headerTransparent: true,
     headerStyle: {
       backgroundColor: isKanaLesson ? color.KANA_Q_BG : color.NAVBAR,
       shadowRadius: 0,
@@ -145,11 +144,13 @@ export function LessonScreen(props: Props): Node {
   );
   const [testableQueue, setTestableQueue] = useState(testables.slice(0, 2));
 
-  const [lecture, setLecture] = useState(
+  const [lectures, setLectures] = useState(
     lesson.lectures != null
       ? lesson.lectures.filter((lec) => lec.position === "PRETEST")
       : []
   );
+
+  const [lectureIndex, setLectureIndex] = useState(0);
 
   const [userAnswer, setUserAnswer] = useState({});
 
@@ -297,7 +298,7 @@ export function LessonScreen(props: Props): Node {
       return;
     }
     if (numUniqueQuestionsAnswered === 1) {
-      setLecture(
+      setLectures(
         lesson.lectures != null
           ? lesson.lectures.filter((lec) => lec.position === "BEFORE_SECOND")
           : []
@@ -305,14 +306,14 @@ export function LessonScreen(props: Props): Node {
       return;
     }
     if (numUniqueQuestionsAnswered === 2) {
-      setLecture(
+      setLectures(
         lesson.lectures != null
           ? lesson.lectures.filter((lec) => lec.position === "BEFORE_THIRD")
           : []
       );
     }
     if (numUniqueQuestionsAnswered === 3) {
-      setLecture(
+      setLectures(
         lesson.lectures != null
           ? lesson.lectures.filter((lec) => lec.position === "BEFORE_FOURTH")
           : []
@@ -397,10 +398,15 @@ export function LessonScreen(props: Props): Node {
 
   const questionStage = getQuestionStage(currentTestable, results);
 
-  if (lecture != null && lecture.length > 0) {
+  if (lectures != null && lectures.length > 0) {
     return (
       <SafeAreaView style={styles.safeAreaView}>
-        <LectureScreen lecture={lecture} setLecture={setLecture} />
+        <LectureScreen
+          lectureIndex={lectureIndex}
+          lectures={lectures}
+          setLectures={setLectures}
+          setLectureIndex={setLectureIndex}
+        />
       </SafeAreaView>
     );
   }

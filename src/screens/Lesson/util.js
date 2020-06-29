@@ -1,5 +1,5 @@
 /* @flow */
-import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../Learn/__generated__/AvailableLessons";
+import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../Learn/__generated__/AvailableLessons";
 import type { Results, Result, UserAnswer } from "./types";
 
 export const possibleSokuon = ["k", "g", "s", "z", "t", "d", "h", "b", "p"];
