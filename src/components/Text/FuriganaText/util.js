@@ -54,7 +54,10 @@ const generateArray = (
   if (newCurrentPair.furigana === newCurrentPair.text) {
     // Check if next char is different
     // Current pairs match, so we're getting through a stretch of kana
-    if (text[0] !== kana[0]) {
+    if (
+      text[0] !== kana[0] ||
+      (text[0] === kana[0] && highlightersOpen.includes(text[0]))
+    ) {
       // Next letter of text different to next letter of kana, finish and start new pair
       return generateArray(
         kana.slice(1),

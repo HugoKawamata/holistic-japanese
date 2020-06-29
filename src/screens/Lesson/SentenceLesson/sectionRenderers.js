@@ -30,33 +30,36 @@ export const getTopSectionContent = (
       >
         <Icon color={color.WHITE} name="keyboard-return" size={32} />
       </TouchableOpacity>
-      <View style={styles.contextWrapper}>
-        <View style={styles.contextBubbleWrapper}>
-          <View style={styles.speakerNameWrapper}>
-            <Text style={styles.speakerName}>
-              {currentTestable.context?.speaker || ""}
-            </Text>
-          </View>
-          <View style={styles.contextBubble}>
-            {hasJapanese ? (
-              <FuriganaText
-                textStyle={styles.contextJapanese}
-                furiStyle={styles.contextFurigana}
-                text={currentTestable.context?.japanese || ""}
-                kana={currentTestable.context?.furigana || ""}
-              />
-            ) : null}
-            {/* If theres no japanese in the context, render the english as big as japanese normally is */}
-            <Text
-              style={
-                hasJapanese ? styles.contextEnglish : styles.contextJapanese
-              }
-            >
-              {currentTestable.context?.english || ""}
-            </Text>
+      {currentTestable.context?.japanese == null &&
+      currentTestable.context?.english == null ? null : (
+        <View style={styles.contextWrapper}>
+          <View style={styles.contextBubbleWrapper}>
+            <View style={styles.speakerNameWrapper}>
+              <Text style={styles.speakerName}>
+                {currentTestable.context?.speaker || ""}
+              </Text>
+            </View>
+            <View style={styles.contextBubble}>
+              {hasJapanese ? (
+                <FuriganaText
+                  textStyle={styles.contextJapanese}
+                  furiStyle={styles.contextFurigana}
+                  text={currentTestable.context?.japanese || ""}
+                  kana={currentTestable.context?.furigana || ""}
+                />
+              ) : null}
+              {/* If theres no japanese in the context, render the english as big as japanese normally is */}
+              <Text
+                style={
+                  hasJapanese ? styles.contextEnglish : styles.contextJapanese
+                }
+              >
+                {currentTestable.context?.english || ""}
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
+      )}
     </>
   );
 };

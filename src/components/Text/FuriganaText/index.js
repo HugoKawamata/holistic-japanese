@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
 export default function FuriganaText(props: Props): React.Node {
   const { kana, text: japanese } = props;
   const furiganaArray = startGenerateArray(kana, japanese);
+  console.log(furiganaArray);
 
   return (
     <View style={styles.wrapper}>

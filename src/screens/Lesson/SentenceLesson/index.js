@@ -46,6 +46,7 @@ export function SentenceLesson(props: Props) {
 
   const cleanPossibleAnswers = (possibleAnswers: Array<string>) => {
     return possibleAnswers.map((possibleAnswer) => {
+      console.log("possibleAnnswer", possibleAnswer);
       return addSplotsToText(
         // eslint-disable-next-line no-irregular-whitespace
         possibleAnswer.replace(/[.()　]/g, "").toLowerCase(),
@@ -56,17 +57,19 @@ export function SentenceLesson(props: Props) {
 
   const cleanUserAnswer = (answer: string, answerType: string) => {
     if (answerType === "JAPANESE") {
-      answer
-        .toLowerCase()
-        // eslint-disable-next-line no-irregular-whitespace
-        .replace(/[ .()　。！？]/, "")
-        .trim();
+      return (
+        answer
+          .toLowerCase()
+          // eslint-disable-next-line no-irregular-whitespace
+          .replace(/[ .()　。！？]/g, "")
+          .trim()
+      );
     }
     return (
       answer
         .toLowerCase()
         // eslint-disable-next-line no-irregular-whitespace
-        .replace(/[　’.!?]/, "")
+        .replace(/[　’.!?]/g, "")
         .trim()
     );
   };

@@ -73,6 +73,7 @@ export const sharedStyles = StyleSheet.create({
   },
   promptWrapper: {
     alignItems: "stretch",
+    marginHorizontal: 30,
   },
   topSection: {
     alignItems: "stretch",
