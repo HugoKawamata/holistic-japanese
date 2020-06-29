@@ -7,7 +7,7 @@ import { Query as ApolloQuery } from "@apollo/react-components";
 import { type State as StoreState } from "../../../store/types/store";
 import { OverlayModal } from "../../../components/OverlayModal";
 import Text from "../../../components/Text";
-import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
+import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { Results } from "../../Lesson/types";
 import {
   hiraganaMatrix,

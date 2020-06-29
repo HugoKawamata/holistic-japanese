@@ -4,8 +4,8 @@ import { View } from "react-native";
 import color from "../../../util/color";
 import Icon from "../../../components/Icon";
 import type {
-  AvailableLessons_user_availableCourses_availableLessons_testables as Testable,
-  AvailableLessons_user_splots as Splots,
+  AvailableLessons_me_availableCourses_availableLessons_testables as Testable,
+  AvailableLessons_me_splots as Splots,
 } from "../../Learn/__generated__/AvailableLessons";
 import type { UserAnswer, Results } from "../types";
 import { getKeyForTestable } from "../util";
@@ -15,6 +15,7 @@ import {
   getAnswerSection,
   getButton,
   getSentenceQuestion,
+  addSplotsToText,
 } from "./sectionRenderers";
 import styles from "./styles";
 
@@ -39,41 +40,48 @@ export function SentenceLesson(props: Props) {
     goToNextQuestion,
     setExitModalVisible,
     results,
+    splots,
     userAnswer,
   } = props;
-  const addSplotsToAnswers = (answer: string) => {
-    let formatted = answer;
-    if (props.splots.me != null) {
-      formatted = formatted.replace("{me}", props.splots.me);
-    }
-    if (props.splots.meFuri != null) {
-      formatted = formatted.replace("{me_furi}", props.splots.meFuri);
-    }
-    return formatted;
-  };
 
   const cleanPossibleAnswers = (possibleAnswers: Array<string>) => {
     return possibleAnswers.map((possibleAnswer) => {
-      return addSplotsToAnswers(
+      return addSplotsToText(
         // eslint-disable-next-line no-irregular-whitespace
-        possibleAnswer.replace(/[.()　]/g, "").toLowerCase()
+        possibleAnswer.replace(/[.()　]/g, "").toLowerCase(),
+        splots
       );
     });
   };
 
-  const cleanUserAnswer = (answer: string) => {
-    return answer
-      .toLowerCase()
-      .replace(/[’.!?]/, "")
-      .trim();
+  const cleanUserAnswer = (answer: string, answerType: string) => {
+    if (answerType === "JAPANESE") {
+      answer
+        .toLowerCase()
+        // eslint-disable-next-line no-irregular-whitespace
+        .replace(/[ .()　。！？]/, "")
+        .trim();
+    }
+    return (
+      answer
+        .toLowerCase()
+        // eslint-disable-next-line no-irregular-whitespace
+        .replace(/[　’.!?]/, "")
+        .trim()
+    );
   };
 
   const answerQuestion = () => {
     const possibleAnswers = cleanPossibleAnswers(
       currentTestable.answer.text.split("/")
     );
-    const cleanedAnswer = cleanUserAnswer(userAnswer["input-0"]);
+    const cleanedAnswer = cleanUserAnswer(
+      userAnswer["input-0"],
+      currentTestable.answer.type
+    );
     let mark;
+    console.log(possibleAnswers);
+    console.log(cleanedAnswer);
 
     if (possibleAnswers.includes(cleanedAnswer)) {
       props.setCurrentMark("CORRECT");
@@ -102,7 +110,7 @@ export function SentenceLesson(props: Props) {
         {getTopSectionContent(currentTestable, setExitModalVisible)}
       </View>
       <View style={styles.bottomSection}>
-        {getSentenceQuestion(currentTestable)}
+        {getSentenceQuestion(currentTestable, splots)}
         <View style={styles.downChevWrapper}>
           <Icon name="expand-more" size={32} color={color.TEXT_L} />
         </View>

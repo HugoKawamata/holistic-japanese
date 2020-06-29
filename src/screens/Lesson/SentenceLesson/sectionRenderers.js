@@ -6,7 +6,10 @@ import FuriganaText from "../../../components/Text/FuriganaText";
 import Button from "../../../components/Button";
 import Icon from "../../../components/Icon";
 import color from "../../../util/color";
-import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
+import type {
+  AvailableLessons_me_availableCourses_availableLessons_testables as Testable,
+  AvailableLessons_me_splots as Splots,
+} from "../../Learn/__generated__/AvailableLessons";
 import { getCSVAnswer } from "../util";
 import type { UserAnswer } from "../types";
 import { sharedStyles } from "../styles";
@@ -96,7 +99,24 @@ export const getButton = (
   );
 };
 
-export const getSentenceQuestion = (currentTestable: Testable) => {
+export const addSplotsToText = (text: string, splots: Splots) => {
+  let formatted = text;
+  if (splots.me != null) {
+    formatted = formatted.replace("{me}", splots.me);
+  }
+  if (splots.meFuri != null) {
+    formatted = formatted.replace("{me_furi}", splots.meFuri);
+  }
+  if (splots.fname != null) {
+    formatted = formatted.replace("{fname}", splots.fname);
+  }
+  return formatted;
+};
+
+export const getSentenceQuestion = (
+  currentTestable: Testable,
+  splots: Splots
+) => {
   return (
     <View style={styles.sentenceQuestionWrapper}>
       <View style={sharedStyles.promptWrapper}>
@@ -116,7 +136,7 @@ export const getSentenceQuestion = (currentTestable: Testable) => {
             />
           ) : (
             <Text style={styles.questionBubbleText}>
-              {currentTestable.question.text}
+              {addSplotsToText(currentTestable.question.text, splots)}
             </Text>
           )}
         </View>

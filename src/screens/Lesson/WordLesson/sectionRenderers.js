@@ -5,7 +5,7 @@ import Text from "../../../components/Text";
 import TransformText from "../../../components/Text/TransformText";
 import Button from "../../../components/Button";
 import Icon from "../../../components/Icon";
-import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
+import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import color from "../../../util/color";
 import { getCSVAnswer } from "../util";
 import type { UserAnswer } from "../types";

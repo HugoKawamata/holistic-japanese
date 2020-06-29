@@ -13,8 +13,8 @@ import color from "../../util/color";
 import { fontSize } from "../../util/font";
 import type {
   AvailableLessons as TAvailableLessonsQuery,
-  AvailableLessons_user_availableCourses_availableLessons as Lesson,
-  AvailableLessons_user_splots as Splots,
+  AvailableLessons_me_availableCourses_availableLessons as Lesson,
+  AvailableLessons_me_splots as Splots,
 } from "./__generated__/AvailableLessons";
 
 const AVAILABLE_LESSONS_QUERY = gql`
@@ -83,6 +83,7 @@ const AVAILABLE_LESSONS_QUERY = gql`
       splots {
         me
         meFuri
+        fname
       }
     }
   }

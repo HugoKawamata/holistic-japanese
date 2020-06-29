@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from "react";
 import { View, StyleSheet } from "react-native";
-import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
+import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { Results } from "../../Lesson/types";
 import Text from "../../../components/Text";
 import Button from "../../../components/Button";
