@@ -22,6 +22,7 @@ export const getTopSectionContent = (
   const hasJapanese =
     currentTestable.context?.japanese != null &&
     currentTestable.context?.japanese !== "";
+
   return (
     <>
       <TouchableOpacity

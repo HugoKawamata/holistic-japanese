@@ -46,12 +46,11 @@ export function SentenceLesson(props: Props) {
 
   const cleanPossibleAnswers = (possibleAnswers: Array<string>) => {
     return possibleAnswers.map((possibleAnswer) => {
-      console.log("possibleAnnswer", possibleAnswer);
       return addSplotsToText(
         // eslint-disable-next-line no-irregular-whitespace
-        possibleAnswer.replace(/[.()　]/g, "").toLowerCase(),
+        possibleAnswer.replace(/[.()　]/g, ""),
         splots
-      );
+      ).toLowerCase();
     });
   };
 
@@ -83,8 +82,6 @@ export function SentenceLesson(props: Props) {
       currentTestable.answer.type
     );
     let mark;
-    console.log(possibleAnswers);
-    console.log(cleanedAnswer);
 
     if (possibleAnswers.includes(cleanedAnswer)) {
       props.setCurrentMark("CORRECT");
