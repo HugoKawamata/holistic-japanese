@@ -98,6 +98,9 @@ const myStyles = StyleSheet.create({
   buttonQuit: {
     color: color.TEXT_P,
   },
+  correctAnswerField: {
+    backgroundColor: color.SUCCESS_L,
+  },
   correction: {
     fontSize: fontSize.answerSingleChar,
     textAlign: "center",

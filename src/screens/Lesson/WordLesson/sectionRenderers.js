@@ -42,24 +42,15 @@ export const getTopSectionContent = (
   );
 };
 
-export const getQuestionTypeText = (currentTestable: Testable) => {
-  if (
-    currentTestable.question.type === "J_WORD" &&
-    currentTestable.answer.type === "ROMAJI"
-  ) {
-    return "Translate these characters to English letters";
-  }
-  return "";
-};
-
 export const getAnswerSection = (
   currentTestable: Testable,
   fields: Array<Node> | Node
 ) => {
-  const text = getQuestionTypeText(currentTestable);
   return (
     <>
-      {text !== "" ? <Text style={sharedStyles.prompt}>{text}</Text> : null}
+      <Text style={sharedStyles.prompt}>
+        Translate these characters to English letters
+      </Text>
       <View style={sharedStyles.answerFieldsWrapper}>{fields}</View>
     </>
   );

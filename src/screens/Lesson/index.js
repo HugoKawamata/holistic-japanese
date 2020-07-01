@@ -187,7 +187,12 @@ export function LessonScreen(props: Props): Node {
             ref={inputRefs[i]}
             style={[
               styles.singleCharAnswerField,
-              currentMark === "INCORRECT" ? styles.incorrectAnswerField : null,
+              currentMark !== null && userAnswer[`input-${i}`] === charRomaji
+                ? styles.correctAnswerField
+                : null,
+              currentMark !== null && userAnswer[`input-${i}`] !== charRomaji
+                ? styles.incorrectAnswerField
+                : null,
             ]}
             keyboardType={
               Platform.OS === "android" ? "visible-password" : "default"
@@ -322,27 +327,40 @@ export function LessonScreen(props: Props): Node {
   };
 
   const nextQuestion = () => {
+    // 0 if answered incorrectly
+    const correctlyAnswered = results[
+      getKeyForTestable(currentTestable)
+    ].marks.filter((m) => m === "CORRECT").length;
+
     // This is not the final question
     if (testableQueue.length > 1) {
       const nextTestable = testableQueue[1];
-      setTestableQueue(
-        [
-          ...testableQueue.slice(1),
-          unqueuedTestables.length > 0 ? unqueuedTestables[0] : null,
-        ].filter(Boolean)
-      );
 
-      // Remove the new testable from the untested queue, if it exists
-      if (unqueuedTestables.length > 0) {
-        setUnqueuedTestables(unqueuedTestables.slice(1));
+      if (correctlyAnswered === 0) {
+        setTestableQueue([...testableQueue.slice(1), currentTestable]);
+      } else {
+        setTestableQueue(
+          [
+            ...testableQueue.slice(1),
+            unqueuedTestables.length > 0 ? unqueuedTestables[0] : null,
+          ].filter(Boolean)
+        );
+
+        // Remove the new testable from the untested queue, if it exists
+        if (unqueuedTestables.length > 0) {
+          setUnqueuedTestables(unqueuedTestables.slice(1));
+        }
       }
-
       setCurrentMark(null);
       setUserAnswer({});
 
       // If we have any midroll lectures that need to appear, show them
       showMidrollLecture(nextTestable);
     } else {
+      if (correctlyAnswered === 0) {
+        setTestableQueue([...testableQueue.slice(1), currentTestable]);
+      }
+
       goToVictoryScreen();
     }
   };

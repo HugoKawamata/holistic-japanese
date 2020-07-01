@@ -127,8 +127,8 @@ const introduction = [
   },
   {
     header: "",
-    headerJapanese: "例えば？",
-    headerFurigana: "たとえば？",
+    headerJapanese: "",
+    headerFurigana: "",
     body:
       "Before we start, we just need your gender so we know which Japanese pronouns to teach first.",
     icon: "wc",
