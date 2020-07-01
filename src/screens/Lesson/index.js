@@ -427,7 +427,7 @@ export function LessonScreen(props: Props): Node {
               currentMark={currentMark}
               currentTestable={currentTestable}
               goToNextQuestion={
-                ["HIRAGANA", "KATAKANA"].includes(lesson.id)
+                ["HIRAGANA", "KATAKANA"].includes(lesson.id.slice(0, 8))
                   ? nextQuestionKanaLesson
                   : nextQuestion
               }
