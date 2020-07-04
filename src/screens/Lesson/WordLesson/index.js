@@ -10,11 +10,11 @@ import {
   getKeyForTestable,
 } from "../util";
 import { sharedStyles } from "../styles";
+import AnswerButton from "../AnswerButton";
 import {
   getTopSectionContent,
   getAnswerSection,
   getHint,
-  getButton,
 } from "./sectionRenderers";
 import styles from "./styles";
 
@@ -110,14 +110,12 @@ export function WordLesson(props: Props) {
           {getHint(questionStage, currentTestable, currentMark)}
           {getAnswerSection(currentTestable, children)}
           <View style={sharedStyles.buttonSection}>
-            <View style={sharedStyles.buttonWrapper}>
-              {getButton(
-                currentMark,
-                userAnswer,
-                goToNextQuestion,
-                answerRomajiQuestion
-              )}
-            </View>
+            <AnswerButton
+              currentMark={currentMark}
+              userAnswer={userAnswer}
+              goToNextQuestion={goToNextQuestion}
+              answerQuestion={answerRomajiQuestion}
+            />
           </View>
         </View>
       </View>

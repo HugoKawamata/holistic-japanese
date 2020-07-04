@@ -10,10 +10,10 @@ import type {
 import type { UserAnswer, Results } from "../types";
 import { getKeyForTestable } from "../util";
 import { sharedStyles } from "../styles";
+import AnswerButton from "../AnswerButton";
 import {
   getTopSectionContent,
   getAnswerSection,
-  getButton,
   getSentenceQuestion,
   addSplotsToText,
 } from "./sectionRenderers";
@@ -116,14 +116,12 @@ export function SentenceLesson(props: Props) {
         </View>
         {getAnswerSection(currentTestable, children)}
         <View style={sharedStyles.buttonSection}>
-          <View style={sharedStyles.buttonWrapper}>
-            {getButton(
-              currentMark,
-              userAnswer,
-              goToNextQuestion,
-              answerQuestion
-            )}
-          </View>
+          <AnswerButton
+            currentMark={currentMark}
+            userAnswer={userAnswer}
+            goToNextQuestion={goToNextQuestion}
+            answerQuestion={answerQuestion}
+          />
         </View>
       </View>
     </>

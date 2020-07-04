@@ -28,7 +28,9 @@ export const sharedStyles = StyleSheet.create({
     width: "100%",
   },
   buttonSection: {
-    alignItems: "center",
+    alignItems: "stretch",
+    flexDirection: "row",
+    height: 100,
   },
   buttonWrapper: {
     alignItems: "center",

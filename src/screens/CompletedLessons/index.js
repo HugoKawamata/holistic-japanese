@@ -11,7 +11,7 @@ import color from "../../util/color";
 import { fontSize } from "../../util/font";
 import type {
   CompletedLessons as TCompletedLessonsQuery,
-  CompletedLessons_user_completedCourses_lessons as Lesson,
+  CompletedLessons_me_completedCourses_lessons as Lesson,
 } from "./__generated__/CompletedLessons";
 
 const COMPLETED_LESSONS_QUERY = gql`

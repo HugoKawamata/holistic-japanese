@@ -3,12 +3,9 @@ import React, { type Node } from "react";
 import { View, Dimensions, TouchableOpacity } from "react-native";
 import Text from "../../../components/Text";
 import TransformText from "../../../components/Text/TransformText";
-import Button from "../../../components/Button";
 import Icon from "../../../components/Icon";
 import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import color from "../../../util/color";
-import { getCSVAnswer } from "../util";
-import type { UserAnswer } from "../types";
 import { sharedStyles } from "../styles";
 import styles from "./styles";
 
@@ -53,37 +50,6 @@ export const getAnswerSection = (
       </Text>
       <View style={sharedStyles.answerFieldsWrapper}>{fields}</View>
     </>
-  );
-};
-
-export const getButton = (
-  currentMark: ?("CORRECT" | "INCORRECT"),
-  userAnswer: UserAnswer,
-  goToNextQuestion: () => void,
-  answerRomajiQuestion: () => void
-) => {
-  if (currentMark === "CORRECT") {
-    return (
-      <Button theme="secondary" onPress={goToNextQuestion}>
-        <Text style={sharedStyles.buttonText}>Correct!</Text>
-      </Button>
-    );
-  }
-  if (currentMark === "INCORRECT") {
-    return (
-      <Button theme="tertiary" onPress={goToNextQuestion}>
-        <Text style={sharedStyles.buttonText}>Incorrect</Text>
-      </Button>
-    );
-  }
-  return (
-    <Button
-      theme="primary"
-      onPress={answerRomajiQuestion}
-      disabled={getCSVAnswer(userAnswer) === ""}
-    >
-      <Text style={sharedStyles.buttonText}>Answer</Text>
-    </Button>
   );
 };
 
