@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 type Props = {
   currentMark: ?("CORRECT" | "INCORRECT"),
   userAnswer: UserAnswer,
-  goToNextQuestion: () => void,
+  goToNextQuestion: ("CORRECT" | "INCORRECT") => void,
   answerQuestion: () => "CORRECT" | "INCORRECT",
 };
 
@@ -53,7 +53,10 @@ export function AnswerButton(props: Props) {
   }, [currentMark]);
 
   const nextButton = (
-    <TouchableOpacity style={styles.nextWrapper} onPress={goToNextQuestion}>
+    <TouchableOpacity
+      style={styles.nextWrapper}
+      onPress={() => goToNextQuestion(currentMark || "INCORRECT")}
+    >
       <Text style={styles.nextButton}>Next</Text>
       <Icon color={color.PURPLE} size={24} name="chevron-right" />
     </TouchableOpacity>
@@ -100,7 +103,7 @@ export function AnswerButton(props: Props) {
             const mark = answerQuestion();
             setTimeout(() => {
               if (mark === "CORRECT") {
-                goToNextQuestion();
+                goToNextQuestion(mark);
               }
             }, 1500);
           }}

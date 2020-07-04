@@ -1,6 +1,5 @@
 /* @flow */
 import type { User as GoogleAuth } from "@react-native-community/google-signin";
-import type { Splots } from "./splots";
 
 // Non exact types because scopes may change in the future
 // export type GoogleAuth = {
@@ -19,7 +18,6 @@ export type GoogleUser = {|
   photo: ?string,
   familyName: ?string,
   givenName: ?string,
-  splots: Splots,
 |};
 
 export type State = {|

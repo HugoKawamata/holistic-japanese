@@ -164,6 +164,16 @@ export function LessonScreen(props: Props): Node {
 
   const [addLessonResults] = useMutation(SEND_RESULTS);
 
+  // console.log(
+  //   "testableQ",
+  //   testableQueue.map((t) => t.question.text)
+  // );
+  // console.log(
+  //   "unQd",
+  //   unqueuedTestables.map((t) => t.question.text)
+  // );
+  // console.log("results", results);
+
   useEffect(() => {
     setInputRefs((refs) =>
       Array(testableQueue[0].answer.text.split(",").length)
@@ -326,17 +336,15 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const nextQuestion = () => {
+  const nextQuestion = (mark: "CORRECT" | "INCORRECT") => {
     // 0 if answered incorrectly
-    const correctlyAnswered = results[
-      getKeyForTestable(currentTestable)
-    ].marks.filter((m) => m === "CORRECT").length;
+    const correctlyAnswered = mark === "CORRECT";
 
     // This is not the final question
     if (testableQueue.length > 1) {
       const nextTestable = testableQueue[1];
 
-      if (correctlyAnswered === 0) {
+      if (!correctlyAnswered) {
         setTestableQueue([...testableQueue.slice(1), currentTestable]);
       } else {
         setTestableQueue(
@@ -357,7 +365,7 @@ export function LessonScreen(props: Props): Node {
       // If we have any midroll lectures that need to appear, show them
       showMidrollLecture(nextTestable);
     } else {
-      if (correctlyAnswered === 0) {
+      if (!correctlyAnswered) {
         setTestableQueue([...testableQueue.slice(1), currentTestable]);
       }
 
@@ -365,9 +373,11 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const nextQuestionKanaLesson = () => {
+  const nextQuestionKanaLesson = (mark: "CORRECT" | "INCORRECT") => {
     // Question stage here may be bumped up 1 by the current result, since this happens after the user answers.
-    const nextTimeQuestionStage = getQuestionStage(currentTestable, results);
+    const nextTimeQuestionStage =
+      getQuestionStage(currentTestable, results) + (mark === "CORRECT" ? 1 : 0);
+
     // If this is not the final question
     if (testableQueue.length > 1) {
       const nextTestable = testableQueue[1];
