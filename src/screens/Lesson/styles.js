@@ -64,7 +64,7 @@ export const sharedStyles = StyleSheet.create({
   hintSection: {
     alignItems: "stretch",
     flexGrow: 1,
-    paddingBottom: 40,
+    paddingTop: 20,
     paddingHorizontal: 30,
     width: "100%",
   },

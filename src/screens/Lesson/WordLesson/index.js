@@ -107,8 +107,8 @@ export function WordLesson(props: Props) {
       </View>
       <View style={styles.bottomSectionBackground}>
         <View style={sharedStyles.bottomSection}>
-          {getHint(questionStage, currentTestable, currentMark)}
           {getAnswerSection(currentTestable, children)}
+          {getHint(questionStage, currentTestable, currentMark)}
           <View style={sharedStyles.buttonSection}>
             <AnswerButton
               currentMark={currentMark}
