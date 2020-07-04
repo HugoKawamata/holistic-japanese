@@ -198,7 +198,9 @@ export function LessonScreen(props: Props): Node {
               Platform.OS === "android" ? "visible-password" : "default"
             } // Prevents autocorrect on android
             autoCorrect={false}
-            editable={currentMark == null}
+            editable={
+              currentMark == null || userAnswer[`input-${i}`] !== charRomaji
+            }
             placeholder={romajiHiraganaMap[charRomaji] || "っ"}
             value={userAnswer[`input-${i}`]}
             onChangeText={(text) => {
