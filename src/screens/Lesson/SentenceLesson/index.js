@@ -117,14 +117,12 @@ export function SentenceLesson(props: Props) {
           <Icon name="expand-more" size={32} color={color.TEXT_L} />
         </View>
         {getAnswerSection(currentTestable, children)}
-        <View style={sharedStyles.buttonSection}>
-          <AnswerButton
-            currentMark={currentMark}
-            userAnswer={userAnswer}
-            goToNextQuestion={goToNextQuestion}
-            answerQuestion={answerQuestion}
-          />
-        </View>
+        <AnswerButton
+          currentMark={currentMark}
+          userAnswer={userAnswer}
+          goToNextQuestion={goToNextQuestion}
+          answerQuestion={answerQuestion}
+        />
       </View>
     </>
   );

@@ -10,6 +10,15 @@ import type { UserAnswer } from "../types";
 import { sharedStyles } from "../styles";
 
 const styles = StyleSheet.create({
+  barWrapper: {
+    flexDirection: "row",
+    height: 5,
+    width: "100%",
+  },
+  completeSection: {
+    backgroundColor: color.SUCCESS,
+  },
+  elseSection: {},
   invisibleAlignment: {
     opacity: 0,
   },
@@ -42,6 +51,17 @@ export function AnswerButton(props: Props) {
   const { currentMark, userAnswer, goToNextQuestion, answerQuestion } = props;
 
   const anim = useRef(new Animated.Value(currentMark != null ? 1 : 0)).current;
+  const timeoutAnim = useRef(new Animated.Value(currentMark != null ? 1 : 0))
+    .current;
+
+  useEffect(() => {
+    Animated.timing(timeoutAnim, {
+      toValue: currentMark != null ? 1 : 0,
+      // Don't animate if going back to answer button
+      duration: currentMark != null ? 1500 : 0,
+      useNativeDriver: false,
+    }).start();
+  }, [currentMark]);
 
   useEffect(() => {
     Animated.timing(anim, {
@@ -84,49 +104,72 @@ export function AnswerButton(props: Props) {
 
   return (
     <>
-      <Animated.View
-        style={{
-          ...sharedStyles.buttonWrapper,
-          width: anim.interpolate({
-            inputRange: [0, 1],
-            outputRange: ["100%", "0%"],
-          }),
-          opacity: anim.interpolate({
-            inputRange: [0, 1],
-            outputRange: [1, 0],
-          }),
-        }}
-      >
-        <Button
-          theme="primary"
-          onPress={() => {
-            const mark = answerQuestion();
-            setTimeout(() => {
-              if (mark === "CORRECT") {
-                goToNextQuestion(mark);
-              }
-            }, 1500);
+      <View style={sharedStyles.buttonSection}>
+        <Animated.View
+          style={{
+            ...sharedStyles.buttonWrapper,
+            width: anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: ["100%", "0%"],
+            }),
+            opacity: anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [1, 0],
+            }),
           }}
-          disabled={getCSVAnswer(userAnswer) === ""}
         >
-          <Text style={sharedStyles.buttonText}>Answer</Text>
-        </Button>
-      </Animated.View>
-      <Animated.View
-        style={{
-          ...styles.resultWrapper,
-          width: anim.interpolate({
-            inputRange: [0, 1],
-            outputRange: ["0%", "100%"],
-          }),
-          opacity: anim.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1],
-          }),
-        }}
-      >
-        {result}
-      </Animated.View>
+          <Button
+            theme="primary"
+            onPress={() => {
+              const mark = answerQuestion();
+              setTimeout(() => {
+                if (mark === "CORRECT") {
+                  goToNextQuestion(mark);
+                }
+              }, 1500);
+            }}
+            disabled={getCSVAnswer(userAnswer) === ""}
+          >
+            <Text style={sharedStyles.buttonText}>Answer</Text>
+          </Button>
+        </Animated.View>
+        <Animated.View
+          style={{
+            ...styles.resultWrapper,
+            width: anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: ["0%", "100%"],
+            }),
+            opacity: anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, 1],
+            }),
+          }}
+        >
+          {result}
+        </Animated.View>
+      </View>
+      {currentMark === "CORRECT" ? (
+        <View style={styles.barWrapper}>
+          <Animated.View
+            style={{
+              ...styles.completeSection,
+              width: timeoutAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: ["0%", "100%"],
+              }),
+            }}
+          />
+          <View
+            style={[
+              styles.elseSection,
+              {
+                flexGrow: 1,
+              },
+            ]}
+          />
+        </View>
+      ) : null}
     </>
   );
 }

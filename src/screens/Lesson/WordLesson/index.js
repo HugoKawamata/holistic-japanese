@@ -110,14 +110,12 @@ export function WordLesson(props: Props) {
         <View style={sharedStyles.bottomSection}>
           {getAnswerSection(currentTestable, children)}
           {getHint(questionStage, currentTestable, currentMark)}
-          <View style={sharedStyles.buttonSection}>
-            <AnswerButton
-              currentMark={currentMark}
-              userAnswer={userAnswer}
-              goToNextQuestion={goToNextQuestion}
-              answerQuestion={answerRomajiQuestion}
-            />
-          </View>
+          <AnswerButton
+            currentMark={currentMark}
+            userAnswer={userAnswer}
+            goToNextQuestion={goToNextQuestion}
+            answerQuestion={answerRomajiQuestion}
+          />
         </View>
       </View>
     </>
