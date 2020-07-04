@@ -97,6 +97,7 @@ export function WordLesson(props: Props) {
         marks: [...results[getKeyForTestable(currentTestable)].marks, mark],
       },
     });
+    return mark;
   };
 
   return (

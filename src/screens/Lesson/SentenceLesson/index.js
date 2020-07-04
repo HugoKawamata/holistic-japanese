@@ -102,6 +102,8 @@ export function SentenceLesson(props: Props) {
         marks: [...results[key].marks, mark],
       },
     });
+
+    return mark;
   };
 
   return (

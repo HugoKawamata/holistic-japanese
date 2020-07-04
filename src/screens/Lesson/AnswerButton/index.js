@@ -35,19 +35,19 @@ type Props = {
   currentMark: ?("CORRECT" | "INCORRECT"),
   userAnswer: UserAnswer,
   goToNextQuestion: () => void,
-  answerQuestion: () => void,
+  answerQuestion: () => "CORRECT" | "INCORRECT",
 };
 
 export function AnswerButton(props: Props) {
   const { currentMark, userAnswer, goToNextQuestion, answerQuestion } = props;
 
-  const widthAnim = useRef(new Animated.Value(currentMark != null ? 1 : 0))
-    .current;
+  const anim = useRef(new Animated.Value(currentMark != null ? 1 : 0)).current;
 
   useEffect(() => {
-    Animated.timing(widthAnim, {
+    Animated.timing(anim, {
       toValue: currentMark != null ? 1 : 0,
-      duration: 200,
+      // Don't animate if going back to answer button
+      duration: currentMark != null ? 200 : 0,
       useNativeDriver: false,
     }).start();
   }, [currentMark]);
@@ -84,11 +84,11 @@ export function AnswerButton(props: Props) {
       <Animated.View
         style={{
           ...sharedStyles.buttonWrapper,
-          width: widthAnim.interpolate({
+          width: anim.interpolate({
             inputRange: [0, 1],
             outputRange: ["100%", "0%"],
           }),
-          opacity: widthAnim.interpolate({
+          opacity: anim.interpolate({
             inputRange: [0, 1],
             outputRange: [1, 0],
           }),
@@ -97,7 +97,12 @@ export function AnswerButton(props: Props) {
         <Button
           theme="primary"
           onPress={() => {
-            answerQuestion();
+            const mark = answerQuestion();
+            setTimeout(() => {
+              if (mark === "CORRECT") {
+                goToNextQuestion();
+              }
+            }, 1500);
           }}
           disabled={getCSVAnswer(userAnswer) === ""}
         >
@@ -107,11 +112,11 @@ export function AnswerButton(props: Props) {
       <Animated.View
         style={{
           ...styles.resultWrapper,
-          width: widthAnim.interpolate({
+          width: anim.interpolate({
             inputRange: [0, 1],
             outputRange: ["0%", "100%"],
           }),
-          opacity: widthAnim.interpolate({
+          opacity: anim.interpolate({
             inputRange: [0, 1],
             outputRange: [0, 1],
           }),
