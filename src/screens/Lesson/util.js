@@ -236,7 +236,9 @@ export const getKeyForTestable = (testable: Testable): string => {
 };
 
 export const formatResultsForMutation = (results: Results): Array<Result> =>
-  Object.keys(results).map((charKey: string) => results[charKey]);
+  Object.keys(results)
+    .map((charKey: string) => results[charKey])
+    .filter((res) => res.answers.length > 0);
 
 // Stage 0 (show emoji and introduction)
 // Stage 1 (show emoji)

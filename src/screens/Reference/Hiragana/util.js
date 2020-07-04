@@ -164,6 +164,13 @@ export const comboRomajiMatrix = [
 ];
 
 const styles = StyleSheet.create({
+  accuracyContainer: {
+    borderRadius: 10,
+    backgroundColor: color.INCOMPLETE_CELL,
+    flexDirection: "row",
+    flexGrow: 1,
+    height: 10,
+  },
   body: {},
   bodyTextSymbol: {
     fontSize: fontSize.kanaAsImage,
@@ -180,6 +187,7 @@ const styles = StyleSheet.create({
   },
   bottomSection: {
     alignItems: "center",
+    paddingTop: 16,
   },
   buttonEnglish: {
     color: color.WHITE,
@@ -194,6 +202,10 @@ const styles = StyleSheet.create({
     marginTop: -4,
     paddingRight: 14,
   },
+  emojiTransparent: {
+    marginTop: -4,
+    opacity: 0,
+  },
   word: {
     textAlign: "center",
     marginBottom: -4,
@@ -205,12 +217,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingTop: 6,
   },
+  wordResultAccuracy: {
+    alignItems: "center",
+    flexDirection: "row",
+    paddingTop: 3,
+    paddingBottom: 3,
+  },
   wordResult: {
     flexGrow: 1,
     textAlign: "right",
   },
   wordResults: {
-    flexDirection: "column",
+    flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
     marginTop: 20,
@@ -222,6 +240,9 @@ const styles = StyleSheet.create({
   },
   imageWrapper: {},
   modalTitle: {},
+  rightColumn: {
+    flexGrow: 1,
+  },
   topSection: {
     alignContent: "center",
     flexGrow: 1,
@@ -236,6 +257,19 @@ type ContentProps = {
   testables: $ReadOnlyArray<Testable>,
 };
 
+const getColor = (accuracy: number) => {
+  if (accuracy > 80) {
+    return color.SUCCESS;
+  }
+  if (accuracy > 65) {
+    return "#d6cc3e";
+  }
+  if (accuracy > 45) {
+    return "#edb037";
+  }
+  return "#ed5837";
+};
+
 function CompletedModalContent(props: ContentProps) {
   const { results, testables, children, closeModal } = props;
   return (
@@ -244,27 +278,53 @@ function CompletedModalContent(props: ContentProps) {
         <View style={styles.body}>
           <Text style={styles.bodyTextLarge}>Results</Text>
           <View style={styles.wordResults}>
-            {Object.keys(results)
-              .filter((key) => props.results[key].objectType === "WORD")
-              .map((key) => {
-                const accuracy =
-                  100 *
-                  (props.results[key].marks.filter((m) => m === "CORRECT")
-                    .length /
-                    props.results[key].marks.length);
-                return (
-                  <View key={key} style={styles.wordResultContainer}>
-                    <View style={styles.leftCol}>
-                      <Text style={styles.emoji}>
-                        {testables.find((t) => t.question.text === key)
-                          ?.question.emoji || ""}
-                      </Text>
-                      <Text style={styles.word}>{key}</Text>
+            <View>
+              {Object.keys(results)
+                .filter((key) => props.results[key].objectType === "WORD")
+                .map((key) => {
+                  return (
+                    <View key={key} style={styles.wordResultContainer}>
+                      <View style={styles.leftCol}>
+                        <Text style={styles.emoji}>
+                          {testables.find((t) => t.question.text === key)
+                            ?.question.emoji || ""}
+                        </Text>
+                        <Text style={styles.word}>{key}</Text>
+                      </View>
                     </View>
-                    <Text style={styles.wordResult}>{`${accuracy}%`}</Text>
-                  </View>
-                );
-              })}
+                  );
+                })}
+            </View>
+            <View style={styles.rightColumn}>
+              {Object.keys(results)
+                .filter((key) => props.results[key].objectType === "WORD")
+                .map((key) => {
+                  const accuracy =
+                    100 *
+                    (props.results[key].marks.filter((m) => m === "CORRECT")
+                      .length /
+                      props.results[key].marks.length);
+                  return (
+                    <View key={key} style={styles.wordResultAccuracy}>
+                      <Text style={styles.emojiTransparent}>✨</Text>
+                      <View style={styles.accuracyContainer}>
+                        <View
+                          style={{
+                            backgroundColor: getColor(accuracy),
+                            borderRadius: 10,
+                            flexGrow: accuracy,
+                          }}
+                        />
+                        <View
+                          style={{
+                            flexGrow: 100 - accuracy,
+                          }}
+                        />
+                      </View>
+                    </View>
+                  );
+                })}
+            </View>
           </View>
           {children}
         </View>
@@ -285,80 +345,15 @@ export const getModalContent = (
   testables: $ReadOnlyArray<Testable>,
   closeModal: () => typeof undefined
 ) => {
-  switch (completedContent) {
-    case "HIRAGANA_A":
-      return (
-        <CompletedModalContent
-          results={results}
-          closeModal={closeModal}
-          testables={testables}
-        >
-          <Text style={styles.bodyTextLarge}>あ Hiragana Line Complete!</Text>
-          <Text style={styles.bodyTextRegular}>1/10 Lines Complete</Text>
-        </CompletedModalContent>
-      );
-    case "HIRAGANA_KA":
-      return (
-        <CompletedModalContent
-          results={results}
-          closeModal={closeModal}
-          testables={testables}
-        >
-          <Text style={styles.bodyTextLarge}>か Hiragana Line Complete!</Text>
-          <Text style={styles.bodyTextRegular}>2/10 Lines Complete</Text>
-        </CompletedModalContent>
-      );
-    case "HIRAGANA_GA":
-      return (
-        <CompletedModalContent
-          results={results}
-          closeModal={closeModal}
-          testables={testables}
-        >
-          <Text style={styles.bodyTextLarge}>が Hiragana Line Complete!</Text>
-          <Text style={styles.bodyTextRegular}>
-            1/10 Bonus Lessons Complete
-          </Text>
-        </CompletedModalContent>
-      );
-    case "HIRAGANA_SA":
-      return (
-        <CompletedModalContent
-          results={results}
-          closeModal={closeModal}
-          testables={testables}
-        >
-          <Text style={styles.bodyTextLarge}>さ Hiragana Line Complete!</Text>
-          <Text style={styles.bodyTextRegular}>3/10 Lines Complete</Text>
-        </CompletedModalContent>
-      );
-    case "HIRAGANA_ZA":
-      return (
-        <CompletedModalContent
-          results={results}
-          closeModal={closeModal}
-          testables={testables}
-        >
-          <Text style={styles.bodyTextLarge}>ざ Hiragana Line Complete!</Text>
-          <Text style={styles.bodyTextRegular}>
-            2/10 Bonus Lessons Complete
-          </Text>
-        </CompletedModalContent>
-      );
-    case "HIRAGANA_TA":
-      return (
-        <CompletedModalContent
-          results={results}
-          closeModal={closeModal}
-          testables={testables}
-        >
-          <Text style={styles.bodyTextLarge}>た Hiragana Line Complete!</Text>
-          <Text style={styles.bodyTextRegular}>4/10 Lines Complete</Text>
-        </CompletedModalContent>
-      );
-    default:
-      return null;
-  }
+  return (
+    <CompletedModalContent
+      results={results}
+      closeModal={closeModal}
+      testables={testables}
+    >
+      <Text style={styles.bodyTextLarge}>Hiragana Line Complete!</Text>
+    </CompletedModalContent>
+  );
 };
 
 const aCompletedModalTitle = (

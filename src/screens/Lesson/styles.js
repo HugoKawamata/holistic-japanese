@@ -111,6 +111,7 @@ const myStyles = StyleSheet.create({
     alignItems: "center",
     flexGrow: 1,
     justifyContent: "flex-end",
+    paddingTop: 40,
   },
   exitModalTitle: {
     fontSize: fontSize.title,

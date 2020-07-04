@@ -164,16 +164,6 @@ export function LessonScreen(props: Props): Node {
 
   const [addLessonResults] = useMutation(SEND_RESULTS);
 
-  // console.log(
-  //   "testableQ",
-  //   testableQueue.map((t) => t.question.text)
-  // );
-  // console.log(
-  //   "unQd",
-  //   unqueuedTestables.map((t) => t.question.text)
-  // );
-  // console.log("results", results);
-
   useEffect(() => {
     setInputRefs((refs) =>
       Array(testableQueue[0].answer.text.split(",").length)
@@ -294,7 +284,7 @@ export function LessonScreen(props: Props): Node {
       },
     });
     props.refetch();
-    props.navigation.navigate("Reference");
+    props.navigation.navigate("Learn");
     props.navigation.navigate("Hiragana", {
       completedContent: lesson.id,
       results,
