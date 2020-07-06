@@ -90,6 +90,78 @@
 		FF5739C224B2BC710080F2E2 /* kana_po.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397E24B2BC700080F2E2 /* kana_po.mp3 */; };
 		FF5739C324B2BC710080F2E2 /* kana_mo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397F24B2BC710080F2E2 /* kana_mo.mp3 */; };
 		FF5739C424B2BC710080F2E2 /* kana_a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57398024B2BC710080F2E2 /* kana_a.mp3 */; };
+		FFC995D824B342F50052AE7F /* word-takai.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959024B342EC0052AE7F /* word-takai.m4a */; };
+		FFC995D924B342F50052AE7F /* word-hen.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959124B342EC0052AE7F /* word-hen.m4a */; };
+		FFC995DA24B342F50052AE7F /* word-heya.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959224B342EC0052AE7F /* word-heya.m4a */; };
+		FFC995DB24B342F50052AE7F /* word-sake.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959324B342EC0052AE7F /* word-sake.m4a */; };
+		FFC995DC24B342F50052AE7F /* word-eigo.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959424B342EC0052AE7F /* word-eigo.m4a */; };
+		FFC995DD24B342F50052AE7F /* word-chotto.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959524B342EC0052AE7F /* word-chotto.m4a */; };
+		FFC995DE24B342F50052AE7F /* word-kage.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959624B342EC0052AE7F /* word-kage.m4a */; };
+		FFC995DF24B342F50052AE7F /* word-shuu.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959724B342EC0052AE7F /* word-shuu.m4a */; };
+		FFC995E024B342F50052AE7F /* word-kyou.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959824B342EC0052AE7F /* word-kyou.m4a */; };
+		FFC995E124B342F50052AE7F /* word-te.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959924B342EC0052AE7F /* word-te.m4a */; };
+		FFC995E224B342F50052AE7F /* word-chiisai.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959A24B342EC0052AE7F /* word-chiisai.m4a */; };
+		FFC995E324B342F50052AE7F /* word-shashin.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959B24B342ED0052AE7F /* word-shashin.m4a */; };
+		FFC995E424B342F50052AE7F /* word-tsuyoi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959C24B342ED0052AE7F /* word-tsuyoi.m4a */; };
+		FFC995E524B342F50052AE7F /* word-boku.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959D24B342ED0052AE7F /* word-boku.m4a */; };
+		FFC995E624B342F50052AE7F /* word-nihon.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959E24B342ED0052AE7F /* word-nihon.m4a */; };
+		FFC995E724B342F50052AE7F /* word-yawarakai.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC9959F24B342ED0052AE7F /* word-yawarakai.m4a */; };
+		FFC995E824B342F50052AE7F /* word-sumimasen.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A024B342ED0052AE7F /* word-sumimasen.m4a */; };
+		FFC995E924B342F50052AE7F /* word-neko.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A124B342ED0052AE7F /* word-neko.m4a */; };
+		FFC995EA24B342F50052AE7F /* word-doushite.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A224B342ED0052AE7F /* word-doushite.m4a */; };
+		FFC995EB24B342F50052AE7F /* word-eki.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A324B342ED0052AE7F /* word-eki.m4a */; };
+		FFC995EC24B342F50052AE7F /* word-kinou.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A424B342ED0052AE7F /* word-kinou.m4a */; };
+		FFC995ED24B342F50052AE7F /* word-yuumei.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A524B342ED0052AE7F /* word-yuumei.m4a */; };
+		FFC995EE24B342F50052AE7F /* word-zasshi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A624B342ED0052AE7F /* word-zasshi.m4a */; };
+		FFC995EF24B342F50052AE7F /* word-hito.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A724B342EE0052AE7F /* word-hito.m4a */; };
+		FFC995F024B342F50052AE7F /* word-osusume.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A824B342EE0052AE7F /* word-osusume.m4a */; };
+		FFC995F124B342F50052AE7F /* word-genki.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995A924B342EE0052AE7F /* word-genki.m4a */; };
+		FFC995F224B342F50052AE7F /* word-kaze.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995AA24B342EE0052AE7F /* word-kaze.m4a */; };
+		FFC995F324B342F50052AE7F /* word-aji.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995AB24B342EE0052AE7F /* word-aji.m4a */; };
+		FFC995F424B342F50052AE7F /* word-tsugi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995AC24B342EE0052AE7F /* word-tsugi.m4a */; };
+		FFC995F524B342F50052AE7F /* word-toshi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995AD24B342EE0052AE7F /* word-toshi.m4a */; };
+		FFC995F624B342F50052AE7F /* word-pachinko.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995AE24B342EE0052AE7F /* word-pachinko.m4a */; };
+		FFC995F724B342F50052AE7F /* word-maguro.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995AF24B342EE0052AE7F /* word-maguro.m4a */; };
+		FFC995F824B342F50052AE7F /* word-kagi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B024B342EE0052AE7F /* word-kagi.m4a */; };
+		FFC995F924B342F50052AE7F /* word-toufu.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B124B342EF0052AE7F /* word-toufu.m4a */; };
+		FFC995FA24B342F50052AE7F /* word-kippu.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B224B342EF0052AE7F /* word-kippu.m4a */; };
+		FFC995FB24B342F50052AE7F /* word-zou.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B324B342EF0052AE7F /* word-zou.m4a */; };
+		FFC995FC24B342F50052AE7F /* word-kirei.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B424B342EF0052AE7F /* word-kirei.m4a */; };
+		FFC995FD24B342F50052AE7F /* word-onsen.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B524B342EF0052AE7F /* word-onsen.m4a */; };
+		FFC995FE24B342F50052AE7F /* word-desu.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B624B342EF0052AE7F /* word-desu.m4a */; };
+		FFC995FF24B342F50052AE7F /* word-watashi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B724B342EF0052AE7F /* word-watashi.m4a */; };
+		FFC9960024B342F50052AE7F /* word-sushi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B824B342EF0052AE7F /* word-sushi.m4a */; };
+		FFC9960124B342F50052AE7F /* word-iie.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995B924B342EF0052AE7F /* word-iie.m4a */; };
+		FFC9960224B342F50052AE7F /* word-gakusei.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995BA24B342F00052AE7F /* word-gakusei.m4a */; };
+		FFC9960324B342F50052AE7F /* word-pen.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995BB24B342F00052AE7F /* word-pen.m4a */; };
+		FFC9960424B342F50052AE7F /* word-mono.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995BC24B342F00052AE7F /* word-mono.m4a */; };
+		FFC9960524B342F50052AE7F /* word-ue.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995BD24B342F00052AE7F /* word-ue.m4a */; };
+		FFC9960624B342F50052AE7F /* word-nani.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995BE24B342F00052AE7F /* word-nani.m4a */; };
+		FFC9960724B342F50052AE7F /* word-keikaku.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995BF24B342F00052AE7F /* word-keikaku.m4a */; };
+		FFC9960824B342F50052AE7F /* word-enpitsu.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C024B342F00052AE7F /* word-enpitsu.m4a */; };
+		FFC9960924B342F50052AE7F /* word-obentou.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C124B342F10052AE7F /* word-obentou.m4a */; };
+		FFC9960A24B342F50052AE7F /* word-sugoi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C224B342F10052AE7F /* word-sugoi.m4a */; };
+		FFC9960B24B342F50052AE7F /* word-kagu.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C324B342F10052AE7F /* word-kagu.m4a */; };
+		FFC9960C24B342F50052AE7F /* word-ao.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C424B342F10052AE7F /* word-ao.m4a */; };
+		FFC9960D24B342F50052AE7F /* word-eiga.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C524B342F10052AE7F /* word-eiga.m4a */; };
+		FFC9960E24B342F50052AE7F /* word-ie.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C624B342F10052AE7F /* word-ie.m4a */; };
+		FFC9960F24B342F50052AE7F /* word-hai.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C724B342F20052AE7F /* word-hai.m4a */; };
+		FFC9961024B342F50052AE7F /* word-daigaku.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C824B342F20052AE7F /* word-daigaku.m4a */; };
+		FFC9961124B342F50052AE7F /* word-shizuka.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995C924B342F20052AE7F /* word-shizuka.m4a */; };
+		FFC9961224B342F50052AE7F /* word-inu.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995CA24B342F20052AE7F /* word-inu.m4a */; };
+		FFC9961324B342F50052AE7F /* word-baka.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995CB24B342F20052AE7F /* word-baka.m4a */; };
+		FFC9961424B342F50052AE7F /* word-kuukou.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995CC24B342F20052AE7F /* word-kuukou.m4a */; };
+		FFC9961524B342F50052AE7F /* word-osoi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995CD24B342F20052AE7F /* word-osoi.m4a */; };
+		FFC9961624B342F50052AE7F /* word-hitobito.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995CE24B342F30052AE7F /* word-hitobito.m4a */; };
+		FFC9961724B342F50052AE7F /* word-kawaii.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995CF24B342F30052AE7F /* word-kawaii.m4a */; };
+		FFC9961824B342F50052AE7F /* word-arigatou.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995D024B342F30052AE7F /* word-arigatou.m4a */; };
+		FFC9961924B342F50052AE7F /* word-gaikokujin.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995D124B342F30052AE7F /* word-gaikokujin.m4a */; };
+		FFC9961A24B342F50052AE7F /* word-naruhodo.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995D224B342F30052AE7F /* word-naruhodo.m4a */; };
+		FFC9961B24B342F50052AE7F /* word-abunai.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995D324B342F30052AE7F /* word-abunai.m4a */; };
+		FFC9961C24B342F50052AE7F /* word-samui.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995D424B342F30052AE7F /* word-samui.m4a */; };
+		FFC9961D24B342F50052AE7F /* word-umai.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995D524B342F40052AE7F /* word-umai.m4a */; };
+		FFC9961E24B342F50052AE7F /* word-aka.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995D624B342F40052AE7F /* word-aka.m4a */; };
+		FFC9961F24B342F50052AE7F /* word-sanpo.m4a in Resources */ = {isa = PBXBuildFile; fileRef = FFC995D724B342F50052AE7F /* word-sanpo.m4a */; };
 		FFEB9F5E24414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
 		FFEB9F5F24414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
 		FFEB9F6024414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
@@ -211,6 +283,78 @@
 		FF57397E24B2BC700080F2E2 /* kana_po.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_po.mp3; path = ../android/app/src/main/res/raw/kana_po.mp3; sourceTree = "<group>"; };
 		FF57397F24B2BC710080F2E2 /* kana_mo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_mo.mp3; path = ../android/app/src/main/res/raw/kana_mo.mp3; sourceTree = "<group>"; };
 		FF57398024B2BC710080F2E2 /* kana_a.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_a.mp3; path = ../android/app/src/main/res/raw/kana_a.mp3; sourceTree = "<group>"; };
+		FFC9959024B342EC0052AE7F /* word-takai.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-takai.m4a"; path = "../android/app/src/main/res/raw/word-takai.m4a"; sourceTree = "<group>"; };
+		FFC9959124B342EC0052AE7F /* word-hen.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-hen.m4a"; path = "../android/app/src/main/res/raw/word-hen.m4a"; sourceTree = "<group>"; };
+		FFC9959224B342EC0052AE7F /* word-heya.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-heya.m4a"; path = "../android/app/src/main/res/raw/word-heya.m4a"; sourceTree = "<group>"; };
+		FFC9959324B342EC0052AE7F /* word-sake.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-sake.m4a"; path = "../android/app/src/main/res/raw/word-sake.m4a"; sourceTree = "<group>"; };
+		FFC9959424B342EC0052AE7F /* word-eigo.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-eigo.m4a"; path = "../android/app/src/main/res/raw/word-eigo.m4a"; sourceTree = "<group>"; };
+		FFC9959524B342EC0052AE7F /* word-chotto.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-chotto.m4a"; path = "../android/app/src/main/res/raw/word-chotto.m4a"; sourceTree = "<group>"; };
+		FFC9959624B342EC0052AE7F /* word-kage.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kage.m4a"; path = "../android/app/src/main/res/raw/word-kage.m4a"; sourceTree = "<group>"; };
+		FFC9959724B342EC0052AE7F /* word-shuu.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-shuu.m4a"; path = "../android/app/src/main/res/raw/word-shuu.m4a"; sourceTree = "<group>"; };
+		FFC9959824B342EC0052AE7F /* word-kyou.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kyou.m4a"; path = "../android/app/src/main/res/raw/word-kyou.m4a"; sourceTree = "<group>"; };
+		FFC9959924B342EC0052AE7F /* word-te.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-te.m4a"; path = "../android/app/src/main/res/raw/word-te.m4a"; sourceTree = "<group>"; };
+		FFC9959A24B342EC0052AE7F /* word-chiisai.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-chiisai.m4a"; path = "../android/app/src/main/res/raw/word-chiisai.m4a"; sourceTree = "<group>"; };
+		FFC9959B24B342ED0052AE7F /* word-shashin.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-shashin.m4a"; path = "../android/app/src/main/res/raw/word-shashin.m4a"; sourceTree = "<group>"; };
+		FFC9959C24B342ED0052AE7F /* word-tsuyoi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-tsuyoi.m4a"; path = "../android/app/src/main/res/raw/word-tsuyoi.m4a"; sourceTree = "<group>"; };
+		FFC9959D24B342ED0052AE7F /* word-boku.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-boku.m4a"; path = "../android/app/src/main/res/raw/word-boku.m4a"; sourceTree = "<group>"; };
+		FFC9959E24B342ED0052AE7F /* word-nihon.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-nihon.m4a"; path = "../android/app/src/main/res/raw/word-nihon.m4a"; sourceTree = "<group>"; };
+		FFC9959F24B342ED0052AE7F /* word-yawarakai.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-yawarakai.m4a"; path = "../android/app/src/main/res/raw/word-yawarakai.m4a"; sourceTree = "<group>"; };
+		FFC995A024B342ED0052AE7F /* word-sumimasen.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-sumimasen.m4a"; path = "../android/app/src/main/res/raw/word-sumimasen.m4a"; sourceTree = "<group>"; };
+		FFC995A124B342ED0052AE7F /* word-neko.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-neko.m4a"; path = "../android/app/src/main/res/raw/word-neko.m4a"; sourceTree = "<group>"; };
+		FFC995A224B342ED0052AE7F /* word-doushite.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-doushite.m4a"; path = "../android/app/src/main/res/raw/word-doushite.m4a"; sourceTree = "<group>"; };
+		FFC995A324B342ED0052AE7F /* word-eki.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-eki.m4a"; path = "../android/app/src/main/res/raw/word-eki.m4a"; sourceTree = "<group>"; };
+		FFC995A424B342ED0052AE7F /* word-kinou.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kinou.m4a"; path = "../android/app/src/main/res/raw/word-kinou.m4a"; sourceTree = "<group>"; };
+		FFC995A524B342ED0052AE7F /* word-yuumei.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-yuumei.m4a"; path = "../android/app/src/main/res/raw/word-yuumei.m4a"; sourceTree = "<group>"; };
+		FFC995A624B342ED0052AE7F /* word-zasshi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-zasshi.m4a"; path = "../android/app/src/main/res/raw/word-zasshi.m4a"; sourceTree = "<group>"; };
+		FFC995A724B342EE0052AE7F /* word-hito.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-hito.m4a"; path = "../android/app/src/main/res/raw/word-hito.m4a"; sourceTree = "<group>"; };
+		FFC995A824B342EE0052AE7F /* word-osusume.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-osusume.m4a"; path = "../android/app/src/main/res/raw/word-osusume.m4a"; sourceTree = "<group>"; };
+		FFC995A924B342EE0052AE7F /* word-genki.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-genki.m4a"; path = "../android/app/src/main/res/raw/word-genki.m4a"; sourceTree = "<group>"; };
+		FFC995AA24B342EE0052AE7F /* word-kaze.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kaze.m4a"; path = "../android/app/src/main/res/raw/word-kaze.m4a"; sourceTree = "<group>"; };
+		FFC995AB24B342EE0052AE7F /* word-aji.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-aji.m4a"; path = "../android/app/src/main/res/raw/word-aji.m4a"; sourceTree = "<group>"; };
+		FFC995AC24B342EE0052AE7F /* word-tsugi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-tsugi.m4a"; path = "../android/app/src/main/res/raw/word-tsugi.m4a"; sourceTree = "<group>"; };
+		FFC995AD24B342EE0052AE7F /* word-toshi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-toshi.m4a"; path = "../android/app/src/main/res/raw/word-toshi.m4a"; sourceTree = "<group>"; };
+		FFC995AE24B342EE0052AE7F /* word-pachinko.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-pachinko.m4a"; path = "../android/app/src/main/res/raw/word-pachinko.m4a"; sourceTree = "<group>"; };
+		FFC995AF24B342EE0052AE7F /* word-maguro.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-maguro.m4a"; path = "../android/app/src/main/res/raw/word-maguro.m4a"; sourceTree = "<group>"; };
+		FFC995B024B342EE0052AE7F /* word-kagi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kagi.m4a"; path = "../android/app/src/main/res/raw/word-kagi.m4a"; sourceTree = "<group>"; };
+		FFC995B124B342EF0052AE7F /* word-toufu.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-toufu.m4a"; path = "../android/app/src/main/res/raw/word-toufu.m4a"; sourceTree = "<group>"; };
+		FFC995B224B342EF0052AE7F /* word-kippu.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kippu.m4a"; path = "../android/app/src/main/res/raw/word-kippu.m4a"; sourceTree = "<group>"; };
+		FFC995B324B342EF0052AE7F /* word-zou.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-zou.m4a"; path = "../android/app/src/main/res/raw/word-zou.m4a"; sourceTree = "<group>"; };
+		FFC995B424B342EF0052AE7F /* word-kirei.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kirei.m4a"; path = "../android/app/src/main/res/raw/word-kirei.m4a"; sourceTree = "<group>"; };
+		FFC995B524B342EF0052AE7F /* word-onsen.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-onsen.m4a"; path = "../android/app/src/main/res/raw/word-onsen.m4a"; sourceTree = "<group>"; };
+		FFC995B624B342EF0052AE7F /* word-desu.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-desu.m4a"; path = "../android/app/src/main/res/raw/word-desu.m4a"; sourceTree = "<group>"; };
+		FFC995B724B342EF0052AE7F /* word-watashi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-watashi.m4a"; path = "../android/app/src/main/res/raw/word-watashi.m4a"; sourceTree = "<group>"; };
+		FFC995B824B342EF0052AE7F /* word-sushi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-sushi.m4a"; path = "../android/app/src/main/res/raw/word-sushi.m4a"; sourceTree = "<group>"; };
+		FFC995B924B342EF0052AE7F /* word-iie.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-iie.m4a"; path = "../android/app/src/main/res/raw/word-iie.m4a"; sourceTree = "<group>"; };
+		FFC995BA24B342F00052AE7F /* word-gakusei.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-gakusei.m4a"; path = "../android/app/src/main/res/raw/word-gakusei.m4a"; sourceTree = "<group>"; };
+		FFC995BB24B342F00052AE7F /* word-pen.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-pen.m4a"; path = "../android/app/src/main/res/raw/word-pen.m4a"; sourceTree = "<group>"; };
+		FFC995BC24B342F00052AE7F /* word-mono.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-mono.m4a"; path = "../android/app/src/main/res/raw/word-mono.m4a"; sourceTree = "<group>"; };
+		FFC995BD24B342F00052AE7F /* word-ue.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-ue.m4a"; path = "../android/app/src/main/res/raw/word-ue.m4a"; sourceTree = "<group>"; };
+		FFC995BE24B342F00052AE7F /* word-nani.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-nani.m4a"; path = "../android/app/src/main/res/raw/word-nani.m4a"; sourceTree = "<group>"; };
+		FFC995BF24B342F00052AE7F /* word-keikaku.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-keikaku.m4a"; path = "../android/app/src/main/res/raw/word-keikaku.m4a"; sourceTree = "<group>"; };
+		FFC995C024B342F00052AE7F /* word-enpitsu.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-enpitsu.m4a"; path = "../android/app/src/main/res/raw/word-enpitsu.m4a"; sourceTree = "<group>"; };
+		FFC995C124B342F10052AE7F /* word-obentou.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-obentou.m4a"; path = "../android/app/src/main/res/raw/word-obentou.m4a"; sourceTree = "<group>"; };
+		FFC995C224B342F10052AE7F /* word-sugoi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-sugoi.m4a"; path = "../android/app/src/main/res/raw/word-sugoi.m4a"; sourceTree = "<group>"; };
+		FFC995C324B342F10052AE7F /* word-kagu.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kagu.m4a"; path = "../android/app/src/main/res/raw/word-kagu.m4a"; sourceTree = "<group>"; };
+		FFC995C424B342F10052AE7F /* word-ao.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-ao.m4a"; path = "../android/app/src/main/res/raw/word-ao.m4a"; sourceTree = "<group>"; };
+		FFC995C524B342F10052AE7F /* word-eiga.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-eiga.m4a"; path = "../android/app/src/main/res/raw/word-eiga.m4a"; sourceTree = "<group>"; };
+		FFC995C624B342F10052AE7F /* word-ie.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-ie.m4a"; path = "../android/app/src/main/res/raw/word-ie.m4a"; sourceTree = "<group>"; };
+		FFC995C724B342F20052AE7F /* word-hai.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-hai.m4a"; path = "../android/app/src/main/res/raw/word-hai.m4a"; sourceTree = "<group>"; };
+		FFC995C824B342F20052AE7F /* word-daigaku.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-daigaku.m4a"; path = "../android/app/src/main/res/raw/word-daigaku.m4a"; sourceTree = "<group>"; };
+		FFC995C924B342F20052AE7F /* word-shizuka.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-shizuka.m4a"; path = "../android/app/src/main/res/raw/word-shizuka.m4a"; sourceTree = "<group>"; };
+		FFC995CA24B342F20052AE7F /* word-inu.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-inu.m4a"; path = "../android/app/src/main/res/raw/word-inu.m4a"; sourceTree = "<group>"; };
+		FFC995CB24B342F20052AE7F /* word-baka.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-baka.m4a"; path = "../android/app/src/main/res/raw/word-baka.m4a"; sourceTree = "<group>"; };
+		FFC995CC24B342F20052AE7F /* word-kuukou.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kuukou.m4a"; path = "../android/app/src/main/res/raw/word-kuukou.m4a"; sourceTree = "<group>"; };
+		FFC995CD24B342F20052AE7F /* word-osoi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-osoi.m4a"; path = "../android/app/src/main/res/raw/word-osoi.m4a"; sourceTree = "<group>"; };
+		FFC995CE24B342F30052AE7F /* word-hitobito.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-hitobito.m4a"; path = "../android/app/src/main/res/raw/word-hitobito.m4a"; sourceTree = "<group>"; };
+		FFC995CF24B342F30052AE7F /* word-kawaii.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-kawaii.m4a"; path = "../android/app/src/main/res/raw/word-kawaii.m4a"; sourceTree = "<group>"; };
+		FFC995D024B342F30052AE7F /* word-arigatou.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-arigatou.m4a"; path = "../android/app/src/main/res/raw/word-arigatou.m4a"; sourceTree = "<group>"; };
+		FFC995D124B342F30052AE7F /* word-gaikokujin.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-gaikokujin.m4a"; path = "../android/app/src/main/res/raw/word-gaikokujin.m4a"; sourceTree = "<group>"; };
+		FFC995D224B342F30052AE7F /* word-naruhodo.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-naruhodo.m4a"; path = "../android/app/src/main/res/raw/word-naruhodo.m4a"; sourceTree = "<group>"; };
+		FFC995D324B342F30052AE7F /* word-abunai.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-abunai.m4a"; path = "../android/app/src/main/res/raw/word-abunai.m4a"; sourceTree = "<group>"; };
+		FFC995D424B342F30052AE7F /* word-samui.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-samui.m4a"; path = "../android/app/src/main/res/raw/word-samui.m4a"; sourceTree = "<group>"; };
+		FFC995D524B342F40052AE7F /* word-umai.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-umai.m4a"; path = "../android/app/src/main/res/raw/word-umai.m4a"; sourceTree = "<group>"; };
+		FFC995D624B342F40052AE7F /* word-aka.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-aka.m4a"; path = "../android/app/src/main/res/raw/word-aka.m4a"; sourceTree = "<group>"; };
+		FFC995D724B342F50052AE7F /* word-sanpo.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "word-sanpo.m4a"; path = "../android/app/src/main/res/raw/word-sanpo.m4a"; sourceTree = "<group>"; };
 		FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -357,6 +501,78 @@
 		FF06C23E244BBEA400E726EF /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				FFC995D324B342F30052AE7F /* word-abunai.m4a */,
+				FFC995AB24B342EE0052AE7F /* word-aji.m4a */,
+				FFC995D624B342F40052AE7F /* word-aka.m4a */,
+				FFC995C424B342F10052AE7F /* word-ao.m4a */,
+				FFC995D024B342F30052AE7F /* word-arigatou.m4a */,
+				FFC995CB24B342F20052AE7F /* word-baka.m4a */,
+				FFC9959D24B342ED0052AE7F /* word-boku.m4a */,
+				FFC9959A24B342EC0052AE7F /* word-chiisai.m4a */,
+				FFC9959524B342EC0052AE7F /* word-chotto.m4a */,
+				FFC995C824B342F20052AE7F /* word-daigaku.m4a */,
+				FFC995B624B342EF0052AE7F /* word-desu.m4a */,
+				FFC995A224B342ED0052AE7F /* word-doushite.m4a */,
+				FFC995C524B342F10052AE7F /* word-eiga.m4a */,
+				FFC9959424B342EC0052AE7F /* word-eigo.m4a */,
+				FFC995A324B342ED0052AE7F /* word-eki.m4a */,
+				FFC995C024B342F00052AE7F /* word-enpitsu.m4a */,
+				FFC995D124B342F30052AE7F /* word-gaikokujin.m4a */,
+				FFC995BA24B342F00052AE7F /* word-gakusei.m4a */,
+				FFC995A924B342EE0052AE7F /* word-genki.m4a */,
+				FFC995C724B342F20052AE7F /* word-hai.m4a */,
+				FFC9959124B342EC0052AE7F /* word-hen.m4a */,
+				FFC9959224B342EC0052AE7F /* word-heya.m4a */,
+				FFC995A724B342EE0052AE7F /* word-hito.m4a */,
+				FFC995CE24B342F30052AE7F /* word-hitobito.m4a */,
+				FFC995C624B342F10052AE7F /* word-ie.m4a */,
+				FFC995B924B342EF0052AE7F /* word-iie.m4a */,
+				FFC995CA24B342F20052AE7F /* word-inu.m4a */,
+				FFC9959624B342EC0052AE7F /* word-kage.m4a */,
+				FFC995B024B342EE0052AE7F /* word-kagi.m4a */,
+				FFC995C324B342F10052AE7F /* word-kagu.m4a */,
+				FFC995CF24B342F30052AE7F /* word-kawaii.m4a */,
+				FFC995AA24B342EE0052AE7F /* word-kaze.m4a */,
+				FFC995BF24B342F00052AE7F /* word-keikaku.m4a */,
+				FFC995A424B342ED0052AE7F /* word-kinou.m4a */,
+				FFC995B224B342EF0052AE7F /* word-kippu.m4a */,
+				FFC995B424B342EF0052AE7F /* word-kirei.m4a */,
+				FFC995CC24B342F20052AE7F /* word-kuukou.m4a */,
+				FFC9959824B342EC0052AE7F /* word-kyou.m4a */,
+				FFC995AF24B342EE0052AE7F /* word-maguro.m4a */,
+				FFC995BC24B342F00052AE7F /* word-mono.m4a */,
+				FFC995BE24B342F00052AE7F /* word-nani.m4a */,
+				FFC995D224B342F30052AE7F /* word-naruhodo.m4a */,
+				FFC995A124B342ED0052AE7F /* word-neko.m4a */,
+				FFC9959E24B342ED0052AE7F /* word-nihon.m4a */,
+				FFC995C124B342F10052AE7F /* word-obentou.m4a */,
+				FFC995B524B342EF0052AE7F /* word-onsen.m4a */,
+				FFC995CD24B342F20052AE7F /* word-osoi.m4a */,
+				FFC995A824B342EE0052AE7F /* word-osusume.m4a */,
+				FFC995AE24B342EE0052AE7F /* word-pachinko.m4a */,
+				FFC995BB24B342F00052AE7F /* word-pen.m4a */,
+				FFC9959324B342EC0052AE7F /* word-sake.m4a */,
+				FFC995D424B342F30052AE7F /* word-samui.m4a */,
+				FFC995D724B342F50052AE7F /* word-sanpo.m4a */,
+				FFC9959B24B342ED0052AE7F /* word-shashin.m4a */,
+				FFC995C924B342F20052AE7F /* word-shizuka.m4a */,
+				FFC9959724B342EC0052AE7F /* word-shuu.m4a */,
+				FFC995C224B342F10052AE7F /* word-sugoi.m4a */,
+				FFC995A024B342ED0052AE7F /* word-sumimasen.m4a */,
+				FFC995B824B342EF0052AE7F /* word-sushi.m4a */,
+				FFC9959024B342EC0052AE7F /* word-takai.m4a */,
+				FFC9959924B342EC0052AE7F /* word-te.m4a */,
+				FFC995AD24B342EE0052AE7F /* word-toshi.m4a */,
+				FFC995B124B342EF0052AE7F /* word-toufu.m4a */,
+				FFC995AC24B342EE0052AE7F /* word-tsugi.m4a */,
+				FFC9959C24B342ED0052AE7F /* word-tsuyoi.m4a */,
+				FFC995BD24B342F00052AE7F /* word-ue.m4a */,
+				FFC995D524B342F40052AE7F /* word-umai.m4a */,
+				FFC995B724B342EF0052AE7F /* word-watashi.m4a */,
+				FFC9959F24B342ED0052AE7F /* word-yawarakai.m4a */,
+				FFC995A524B342ED0052AE7F /* word-yuumei.m4a */,
+				FFC995A624B342ED0052AE7F /* word-zasshi.m4a */,
+				FFC995B324B342EF0052AE7F /* word-zou.m4a */,
 				FF57398024B2BC710080F2E2 /* kana_a.mp3 */,
 				FF57394F24B2BC6E0080F2E2 /* kana_ba.mp3 */,
 				FF57394C24B2BC6E0080F2E2 /* kana_be.mp3 */,
@@ -572,11 +788,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC9961924B342F50052AE7F /* word-gaikokujin.m4a in Resources */,
 				FF5739C224B2BC710080F2E2 /* kana_po.mp3 in Resources */,
 				FF5739A124B2BC710080F2E2 /* kana_da.mp3 in Resources */,
 				FF5739A524B2BC710080F2E2 /* kana_ga.mp3 in Resources */,
+				FFC995FF24B342F50052AE7F /* word-watashi.m4a in Resources */,
 				FF5739BE24B2BC710080F2E2 /* kana_e.mp3 in Resources */,
 				FF5739A624B2BC710080F2E2 /* kana_no.mp3 in Resources */,
+				FFC9960524B342F50052AE7F /* word-ue.m4a in Resources */,
 				FF5739B324B2BC710080F2E2 /* kana_ke.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				FF5739C324B2BC710080F2E2 /* kana_mo.mp3 in Resources */,
@@ -585,42 +804,93 @@
 				FF57399024B2BC710080F2E2 /* kana_be.mp3 in Resources */,
 				FF5739BF24B2BC710080F2E2 /* kana_ko.mp3 in Resources */,
 				FF5739AF24B2BC710080F2E2 /* kana_gi.mp3 in Resources */,
+				FFC995DA24B342F50052AE7F /* word-heya.m4a in Resources */,
+				FFC995E124B342F50052AE7F /* word-te.m4a in Resources */,
+				FFC995E824B342F50052AE7F /* word-sumimasen.m4a in Resources */,
+				FFC995DE24B342F50052AE7F /* word-kage.m4a in Resources */,
 				FF57398424B2BC710080F2E2 /* kana_ki.mp3 in Resources */,
+				FFC995E324B342F50052AE7F /* word-shashin.m4a in Resources */,
+				FFC9961124B342F50052AE7F /* word-shizuka.m4a in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				FFC995FA24B342F50052AE7F /* word-kippu.m4a in Resources */,
+				FFC995E624B342F50052AE7F /* word-nihon.m4a in Resources */,
 				FF57398E24B2BC710080F2E2 /* kana_mi.mp3 in Resources */,
 				FF5739AD24B2BC710080F2E2 /* kana_do.mp3 in Resources */,
 				FF5739B424B2BC710080F2E2 /* kana_ka.mp3 in Resources */,
+				FFC995F124B342F50052AE7F /* word-genki.m4a in Resources */,
 				FF5739A924B2BC710080F2E2 /* kana_to.mp3 in Resources */,
 				FF57398324B2BC710080F2E2 /* kana_ho.mp3 in Resources */,
+				FFC995EB24B342F50052AE7F /* word-eki.m4a in Resources */,
+				FFC995E224B342F50052AE7F /* word-chiisai.m4a in Resources */,
+				FFC9961A24B342F50052AE7F /* word-naruhodo.m4a in Resources */,
+				FFC9960024B342F50052AE7F /* word-sushi.m4a in Resources */,
 				FF5739BD24B2BC710080F2E2 /* kana_ta.mp3 in Resources */,
 				FF5739B224B2BC710080F2E2 /* kana_ji.mp3 in Resources */,
 				FF57399624B2BC710080F2E2 /* kana_pu.mp3 in Resources */,
+				FFC995EC24B342F50052AE7F /* word-kinou.m4a in Resources */,
+				FFC995D924B342F50052AE7F /* word-hen.m4a in Resources */,
 				FF5739B624B2BC710080F2E2 /* kana_ku.mp3 in Resources */,
 				FF5739B024B2BC710080F2E2 /* kana_pi.mp3 in Resources */,
+				FFC995E424B342F50052AE7F /* word-tsuyoi.m4a in Resources */,
+				FFC9961B24B342F50052AE7F /* word-abunai.m4a in Resources */,
 				FF57399724B2BC710080F2E2 /* kana_pe.mp3 in Resources */,
+				FFC9960B24B342F50052AE7F /* word-kagu.m4a in Resources */,
+				FFC9961724B342F50052AE7F /* word-kawaii.m4a in Resources */,
+				FFC995EA24B342F50052AE7F /* word-doushite.m4a in Resources */,
+				FFC995DB24B342F50052AE7F /* word-sake.m4a in Resources */,
+				FFC9961E24B342F50052AE7F /* word-aka.m4a in Resources */,
+				FFC995FD24B342F50052AE7F /* word-onsen.m4a in Resources */,
 				FFEB9F5E24414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
 				FF57399A24B2BC710080F2E2 /* kana_ra.mp3 in Resources */,
 				FF5739AB24B2BC710080F2E2 /* kana_he.mp3 in Resources */,
+				FFC995F424B342F50052AE7F /* word-tsugi.m4a in Resources */,
 				FF5739AC24B2BC710080F2E2 /* kana_zu.mp3 in Resources */,
 				1694817CFA154284A27F519B /* Lato_bold.ttf in Resources */,
 				FF57398624B2BC710080F2E2 /* kana_su.mp3 in Resources */,
+				FFC9960F24B342F50052AE7F /* word-hai.m4a in Resources */,
 				FF57398D24B2BC710080F2E2 /* kana_mu.mp3 in Resources */,
 				FF5739C024B2BC710080F2E2 /* kana_hi.mp3 in Resources */,
+				FFC995E024B342F50052AE7F /* word-kyou.m4a in Resources */,
+				FFC995F224B342F50052AE7F /* word-kaze.m4a in Resources */,
+				FFC9960424B342F50052AE7F /* word-mono.m4a in Resources */,
+				FFC9961624B342F50052AE7F /* word-hitobito.m4a in Resources */,
+				FFC9961F24B342F50052AE7F /* word-sanpo.m4a in Resources */,
+				FFC995E924B342F50052AE7F /* word-neko.m4a in Resources */,
+				FFC995E524B342F50052AE7F /* word-boku.m4a in Resources */,
 				FF5739A224B2BC710080F2E2 /* kana_ha.mp3 in Resources */,
+				FFC995ED24B342F50052AE7F /* word-yuumei.m4a in Resources */,
+				FFC9961824B342F50052AE7F /* word-arigatou.m4a in Resources */,
 				FF5739C124B2BC710080F2E2 /* kana_gu.mp3 in Resources */,
 				FF5739A824B2BC710080F2E2 /* kana_bo.mp3 in Resources */,
+				FFC995F924B342F50052AE7F /* word-toufu.m4a in Resources */,
+				FFC995DD24B342F50052AE7F /* word-chotto.m4a in Resources */,
 				FF57398124B2BC710080F2E2 /* kana_de.mp3 in Resources */,
+				FFC9961524B342F50052AE7F /* word-osoi.m4a in Resources */,
+				FFC995FC24B342F50052AE7F /* word-kirei.m4a in Resources */,
+				FFC9960824B342F50052AE7F /* word-enpitsu.m4a in Resources */,
 				FF57398224B2BC710080F2E2 /* kana_me.mp3 in Resources */,
 				FF57399B24B2BC710080F2E2 /* kana_yu.mp3 in Resources */,
 				FF5739B824B2BC710080F2E2 /* kana_ma.mp3 in Resources */,
+				FFC9960C24B342F50052AE7F /* word-ao.m4a in Resources */,
+				FFC9960124B342F50052AE7F /* word-iie.m4a in Resources */,
 				FF57399924B2BC710080F2E2 /* kana_n.mp3 in Resources */,
+				FFC995F624B342F50052AE7F /* word-pachinko.m4a in Resources */,
 				FF5739AE24B2BC710080F2E2 /* kana_fu.mp3 in Resources */,
+				FFC995F324B342F50052AE7F /* word-aji.m4a in Resources */,
+				FFC9961024B342F50052AE7F /* word-daigaku.m4a in Resources */,
 				FF57398A24B2BC710080F2E2 /* kana_shi.mp3 in Resources */,
+				FFC995FE24B342F50052AE7F /* word-desu.m4a in Resources */,
 				FF57398524B2BC710080F2E2 /* kana_bu.mp3 in Resources */,
+				FFC995F824B342F50052AE7F /* word-kagi.m4a in Resources */,
+				FFC9960324B342F50052AE7F /* word-pen.m4a in Resources */,
+				FFC995DC24B342F50052AE7F /* word-eigo.m4a in Resources */,
+				FFC995F024B342F50052AE7F /* word-osusume.m4a in Resources */,
+				FFC995FB24B342F50052AE7F /* word-zou.m4a in Resources */,
 				FF57399124B2BC710080F2E2 /* kana_ru.mp3 in Resources */,
 				FF57398C24B2BC710080F2E2 /* kana_ne.mp3 in Resources */,
 				FF5739A424B2BC710080F2E2 /* kana_ni.mp3 in Resources */,
 				FF57399424B2BC710080F2E2 /* kana_wa.mp3 in Resources */,
+				FFC995DF24B342F50052AE7F /* word-shuu.m4a in Resources */,
 				FF5739B524B2BC710080F2E2 /* kana_nu.mp3 in Resources */,
 				FF57398B24B2BC710080F2E2 /* kana_i.mp3 in Resources */,
 				FF57399E24B2BC710080F2E2 /* kana_se.mp3 in Resources */,
@@ -629,22 +899,40 @@
 				4C14A2930F034514A6182AAC /* Lato.ttf in Resources */,
 				FF5739A324B2BC710080F2E2 /* kana_bi.mp3 in Resources */,
 				FF5739AA24B2BC710080F2E2 /* kana_ze.mp3 in Resources */,
+				FFC9961324B342F50052AE7F /* word-baka.m4a in Resources */,
 				FF57399224B2BC710080F2E2 /* kana_te.mp3 in Resources */,
 				FF57398824B2BC710080F2E2 /* kana_pa.mp3 in Resources */,
+				FFC995EF24B342F50052AE7F /* word-hito.m4a in Resources */,
 				FF5739B924B2BC710080F2E2 /* kana_na.mp3 in Resources */,
+				FFC9960624B342F50052AE7F /* word-nani.m4a in Resources */,
+				FFC9960A24B342F50052AE7F /* word-sugoi.m4a in Resources */,
 				FF57398924B2BC710080F2E2 /* kana_so.mp3 in Resources */,
+				FFC9960D24B342F50052AE7F /* word-eiga.m4a in Resources */,
 				FF5739BC24B2BC710080F2E2 /* kana_ge.mp3 in Resources */,
 				FF5739A724B2BC710080F2E2 /* kana_go.mp3 in Resources */,
+				FFC995F724B342F50052AE7F /* word-maguro.m4a in Resources */,
+				FFC9961224B342F50052AE7F /* word-inu.m4a in Resources */,
 				FF5739BA24B2BC710080F2E2 /* kana_zo.mp3 in Resources */,
 				FF5739BB24B2BC710080F2E2 /* kana_chi.mp3 in Resources */,
 				FF57399C24B2BC710080F2E2 /* kana_o.mp3 in Resources */,
+				FFC9961424B342F50052AE7F /* word-kuukou.m4a in Resources */,
 				FF57399D24B2BC710080F2E2 /* kana_u.mp3 in Resources */,
+				FFC9960E24B342F50052AE7F /* word-ie.m4a in Resources */,
+				FFC9960724B342F50052AE7F /* word-keikaku.m4a in Resources */,
+				FFC995E724B342F50052AE7F /* word-yawarakai.m4a in Resources */,
+				FFC9960224B342F50052AE7F /* word-gakusei.m4a in Resources */,
+				FFC995D824B342F50052AE7F /* word-takai.m4a in Resources */,
 				FF57399324B2BC710080F2E2 /* kana_ba.mp3 in Resources */,
+				FFC995EE24B342F50052AE7F /* word-zasshi.m4a in Resources */,
 				FF57399F24B2BC710080F2E2 /* kana_re.mp3 in Resources */,
 				FF5739A024B2BC710080F2E2 /* kana_yo.mp3 in Resources */,
+				FFC9961C24B342F50052AE7F /* word-samui.m4a in Resources */,
+				FFC995F524B342F50052AE7F /* word-toshi.m4a in Resources */,
 				FF5739C424B2BC710080F2E2 /* kana_a.mp3 in Resources */,
 				FF5739B724B2BC710080F2E2 /* kana_ri.mp3 in Resources */,
 				FF57398F24B2BC710080F2E2 /* kana_sa.mp3 in Resources */,
+				FFC9961D24B342F50052AE7F /* word-umai.m4a in Resources */,
+				FFC9960924B342F50052AE7F /* word-obentou.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
