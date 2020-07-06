@@ -376,6 +376,8 @@ export function LessonScreen(props: Props): Node {
   };
 
   const nextQuestionKanaLesson = (mark: "CORRECT" | "INCORRECT") => {
+    setLecturesStatus("inactive");
+
     // Question stage here may be bumped up 1 by the current result, since this happens after the user answers.
     const nextTimeQuestionStage =
       getQuestionStage(currentTestable, results) + (mark === "CORRECT" ? 1 : 0);
