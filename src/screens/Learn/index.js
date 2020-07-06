@@ -39,6 +39,46 @@ const AVAILABLE_LESSONS_QUERY = gql`
           title
           image
         }
+        completedLessons {
+          id
+          lectures {
+            title
+            text
+            image
+            position
+          }
+          title
+          image
+          skillLevel
+          timeEstimate
+          testables {
+            objectId
+            objectType
+            wordId
+            orderInLesson
+            context {
+              person
+              location
+              speaker
+              japanese
+              furigana
+              english
+            }
+            question {
+              type
+              emoji
+              image
+              text
+              furigana
+              prompt
+            }
+            answer {
+              type
+              text
+            }
+            introduction
+          }
+        }
         availableLessons {
           id
           lectures {
@@ -208,29 +248,44 @@ export function LearnScreen(props: Props): Node {
                 <Text style={styles.greetingName}>{userGivenName}</Text>
               </View>
               {courses.map((course) => {
+                const completedLessons = course.completedLessons.map(
+                  (lesson) => ({
+                    key: lesson.id,
+                    bigText: lesson.title,
+                    smallText: "Completed",
+                    onPress: () =>
+                      startLesson(me.id, lesson, refetch, me.splots),
+                  })
+                );
+                const availableLessons = course.availableLessons.map(
+                  (lesson) => ({
+                    key: lesson.id,
+                    bigText: lesson.title,
+                    smallText: `${Duration.fromMillis(
+                      lesson.timeEstimate * 1000
+                    ).toFormat("m 'min'")}・${lesson.skillLevel}`,
+                    onPress: () =>
+                      startLesson(me.id, lesson, refetch, me.splots),
+                  })
+                );
+                const nextUnlockLessons = course.nextUnlockLessons.map(
+                  (lesson) => ({
+                    key: lesson.id,
+                    bigText: lesson.title,
+                    smallText: "Locked",
+                    onPress: () => {},
+                    disabled: true,
+                  })
+                );
+
                 return (
                   <SideSlider
                     key={course.id}
                     heading={course.title}
-                    linkCardProps={course.availableLessons
-                      .map((lesson) => ({
-                        key: lesson.id,
-                        bigText: lesson.title,
-                        smallText: `${Duration.fromMillis(
-                          lesson.timeEstimate * 1000
-                        ).toFormat("m 'min'")}・${lesson.skillLevel}`,
-                        onPress: () =>
-                          startLesson(me.id, lesson, refetch, me.splots),
-                      }))
-                      .concat(
-                        course.nextUnlockLessons.map((lesson) => ({
-                          key: lesson.id,
-                          bigText: lesson.title,
-                          smallText: "Locked",
-                          onPress: () => {},
-                          disabled: true,
-                        }))
-                      )}
+                    initialScrollIndex={completedLessons.length}
+                    linkCardProps={completedLessons
+                      .concat(availableLessons)
+                      .concat(nextUnlockLessons)}
                   />
                 );
               })}
