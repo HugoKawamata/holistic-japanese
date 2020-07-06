@@ -1,6 +1,7 @@
 /* @flow */
 import * as React from "react";
 import { View } from "react-native";
+import Sound from "react-native-sound";
 import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { UserAnswer, Results } from "../types";
 import {
@@ -62,6 +63,19 @@ export function WordLesson(props: Props) {
       props.setCurrentMark("INCORRECT");
       mark = "INCORRECT";
     }
+
+    const soundFile = `word_${currentTestable.answer.text.replace(
+      /,/g,
+      ""
+    )}.mp3`;
+    const charSound = new Sound(soundFile, Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        // do something
+      }
+      // play when loaded
+      charSound.play();
+    });
+    charSound.release();
 
     const characterResults = splitQuestion.reduce(
       (resultsMap, char: string, index: number) => {
