@@ -50,8 +50,8 @@ export function LectureScreen(props: Props) {
                 <FuriganaText
                   furiStyle={styles.redButtonText}
                   textStyle={styles.redButtonText}
-                  kana="つぎへ"
-                  text="次へ"
+                  kana="もどる"
+                  text="戻る"
                 />
                 <Text style={styles.redButtonText}>Back</Text>
               </Button>

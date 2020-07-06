@@ -209,7 +209,7 @@ export function LessonScreen(props: Props): Node {
                 Object.keys(romajiHiraganaMap).includes(lowerText) &&
                 nChecker(lowerText, charRomaji)
               ) {
-                const soundFile = `${lowerText}.mp3`;
+                const soundFile = `kana_${lowerText}.mp3`;
                 const charSound = new Sound(
                   soundFile,
                   Sound.MAIN_BUNDLE,

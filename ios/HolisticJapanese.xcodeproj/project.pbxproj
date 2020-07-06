@@ -22,89 +22,74 @@
 		B04B06F1FA357D29A1275583 /* libPods-HolisticJapanese-HolisticJapaneseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 879B6B5A2F39F91AA10B3889 /* libPods-HolisticJapanese-HolisticJapaneseTests.a */; };
 		D2790126A735258EC9D189EF /* libPods-HolisticJapanese-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D47147A2BC46D5D63729E7F /* libPods-HolisticJapanese-tvOSTests.a */; };
 		D711783138E65F0C7123226F /* libPods-HolisticJapanese.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F07FB03AC778B1D55015F1 /* libPods-HolisticJapanese.a */; };
-		FF06C31C244BD03900E726EF /* a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C31B244BD03900E726EF /* a.mp3 */; };
-		FF06C31D244BD03900E726EF /* a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C31B244BD03900E726EF /* a.mp3 */; };
-		FF06C31E244BD03900E726EF /* a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C31B244BD03900E726EF /* a.mp3 */; };
-		FF06C31F244BD03900E726EF /* a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C31B244BD03900E726EF /* a.mp3 */; };
-		FF06C324244BD04800E726EF /* i.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C320244BD04800E726EF /* i.mp3 */; };
-		FF06C325244BD04800E726EF /* i.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C320244BD04800E726EF /* i.mp3 */; };
-		FF06C326244BD04800E726EF /* i.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C320244BD04800E726EF /* i.mp3 */; };
-		FF06C327244BD04800E726EF /* i.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C320244BD04800E726EF /* i.mp3 */; };
-		FF06C328244BD04800E726EF /* o.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C321244BD04800E726EF /* o.mp3 */; };
-		FF06C329244BD04800E726EF /* o.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C321244BD04800E726EF /* o.mp3 */; };
-		FF06C32A244BD04800E726EF /* o.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C321244BD04800E726EF /* o.mp3 */; };
-		FF06C32B244BD04800E726EF /* o.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C321244BD04800E726EF /* o.mp3 */; };
-		FF06C32C244BD04800E726EF /* u.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C322244BD04800E726EF /* u.mp3 */; };
-		FF06C32D244BD04800E726EF /* u.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C322244BD04800E726EF /* u.mp3 */; };
-		FF06C32E244BD04800E726EF /* u.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C322244BD04800E726EF /* u.mp3 */; };
-		FF06C32F244BD04800E726EF /* u.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C322244BD04800E726EF /* u.mp3 */; };
-		FF06C330244BD04800E726EF /* e.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C323244BD04800E726EF /* e.mp3 */; };
-		FF06C331244BD04800E726EF /* e.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C323244BD04800E726EF /* e.mp3 */; };
-		FF06C332244BD04800E726EF /* e.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C323244BD04800E726EF /* e.mp3 */; };
-		FF06C333244BD04800E726EF /* e.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF06C323244BD04800E726EF /* e.mp3 */; };
-		FF7E00BB245D3E9300A01491 /* do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00B2245D3E9300A01491 /* do.mp3 */; };
-		FF7E00BC245D3E9300A01491 /* de.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00B3245D3E9300A01491 /* de.mp3 */; };
-		FF7E00BD245D3E9300A01491 /* be.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00B4245D3E9300A01491 /* be.mp3 */; };
-		FF7E00BE245D3E9300A01491 /* bi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00B5245D3E9300A01491 /* bi.mp3 */; };
-		FF7E00BF245D3E9300A01491 /* bu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00B6245D3E9300A01491 /* bu.mp3 */; };
-		FF7E00C0245D3E9300A01491 /* ba.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00B7245D3E9300A01491 /* ba.mp3 */; };
-		FF7E00C1245D3E9300A01491 /* chi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00B8245D3E9300A01491 /* chi.mp3 */; };
-		FF7E00C2245D3E9300A01491 /* da.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00B9245D3E9300A01491 /* da.mp3 */; };
-		FF7E00C3245D3E9300A01491 /* bo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00BA245D3E9300A01491 /* bo.mp3 */; };
-		FF7E00CE245D3EBB00A01491 /* he.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00C4245D3EBA00A01491 /* he.mp3 */; };
-		FF7E00CF245D3EBB00A01491 /* ha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00C5245D3EBA00A01491 /* ha.mp3 */; };
-		FF7E00D0245D3EBB00A01491 /* ga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00C6245D3EBA00A01491 /* ga.mp3 */; };
-		FF7E00D1245D3EBB00A01491 /* ho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00C7245D3EBA00A01491 /* ho.mp3 */; };
-		FF7E00D2245D3EBB00A01491 /* gi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00C8245D3EBA00A01491 /* gi.mp3 */; };
-		FF7E00D3245D3EBB00A01491 /* fu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00C9245D3EBA00A01491 /* fu.mp3 */; };
-		FF7E00D4245D3EBB00A01491 /* gu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00CA245D3EBA00A01491 /* gu.mp3 */; };
-		FF7E00D5245D3EBB00A01491 /* go.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00CB245D3EBA00A01491 /* go.mp3 */; };
-		FF7E00D6245D3EBB00A01491 /* hi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00CC245D3EBA00A01491 /* hi.mp3 */; };
-		FF7E00D7245D3EBB00A01491 /* ge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00CD245D3EBA00A01491 /* ge.mp3 */; };
-		FF7E00E9245D3EC700A01491 /* nu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00D8245D3EC500A01491 /* nu.mp3 */; };
-		FF7E00EA245D3EC700A01491 /* n.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00D9245D3EC500A01491 /* n.mp3 */; };
-		FF7E00EB245D3EC700A01491 /* mo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00DA245D3EC500A01491 /* mo.mp3 */; };
-		FF7E00EC245D3EC700A01491 /* no.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00DB245D3EC500A01491 /* no.mp3 */; };
-		FF7E00ED245D3EC700A01491 /* ke.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00DC245D3EC500A01491 /* ke.mp3 */; };
-		FF7E00EE245D3EC700A01491 /* me.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00DD245D3EC600A01491 /* me.mp3 */; };
-		FF7E00EF245D3EC700A01491 /* ku.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00DE245D3EC600A01491 /* ku.mp3 */; };
-		FF7E00F0245D3EC700A01491 /* ne.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00DF245D3EC600A01491 /* ne.mp3 */; };
-		FF7E00F1245D3EC700A01491 /* ki.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00E0245D3EC600A01491 /* ki.mp3 */; };
-		FF7E00F2245D3EC700A01491 /* na.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00E1245D3EC600A01491 /* na.mp3 */; };
-		FF7E00F3245D3EC700A01491 /* ni.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00E2245D3EC600A01491 /* ni.mp3 */; };
-		FF7E00F4245D3EC700A01491 /* ma.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00E3245D3EC600A01491 /* ma.mp3 */; };
-		FF7E00F5245D3EC700A01491 /* mi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00E4245D3EC700A01491 /* mi.mp3 */; };
-		FF7E00F6245D3EC700A01491 /* ka.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00E5245D3EC700A01491 /* ka.mp3 */; };
-		FF7E00F7245D3EC700A01491 /* ji.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00E6245D3EC700A01491 /* ji.mp3 */; };
-		FF7E00F8245D3EC700A01491 /* ko.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00E7245D3EC700A01491 /* ko.mp3 */; };
-		FF7E00F9245D3EC700A01491 /* mu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00E8245D3EC700A01491 /* mu.mp3 */; };
-		FF7E010D245D3ED400A01491 /* tsu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00FA245D3ED100A01491 /* tsu.mp3 */; };
-		FF7E010E245D3ED400A01491 /* pi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00FB245D3ED100A01491 /* pi.mp3 */; };
-		FF7E010F245D3ED400A01491 /* pe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00FC245D3ED200A01491 /* pe.mp3 */; };
-		FF7E0110245D3ED400A01491 /* ra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00FD245D3ED200A01491 /* ra.mp3 */; };
-		FF7E0111245D3ED400A01491 /* re.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00FE245D3ED200A01491 /* re.mp3 */; };
-		FF7E0112245D3ED400A01491 /* sa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E00FF245D3ED200A01491 /* sa.mp3 */; };
-		FF7E0113245D3ED400A01491 /* te.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0100245D3ED200A01491 /* te.mp3 */; };
-		FF7E0114245D3ED400A01491 /* to.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0101245D3ED200A01491 /* to.mp3 */; };
-		FF7E0115245D3ED400A01491 /* su.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0102245D3ED300A01491 /* su.mp3 */; };
-		FF7E0116245D3ED400A01491 /* ri.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0103245D3ED300A01491 /* ri.mp3 */; };
-		FF7E0117245D3ED400A01491 /* ta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0104245D3ED300A01491 /* ta.mp3 */; };
-		FF7E0118245D3ED400A01491 /* se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0105245D3ED300A01491 /* se.mp3 */; };
-		FF7E0119245D3ED400A01491 /* shi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0106245D3ED300A01491 /* shi.mp3 */; };
-		FF7E011A245D3ED400A01491 /* ru.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0107245D3ED300A01491 /* ru.mp3 */; };
-		FF7E011B245D3ED400A01491 /* pa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0108245D3ED300A01491 /* pa.mp3 */; };
-		FF7E011C245D3ED400A01491 /* ro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0109245D3ED300A01491 /* ro.mp3 */; };
-		FF7E011D245D3ED400A01491 /* so.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E010A245D3ED400A01491 /* so.mp3 */; };
-		FF7E011E245D3ED400A01491 /* pu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E010B245D3ED400A01491 /* pu.mp3 */; };
-		FF7E011F245D3ED400A01491 /* po.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E010C245D3ED400A01491 /* po.mp3 */; };
-		FF7E0128245D3EDD00A01491 /* yu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0120245D3EDC00A01491 /* yu.mp3 */; };
-		FF7E0129245D3EDD00A01491 /* zu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0121245D3EDC00A01491 /* zu.mp3 */; };
-		FF7E012A245D3EDD00A01491 /* ya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0122245D3EDC00A01491 /* ya.mp3 */; };
-		FF7E012B245D3EDD00A01491 /* ze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0123245D3EDC00A01491 /* ze.mp3 */; };
-		FF7E012C245D3EDD00A01491 /* za.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0124245D3EDD00A01491 /* za.mp3 */; };
-		FF7E012D245D3EDD00A01491 /* wa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0125245D3EDD00A01491 /* wa.mp3 */; };
-		FF7E012E245D3EDD00A01491 /* yo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0126245D3EDD00A01491 /* yo.mp3 */; };
-		FF7E012F245D3EDD00A01491 /* zo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7E0127245D3EDD00A01491 /* zo.mp3 */; };
+		FF57398124B2BC710080F2E2 /* kana_de.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57393D24B2BC6D0080F2E2 /* kana_de.mp3 */; };
+		FF57398224B2BC710080F2E2 /* kana_me.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57393E24B2BC6D0080F2E2 /* kana_me.mp3 */; };
+		FF57398324B2BC710080F2E2 /* kana_ho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57393F24B2BC6D0080F2E2 /* kana_ho.mp3 */; };
+		FF57398424B2BC710080F2E2 /* kana_ki.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394024B2BC6D0080F2E2 /* kana_ki.mp3 */; };
+		FF57398524B2BC710080F2E2 /* kana_bu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394124B2BC6E0080F2E2 /* kana_bu.mp3 */; };
+		FF57398624B2BC710080F2E2 /* kana_su.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394224B2BC6E0080F2E2 /* kana_su.mp3 */; };
+		FF57398724B2BC710080F2E2 /* kana_za.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394324B2BC6E0080F2E2 /* kana_za.mp3 */; };
+		FF57398824B2BC710080F2E2 /* kana_pa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394424B2BC6E0080F2E2 /* kana_pa.mp3 */; };
+		FF57398924B2BC710080F2E2 /* kana_so.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394524B2BC6E0080F2E2 /* kana_so.mp3 */; };
+		FF57398A24B2BC710080F2E2 /* kana_shi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394624B2BC6E0080F2E2 /* kana_shi.mp3 */; };
+		FF57398B24B2BC710080F2E2 /* kana_i.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394724B2BC6E0080F2E2 /* kana_i.mp3 */; };
+		FF57398C24B2BC710080F2E2 /* kana_ne.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394824B2BC6E0080F2E2 /* kana_ne.mp3 */; };
+		FF57398D24B2BC710080F2E2 /* kana_mu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394924B2BC6E0080F2E2 /* kana_mu.mp3 */; };
+		FF57398E24B2BC710080F2E2 /* kana_mi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394A24B2BC6E0080F2E2 /* kana_mi.mp3 */; };
+		FF57398F24B2BC710080F2E2 /* kana_sa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394B24B2BC6E0080F2E2 /* kana_sa.mp3 */; };
+		FF57399024B2BC710080F2E2 /* kana_be.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394C24B2BC6E0080F2E2 /* kana_be.mp3 */; };
+		FF57399124B2BC710080F2E2 /* kana_ru.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394D24B2BC6E0080F2E2 /* kana_ru.mp3 */; };
+		FF57399224B2BC710080F2E2 /* kana_te.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394E24B2BC6E0080F2E2 /* kana_te.mp3 */; };
+		FF57399324B2BC710080F2E2 /* kana_ba.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57394F24B2BC6E0080F2E2 /* kana_ba.mp3 */; };
+		FF57399424B2BC710080F2E2 /* kana_wa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395024B2BC6E0080F2E2 /* kana_wa.mp3 */; };
+		FF57399524B2BC710080F2E2 /* kana_ya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395124B2BC6E0080F2E2 /* kana_ya.mp3 */; };
+		FF57399624B2BC710080F2E2 /* kana_pu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395224B2BC6E0080F2E2 /* kana_pu.mp3 */; };
+		FF57399724B2BC710080F2E2 /* kana_pe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395324B2BC6E0080F2E2 /* kana_pe.mp3 */; };
+		FF57399824B2BC710080F2E2 /* kana_tsu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395424B2BC6E0080F2E2 /* kana_tsu.mp3 */; };
+		FF57399924B2BC710080F2E2 /* kana_n.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395524B2BC6E0080F2E2 /* kana_n.mp3 */; };
+		FF57399A24B2BC710080F2E2 /* kana_ra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395624B2BC6E0080F2E2 /* kana_ra.mp3 */; };
+		FF57399B24B2BC710080F2E2 /* kana_yu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395724B2BC6E0080F2E2 /* kana_yu.mp3 */; };
+		FF57399C24B2BC710080F2E2 /* kana_o.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395824B2BC6E0080F2E2 /* kana_o.mp3 */; };
+		FF57399D24B2BC710080F2E2 /* kana_u.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395924B2BC6E0080F2E2 /* kana_u.mp3 */; };
+		FF57399E24B2BC710080F2E2 /* kana_se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395A24B2BC6F0080F2E2 /* kana_se.mp3 */; };
+		FF57399F24B2BC710080F2E2 /* kana_re.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395B24B2BC6F0080F2E2 /* kana_re.mp3 */; };
+		FF5739A024B2BC710080F2E2 /* kana_yo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395C24B2BC6F0080F2E2 /* kana_yo.mp3 */; };
+		FF5739A124B2BC710080F2E2 /* kana_da.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395D24B2BC6F0080F2E2 /* kana_da.mp3 */; };
+		FF5739A224B2BC710080F2E2 /* kana_ha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395E24B2BC6F0080F2E2 /* kana_ha.mp3 */; };
+		FF5739A324B2BC710080F2E2 /* kana_bi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57395F24B2BC6F0080F2E2 /* kana_bi.mp3 */; };
+		FF5739A424B2BC710080F2E2 /* kana_ni.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396024B2BC6F0080F2E2 /* kana_ni.mp3 */; };
+		FF5739A524B2BC710080F2E2 /* kana_ga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396124B2BC6F0080F2E2 /* kana_ga.mp3 */; };
+		FF5739A624B2BC710080F2E2 /* kana_no.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396224B2BC6F0080F2E2 /* kana_no.mp3 */; };
+		FF5739A724B2BC710080F2E2 /* kana_go.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396324B2BC6F0080F2E2 /* kana_go.mp3 */; };
+		FF5739A824B2BC710080F2E2 /* kana_bo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396424B2BC6F0080F2E2 /* kana_bo.mp3 */; };
+		FF5739A924B2BC710080F2E2 /* kana_to.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396524B2BC6F0080F2E2 /* kana_to.mp3 */; };
+		FF5739AA24B2BC710080F2E2 /* kana_ze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396624B2BC6F0080F2E2 /* kana_ze.mp3 */; };
+		FF5739AB24B2BC710080F2E2 /* kana_he.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396724B2BC6F0080F2E2 /* kana_he.mp3 */; };
+		FF5739AC24B2BC710080F2E2 /* kana_zu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396824B2BC6F0080F2E2 /* kana_zu.mp3 */; };
+		FF5739AD24B2BC710080F2E2 /* kana_do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396924B2BC6F0080F2E2 /* kana_do.mp3 */; };
+		FF5739AE24B2BC710080F2E2 /* kana_fu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396A24B2BC6F0080F2E2 /* kana_fu.mp3 */; };
+		FF5739AF24B2BC710080F2E2 /* kana_gi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396B24B2BC6F0080F2E2 /* kana_gi.mp3 */; };
+		FF5739B024B2BC710080F2E2 /* kana_pi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396C24B2BC700080F2E2 /* kana_pi.mp3 */; };
+		FF5739B124B2BC710080F2E2 /* kana_ro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396D24B2BC700080F2E2 /* kana_ro.mp3 */; };
+		FF5739B224B2BC710080F2E2 /* kana_ji.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396E24B2BC700080F2E2 /* kana_ji.mp3 */; };
+		FF5739B324B2BC710080F2E2 /* kana_ke.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57396F24B2BC700080F2E2 /* kana_ke.mp3 */; };
+		FF5739B424B2BC710080F2E2 /* kana_ka.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397024B2BC700080F2E2 /* kana_ka.mp3 */; };
+		FF5739B524B2BC710080F2E2 /* kana_nu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397124B2BC700080F2E2 /* kana_nu.mp3 */; };
+		FF5739B624B2BC710080F2E2 /* kana_ku.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397224B2BC700080F2E2 /* kana_ku.mp3 */; };
+		FF5739B724B2BC710080F2E2 /* kana_ri.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397324B2BC700080F2E2 /* kana_ri.mp3 */; };
+		FF5739B824B2BC710080F2E2 /* kana_ma.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397424B2BC700080F2E2 /* kana_ma.mp3 */; };
+		FF5739B924B2BC710080F2E2 /* kana_na.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397524B2BC700080F2E2 /* kana_na.mp3 */; };
+		FF5739BA24B2BC710080F2E2 /* kana_zo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397624B2BC700080F2E2 /* kana_zo.mp3 */; };
+		FF5739BB24B2BC710080F2E2 /* kana_chi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397724B2BC700080F2E2 /* kana_chi.mp3 */; };
+		FF5739BC24B2BC710080F2E2 /* kana_ge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397824B2BC700080F2E2 /* kana_ge.mp3 */; };
+		FF5739BD24B2BC710080F2E2 /* kana_ta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397924B2BC700080F2E2 /* kana_ta.mp3 */; };
+		FF5739BE24B2BC710080F2E2 /* kana_e.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397A24B2BC700080F2E2 /* kana_e.mp3 */; };
+		FF5739BF24B2BC710080F2E2 /* kana_ko.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397B24B2BC700080F2E2 /* kana_ko.mp3 */; };
+		FF5739C024B2BC710080F2E2 /* kana_hi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397C24B2BC700080F2E2 /* kana_hi.mp3 */; };
+		FF5739C124B2BC710080F2E2 /* kana_gu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397D24B2BC700080F2E2 /* kana_gu.mp3 */; };
+		FF5739C224B2BC710080F2E2 /* kana_po.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397E24B2BC700080F2E2 /* kana_po.mp3 */; };
+		FF5739C324B2BC710080F2E2 /* kana_mo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57397F24B2BC710080F2E2 /* kana_mo.mp3 */; };
+		FF5739C424B2BC710080F2E2 /* kana_a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57398024B2BC710080F2E2 /* kana_a.mp3 */; };
 		FFEB9F5E24414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
 		FFEB9F5F24414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
 		FFEB9F6024414CEA002C9F70 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */; };
@@ -158,74 +143,74 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FD85B0A853857795B171BF00 /* Pods-HolisticJapanese-HolisticJapaneseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolisticJapanese-HolisticJapaneseTests.debug.xcconfig"; path = "Target Support Files/Pods-HolisticJapanese-HolisticJapaneseTests/Pods-HolisticJapanese-HolisticJapaneseTests.debug.xcconfig"; sourceTree = "<group>"; };
-		FF06C31B244BD03900E726EF /* a.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = a.mp3; path = ../assets/audio/syllabaries/a.mp3; sourceTree = "<group>"; };
-		FF06C320244BD04800E726EF /* i.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = i.mp3; path = ../assets/audio/syllabaries/i.mp3; sourceTree = "<group>"; };
-		FF06C321244BD04800E726EF /* o.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = o.mp3; path = ../assets/audio/syllabaries/o.mp3; sourceTree = "<group>"; };
-		FF06C322244BD04800E726EF /* u.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = u.mp3; path = ../assets/audio/syllabaries/u.mp3; sourceTree = "<group>"; };
-		FF06C323244BD04800E726EF /* e.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = e.mp3; path = ../assets/audio/syllabaries/e.mp3; sourceTree = "<group>"; };
-		FF7E00B2245D3E9300A01491 /* do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = do.mp3; path = ../assets/audio/syllabaries/do.mp3; sourceTree = "<group>"; };
-		FF7E00B3245D3E9300A01491 /* de.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = de.mp3; path = ../assets/audio/syllabaries/de.mp3; sourceTree = "<group>"; };
-		FF7E00B4245D3E9300A01491 /* be.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = be.mp3; path = ../assets/audio/syllabaries/be.mp3; sourceTree = "<group>"; };
-		FF7E00B5245D3E9300A01491 /* bi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bi.mp3; path = ../assets/audio/syllabaries/bi.mp3; sourceTree = "<group>"; };
-		FF7E00B6245D3E9300A01491 /* bu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bu.mp3; path = ../assets/audio/syllabaries/bu.mp3; sourceTree = "<group>"; };
-		FF7E00B7245D3E9300A01491 /* ba.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ba.mp3; path = ../assets/audio/syllabaries/ba.mp3; sourceTree = "<group>"; };
-		FF7E00B8245D3E9300A01491 /* chi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = chi.mp3; path = ../assets/audio/syllabaries/chi.mp3; sourceTree = "<group>"; };
-		FF7E00B9245D3E9300A01491 /* da.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = da.mp3; path = ../assets/audio/syllabaries/da.mp3; sourceTree = "<group>"; };
-		FF7E00BA245D3E9300A01491 /* bo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bo.mp3; path = ../assets/audio/syllabaries/bo.mp3; sourceTree = "<group>"; };
-		FF7E00C4245D3EBA00A01491 /* he.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = he.mp3; path = ../assets/audio/syllabaries/he.mp3; sourceTree = "<group>"; };
-		FF7E00C5245D3EBA00A01491 /* ha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ha.mp3; path = ../assets/audio/syllabaries/ha.mp3; sourceTree = "<group>"; };
-		FF7E00C6245D3EBA00A01491 /* ga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ga.mp3; path = ../assets/audio/syllabaries/ga.mp3; sourceTree = "<group>"; };
-		FF7E00C7245D3EBA00A01491 /* ho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ho.mp3; path = ../assets/audio/syllabaries/ho.mp3; sourceTree = "<group>"; };
-		FF7E00C8245D3EBA00A01491 /* gi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gi.mp3; path = ../assets/audio/syllabaries/gi.mp3; sourceTree = "<group>"; };
-		FF7E00C9245D3EBA00A01491 /* fu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fu.mp3; path = ../assets/audio/syllabaries/fu.mp3; sourceTree = "<group>"; };
-		FF7E00CA245D3EBA00A01491 /* gu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gu.mp3; path = ../assets/audio/syllabaries/gu.mp3; sourceTree = "<group>"; };
-		FF7E00CB245D3EBA00A01491 /* go.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = go.mp3; path = ../assets/audio/syllabaries/go.mp3; sourceTree = "<group>"; };
-		FF7E00CC245D3EBA00A01491 /* hi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = hi.mp3; path = ../assets/audio/syllabaries/hi.mp3; sourceTree = "<group>"; };
-		FF7E00CD245D3EBA00A01491 /* ge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ge.mp3; path = ../assets/audio/syllabaries/ge.mp3; sourceTree = "<group>"; };
-		FF7E00D8245D3EC500A01491 /* nu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = nu.mp3; path = ../assets/audio/syllabaries/nu.mp3; sourceTree = "<group>"; };
-		FF7E00D9245D3EC500A01491 /* n.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = n.mp3; path = ../assets/audio/syllabaries/n.mp3; sourceTree = "<group>"; };
-		FF7E00DA245D3EC500A01491 /* mo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mo.mp3; path = ../assets/audio/syllabaries/mo.mp3; sourceTree = "<group>"; };
-		FF7E00DB245D3EC500A01491 /* no.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = no.mp3; path = ../assets/audio/syllabaries/no.mp3; sourceTree = "<group>"; };
-		FF7E00DC245D3EC500A01491 /* ke.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ke.mp3; path = ../assets/audio/syllabaries/ke.mp3; sourceTree = "<group>"; };
-		FF7E00DD245D3EC600A01491 /* me.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = me.mp3; path = ../assets/audio/syllabaries/me.mp3; sourceTree = "<group>"; };
-		FF7E00DE245D3EC600A01491 /* ku.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ku.mp3; path = ../assets/audio/syllabaries/ku.mp3; sourceTree = "<group>"; };
-		FF7E00DF245D3EC600A01491 /* ne.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ne.mp3; path = ../assets/audio/syllabaries/ne.mp3; sourceTree = "<group>"; };
-		FF7E00E0245D3EC600A01491 /* ki.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ki.mp3; path = ../assets/audio/syllabaries/ki.mp3; sourceTree = "<group>"; };
-		FF7E00E1245D3EC600A01491 /* na.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = na.mp3; path = ../assets/audio/syllabaries/na.mp3; sourceTree = "<group>"; };
-		FF7E00E2245D3EC600A01491 /* ni.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ni.mp3; path = ../assets/audio/syllabaries/ni.mp3; sourceTree = "<group>"; };
-		FF7E00E3245D3EC600A01491 /* ma.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ma.mp3; path = ../assets/audio/syllabaries/ma.mp3; sourceTree = "<group>"; };
-		FF7E00E4245D3EC700A01491 /* mi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mi.mp3; path = ../assets/audio/syllabaries/mi.mp3; sourceTree = "<group>"; };
-		FF7E00E5245D3EC700A01491 /* ka.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ka.mp3; path = ../assets/audio/syllabaries/ka.mp3; sourceTree = "<group>"; };
-		FF7E00E6245D3EC700A01491 /* ji.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ji.mp3; path = ../assets/audio/syllabaries/ji.mp3; sourceTree = "<group>"; };
-		FF7E00E7245D3EC700A01491 /* ko.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ko.mp3; path = ../assets/audio/syllabaries/ko.mp3; sourceTree = "<group>"; };
-		FF7E00E8245D3EC700A01491 /* mu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mu.mp3; path = ../assets/audio/syllabaries/mu.mp3; sourceTree = "<group>"; };
-		FF7E00FA245D3ED100A01491 /* tsu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tsu.mp3; path = ../assets/audio/syllabaries/tsu.mp3; sourceTree = "<group>"; };
-		FF7E00FB245D3ED100A01491 /* pi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pi.mp3; path = ../assets/audio/syllabaries/pi.mp3; sourceTree = "<group>"; };
-		FF7E00FC245D3ED200A01491 /* pe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pe.mp3; path = ../assets/audio/syllabaries/pe.mp3; sourceTree = "<group>"; };
-		FF7E00FD245D3ED200A01491 /* ra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ra.mp3; path = ../assets/audio/syllabaries/ra.mp3; sourceTree = "<group>"; };
-		FF7E00FE245D3ED200A01491 /* re.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = re.mp3; path = ../assets/audio/syllabaries/re.mp3; sourceTree = "<group>"; };
-		FF7E00FF245D3ED200A01491 /* sa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sa.mp3; path = ../assets/audio/syllabaries/sa.mp3; sourceTree = "<group>"; };
-		FF7E0100245D3ED200A01491 /* te.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = te.mp3; path = ../assets/audio/syllabaries/te.mp3; sourceTree = "<group>"; };
-		FF7E0101245D3ED200A01491 /* to.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = to.mp3; path = ../assets/audio/syllabaries/to.mp3; sourceTree = "<group>"; };
-		FF7E0102245D3ED300A01491 /* su.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = su.mp3; path = ../assets/audio/syllabaries/su.mp3; sourceTree = "<group>"; };
-		FF7E0103245D3ED300A01491 /* ri.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ri.mp3; path = ../assets/audio/syllabaries/ri.mp3; sourceTree = "<group>"; };
-		FF7E0104245D3ED300A01491 /* ta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ta.mp3; path = ../assets/audio/syllabaries/ta.mp3; sourceTree = "<group>"; };
-		FF7E0105245D3ED300A01491 /* se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = se.mp3; path = ../assets/audio/syllabaries/se.mp3; sourceTree = "<group>"; };
-		FF7E0106245D3ED300A01491 /* shi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = shi.mp3; path = ../assets/audio/syllabaries/shi.mp3; sourceTree = "<group>"; };
-		FF7E0107245D3ED300A01491 /* ru.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ru.mp3; path = ../assets/audio/syllabaries/ru.mp3; sourceTree = "<group>"; };
-		FF7E0108245D3ED300A01491 /* pa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pa.mp3; path = ../assets/audio/syllabaries/pa.mp3; sourceTree = "<group>"; };
-		FF7E0109245D3ED300A01491 /* ro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ro.mp3; path = ../assets/audio/syllabaries/ro.mp3; sourceTree = "<group>"; };
-		FF7E010A245D3ED400A01491 /* so.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = so.mp3; path = ../assets/audio/syllabaries/so.mp3; sourceTree = "<group>"; };
-		FF7E010B245D3ED400A01491 /* pu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pu.mp3; path = ../assets/audio/syllabaries/pu.mp3; sourceTree = "<group>"; };
-		FF7E010C245D3ED400A01491 /* po.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = po.mp3; path = ../assets/audio/syllabaries/po.mp3; sourceTree = "<group>"; };
-		FF7E0120245D3EDC00A01491 /* yu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = yu.mp3; path = ../assets/audio/syllabaries/yu.mp3; sourceTree = "<group>"; };
-		FF7E0121245D3EDC00A01491 /* zu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = zu.mp3; path = ../assets/audio/syllabaries/zu.mp3; sourceTree = "<group>"; };
-		FF7E0122245D3EDC00A01491 /* ya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ya.mp3; path = ../assets/audio/syllabaries/ya.mp3; sourceTree = "<group>"; };
-		FF7E0123245D3EDC00A01491 /* ze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ze.mp3; path = ../assets/audio/syllabaries/ze.mp3; sourceTree = "<group>"; };
-		FF7E0124245D3EDD00A01491 /* za.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = za.mp3; path = ../assets/audio/syllabaries/za.mp3; sourceTree = "<group>"; };
-		FF7E0125245D3EDD00A01491 /* wa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = wa.mp3; path = ../assets/audio/syllabaries/wa.mp3; sourceTree = "<group>"; };
-		FF7E0126245D3EDD00A01491 /* yo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = yo.mp3; path = ../assets/audio/syllabaries/yo.mp3; sourceTree = "<group>"; };
-		FF7E0127245D3EDD00A01491 /* zo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = zo.mp3; path = ../assets/audio/syllabaries/zo.mp3; sourceTree = "<group>"; };
+		FF57393D24B2BC6D0080F2E2 /* kana_de.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_de.mp3; path = ../android/app/src/main/res/raw/kana_de.mp3; sourceTree = "<group>"; };
+		FF57393E24B2BC6D0080F2E2 /* kana_me.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_me.mp3; path = ../android/app/src/main/res/raw/kana_me.mp3; sourceTree = "<group>"; };
+		FF57393F24B2BC6D0080F2E2 /* kana_ho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ho.mp3; path = ../android/app/src/main/res/raw/kana_ho.mp3; sourceTree = "<group>"; };
+		FF57394024B2BC6D0080F2E2 /* kana_ki.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ki.mp3; path = ../android/app/src/main/res/raw/kana_ki.mp3; sourceTree = "<group>"; };
+		FF57394124B2BC6E0080F2E2 /* kana_bu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_bu.mp3; path = ../android/app/src/main/res/raw/kana_bu.mp3; sourceTree = "<group>"; };
+		FF57394224B2BC6E0080F2E2 /* kana_su.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_su.mp3; path = ../android/app/src/main/res/raw/kana_su.mp3; sourceTree = "<group>"; };
+		FF57394324B2BC6E0080F2E2 /* kana_za.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_za.mp3; path = ../android/app/src/main/res/raw/kana_za.mp3; sourceTree = "<group>"; };
+		FF57394424B2BC6E0080F2E2 /* kana_pa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_pa.mp3; path = ../android/app/src/main/res/raw/kana_pa.mp3; sourceTree = "<group>"; };
+		FF57394524B2BC6E0080F2E2 /* kana_so.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_so.mp3; path = ../android/app/src/main/res/raw/kana_so.mp3; sourceTree = "<group>"; };
+		FF57394624B2BC6E0080F2E2 /* kana_shi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_shi.mp3; path = ../android/app/src/main/res/raw/kana_shi.mp3; sourceTree = "<group>"; };
+		FF57394724B2BC6E0080F2E2 /* kana_i.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_i.mp3; path = ../android/app/src/main/res/raw/kana_i.mp3; sourceTree = "<group>"; };
+		FF57394824B2BC6E0080F2E2 /* kana_ne.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ne.mp3; path = ../android/app/src/main/res/raw/kana_ne.mp3; sourceTree = "<group>"; };
+		FF57394924B2BC6E0080F2E2 /* kana_mu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_mu.mp3; path = ../android/app/src/main/res/raw/kana_mu.mp3; sourceTree = "<group>"; };
+		FF57394A24B2BC6E0080F2E2 /* kana_mi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_mi.mp3; path = ../android/app/src/main/res/raw/kana_mi.mp3; sourceTree = "<group>"; };
+		FF57394B24B2BC6E0080F2E2 /* kana_sa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_sa.mp3; path = ../android/app/src/main/res/raw/kana_sa.mp3; sourceTree = "<group>"; };
+		FF57394C24B2BC6E0080F2E2 /* kana_be.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_be.mp3; path = ../android/app/src/main/res/raw/kana_be.mp3; sourceTree = "<group>"; };
+		FF57394D24B2BC6E0080F2E2 /* kana_ru.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ru.mp3; path = ../android/app/src/main/res/raw/kana_ru.mp3; sourceTree = "<group>"; };
+		FF57394E24B2BC6E0080F2E2 /* kana_te.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_te.mp3; path = ../android/app/src/main/res/raw/kana_te.mp3; sourceTree = "<group>"; };
+		FF57394F24B2BC6E0080F2E2 /* kana_ba.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ba.mp3; path = ../android/app/src/main/res/raw/kana_ba.mp3; sourceTree = "<group>"; };
+		FF57395024B2BC6E0080F2E2 /* kana_wa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_wa.mp3; path = ../android/app/src/main/res/raw/kana_wa.mp3; sourceTree = "<group>"; };
+		FF57395124B2BC6E0080F2E2 /* kana_ya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ya.mp3; path = ../android/app/src/main/res/raw/kana_ya.mp3; sourceTree = "<group>"; };
+		FF57395224B2BC6E0080F2E2 /* kana_pu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_pu.mp3; path = ../android/app/src/main/res/raw/kana_pu.mp3; sourceTree = "<group>"; };
+		FF57395324B2BC6E0080F2E2 /* kana_pe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_pe.mp3; path = ../android/app/src/main/res/raw/kana_pe.mp3; sourceTree = "<group>"; };
+		FF57395424B2BC6E0080F2E2 /* kana_tsu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_tsu.mp3; path = ../android/app/src/main/res/raw/kana_tsu.mp3; sourceTree = "<group>"; };
+		FF57395524B2BC6E0080F2E2 /* kana_n.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_n.mp3; path = ../android/app/src/main/res/raw/kana_n.mp3; sourceTree = "<group>"; };
+		FF57395624B2BC6E0080F2E2 /* kana_ra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ra.mp3; path = ../android/app/src/main/res/raw/kana_ra.mp3; sourceTree = "<group>"; };
+		FF57395724B2BC6E0080F2E2 /* kana_yu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_yu.mp3; path = ../android/app/src/main/res/raw/kana_yu.mp3; sourceTree = "<group>"; };
+		FF57395824B2BC6E0080F2E2 /* kana_o.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_o.mp3; path = ../android/app/src/main/res/raw/kana_o.mp3; sourceTree = "<group>"; };
+		FF57395924B2BC6E0080F2E2 /* kana_u.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_u.mp3; path = ../android/app/src/main/res/raw/kana_u.mp3; sourceTree = "<group>"; };
+		FF57395A24B2BC6F0080F2E2 /* kana_se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_se.mp3; path = ../android/app/src/main/res/raw/kana_se.mp3; sourceTree = "<group>"; };
+		FF57395B24B2BC6F0080F2E2 /* kana_re.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_re.mp3; path = ../android/app/src/main/res/raw/kana_re.mp3; sourceTree = "<group>"; };
+		FF57395C24B2BC6F0080F2E2 /* kana_yo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_yo.mp3; path = ../android/app/src/main/res/raw/kana_yo.mp3; sourceTree = "<group>"; };
+		FF57395D24B2BC6F0080F2E2 /* kana_da.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_da.mp3; path = ../android/app/src/main/res/raw/kana_da.mp3; sourceTree = "<group>"; };
+		FF57395E24B2BC6F0080F2E2 /* kana_ha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ha.mp3; path = ../android/app/src/main/res/raw/kana_ha.mp3; sourceTree = "<group>"; };
+		FF57395F24B2BC6F0080F2E2 /* kana_bi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_bi.mp3; path = ../android/app/src/main/res/raw/kana_bi.mp3; sourceTree = "<group>"; };
+		FF57396024B2BC6F0080F2E2 /* kana_ni.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ni.mp3; path = ../android/app/src/main/res/raw/kana_ni.mp3; sourceTree = "<group>"; };
+		FF57396124B2BC6F0080F2E2 /* kana_ga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ga.mp3; path = ../android/app/src/main/res/raw/kana_ga.mp3; sourceTree = "<group>"; };
+		FF57396224B2BC6F0080F2E2 /* kana_no.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_no.mp3; path = ../android/app/src/main/res/raw/kana_no.mp3; sourceTree = "<group>"; };
+		FF57396324B2BC6F0080F2E2 /* kana_go.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_go.mp3; path = ../android/app/src/main/res/raw/kana_go.mp3; sourceTree = "<group>"; };
+		FF57396424B2BC6F0080F2E2 /* kana_bo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_bo.mp3; path = ../android/app/src/main/res/raw/kana_bo.mp3; sourceTree = "<group>"; };
+		FF57396524B2BC6F0080F2E2 /* kana_to.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_to.mp3; path = ../android/app/src/main/res/raw/kana_to.mp3; sourceTree = "<group>"; };
+		FF57396624B2BC6F0080F2E2 /* kana_ze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ze.mp3; path = ../android/app/src/main/res/raw/kana_ze.mp3; sourceTree = "<group>"; };
+		FF57396724B2BC6F0080F2E2 /* kana_he.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_he.mp3; path = ../android/app/src/main/res/raw/kana_he.mp3; sourceTree = "<group>"; };
+		FF57396824B2BC6F0080F2E2 /* kana_zu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_zu.mp3; path = ../android/app/src/main/res/raw/kana_zu.mp3; sourceTree = "<group>"; };
+		FF57396924B2BC6F0080F2E2 /* kana_do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_do.mp3; path = ../android/app/src/main/res/raw/kana_do.mp3; sourceTree = "<group>"; };
+		FF57396A24B2BC6F0080F2E2 /* kana_fu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_fu.mp3; path = ../android/app/src/main/res/raw/kana_fu.mp3; sourceTree = "<group>"; };
+		FF57396B24B2BC6F0080F2E2 /* kana_gi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_gi.mp3; path = ../android/app/src/main/res/raw/kana_gi.mp3; sourceTree = "<group>"; };
+		FF57396C24B2BC700080F2E2 /* kana_pi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_pi.mp3; path = ../android/app/src/main/res/raw/kana_pi.mp3; sourceTree = "<group>"; };
+		FF57396D24B2BC700080F2E2 /* kana_ro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ro.mp3; path = ../android/app/src/main/res/raw/kana_ro.mp3; sourceTree = "<group>"; };
+		FF57396E24B2BC700080F2E2 /* kana_ji.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ji.mp3; path = ../android/app/src/main/res/raw/kana_ji.mp3; sourceTree = "<group>"; };
+		FF57396F24B2BC700080F2E2 /* kana_ke.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ke.mp3; path = ../android/app/src/main/res/raw/kana_ke.mp3; sourceTree = "<group>"; };
+		FF57397024B2BC700080F2E2 /* kana_ka.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ka.mp3; path = ../android/app/src/main/res/raw/kana_ka.mp3; sourceTree = "<group>"; };
+		FF57397124B2BC700080F2E2 /* kana_nu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_nu.mp3; path = ../android/app/src/main/res/raw/kana_nu.mp3; sourceTree = "<group>"; };
+		FF57397224B2BC700080F2E2 /* kana_ku.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ku.mp3; path = ../android/app/src/main/res/raw/kana_ku.mp3; sourceTree = "<group>"; };
+		FF57397324B2BC700080F2E2 /* kana_ri.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ri.mp3; path = ../android/app/src/main/res/raw/kana_ri.mp3; sourceTree = "<group>"; };
+		FF57397424B2BC700080F2E2 /* kana_ma.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ma.mp3; path = ../android/app/src/main/res/raw/kana_ma.mp3; sourceTree = "<group>"; };
+		FF57397524B2BC700080F2E2 /* kana_na.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_na.mp3; path = ../android/app/src/main/res/raw/kana_na.mp3; sourceTree = "<group>"; };
+		FF57397624B2BC700080F2E2 /* kana_zo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_zo.mp3; path = ../android/app/src/main/res/raw/kana_zo.mp3; sourceTree = "<group>"; };
+		FF57397724B2BC700080F2E2 /* kana_chi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_chi.mp3; path = ../android/app/src/main/res/raw/kana_chi.mp3; sourceTree = "<group>"; };
+		FF57397824B2BC700080F2E2 /* kana_ge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ge.mp3; path = ../android/app/src/main/res/raw/kana_ge.mp3; sourceTree = "<group>"; };
+		FF57397924B2BC700080F2E2 /* kana_ta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ta.mp3; path = ../android/app/src/main/res/raw/kana_ta.mp3; sourceTree = "<group>"; };
+		FF57397A24B2BC700080F2E2 /* kana_e.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_e.mp3; path = ../android/app/src/main/res/raw/kana_e.mp3; sourceTree = "<group>"; };
+		FF57397B24B2BC700080F2E2 /* kana_ko.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ko.mp3; path = ../android/app/src/main/res/raw/kana_ko.mp3; sourceTree = "<group>"; };
+		FF57397C24B2BC700080F2E2 /* kana_hi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_hi.mp3; path = ../android/app/src/main/res/raw/kana_hi.mp3; sourceTree = "<group>"; };
+		FF57397D24B2BC700080F2E2 /* kana_gu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_gu.mp3; path = ../android/app/src/main/res/raw/kana_gu.mp3; sourceTree = "<group>"; };
+		FF57397E24B2BC700080F2E2 /* kana_po.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_po.mp3; path = ../android/app/src/main/res/raw/kana_po.mp3; sourceTree = "<group>"; };
+		FF57397F24B2BC710080F2E2 /* kana_mo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_mo.mp3; path = ../android/app/src/main/res/raw/kana_mo.mp3; sourceTree = "<group>"; };
+		FF57398024B2BC710080F2E2 /* kana_a.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_a.mp3; path = ../android/app/src/main/res/raw/kana_a.mp3; sourceTree = "<group>"; };
 		FFEB9F5D24414CEA002C9F70 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -372,74 +357,74 @@
 		FF06C23E244BBEA400E726EF /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				FF06C31B244BD03900E726EF /* a.mp3 */,
-				FF7E00B7245D3E9300A01491 /* ba.mp3 */,
-				FF7E00B4245D3E9300A01491 /* be.mp3 */,
-				FF7E00B5245D3E9300A01491 /* bi.mp3 */,
-				FF7E00BA245D3E9300A01491 /* bo.mp3 */,
-				FF7E00B6245D3E9300A01491 /* bu.mp3 */,
-				FF7E00B8245D3E9300A01491 /* chi.mp3 */,
-				FF7E00B9245D3E9300A01491 /* da.mp3 */,
-				FF7E00B3245D3E9300A01491 /* de.mp3 */,
-				FF7E00B2245D3E9300A01491 /* do.mp3 */,
-				FF06C323244BD04800E726EF /* e.mp3 */,
-				FF7E00C9245D3EBA00A01491 /* fu.mp3 */,
-				FF7E00C6245D3EBA00A01491 /* ga.mp3 */,
-				FF7E00CD245D3EBA00A01491 /* ge.mp3 */,
-				FF7E00C8245D3EBA00A01491 /* gi.mp3 */,
-				FF7E00CB245D3EBA00A01491 /* go.mp3 */,
-				FF7E00CA245D3EBA00A01491 /* gu.mp3 */,
-				FF7E00C5245D3EBA00A01491 /* ha.mp3 */,
-				FF7E00C4245D3EBA00A01491 /* he.mp3 */,
-				FF7E00CC245D3EBA00A01491 /* hi.mp3 */,
-				FF7E00C7245D3EBA00A01491 /* ho.mp3 */,
-				FF06C320244BD04800E726EF /* i.mp3 */,
-				FF7E00E6245D3EC700A01491 /* ji.mp3 */,
-				FF7E00E5245D3EC700A01491 /* ka.mp3 */,
-				FF7E00DC245D3EC500A01491 /* ke.mp3 */,
-				FF7E00E0245D3EC600A01491 /* ki.mp3 */,
-				FF7E00E7245D3EC700A01491 /* ko.mp3 */,
-				FF7E00DE245D3EC600A01491 /* ku.mp3 */,
-				FF7E00E3245D3EC600A01491 /* ma.mp3 */,
-				FF7E00DD245D3EC600A01491 /* me.mp3 */,
-				FF7E00E4245D3EC700A01491 /* mi.mp3 */,
-				FF7E00DA245D3EC500A01491 /* mo.mp3 */,
-				FF7E00E8245D3EC700A01491 /* mu.mp3 */,
-				FF7E00D9245D3EC500A01491 /* n.mp3 */,
-				FF7E00E1245D3EC600A01491 /* na.mp3 */,
-				FF7E00DF245D3EC600A01491 /* ne.mp3 */,
-				FF7E00E2245D3EC600A01491 /* ni.mp3 */,
-				FF7E00DB245D3EC500A01491 /* no.mp3 */,
-				FF7E00D8245D3EC500A01491 /* nu.mp3 */,
-				FF06C321244BD04800E726EF /* o.mp3 */,
-				FF7E0108245D3ED300A01491 /* pa.mp3 */,
-				FF7E00FC245D3ED200A01491 /* pe.mp3 */,
-				FF7E00FB245D3ED100A01491 /* pi.mp3 */,
-				FF7E010C245D3ED400A01491 /* po.mp3 */,
-				FF7E010B245D3ED400A01491 /* pu.mp3 */,
-				FF7E00FD245D3ED200A01491 /* ra.mp3 */,
-				FF7E00FE245D3ED200A01491 /* re.mp3 */,
-				FF7E0103245D3ED300A01491 /* ri.mp3 */,
-				FF7E0109245D3ED300A01491 /* ro.mp3 */,
-				FF7E0107245D3ED300A01491 /* ru.mp3 */,
-				FF7E00FF245D3ED200A01491 /* sa.mp3 */,
-				FF7E0105245D3ED300A01491 /* se.mp3 */,
-				FF7E0106245D3ED300A01491 /* shi.mp3 */,
-				FF7E010A245D3ED400A01491 /* so.mp3 */,
-				FF7E0102245D3ED300A01491 /* su.mp3 */,
-				FF7E0104245D3ED300A01491 /* ta.mp3 */,
-				FF7E0100245D3ED200A01491 /* te.mp3 */,
-				FF7E0101245D3ED200A01491 /* to.mp3 */,
-				FF7E00FA245D3ED100A01491 /* tsu.mp3 */,
-				FF06C322244BD04800E726EF /* u.mp3 */,
-				FF7E0125245D3EDD00A01491 /* wa.mp3 */,
-				FF7E0122245D3EDC00A01491 /* ya.mp3 */,
-				FF7E0126245D3EDD00A01491 /* yo.mp3 */,
-				FF7E0120245D3EDC00A01491 /* yu.mp3 */,
-				FF7E0124245D3EDD00A01491 /* za.mp3 */,
-				FF7E0123245D3EDC00A01491 /* ze.mp3 */,
-				FF7E0127245D3EDD00A01491 /* zo.mp3 */,
-				FF7E0121245D3EDC00A01491 /* zu.mp3 */,
+				FF57398024B2BC710080F2E2 /* kana_a.mp3 */,
+				FF57394F24B2BC6E0080F2E2 /* kana_ba.mp3 */,
+				FF57394C24B2BC6E0080F2E2 /* kana_be.mp3 */,
+				FF57395F24B2BC6F0080F2E2 /* kana_bi.mp3 */,
+				FF57396424B2BC6F0080F2E2 /* kana_bo.mp3 */,
+				FF57394124B2BC6E0080F2E2 /* kana_bu.mp3 */,
+				FF57397724B2BC700080F2E2 /* kana_chi.mp3 */,
+				FF57395D24B2BC6F0080F2E2 /* kana_da.mp3 */,
+				FF57393D24B2BC6D0080F2E2 /* kana_de.mp3 */,
+				FF57396924B2BC6F0080F2E2 /* kana_do.mp3 */,
+				FF57397A24B2BC700080F2E2 /* kana_e.mp3 */,
+				FF57396A24B2BC6F0080F2E2 /* kana_fu.mp3 */,
+				FF57396124B2BC6F0080F2E2 /* kana_ga.mp3 */,
+				FF57397824B2BC700080F2E2 /* kana_ge.mp3 */,
+				FF57396B24B2BC6F0080F2E2 /* kana_gi.mp3 */,
+				FF57396324B2BC6F0080F2E2 /* kana_go.mp3 */,
+				FF57397D24B2BC700080F2E2 /* kana_gu.mp3 */,
+				FF57395E24B2BC6F0080F2E2 /* kana_ha.mp3 */,
+				FF57396724B2BC6F0080F2E2 /* kana_he.mp3 */,
+				FF57397C24B2BC700080F2E2 /* kana_hi.mp3 */,
+				FF57393F24B2BC6D0080F2E2 /* kana_ho.mp3 */,
+				FF57394724B2BC6E0080F2E2 /* kana_i.mp3 */,
+				FF57396E24B2BC700080F2E2 /* kana_ji.mp3 */,
+				FF57397024B2BC700080F2E2 /* kana_ka.mp3 */,
+				FF57396F24B2BC700080F2E2 /* kana_ke.mp3 */,
+				FF57394024B2BC6D0080F2E2 /* kana_ki.mp3 */,
+				FF57397B24B2BC700080F2E2 /* kana_ko.mp3 */,
+				FF57397224B2BC700080F2E2 /* kana_ku.mp3 */,
+				FF57397424B2BC700080F2E2 /* kana_ma.mp3 */,
+				FF57393E24B2BC6D0080F2E2 /* kana_me.mp3 */,
+				FF57394A24B2BC6E0080F2E2 /* kana_mi.mp3 */,
+				FF57397F24B2BC710080F2E2 /* kana_mo.mp3 */,
+				FF57394924B2BC6E0080F2E2 /* kana_mu.mp3 */,
+				FF57395524B2BC6E0080F2E2 /* kana_n.mp3 */,
+				FF57397524B2BC700080F2E2 /* kana_na.mp3 */,
+				FF57394824B2BC6E0080F2E2 /* kana_ne.mp3 */,
+				FF57396024B2BC6F0080F2E2 /* kana_ni.mp3 */,
+				FF57396224B2BC6F0080F2E2 /* kana_no.mp3 */,
+				FF57397124B2BC700080F2E2 /* kana_nu.mp3 */,
+				FF57395824B2BC6E0080F2E2 /* kana_o.mp3 */,
+				FF57394424B2BC6E0080F2E2 /* kana_pa.mp3 */,
+				FF57395324B2BC6E0080F2E2 /* kana_pe.mp3 */,
+				FF57396C24B2BC700080F2E2 /* kana_pi.mp3 */,
+				FF57397E24B2BC700080F2E2 /* kana_po.mp3 */,
+				FF57395224B2BC6E0080F2E2 /* kana_pu.mp3 */,
+				FF57395624B2BC6E0080F2E2 /* kana_ra.mp3 */,
+				FF57395B24B2BC6F0080F2E2 /* kana_re.mp3 */,
+				FF57397324B2BC700080F2E2 /* kana_ri.mp3 */,
+				FF57396D24B2BC700080F2E2 /* kana_ro.mp3 */,
+				FF57394D24B2BC6E0080F2E2 /* kana_ru.mp3 */,
+				FF57394B24B2BC6E0080F2E2 /* kana_sa.mp3 */,
+				FF57395A24B2BC6F0080F2E2 /* kana_se.mp3 */,
+				FF57394624B2BC6E0080F2E2 /* kana_shi.mp3 */,
+				FF57394524B2BC6E0080F2E2 /* kana_so.mp3 */,
+				FF57394224B2BC6E0080F2E2 /* kana_su.mp3 */,
+				FF57397924B2BC700080F2E2 /* kana_ta.mp3 */,
+				FF57394E24B2BC6E0080F2E2 /* kana_te.mp3 */,
+				FF57396524B2BC6F0080F2E2 /* kana_to.mp3 */,
+				FF57395424B2BC6E0080F2E2 /* kana_tsu.mp3 */,
+				FF57395924B2BC6E0080F2E2 /* kana_u.mp3 */,
+				FF57395024B2BC6E0080F2E2 /* kana_wa.mp3 */,
+				FF57395124B2BC6E0080F2E2 /* kana_ya.mp3 */,
+				FF57395C24B2BC6F0080F2E2 /* kana_yo.mp3 */,
+				FF57395724B2BC6E0080F2E2 /* kana_yu.mp3 */,
+				FF57394324B2BC6E0080F2E2 /* kana_za.mp3 */,
+				FF57396624B2BC6F0080F2E2 /* kana_ze.mp3 */,
+				FF57397624B2BC700080F2E2 /* kana_zo.mp3 */,
+				FF57396824B2BC6F0080F2E2 /* kana_zu.mp3 */,
 			);
 			name = Audio;
 			sourceTree = "<group>";
@@ -579,11 +564,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF06C331244BD04800E726EF /* e.mp3 in Resources */,
-				FF06C325244BD04800E726EF /* i.mp3 in Resources */,
-				FF06C31D244BD03900E726EF /* a.mp3 in Resources */,
-				FF06C329244BD04800E726EF /* o.mp3 in Resources */,
-				FF06C32D244BD04800E726EF /* u.mp3 in Resources */,
 				FFEB9F5F24414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,79 +572,79 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF7E011F245D3ED400A01491 /* po.mp3 in Resources */,
-				FF7E011B245D3ED400A01491 /* pa.mp3 in Resources */,
-				FF7E0112245D3ED400A01491 /* sa.mp3 in Resources */,
-				FF7E00EB245D3EC700A01491 /* mo.mp3 in Resources */,
-				FF7E00D4245D3EBB00A01491 /* gu.mp3 in Resources */,
-				FF7E0111245D3ED400A01491 /* re.mp3 in Resources */,
-				FF7E00D3245D3EBB00A01491 /* fu.mp3 in Resources */,
-				FF7E010D245D3ED400A01491 /* tsu.mp3 in Resources */,
-				FF7E00BF245D3E9300A01491 /* bu.mp3 in Resources */,
-				FF7E0116245D3ED400A01491 /* ri.mp3 in Resources */,
-				FF7E011C245D3ED400A01491 /* ro.mp3 in Resources */,
-				FF7E00BD245D3E9300A01491 /* be.mp3 in Resources */,
-				FF7E00F0245D3EC700A01491 /* ne.mp3 in Resources */,
-				FF06C330244BD04800E726EF /* e.mp3 in Resources */,
-				FF7E0128245D3EDD00A01491 /* yu.mp3 in Resources */,
-				FF7E00C3245D3E9300A01491 /* bo.mp3 in Resources */,
-				FF7E00D0245D3EBB00A01491 /* ga.mp3 in Resources */,
-				FF7E00D7245D3EBB00A01491 /* ge.mp3 in Resources */,
-				FF7E00D1245D3EBB00A01491 /* ho.mp3 in Resources */,
-				FF7E012D245D3EDD00A01491 /* wa.mp3 in Resources */,
-				FF7E00EE245D3EC700A01491 /* me.mp3 in Resources */,
-				FF06C31C244BD03900E726EF /* a.mp3 in Resources */,
-				FF7E00CE245D3EBB00A01491 /* he.mp3 in Resources */,
+				FF5739C224B2BC710080F2E2 /* kana_po.mp3 in Resources */,
+				FF5739A124B2BC710080F2E2 /* kana_da.mp3 in Resources */,
+				FF5739A524B2BC710080F2E2 /* kana_ga.mp3 in Resources */,
+				FF5739BE24B2BC710080F2E2 /* kana_e.mp3 in Resources */,
+				FF5739A624B2BC710080F2E2 /* kana_no.mp3 in Resources */,
+				FF5739B324B2BC710080F2E2 /* kana_ke.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				FF7E00F4245D3EC700A01491 /* ma.mp3 in Resources */,
-				FF06C328244BD04800E726EF /* o.mp3 in Resources */,
-				FF7E0119245D3ED400A01491 /* shi.mp3 in Resources */,
-				FF7E0115245D3ED400A01491 /* su.mp3 in Resources */,
-				FF06C32C244BD04800E726EF /* u.mp3 in Resources */,
-				FF7E0114245D3ED400A01491 /* to.mp3 in Resources */,
-				FF7E00C2245D3E9300A01491 /* da.mp3 in Resources */,
-				FF7E00E9245D3EC700A01491 /* nu.mp3 in Resources */,
-				FF7E00D5245D3EBB00A01491 /* go.mp3 in Resources */,
-				FF7E00C0245D3E9300A01491 /* ba.mp3 in Resources */,
-				FF7E0113245D3ED400A01491 /* te.mp3 in Resources */,
-				FF7E0117245D3ED400A01491 /* ta.mp3 in Resources */,
-				FF06C324244BD04800E726EF /* i.mp3 in Resources */,
-				FF7E00D6245D3EBB00A01491 /* hi.mp3 in Resources */,
-				FF7E00EC245D3EC700A01491 /* no.mp3 in Resources */,
+				FF5739C324B2BC710080F2E2 /* kana_mo.mp3 in Resources */,
+				FF57399824B2BC710080F2E2 /* kana_tsu.mp3 in Resources */,
+				FF57399524B2BC710080F2E2 /* kana_ya.mp3 in Resources */,
+				FF57399024B2BC710080F2E2 /* kana_be.mp3 in Resources */,
+				FF5739BF24B2BC710080F2E2 /* kana_ko.mp3 in Resources */,
+				FF5739AF24B2BC710080F2E2 /* kana_gi.mp3 in Resources */,
+				FF57398424B2BC710080F2E2 /* kana_ki.mp3 in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				FF7E0118245D3ED400A01491 /* se.mp3 in Resources */,
-				FF7E00F5245D3EC700A01491 /* mi.mp3 in Resources */,
-				FF7E00EF245D3EC700A01491 /* ku.mp3 in Resources */,
-				FF7E010E245D3ED400A01491 /* pi.mp3 in Resources */,
-				FF7E012F245D3EDD00A01491 /* zo.mp3 in Resources */,
-				FF7E012B245D3EDD00A01491 /* ze.mp3 in Resources */,
-				FF7E011E245D3ED400A01491 /* pu.mp3 in Resources */,
-				FF7E00F2245D3EC700A01491 /* na.mp3 in Resources */,
-				FF7E00F1245D3EC700A01491 /* ki.mp3 in Resources */,
-				FF7E00F8245D3EC700A01491 /* ko.mp3 in Resources */,
-				FF7E0129245D3EDD00A01491 /* zu.mp3 in Resources */,
-				FF7E011D245D3ED400A01491 /* so.mp3 in Resources */,
+				FF57398E24B2BC710080F2E2 /* kana_mi.mp3 in Resources */,
+				FF5739AD24B2BC710080F2E2 /* kana_do.mp3 in Resources */,
+				FF5739B424B2BC710080F2E2 /* kana_ka.mp3 in Resources */,
+				FF5739A924B2BC710080F2E2 /* kana_to.mp3 in Resources */,
+				FF57398324B2BC710080F2E2 /* kana_ho.mp3 in Resources */,
+				FF5739BD24B2BC710080F2E2 /* kana_ta.mp3 in Resources */,
+				FF5739B224B2BC710080F2E2 /* kana_ji.mp3 in Resources */,
+				FF57399624B2BC710080F2E2 /* kana_pu.mp3 in Resources */,
+				FF5739B624B2BC710080F2E2 /* kana_ku.mp3 in Resources */,
+				FF5739B024B2BC710080F2E2 /* kana_pi.mp3 in Resources */,
+				FF57399724B2BC710080F2E2 /* kana_pe.mp3 in Resources */,
 				FFEB9F5E24414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
-				FF7E00BE245D3E9300A01491 /* bi.mp3 in Resources */,
-				FF7E0110245D3ED400A01491 /* ra.mp3 in Resources */,
+				FF57399A24B2BC710080F2E2 /* kana_ra.mp3 in Resources */,
+				FF5739AB24B2BC710080F2E2 /* kana_he.mp3 in Resources */,
+				FF5739AC24B2BC710080F2E2 /* kana_zu.mp3 in Resources */,
 				1694817CFA154284A27F519B /* Lato_bold.ttf in Resources */,
-				FF7E00C1245D3E9300A01491 /* chi.mp3 in Resources */,
-				FF7E00EA245D3EC700A01491 /* n.mp3 in Resources */,
-				FF7E00ED245D3EC700A01491 /* ke.mp3 in Resources */,
-				FF7E00BC245D3E9300A01491 /* de.mp3 in Resources */,
-				FF7E00F9245D3EC700A01491 /* mu.mp3 in Resources */,
-				FF7E00F6245D3EC700A01491 /* ka.mp3 in Resources */,
-				FF7E010F245D3ED400A01491 /* pe.mp3 in Resources */,
-				FF7E00F3245D3EC700A01491 /* ni.mp3 in Resources */,
-				FF7E00D2245D3EBB00A01491 /* gi.mp3 in Resources */,
-				FF7E011A245D3ED400A01491 /* ru.mp3 in Resources */,
-				FF7E00BB245D3E9300A01491 /* do.mp3 in Resources */,
-				FF7E012C245D3EDD00A01491 /* za.mp3 in Resources */,
+				FF57398624B2BC710080F2E2 /* kana_su.mp3 in Resources */,
+				FF57398D24B2BC710080F2E2 /* kana_mu.mp3 in Resources */,
+				FF5739C024B2BC710080F2E2 /* kana_hi.mp3 in Resources */,
+				FF5739A224B2BC710080F2E2 /* kana_ha.mp3 in Resources */,
+				FF5739C124B2BC710080F2E2 /* kana_gu.mp3 in Resources */,
+				FF5739A824B2BC710080F2E2 /* kana_bo.mp3 in Resources */,
+				FF57398124B2BC710080F2E2 /* kana_de.mp3 in Resources */,
+				FF57398224B2BC710080F2E2 /* kana_me.mp3 in Resources */,
+				FF57399B24B2BC710080F2E2 /* kana_yu.mp3 in Resources */,
+				FF5739B824B2BC710080F2E2 /* kana_ma.mp3 in Resources */,
+				FF57399924B2BC710080F2E2 /* kana_n.mp3 in Resources */,
+				FF5739AE24B2BC710080F2E2 /* kana_fu.mp3 in Resources */,
+				FF57398A24B2BC710080F2E2 /* kana_shi.mp3 in Resources */,
+				FF57398524B2BC710080F2E2 /* kana_bu.mp3 in Resources */,
+				FF57399124B2BC710080F2E2 /* kana_ru.mp3 in Resources */,
+				FF57398C24B2BC710080F2E2 /* kana_ne.mp3 in Resources */,
+				FF5739A424B2BC710080F2E2 /* kana_ni.mp3 in Resources */,
+				FF57399424B2BC710080F2E2 /* kana_wa.mp3 in Resources */,
+				FF5739B524B2BC710080F2E2 /* kana_nu.mp3 in Resources */,
+				FF57398B24B2BC710080F2E2 /* kana_i.mp3 in Resources */,
+				FF57399E24B2BC710080F2E2 /* kana_se.mp3 in Resources */,
+				FF57398724B2BC710080F2E2 /* kana_za.mp3 in Resources */,
+				FF5739B124B2BC710080F2E2 /* kana_ro.mp3 in Resources */,
 				4C14A2930F034514A6182AAC /* Lato.ttf in Resources */,
-				FF7E012E245D3EDD00A01491 /* yo.mp3 in Resources */,
-				FF7E00CF245D3EBB00A01491 /* ha.mp3 in Resources */,
-				FF7E012A245D3EDD00A01491 /* ya.mp3 in Resources */,
-				FF7E00F7245D3EC700A01491 /* ji.mp3 in Resources */,
+				FF5739A324B2BC710080F2E2 /* kana_bi.mp3 in Resources */,
+				FF5739AA24B2BC710080F2E2 /* kana_ze.mp3 in Resources */,
+				FF57399224B2BC710080F2E2 /* kana_te.mp3 in Resources */,
+				FF57398824B2BC710080F2E2 /* kana_pa.mp3 in Resources */,
+				FF5739B924B2BC710080F2E2 /* kana_na.mp3 in Resources */,
+				FF57398924B2BC710080F2E2 /* kana_so.mp3 in Resources */,
+				FF5739BC24B2BC710080F2E2 /* kana_ge.mp3 in Resources */,
+				FF5739A724B2BC710080F2E2 /* kana_go.mp3 in Resources */,
+				FF5739BA24B2BC710080F2E2 /* kana_zo.mp3 in Resources */,
+				FF5739BB24B2BC710080F2E2 /* kana_chi.mp3 in Resources */,
+				FF57399C24B2BC710080F2E2 /* kana_o.mp3 in Resources */,
+				FF57399D24B2BC710080F2E2 /* kana_u.mp3 in Resources */,
+				FF57399324B2BC710080F2E2 /* kana_ba.mp3 in Resources */,
+				FF57399F24B2BC710080F2E2 /* kana_re.mp3 in Resources */,
+				FF5739A024B2BC710080F2E2 /* kana_yo.mp3 in Resources */,
+				FF5739C424B2BC710080F2E2 /* kana_a.mp3 in Resources */,
+				FF5739B724B2BC710080F2E2 /* kana_ri.mp3 in Resources */,
+				FF57398F24B2BC710080F2E2 /* kana_sa.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,11 +652,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF06C32E244BD04800E726EF /* u.mp3 in Resources */,
-				FF06C32A244BD04800E726EF /* o.mp3 in Resources */,
-				FF06C326244BD04800E726EF /* i.mp3 in Resources */,
-				FF06C31E244BD03900E726EF /* a.mp3 in Resources */,
-				FF06C332244BD04800E726EF /* e.mp3 in Resources */,
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
 				FFEB9F6024414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
 			);
@@ -686,11 +661,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF06C333244BD04800E726EF /* e.mp3 in Resources */,
-				FF06C327244BD04800E726EF /* i.mp3 in Resources */,
-				FF06C31F244BD03900E726EF /* a.mp3 in Resources */,
-				FF06C32B244BD04800E726EF /* o.mp3 in Resources */,
-				FF06C32F244BD04800E726EF /* u.mp3 in Resources */,
 				FFEB9F6124414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

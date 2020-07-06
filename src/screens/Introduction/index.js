@@ -112,7 +112,7 @@ const introduction = [
     headerJapanese: "どうやって？",
     headerFurigana: "どうやって？",
     body:
-      "You won't learn things like the Japanese alphabet, vocabulary, and grammar one at a time. Learning multiple things at once simulates the experience of being immersed in the language.",
+      "Learning multiple things at once simulates the experience of being immersed in the language. Instead of learning the Japanese alphabet, vocabulary, and grammar one at a time, you'll learn them together.",
     icon: "whatshot",
     button: "next",
   },
@@ -121,7 +121,7 @@ const introduction = [
     headerJapanese: "例えば？",
     headerFurigana: "たとえば？",
     body:
-      "To start with, you won't just be memorising the Japanese alphabet. You'll be learning common words which use the letters we're teaching. Much more fun, and much more effective!",
+      "To start with, you won't just be memorising Hiragana (the Japanese alphabet). You'll be learning common words which use the letters we're teaching. Much more fun, and much more effective!",
     icon: "school",
     button: "next",
   },
@@ -138,7 +138,8 @@ const introduction = [
     header: "Great!",
     headerJapanese: "いいね！",
     headerFurigana: "いいね！",
-    body: 'Let\'s start out with the "Intro to Hiragana" lesson.',
+    body:
+      "It's important to be able to read Japanese words before you do anything else. Let's start out with the \"Intro to Hiragana\" lesson.",
     icon: "play-arrow",
     button: "start",
   },
