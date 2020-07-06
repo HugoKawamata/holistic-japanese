@@ -1,5 +1,5 @@
 /* @flow */
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TouchableOpacity, StyleSheet, View, Animated } from "react-native";
 import Icon from "../../../components/Icon";
 import Text from "../../../components/Text";
@@ -43,12 +43,14 @@ const styles = StyleSheet.create({
 type Props = {
   currentMark: ?("CORRECT" | "INCORRECT"),
   userAnswer: UserAnswer,
-  goToNextQuestion: ("CORRECT" | "INCORRECT") => void,
+  goToNextQuestion: (?("CORRECT" | "INCORRECT")) => void,
   answerQuestion: () => "CORRECT" | "INCORRECT",
 };
 
 export function AnswerButton(props: Props) {
   const { currentMark, userAnswer, goToNextQuestion, answerQuestion } = props;
+
+  const [timeoutFn, setTimeoutFn] = useState(null);
 
   const anim = useRef(new Animated.Value(currentMark != null ? 1 : 0)).current;
   const timeoutAnim = useRef(new Animated.Value(currentMark != null ? 1 : 0))
@@ -75,7 +77,12 @@ export function AnswerButton(props: Props) {
   const nextButton = (
     <TouchableOpacity
       style={styles.nextWrapper}
-      onPress={() => goToNextQuestion(currentMark || "INCORRECT")}
+      // Don't pass current mark if the next button is pressed manually
+      // because we have the correct results at this point
+      onPress={() => {
+        clearTimeout(timeoutFn);
+        goToNextQuestion();
+      }}
     >
       <Text style={styles.nextButton}>Next</Text>
       <Icon color={color.PURPLE} size={24} name="chevron-right" />
@@ -122,11 +129,12 @@ export function AnswerButton(props: Props) {
             theme="primary"
             onPress={() => {
               const mark = answerQuestion();
-              setTimeout(() => {
+              const t = setTimeout(() => {
                 if (mark === "CORRECT") {
                   goToNextQuestion(mark);
                 }
               }, 1500);
+              setTimeoutFn(t);
             }}
             disabled={getCSVAnswer(userAnswer) === ""}
           >

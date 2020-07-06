@@ -343,7 +343,7 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const nextQuestion = (mark: "CORRECT" | "INCORRECT") => {
+  const nextQuestion = (mark: ?("CORRECT" | "INCORRECT")) => {
     setLecturesStatus("inactive");
 
     // 0 if answered incorrectly
@@ -382,7 +382,7 @@ export function LessonScreen(props: Props): Node {
     }
   };
 
-  const nextQuestionKanaLesson = (mark: "CORRECT" | "INCORRECT") => {
+  const nextQuestionKanaLesson = (mark: ?("CORRECT" | "INCORRECT")) => {
     setLecturesStatus("inactive");
 
     // Question stage here may be bumped up 1 by the current result, since this happens after the user answers.

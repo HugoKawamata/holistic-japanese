@@ -24,7 +24,7 @@ type Props = {|
   children: React.Node, // Children is always the answer field node
   currentMark: ?("CORRECT" | "INCORRECT"),
   currentTestable: Testable,
-  goToNextQuestion: ("CORRECT" | "INCORRECT") => void,
+  goToNextQuestion: (?("CORRECT" | "INCORRECT")) => void,
   lecturesStatus: LecturesStatus,
   setExitModalVisible: (boolean) => void,
   results: Results,
