@@ -7,13 +7,14 @@ import FuriganaText from "../../../components/Text/FuriganaText";
 import TransformText from "../../../components/Text/TransformText";
 import Button from "../../../components/Button";
 import type { AvailableLessons_me_availableCourses_availableLessons_lectures as Lecture } from "../../Learn/__generated__/AvailableLessons";
+import type { LecturesStatus } from "..";
 import { sharedStyles } from "../styles";
 import styles from "./styles";
 
 type Props = {|
   lectures: $ReadOnlyArray<Lecture>,
   lectureIndex: number,
-  setLectures: ($ReadOnlyArray<Lecture>) => typeof undefined,
+  setLecturesStatus: (LecturesStatus) => typeof undefined,
   setLectureIndex: (number) => void,
 |};
 
@@ -62,7 +63,7 @@ export function LectureScreen(props: Props) {
               theme="primary"
               onPress={
                 lectureIndex + 1 === lectures.length
-                  ? () => props.setLectures([])
+                  ? () => props.setLecturesStatus("undoable")
                   : () => props.setLectureIndex(lectureIndex + 1)
               }
             >

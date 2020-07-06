@@ -9,6 +9,7 @@ import {
   getCSVAnswer,
   getKeyForTestable,
 } from "../util";
+import type { LecturesStatus } from "..";
 import { sharedStyles } from "../styles";
 import AnswerButton from "../AnswerButton";
 import {
@@ -23,10 +24,12 @@ type Props = {|
   currentMark: ?("CORRECT" | "INCORRECT"),
   currentTestable: Testable,
   goToNextQuestion: ("CORRECT" | "INCORRECT") => void,
+  lecturesStatus: LecturesStatus,
   setExitModalVisible: (boolean) => void,
   questionStage: number,
   results: Results,
   setCurrentMark: ("CORRECT" | "INCORRECT" | null | typeof undefined) => void,
+  setLecturesStatus: (LecturesStatus) => typeof undefined,
   setResults: (Results) => void,
   userAnswer: UserAnswer,
 |};
@@ -37,7 +40,9 @@ export function WordLesson(props: Props) {
     currentMark,
     currentTestable,
     goToNextQuestion,
+    lecturesStatus,
     setExitModalVisible,
+    setLecturesStatus,
     questionStage,
     results,
     userAnswer,
@@ -104,7 +109,12 @@ export function WordLesson(props: Props) {
     <>
       <View style={sharedStyles.topSection}>
         {/* <ProgressBar testables={lesson.testables} results={results} /> */}
-        {getTopSectionContent(currentTestable, setExitModalVisible)}
+        {getTopSectionContent(
+          currentTestable,
+          lecturesStatus,
+          setExitModalVisible,
+          setLecturesStatus
+        )}
       </View>
       <View style={styles.bottomSectionBackground}>
         <View style={sharedStyles.bottomSection}>

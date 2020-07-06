@@ -51,6 +51,8 @@ const SEND_RESULTS = gql`
   }
 `;
 
+export type LecturesStatus = "active" | "inactive" | "undoable";
+
 type OwnProps = {|
   navigation: any, // eslint-disable-line flowtype/no-weak-types
   route: {
@@ -149,6 +151,9 @@ export function LessonScreen(props: Props): Node {
       ? lesson.lectures.filter((lec) => lec.position === "PRETEST")
       : []
   );
+
+  // Store this instead of clearing lectures so that user can go back if they make a mistake
+  const [lecturesStatus, setLecturesStatus] = useState("active"); // active/inactive/undoable
 
   const [lectureIndex, setLectureIndex] = useState(0);
 
@@ -305,6 +310,7 @@ export function LessonScreen(props: Props): Node {
       return;
     }
     if (numUniqueQuestionsAnswered === 1) {
+      setLectureIndex(0);
       setLectures(
         lesson.lectures != null
           ? lesson.lectures.filter((lec) => lec.position === "BEFORE_SECOND")
@@ -313,6 +319,7 @@ export function LessonScreen(props: Props): Node {
       return;
     }
     if (numUniqueQuestionsAnswered === 2) {
+      setLectureIndex(0);
       setLectures(
         lesson.lectures != null
           ? lesson.lectures.filter((lec) => lec.position === "BEFORE_THIRD")
@@ -320,6 +327,7 @@ export function LessonScreen(props: Props): Node {
       );
     }
     if (numUniqueQuestionsAnswered === 3) {
+      setLectureIndex(0);
       setLectures(
         lesson.lectures != null
           ? lesson.lectures.filter((lec) => lec.position === "BEFORE_FOURTH")
@@ -329,6 +337,8 @@ export function LessonScreen(props: Props): Node {
   };
 
   const nextQuestion = (mark: "CORRECT" | "INCORRECT") => {
+    setLecturesStatus("inactive");
+
     // 0 if answered incorrectly
     const correctlyAnswered = mark === "CORRECT";
 
@@ -418,13 +428,13 @@ export function LessonScreen(props: Props): Node {
 
   const questionStage = getQuestionStage(currentTestable, results);
 
-  if (lectures != null && lectures.length > 0) {
+  if (lectures != null && lectures.length > 0 && lecturesStatus === "active") {
     return (
       <SafeAreaView style={styles.safeAreaView}>
         <LectureScreen
           lectureIndex={lectureIndex}
           lectures={lectures}
-          setLectures={setLectures}
+          setLecturesStatus={setLecturesStatus}
           setLectureIndex={setLectureIndex}
         />
       </SafeAreaView>
@@ -451,10 +461,12 @@ export function LessonScreen(props: Props): Node {
                   ? nextQuestionKanaLesson
                   : nextQuestion
               }
+              lecturesStatus={lecturesStatus}
               setExitModalVisible={setExitModalVisible}
               questionStage={questionStage}
               results={results}
               setCurrentMark={setCurrentMark}
+              setLecturesStatus={setLecturesStatus}
               setResults={setResults}
               userAnswer={userAnswer}
             >
@@ -465,9 +477,11 @@ export function LessonScreen(props: Props): Node {
               currentMark={currentMark}
               currentTestable={currentTestable}
               goToNextQuestion={nextQuestion}
+              lecturesStatus={lecturesStatus}
               setExitModalVisible={setExitModalVisible}
               results={results}
               setCurrentMark={setCurrentMark}
+              setLecturesStatus={setLecturesStatus}
               setResults={setResults}
               splots={splots}
               userAnswer={userAnswer}

@@ -11,6 +11,7 @@ import type { UserAnswer, Results } from "../types";
 import { getKeyForTestable } from "../util";
 import { sharedStyles } from "../styles";
 import AnswerButton from "../AnswerButton";
+import type { LecturesStatus } from "..";
 import {
   getTopSectionContent,
   getAnswerSection,
@@ -24,9 +25,11 @@ type Props = {|
   currentMark: ?("CORRECT" | "INCORRECT"),
   currentTestable: Testable,
   goToNextQuestion: ("CORRECT" | "INCORRECT") => void,
+  lecturesStatus: LecturesStatus,
   setExitModalVisible: (boolean) => void,
   results: Results,
   setCurrentMark: ("CORRECT" | "INCORRECT" | null | typeof undefined) => void,
+  setLecturesStatus: (LecturesStatus) => typeof undefined,
   setResults: (Results) => void,
   splots: Splots,
   userAnswer: UserAnswer,
@@ -38,7 +41,9 @@ export function SentenceLesson(props: Props) {
     currentMark,
     currentTestable,
     goToNextQuestion,
+    lecturesStatus,
     setExitModalVisible,
+    setLecturesStatus,
     results,
     splots,
     userAnswer,
@@ -109,7 +114,12 @@ export function SentenceLesson(props: Props) {
   return (
     <>
       <View style={sharedStyles.topSection}>
-        {getTopSectionContent(currentTestable, setExitModalVisible)}
+        {getTopSectionContent(
+          currentTestable,
+          lecturesStatus,
+          setExitModalVisible,
+          setLecturesStatus
+        )}
       </View>
       <View style={styles.bottomSection}>
         {getSentenceQuestion(currentTestable, splots)}

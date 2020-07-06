@@ -6,6 +6,7 @@ import TransformText from "../../../components/Text/TransformText";
 import Icon from "../../../components/Icon";
 import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import color from "../../../util/color";
+import type { LecturesStatus } from "..";
 import { sharedStyles } from "../styles";
 import styles from "./styles";
 
@@ -13,21 +14,37 @@ const { height } = Dimensions.get("window");
 
 export const getTopSectionContent = (
   currentTestable: Testable,
-  setExitModalVisible: (boolean) => void
+  lecturesStatus: LecturesStatus,
+  setExitModalVisible: (boolean) => void,
+  setLecturesStatus: (LecturesStatus) => typeof undefined
 ) => {
   return (
     <View style={styles.topSectionInterior}>
       {height > 730 ? (
         <View style={styles.headerWrapper}>
           <Text style={styles.header}>レッスン・Lesson</Text>
-          <TouchableOpacity onPress={() => setExitModalVisible(true)}>
+          <TouchableOpacity
+            onPress={() => {
+              if (lecturesStatus === "undoable") {
+                setLecturesStatus("active");
+              } else {
+                setExitModalVisible(true);
+              }
+            }}
+          >
             <Icon color={color.WHITE} name="keyboard-return" size={32} />
           </TouchableOpacity>
         </View>
       ) : (
         <TouchableOpacity
           style={styles.exitWrapper}
-          onPress={() => setExitModalVisible(true)}
+          onPress={() => {
+            if (lecturesStatus === "undoable") {
+              setLecturesStatus("active");
+            } else {
+              setExitModalVisible(true);
+            }
+          }}
         >
           <Icon color={color.WHITE} name="keyboard-return" size={32} />
         </TouchableOpacity>

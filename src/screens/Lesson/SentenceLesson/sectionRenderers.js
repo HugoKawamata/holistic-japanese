@@ -12,12 +12,15 @@ import type {
 } from "../../Learn/__generated__/AvailableLessons";
 import { getCSVAnswer } from "../util";
 import type { UserAnswer } from "../types";
+import type { LecturesStatus } from "..";
 import { sharedStyles } from "../styles";
 import styles from "./styles";
 
 export const getTopSectionContent = (
   currentTestable: Testable,
-  setExitModalVisible: (boolean) => void
+  lecturesStatus: LecturesStatus,
+  setExitModalVisible: (boolean) => void,
+  setLecturesStatus: (LecturesStatus) => typeof undefined
 ) => {
   const hasJapanese =
     currentTestable.context?.japanese != null &&
@@ -27,7 +30,13 @@ export const getTopSectionContent = (
     <>
       <TouchableOpacity
         style={styles.exitWrapper}
-        onPress={() => setExitModalVisible(true)}
+        onPress={() => {
+          if (lecturesStatus === "undoable") {
+            setLecturesStatus("active");
+          } else {
+            setExitModalVisible(true);
+          }
+        }}
       >
         <Icon color={color.WHITE} name="keyboard-return" size={32} />
       </TouchableOpacity>
