@@ -437,6 +437,36 @@ export function LessonScreen(props: Props): Node {
 
   const questionStage = getQuestionStage(currentTestable, results);
 
+  const overlayModal = (
+    <OverlayModal
+      closeModal={() => setExitModalVisible(false)}
+      title={
+        <Text style={styles.exitModalTitle}>
+          Are you sure you want to quit?
+        </Text>
+      }
+      visible={exitModalVisible}
+    >
+      <Text>You'll lose all your progress so far.</Text>
+      <View style={styles.exitModalBottom}>
+        <View style={styles.modalButtonWrapper}>
+          <Button
+            theme="primary_ghost"
+            onPress={() => {
+              setExitModalVisible(false);
+              props.navigation.navigate("Learn");
+            }}
+          >
+            <Text style={styles.buttonQuit}>Quit Lesson</Text>
+          </Button>
+        </View>
+        <Button theme="secondary" onPress={() => setExitModalVisible(false)}>
+          <Text style={styles.buttonContinue}>Continue Lesson</Text>
+        </Button>
+      </View>
+    </OverlayModal>
+  );
+
   if (lectures != null && lectures.length > 0 && lecturesStatus === "active") {
     return (
       <SafeAreaView style={styles.safeAreaView}>
@@ -445,7 +475,9 @@ export function LessonScreen(props: Props): Node {
           lectures={lectures}
           setLecturesStatus={setLecturesStatus}
           setLectureIndex={setLectureIndex}
+          setExitModalVisible={setExitModalVisible}
         />
+        {overlayModal}
       </SafeAreaView>
     );
   }
@@ -500,33 +532,7 @@ export function LessonScreen(props: Props): Node {
           )}
         </ImageBackground>
       </KeyboardAvoidingView>
-      <OverlayModal
-        closeModal={() => setExitModalVisible(false)}
-        title={
-          <Text style={styles.exitModalTitle}>
-            Are you sure you want to quit?
-          </Text>
-        }
-        visible={exitModalVisible}
-      >
-        <Text>You'll lose all your progress so far.</Text>
-        <View style={styles.exitModalBottom}>
-          <View style={styles.modalButtonWrapper}>
-            <Button
-              theme="primary_ghost"
-              onPress={() => {
-                setExitModalVisible(false);
-                props.navigation.navigate("Learn");
-              }}
-            >
-              <Text style={styles.buttonQuit}>Quit Lesson</Text>
-            </Button>
-          </View>
-          <Button theme="secondary" onPress={() => setExitModalVisible(false)}>
-            <Text style={styles.buttonContinue}>Continue Lesson</Text>
-          </Button>
-        </View>
-      </OverlayModal>
+      {overlayModal}
     </SafeAreaView>
   );
 }

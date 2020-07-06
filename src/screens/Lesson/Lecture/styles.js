@@ -3,6 +3,14 @@ import { StyleSheet } from "react-native";
 import color from "../../../util/color";
 
 const styles = StyleSheet.create({
+  exitWrapper: {
+    marginTop: 30,
+    marginLeft: 30,
+    top: 0,
+    left: 0,
+    position: "absolute",
+    zIndex: 1,
+  },
   lectureBackButtonWrapper: {
     flexShrink: 3,
   },
