@@ -91,10 +91,15 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     backgroundColor: color.WHITE,
     flexGrow: 1,
-    height: height - 60, // 36 is about the height of the tab bar
+    height: height - 110, // 36 is about the height of the tab bar
   },
   logoutWrapper: {
     alignItems: "center",
+    marginBottom: 40,
+  },
+  deleteAccountWrapper: {
+    alignItems: "center",
+    marginTop: 110,
     marginBottom: 40,
   },
   safeButtonText: {
@@ -258,7 +263,7 @@ export function ProfileScreen(props: Props) {
                 </View>
               </OverlayModal>
             </View>
-            <View style={styles.logoutWrapper}>
+            <View style={styles.deleteAccountWrapper}>
               <Button
                 theme="primary_ghost"
                 onPress={() => setModalVisible(true)}
