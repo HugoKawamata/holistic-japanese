@@ -157,6 +157,8 @@ export function LessonScreen(props: Props): Node {
 
   const [lectureIndex, setLectureIndex] = useState(0);
 
+  const [loading, setLoading] = useState(false);
+
   const [userAnswer, setUserAnswer] = useState({});
 
   const [results: Results, setResults] = useState(initResults(testables));
@@ -282,6 +284,10 @@ export function LessonScreen(props: Props): Node {
   };
 
   const goToVictoryScreen = async () => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
     const formattedResults = formatResultsForMutation(results);
     await addLessonResults({
       variables: {
@@ -291,6 +297,7 @@ export function LessonScreen(props: Props): Node {
       },
     });
     props.refetch();
+    setLoading(false);
     props.navigation.navigate("Learn");
     props.navigation.navigate("Hiragana", {
       completedContent: lesson.id,
