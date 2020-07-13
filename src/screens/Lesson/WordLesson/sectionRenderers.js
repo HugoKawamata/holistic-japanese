@@ -112,10 +112,9 @@ export const getHint = (
   if (emoji && currentTestable.introduction) {
     return (
       <View style={sharedStyles.hintSection}>
-        {/* <Text style={styles.hintLabel}>Hint</Text> */}
         <View style={sharedStyles.hintBox}>
           <View style={styles.emojiWrapper}>{emoji}</View>
-          <TransformText style={sharedStyles.hint}>
+          <TransformText ignoredDelimiters={["("]} style={sharedStyles.hint}>
             {dialogueText}
           </TransformText>
         </View>

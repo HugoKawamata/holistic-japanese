@@ -476,6 +476,7 @@ export function LessonScreen(props: Props): Node {
           setLecturesStatus={setLecturesStatus}
           setLectureIndex={setLectureIndex}
           setExitModalVisible={setExitModalVisible}
+          splots={splots}
         />
         {overlayModal}
       </SafeAreaView>

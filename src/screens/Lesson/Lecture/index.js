@@ -7,8 +7,12 @@ import Icon from "../../../components/Icon";
 import FuriganaText from "../../../components/Text/FuriganaText";
 import TransformText from "../../../components/Text/TransformText";
 import Button from "../../../components/Button";
+import { addSplotsToText } from "../../../util/helpers/text";
 import color from "../../../util/color";
-import type { AvailableLessons_me_availableCourses_availableLessons_lectures as Lecture } from "../../Learn/__generated__/AvailableLessons";
+import type {
+  AvailableLessons_me_availableCourses_availableLessons_lectures as Lecture,
+  AvailableLessons_me_splots as Splots,
+} from "../../Learn/__generated__/AvailableLessons";
 import type { LecturesStatus } from "..";
 import { sharedStyles } from "../styles";
 import styles from "./styles";
@@ -19,10 +23,11 @@ type Props = {|
   setLecturesStatus: (LecturesStatus) => typeof undefined,
   setLectureIndex: (number) => void,
   setExitModalVisible: (boolean) => void,
+  splots: Splots,
 |};
 
 export function LectureScreen(props: Props) {
-  const { lectures, lectureIndex, setExitModalVisible } = props;
+  const { lectures, lectureIndex, setExitModalVisible, splots } = props;
   const currentLecture = lectures[lectureIndex];
   return (
     <>
@@ -48,8 +53,11 @@ export function LectureScreen(props: Props) {
           </View>
           <View style={sharedStyles.hintSection}>
             <View style={sharedStyles.hintBox}>
-              <TransformText style={sharedStyles.hint}>
-                {currentLecture.text}
+              <TransformText
+                ignoredDelimiters={["("]}
+                style={sharedStyles.hint}
+              >
+                {addSplotsToText(currentLecture.text, splots)}
               </TransformText>
             </View>
           </View>

@@ -6,6 +6,7 @@ import FuriganaText from "../../../components/Text/FuriganaText";
 import Button from "../../../components/Button";
 import Icon from "../../../components/Icon";
 import color from "../../../util/color";
+import { addSplotsToText } from "../../../util/helpers/text";
 import type {
   AvailableLessons_me_availableCourses_availableLessons_testables as Testable,
   AvailableLessons_me_splots as Splots,
@@ -110,20 +111,6 @@ export const getButton = (
       <Text style={sharedStyles.buttonText}>Answer</Text>
     </Button>
   );
-};
-
-export const addSplotsToText = (text: string, splots: Splots) => {
-  let formatted = text;
-  if (splots.me != null) {
-    formatted = formatted.replace("{me}", splots.me);
-  }
-  if (splots.meFuri != null) {
-    formatted = formatted.replace("{me_furi}", splots.meFuri);
-  }
-  if (splots.fname != null) {
-    formatted = formatted.replace("{fname}", splots.fname);
-  }
-  return formatted;
 };
 
 export const getSentenceQuestion = (

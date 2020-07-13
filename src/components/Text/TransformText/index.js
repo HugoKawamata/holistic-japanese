@@ -6,6 +6,7 @@ import Text from "..";
 
 type Props = {|
   children: string,
+  ignoredDelimiters?: Array<'"' | "_" | "*" | "(" | "[" | "<">,
   noWrapper?: ?boolean, // For single word transforms
   style: typeof StyleSheet | Array<?typeof StyleSheet>,
 |};
@@ -78,8 +79,10 @@ const getStyle = (transformableType, style) => {
   }
 };
 
-const splitOnTransformable = (text, style) => {
-  const transformableChars = ['"', "_", "*", "(", "[", "<"];
+const splitOnTransformable = (text, style, ignoredDelimiters) => {
+  const transformableChars = ['"', "_", "*", "(", "[", "<"].filter(
+    (char) => !ignoredDelimiters.includes(char)
+  );
   let currentString = "";
   const components = [];
   for (let i = 0; i < text.length; i += 1) {
@@ -122,8 +125,8 @@ const splitOnTransformable = (text, style) => {
 };
 
 export default function TransformText(props: Props): React.Node {
-  const { children, noWrapper, style } = props;
-  const textBlocks = splitOnTransformable(children, style);
+  const { children, noWrapper, style, ignoredDelimiters } = props;
+  const textBlocks = splitOnTransformable(children, style, ignoredDelimiters);
 
   if (noWrapper) {
     return <NativeText>{textBlocks}</NativeText>;
@@ -137,5 +140,6 @@ export default function TransformText(props: Props): React.Node {
 }
 
 TransformText.defaultProps = {
+  ignoredDelimiters: [],
   noWrapper: false,
 };
