@@ -20,7 +20,7 @@ export const fontSize = {
   kanaAsImage: sizes.IMAGE,
   large: sizes.LARGE,
   lessonTitle: sizes.VERY_LARGE,
-  modalTitle: sizes.VERY_LARGE,
+  modalTitle: sizes.LARGE,
   testableNote: sizes.REGULAR,
   title: sizes.LARGE,
   referenceTableCell: sizes.LARGE,

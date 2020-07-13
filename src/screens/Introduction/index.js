@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingHorizontal: 30,
   },
-  bodyText: {},
+  bodyText: {
+    fontSize: 16,
+  },
   buttonText: {
     color: color.WHITE,
   },
@@ -43,17 +45,18 @@ const styles = StyleSheet.create({
   image: {
     alignItems: "center",
     borderRadius: 16,
-    height: 200,
+    height: 170,
     justifyContent: "center",
-    width: 200,
+    width: 170,
   },
   imageWrapper: {
     alignItems: "center",
     backgroundColor: color.HINT_BG,
     borderRadius: 16,
-    height: 220,
+    height: 190,
     justifyContent: "center",
-    width: 220,
+    marginBottom: 14,
+    width: 190,
   },
   introduction: {
     alignItems: "center",
@@ -73,13 +76,7 @@ const styles = StyleSheet.create({
 
 const SEND_GENDER = gql`
   mutation sendGender($userEmail: String!, $gender: String!) {
-    sendGender(userEmail: $userEmail, gender: $gender) {
-      gender
-      splots {
-        me
-        meFuri
-      }
-    }
+    sendGender(userEmail: $userEmail, gender: $gender)
   }
 `;
 
@@ -205,7 +202,7 @@ export function IntroductionScreen(props: Props) {
                 sendGender({
                   variables: {
                     userEmail,
-                    gender: "F",
+                    gender: "M",
                   },
                 }).then(() => next())
               }
@@ -220,7 +217,7 @@ export function IntroductionScreen(props: Props) {
                 sendGender({
                   variables: {
                     userEmail,
-                    gender: "F",
+                    gender: "X",
                   },
                 }).then(() => next())
               }
@@ -257,9 +254,11 @@ export function IntroductionScreen(props: Props) {
           </ImageBackground>
         </View>
         <View style={styles.genericWrapper}>
-          <View style={styles.header}>
-            <Text style={styles.headerText}>{currentIntro.header}</Text>
-          </View>
+          {currentIntro.header !== "" ? (
+            <View style={styles.header}>
+              <Text style={styles.headerText}>{currentIntro.header}</Text>
+            </View>
+          ) : null}
           <View style={styles.body}>
             <Text style={styles.bodyText}>{currentIntro.body}</Text>
           </View>

@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   },
   logoutWrapper: {
     alignItems: "center",
+    marginTop: 40,
     marginBottom: 40,
   },
   deleteAccountWrapper: {
