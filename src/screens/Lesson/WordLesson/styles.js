@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   },
   emoji: {
     fontSize: fontSize.questionEmoji,
+    lineHeight: 54,
   },
   emojiWrapper: {
     flexGrow: 1,
