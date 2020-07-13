@@ -1,6 +1,6 @@
 /* @flow */
 import * as React from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
 import Text from "../Text";
@@ -28,29 +28,55 @@ const styles = StyleSheet.create({
 
 type Props = {|
   heading: string,
+  initialScrollIndex?: number,
   linkCardProps: Array<{|
     ...LinkCardProps,
     key: string,
   |}>,
 |};
 
-export default function SideSlider(props: Props): React.Node {
-  const { heading, linkCardProps } = props;
-  return (
-    <View style={styles.wrapper}>
-      <View style={styles.headingWrapper}>
-        {linkCardProps.every((prop) => prop.disabled) ? (
-          <View style={styles.icon}>
-            <Icon size={18} name="lock" color={color.TEXT} />
-          </View>
-        ) : null}
-        <Text style={styles.heading}>{heading}</Text>
+export default class SideSlider extends React.PureComponent<Props> {
+  flatListRef: ?typeof FlatList;
+
+  // eslint-disable-next-line react/static-property-placement
+  static defaultProps = {
+    initialScrollIndex: 0,
+  };
+
+  render() {
+    const { heading, linkCardProps, initialScrollIndex } = this.props;
+    return (
+      <View style={styles.wrapper}>
+        <View style={styles.headingWrapper}>
+          {linkCardProps.every((prop) => prop.disabled) ? (
+            <View style={styles.icon}>
+              <Icon size={18} name="lock" color={color.TEXT} />
+            </View>
+          ) : null}
+          <Text style={styles.heading}>{heading}</Text>
+        </View>
+        <FlatList
+          ref={(ref) => {
+            // $FlowFixMe not sure what the go is here
+            this.flatListRef = ref;
+          }}
+          getItemLayout={(_, index) => ({
+            length: 262,
+            offset: 262 * index,
+            index,
+          })}
+          scrollEventThrottle={16}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          renderItem={({ item }) => <LinkCard key={item.key} {...item} />}
+          keyExtractor={(item) => item.key}
+          data={linkCardProps}
+          initialScrollIndex={initialScrollIndex}
+        />
+        {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {}
+        </ScrollView> */}
       </View>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {linkCardProps.map((card) => (
-          <LinkCard key={card.key} {...card} />
-        ))}
-      </ScrollView>
-    </View>
-  );
+    );
+  }
 }

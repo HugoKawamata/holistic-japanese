@@ -2,7 +2,7 @@
 import * as React from "react";
 import { View, StyleSheet } from "react-native";
 import { fontSize } from "../../../util/font";
-import Text from "..";
+import TransformText from "../TransformText";
 import { startGenerateArray } from "./util";
 
 type Props = {|
@@ -40,10 +40,15 @@ export default function FuriganaText(props: Props): React.Node {
       {furiganaArray.map(({ furigana, text }, i) => (
         // eslint-disable-next-line react/no-array-index-key
         <View key={`${i}`} style={styles.furiganisedTextWrapper}>
-          <Text style={[styles.furiganaText, props.furiStyle]}>
+          <TransformText
+            style={[styles.furiganaText, props.furiStyle]}
+            noWrapper
+          >
             {furigana === text ? "" : furigana}
-          </Text>
-          <Text style={[styles.mainText, props.textStyle]}>{text}</Text>
+          </TransformText>
+          <TransformText style={[styles.mainText, props.textStyle]} noWrapper>
+            {text}
+          </TransformText>
         </View>
       ))}
     </View>

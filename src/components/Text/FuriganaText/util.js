@@ -1,195 +1,12 @@
 /* @flow */
-
-// const furigana = "わたしのこうざをはじめる"
-// const text = "私の講座を始める"
-const notKanji = [
-  "ぁ",
-  "あ",
-  "ぃ",
-  "い",
-  "ぅ",
-  "う",
-  "ぇ",
-  "え",
-  "ぉ",
-  "お",
-  "か",
-  "が",
-  "き",
-  "ぎ",
-  "く",
-  "ぐ",
-  "け",
-  "げ",
-  "こ",
-  "ご",
-  "さ",
-  "ざ",
-  "し",
-  "じ",
-  "す",
-  "ず",
-  "せ",
-  "ぜ",
-  "そ",
-  "ぞ",
-  "た",
-  "だ",
-  "ち",
-  "ぢ",
-  "っ",
-  "つ",
-  "づ",
-  "て",
-  "で",
-  "と",
-  "ど",
-  "な",
-  "に",
-  "ぬ",
-  "ね",
-  "の",
-  "は",
-  "ば",
-  "ぱ",
-  "ひ",
-  "び",
-  "ぴ",
-  "ふ",
-  "ぶ",
-  "ぷ",
-  "へ",
-  "べ",
-  "ぺ",
-  "ほ",
-  "ぼ",
-  "ぽ",
-  "ま",
-  "み",
-  "む",
-  "め",
-  "も",
-  "ゃ",
-  "や",
-  "ゅ",
-  "ゆ",
-  "ょ",
-  "よ",
-  "ら",
-  "り",
-  "る",
-  "れ",
-  "ろ",
-  "ゎ",
-  "わ",
-  "ゐ",
-  "ゑ",
-  "を",
-  "ん",
-  "ゔ",
-  "ゕ",
-  "ゖ",
-  "ァ",
-  "ア",
-  "ィ",
-  "イ",
-  "ゥ",
-  "ウ",
-  "ェ",
-  "エ",
-  "ォ",
-  "オ",
-  "カ",
-  "ガ",
-  "キ",
-  "ギ",
-  "ク",
-  "グ",
-  "ケ",
-  "ゲ",
-  "コ",
-  "ゴ",
-  "サ",
-  "ザ",
-  "シ",
-  "ジ",
-  "ス",
-  "ズ",
-  "セ",
-  "ゼ",
-  "ソ",
-  "ゾ",
-  "タ",
-  "ダ",
-  "チ",
-  "ヂ",
-  "ッ",
-  "ツ",
-  "ヅ",
-  "テ",
-  "デ",
-  "ト",
-  "ド",
-  "ナ",
-  "ニ",
-  "ヌ",
-  "ネ",
-  "ノ",
-  "ハ",
-  "バ",
-  "パ",
-  "ヒ",
-  "ビ",
-  "ピ",
-  "フ",
-  "ブ",
-  "プ",
-  "ヘ",
-  "ベ",
-  "ペ",
-  "ホ",
-  "ボ",
-  "ポ",
-  "マ",
-  "ミ",
-  "ム",
-  "メ",
-  "モ",
-  "ャ",
-  "ヤ",
-  "ュ",
-  "ユ",
-  "ョ",
-  "ヨ",
-  "ラ",
-  "リ",
-  "ル",
-  "レ",
-  "ロ",
-  "ヮ",
-  "ワ",
-  "ヰ",
-  "ヱ",
-  "ヲ",
-  "ン",
-  "ヴ",
-  "ヵ",
-  "ヶ",
-  "ヷ",
-  "ヸ",
-  "ヹ",
-  "ヺ",
-  "・",
-  "ー",
-  "ヽ",
-  "ヾ",
-];
+import { notKanji, highlightersOpen, highlightersClosed } from "../util";
 
 type FuriganaPair = {|
   furigana: string,
   text: string,
 |};
 
+// Recursively adds pairs of kana and kanji to `pairs`
 const generateArray = (
   kana: string,
   text: string,
@@ -201,11 +18,47 @@ const generateArray = (
   }
   const newCurrentPair = currentPair;
 
+  if (newCurrentPair.text === "　" && newCurrentPair.furigana === "　") {
+    return generateArray(
+      kana.slice(1),
+      text.slice(1),
+      [...pairs, newCurrentPair],
+      { furigana: kana[0], text: text[0] }
+    );
+  }
+
+  if (highlightersOpen.includes(newCurrentPair.text[0])) {
+    // Next char is closing the highlight for both text and kana
+    if (highlightersClosed.includes(text[0])) {
+      if (text[0] === kana[0]) {
+        newCurrentPair.text += text[0];
+        newCurrentPair.furigana += kana[0];
+        return generateArray(
+          kana.slice(2),
+          text.slice(2),
+          [...pairs, newCurrentPair],
+          // It's possible we overshoot here, since we dont know two chars ahead
+          // so we default to empty string
+          { furigana: kana[1] || "", text: text[1] || "" }
+        );
+      }
+      // Next char closes text highlight, but there are still more kana
+      newCurrentPair.furigana += kana[0];
+      return generateArray(kana.slice(1), text, pairs, newCurrentPair);
+    }
+    // Next char doesn't close text highlight. Keep adding to text.
+    newCurrentPair.text += text[0];
+    return generateArray(kana, text.slice(1), pairs, newCurrentPair);
+  }
+
   if (newCurrentPair.furigana === newCurrentPair.text) {
     // Check if next char is different
     // Current pairs match, so we're getting through a stretch of kana
-    if (text[0] !== kana[0]) {
-      // Next letter of text different to next letter of kana, abort and start new pair
+    if (
+      text[0] !== kana[0] ||
+      (text[0] === kana[0] && highlightersOpen.includes(text[0]))
+    ) {
+      // Next letter of text different to next letter of kana, finish and start new pair
       return generateArray(
         kana.slice(1),
         text.slice(1),

@@ -17,13 +17,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: color.WHITE,
     borderRadius: 10,
-    height: height * 0.75,
+    maxHeight: height * 0.75,
     paddingTop: 30,
     paddingBottom: 40,
     width: width * 0.85,
   },
   modalHeaderWrapper: {
     flexDirection: "row",
+    paddingBottom: 10,
   },
   modalCloseButton: {
     backgroundColor: "#ff0000",

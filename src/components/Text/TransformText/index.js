@@ -6,12 +6,17 @@ import Text from "..";
 
 type Props = {|
   children: string,
-  style: typeof StyleSheet,
+  noWrapper?: ?boolean, // For single word transforms
+  style: typeof StyleSheet | Array<?typeof StyleSheet>,
 |};
 
 const styles = StyleSheet.create({
   bold: {
     fontWeight: "bold",
+  },
+  focus: {
+    fontWeight: "bold",
+    color: color.SOFT_PRIMARY,
   },
   highlight: {
     fontWeight: "bold",
@@ -19,6 +24,13 @@ const styles = StyleSheet.create({
   },
   italic: {
     fontStyle: "italic",
+  },
+  known: {
+    fontWeight: "bold",
+    color: color.TEXT_KNOWN,
+  },
+  particle: {
+    color: color.TEXT_M,
   },
   wrapper: {
     flexDirection: "row",
@@ -28,26 +40,51 @@ const styles = StyleSheet.create({
   },
 });
 
+const getCloseChar = (transformableType, style) => {
+  switch (transformableType) {
+    case '"': // For English, purple and bold
+      return '"';
+    case "_": // Italics, normal color
+      return "_";
+    case "*": // Bold, normal color
+      return "*";
+    case "(": // Particles in Japanese
+      return ")";
+    case "[": // Known words in Japanese
+      return "]";
+    case "<": // Known words in Japanese
+      return ">";
+    default:
+      return style;
+  }
+};
+
 const getStyle = (transformableType, style) => {
   switch (transformableType) {
-    case '"':
+    case '"': // For English, purple and bold
       return [style, styles.highlight];
-    case "_":
+    case "_": // Italics, normal color
       return [style, styles.italic];
-    case "*":
+    case "*": // Bold, normal color
       return [style, styles.bold];
+    case "(": // Particles in Japanese
+      return [style, styles.particle];
+    case "[": // Known words in Japanese
+      return [style, styles.known];
+    case "<": // Known words in Japanese
+      return [style, styles.focus];
     default:
       return style;
   }
 };
 
 const splitOnTransformable = (text, style) => {
-  const transformableChars = ['"', "_", "*"];
+  const transformableChars = ['"', "_", "*", "(", "[", "<"];
   let currentString = "";
   const components = [];
   for (let i = 0; i < text.length; i += 1) {
     if (transformableChars.includes(currentString[0])) {
-      if (text[i] === currentString[0]) {
+      if (text[i] === getCloseChar(currentString[0])) {
         components.push(
           <Text key={i} style={getStyle(currentString[0], style)}>
             {currentString.slice(1)}
@@ -85,8 +122,12 @@ const splitOnTransformable = (text, style) => {
 };
 
 export default function TransformText(props: Props): React.Node {
-  const { children, style } = props;
+  const { children, noWrapper, style } = props;
   const textBlocks = splitOnTransformable(children, style);
+
+  if (noWrapper) {
+    return <NativeText>{textBlocks}</NativeText>;
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -94,3 +135,7 @@ export default function TransformText(props: Props): React.Node {
     </View>
   );
 }
+
+TransformText.defaultProps = {
+  noWrapper: false,
+};

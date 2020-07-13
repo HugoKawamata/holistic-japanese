@@ -12,11 +12,11 @@ const sizes = {
 };
 
 export const fontSize = {
-  answerSingleChar: 38,
+  answerSingleChar: sizes.VERY_LARGE,
   englishButton: sizes.REGULAR,
   furigana: sizes.TINY,
   furiganaEnabledText: sizes.LARGE,
-  hint: sizes.SMALLISH,
+  hint: 16,
   kanaAsImage: sizes.IMAGE,
   large: sizes.LARGE,
   lessonTitle: sizes.VERY_LARGE,
@@ -25,6 +25,7 @@ export const fontSize = {
   title: sizes.LARGE,
   referenceTableCell: sizes.LARGE,
   regular: sizes.REGULAR,
+  smallish: sizes.SMALLISH,
   question: sizes.DEKKEEE,
   questionEmoji: 44,
   questionType: 16,

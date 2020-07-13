@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: "row",
+    justifyContent: "center",
   },
   buttonWrapper: {
     alignItems: "center",
@@ -62,6 +63,7 @@ export default function Button(props: Props): React.Node {
   return (
     <View style={styles.buttonContainer}>
       <TouchableOpacity
+        activeOpacity={disabled ? 1 : 0.2}
         style={styles.buttonWrapper}
         onPress={disabled ? () => {} : onPress}
       >

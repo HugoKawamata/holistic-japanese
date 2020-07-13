@@ -26,7 +26,7 @@ export function loadGoogleSignin(
   };
 }
 
-export function nukeAccount(email) {
+export function nukeAccount(email: string) {
   return (dispatch: Dispatch) => {
     fetch("https://www.issei.com.au/nuke_account", {
       method: "POST",

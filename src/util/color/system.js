@@ -26,6 +26,11 @@ export const grey = {
   g999: "#11181F",
 };
 
+export const success = {
+  success100: "#ECFCCA",
+  success500: "#A6D63E",
+};
+
 // Purples
 export const secondary = {
   s200: "#AB9BEE",

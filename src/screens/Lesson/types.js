@@ -2,7 +2,7 @@
 
 export type Result = {
   objectId: ?number,
-  objectType: "WORD" | "CHARACTER",
+  objectType: "WORD" | "CHARACTER" | "SENTENCE",
   text: string,
   answers: string,
   marks: Array<"CORRECT" | "INCORRECT">,

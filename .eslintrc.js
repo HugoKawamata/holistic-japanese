@@ -111,6 +111,8 @@ module.exports = {
     "jsx-a11y/accessible-emoji": 0,
     /* this is no longer a valid rule https://github.com/yannickcr/eslint-plugin-react/issues/1707 */
     "react/no-did-update-set-state": 0,
+    /* not relevant in react native */
+    "react/no-unescaped-entities": 0,
     /* if you disable an eslint rule, you must re-enable it */
     "eslint-comments/disable-enable-pair": 2,
     /* duplicate disables is probably a sign of a mistake */

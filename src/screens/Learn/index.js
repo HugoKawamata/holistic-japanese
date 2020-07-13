@@ -13,12 +13,13 @@ import color from "../../util/color";
 import { fontSize } from "../../util/font";
 import type {
   AvailableLessons as TAvailableLessonsQuery,
-  AvailableLessons_user_availableCourses_availableLessons as Lesson,
+  AvailableLessons_me_availableCourses_availableLessons as Lesson,
+  AvailableLessons_me_splots as Splots,
 } from "./__generated__/AvailableLessons";
 
 const AVAILABLE_LESSONS_QUERY = gql`
-  query AvailableLessons($email: String!) {
-    user(email: $email) {
+  query AvailableLessons {
+    me {
       id
       createdAt
       nextUnlockCourses {
@@ -38,6 +39,46 @@ const AVAILABLE_LESSONS_QUERY = gql`
           title
           image
         }
+        completedLessons {
+          id
+          lectures {
+            title
+            text
+            image
+            position
+          }
+          title
+          image
+          skillLevel
+          timeEstimate
+          testables {
+            objectId
+            objectType
+            wordId
+            orderInLesson
+            context {
+              person
+              location
+              speaker
+              japanese
+              furigana
+              english
+            }
+            question {
+              type
+              emoji
+              image
+              text
+              furigana
+              prompt
+            }
+            answer {
+              type
+              text
+            }
+            introduction
+          }
+        }
         availableLessons {
           id
           lectures {
@@ -53,11 +94,23 @@ const AVAILABLE_LESSONS_QUERY = gql`
           testables {
             objectId
             objectType
+            wordId
+            orderInLesson
+            context {
+              person
+              location
+              speaker
+              japanese
+              furigana
+              english
+            }
             question {
               type
               emoji
               image
               text
+              furigana
+              prompt
             }
             answer {
               type
@@ -66,6 +119,11 @@ const AVAILABLE_LESSONS_QUERY = gql`
             introduction
           }
         }
+      }
+      splots {
+        me
+        meFuri
+        fname
       }
     }
   }
@@ -140,11 +198,17 @@ export function LearnScreen(props: Props): Node {
     props.navigation.push("Completed Lessons");
   };
 
-  const startLesson = (userId: string, lesson: Lesson, refetch: () => {}) => {
+  const startLesson = (
+    userId: string,
+    lesson: Lesson,
+    refetch: () => {},
+    splots: Splots
+  ) => {
     props.navigation.push("Lesson", {
       lesson,
       userId,
       refetch,
+      splots,
     });
   };
 
@@ -161,22 +225,19 @@ export function LearnScreen(props: Props): Node {
           return null; // TODO: loading state
         }
 
-        if (
-          error != null ||
-          !data ||
-          !data.user ||
-          !data.user.availableCourses
-        ) {
+        if (error != null || !data || !data.me || !data.me.availableCourses) {
           return null; // TODO: error state
         }
 
-        const { user } = data;
-        const courses = data.user.availableCourses;
-        const { nextUnlockCourses } = data.user;
+        const { me } = data;
+        const courses = data.me.availableCourses;
+        const { nextUnlockCourses } = data.me;
 
-        // If the user was created less than 5 minutes ago, show the introduction
-        if (+new Date() - user.createdAt < 3600 * 5) {
-          props.navigation.push("Introduction");
+        // If the me was created less than 5 minutes ago, show the introduction
+        if (+new Date() - me.createdAt < 60 * 1000 * 5) {
+          props.navigation.push("Introduction", {
+            refetch,
+          });
         }
 
         return (
@@ -187,28 +248,44 @@ export function LearnScreen(props: Props): Node {
                 <Text style={styles.greetingName}>{userGivenName}</Text>
               </View>
               {courses.map((course) => {
+                const completedLessons = course.completedLessons.map(
+                  (lesson) => ({
+                    key: lesson.id,
+                    bigText: lesson.title,
+                    smallText: "Completed",
+                    onPress: () =>
+                      startLesson(me.id, lesson, refetch, me.splots),
+                  })
+                );
+                const availableLessons = course.availableLessons.map(
+                  (lesson) => ({
+                    key: lesson.id,
+                    bigText: lesson.title,
+                    smallText: `${Duration.fromMillis(
+                      lesson.timeEstimate * 1000
+                    ).toFormat("m 'min'")}・${lesson.skillLevel}`,
+                    onPress: () =>
+                      startLesson(me.id, lesson, refetch, me.splots),
+                  })
+                );
+                const nextUnlockLessons = course.nextUnlockLessons.map(
+                  (lesson) => ({
+                    key: lesson.id,
+                    bigText: lesson.title,
+                    smallText: "Locked",
+                    onPress: () => {},
+                    disabled: true,
+                  })
+                );
+
                 return (
                   <SideSlider
                     key={course.id}
                     heading={course.title}
-                    linkCardProps={course.availableLessons
-                      .map((lesson) => ({
-                        key: lesson.id,
-                        bigText: lesson.title,
-                        smallText: `${Duration.fromMillis(
-                          lesson.timeEstimate * 1000
-                        ).toFormat("m 'min'")}・${lesson.skillLevel}`,
-                        onPress: () => startLesson(user.id, lesson, refetch),
-                      }))
-                      .concat(
-                        course.nextUnlockLessons.map((lesson) => ({
-                          key: lesson.id,
-                          bigText: lesson.title,
-                          smallText: "Locked",
-                          onPress: () => {},
-                          disabled: true,
-                        }))
-                      )}
+                    initialScrollIndex={completedLessons.length}
+                    linkCardProps={completedLessons
+                      .concat(availableLessons)
+                      .concat(nextUnlockLessons)}
                   />
                 );
               })}

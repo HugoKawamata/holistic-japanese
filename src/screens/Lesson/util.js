@@ -1,5 +1,5 @@
 /* @flow */
-import type { AvailableLessons_user_availableCourses_availableLessons_testables as Testable } from "../Learn/__generated__/AvailableLessons";
+import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../Learn/__generated__/AvailableLessons";
 import type { Results, Result, UserAnswer } from "./types";
 
 export const possibleSokuon = ["k", "g", "s", "z", "t", "d", "h", "b", "p"];
@@ -219,8 +219,26 @@ export const hiraganaRomajiMap = {
   っ: "ltsu",
 };
 
+// This is so that if the user types "n" for anything other than "ん", it doesn't
+// move the ref to the next text input field
+export const nChecker = (lowerText: string, charRomaji: string) => {
+  return (lowerText === "n" && charRomaji === "n") || lowerText !== "n";
+};
+
+export const getKeyForTestable = (testable: Testable): string => {
+  if (testable.objectType === "TESTABLE") {
+    return `testable-${testable.objectId}`;
+  }
+  if (testable.objectType === "WORD") {
+    return testable.question.text;
+  }
+  return testable.objectId;
+};
+
 export const formatResultsForMutation = (results: Results): Array<Result> =>
-  Object.keys(results).map((charKey: string) => results[charKey]);
+  Object.keys(results)
+    .map((charKey: string) => results[charKey])
+    .filter((res) => res.answers.length > 0);
 
 // Stage 0 (show emoji and introduction)
 // Stage 1 (show emoji)
@@ -230,7 +248,7 @@ export const getQuestionStage = (
   currentTestable: Testable,
   results: Results
 ) => {
-  let questionStage = results[currentTestable.question.text].marks.filter(
+  let questionStage = results[getKeyForTestable(currentTestable)].marks.filter(
     (m) => m === "CORRECT"
   ).length;
 
@@ -242,7 +260,7 @@ export const getQuestionStage = (
 };
 
 export const getSplitQuestion = (currentTestable: Testable) => {
-  if (currentTestable.question.type !== "J_WORD") {
+  if (currentTestable.question.type !== "KANA_WORD") {
     throw new Error("Cannot split a question if it's not a Japanese word");
   }
 

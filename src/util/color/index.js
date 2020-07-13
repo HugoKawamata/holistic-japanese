@@ -1,5 +1,5 @@
 /* @flow */
-import { primary, grey, secondary, yellow } from "./system";
+import { primary, grey, secondary, yellow, special, success } from "./system";
 
 export default {
   // GENERIC NAMES
@@ -27,6 +27,10 @@ export default {
   INCORRECT_INPUT_BG: primary.p200,
   INPUT_BG: grey.g075,
 
+  // SUCCESS
+  SUCCESS_L: success.success100,
+  SUCCESS: success.success500,
+
   // BUTTONS
   BUTTON_P: primary.p500,
   BUTTON_P_HIGHLIGHT: primary.p500,
@@ -38,6 +42,7 @@ export default {
   // TEXT COLOURS
   TEXT_P: primary.p500,
   TEXT_HIGHLIGHT: secondary.s500,
+  TEXT_KNOWN: special.x400,
 
   // TEXT GREY
   TEXT_L: grey.g400,

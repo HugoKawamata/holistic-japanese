@@ -1,6 +1,6 @@
 /* @flow */
 import React, { useState } from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, ScrollView, Dimensions } from "react-native";
 import { gql } from "apollo-boost";
 import { Query as ApolloQuery } from "@apollo/react-components";
 import { connect } from "react-redux";
@@ -11,6 +11,8 @@ import { fontSize } from "../../util/font";
 import color from "../../util/color";
 import Button from "../../components/Button";
 import type { MyInfo as TMyInfoQuery } from "./__generated__/MyInfo";
+
+const { height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   dangerIcon: {
@@ -37,6 +39,9 @@ const styles = StyleSheet.create({
   },
   japaneseButtonText: {
     color: color.WHITE,
+  },
+  modalTitle: {
+    fontSize: fontSize.title,
   },
   nukeAccountContainer: {
     alignItems: "center",
@@ -79,13 +84,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 40,
   },
+  profileScreenScroll: {
+    backgroundColor: color.WHITE,
+  },
   profileScreenWrapper: {
     alignItems: "stretch",
     backgroundColor: color.WHITE,
     flexGrow: 1,
+    height: height - 110, // 36 is about the height of the tab bar
   },
   logoutWrapper: {
     alignItems: "center",
+    marginBottom: 40,
+  },
+  deleteAccountWrapper: {
+    alignItems: "center",
+    marginTop: 110,
     marginBottom: 40,
   },
   safeButtonText: {
@@ -154,54 +168,102 @@ export function ProfileScreen(props: Props) {
           );
 
         return (
-          <View style={styles.profileScreenWrapper}>
-            <View style={styles.headingWrapper}>
-              <Text style={styles.heading}>Profile</Text>
-            </View>
-            <View style={styles.profileImageWrapper}>
-              <Image
-                style={styles.profileImage}
-                source={
-                  data?.me?.image != null
-                    ? { uri: data.me.image }
-                    : require("../../../assets/images/default-profile.png")
-                }
-                resizeMode="contain"
-              />
-            </View>
-            <View style={styles.profileDataWrapper}>
-              <View style={styles.profileDataRow}>
-                <View style={styles.profileDataLabelWrapper}>
-                  <Text style={styles.profileDataLabel}>Name</Text>
-                </View>
-                <Text style={styles.profileData}>{data?.me?.name || ""}</Text>
+          <ScrollView
+            style={styles.profileScreenScroll}
+            contentContainerStyle={styles.profileScreenScroll}
+          >
+            <View style={styles.profileScreenWrapper}>
+              <View style={styles.headingWrapper}>
+                <Text style={styles.heading}>Profile</Text>
               </View>
-              <View style={styles.profileDataRow}>
-                <View style={styles.profileDataLabelWrapper}>
-                  <Text style={styles.profileDataLabel}>Email</Text>
-                </View>
-                <Text style={styles.profileData}>{data?.me?.email || ""}</Text>
+              <View style={styles.profileImageWrapper}>
+                <Image
+                  style={styles.profileImage}
+                  source={
+                    data?.me?.image != null
+                      ? { uri: data.me.image }
+                      : require("../../../assets/images/default-profile.png")
+                  }
+                  resizeMode="contain"
+                />
               </View>
-              <View style={styles.profileDataRow}>
-                <View style={styles.profileDataLabelWrapper}>
-                  <Text style={styles.profileDataLabel}>Completed Lessons</Text>
+              <View style={styles.profileDataWrapper}>
+                <View style={styles.profileDataRow}>
+                  <View style={styles.profileDataLabelWrapper}>
+                    <Text style={styles.profileDataLabel}>Name</Text>
+                  </View>
+                  <Text style={styles.profileData}>{data?.me?.name || ""}</Text>
                 </View>
-                <Text style={styles.profileData}>{completedLessonsCount}</Text>
-              </View>
-              <View style={styles.profileDataRow}>
-                <View style={styles.profileDataLabelWrapper}>
-                  <Text style={styles.profileDataLabel}>Completed Courses</Text>
+                <View style={styles.profileDataRow}>
+                  <View style={styles.profileDataLabelWrapper}>
+                    <Text style={styles.profileDataLabel}>Email</Text>
+                  </View>
+                  <Text style={styles.profileData}>
+                    {data?.me?.email || ""}
+                  </Text>
                 </View>
-                <Text style={styles.profileData}>{completedCoursesCount}</Text>
+                <View style={styles.profileDataRow}>
+                  <View style={styles.profileDataLabelWrapper}>
+                    <Text style={styles.profileDataLabel}>
+                      Completed Lessons
+                    </Text>
+                  </View>
+                  <Text style={styles.profileData}>
+                    {completedLessonsCount}
+                  </Text>
+                </View>
+                <View style={styles.profileDataRow}>
+                  <View style={styles.profileDataLabelWrapper}>
+                    <Text style={styles.profileDataLabel}>
+                      Completed Courses
+                    </Text>
+                  </View>
+                  <Text style={styles.profileData}>
+                    {completedCoursesCount}
+                  </Text>
+                </View>
               </View>
+              <View style={styles.logoutWrapper}>
+                <Button theme="primary" onPress={props.logout}>
+                  <Text style={styles.japaneseButtonText}>ロッグアウト</Text>
+                  <Text style={styles.englishButtonText}>Logout</Text>
+                </Button>
+              </View>
+              <OverlayModal
+                closeModal={() => setModalVisible(false)}
+                title={<Text style={styles.modalTitle}>Are you sure?</Text>}
+                visible={modalVisible}
+              >
+                <View style={styles.nukeAccountContainer}>
+                  <View style={styles.warningWrapper}>
+                    <Text style={styles.subtitle}>
+                      This will permanently delete all of your progress,
+                      results, and account data!
+                    </Text>
+                    <Text style={styles.dangerIcon}>⚠️</Text>
+                    <View style={styles.deleteButtonWrapper}>
+                      <Button
+                        theme="primary_ghost"
+                        onPress={() => props.nukeAccount(data?.me?.email)}
+                      >
+                        <Text style={styles.deleteButtonText}>
+                          Delete all my progress
+                        </Text>
+                      </Button>
+                    </View>
+                  </View>
+                  <View style={styles.safeButtonWrapper}>
+                    <Button
+                      theme="secondary"
+                      onPress={() => setModalVisible(false)}
+                    >
+                      <Text style={styles.safeButtonText}>Back to safety</Text>
+                    </Button>
+                  </View>
+                </View>
+              </OverlayModal>
             </View>
-            <View style={styles.logoutWrapper}>
-              <Button theme="primary" onPress={props.logout}>
-                <Text style={styles.japaneseButtonText}>ロッグアウト</Text>
-                <Text style={styles.englishButtonText}>Logout</Text>
-              </Button>
-            </View>
-            <View style={styles.logoutWrapper}>
+            <View style={styles.deleteAccountWrapper}>
               <Button
                 theme="primary_ghost"
                 onPress={() => setModalVisible(true)}
@@ -211,40 +273,7 @@ export function ProfileScreen(props: Props) {
                 </Text>
               </Button>
             </View>
-            <OverlayModal
-              closeModal={() => setModalVisible(false)}
-              title={<Text style={styles.modalTitle}>Are you sure?</Text>}
-              visible={modalVisible}
-            >
-              <View style={styles.nukeAccountContainer}>
-                <View style={styles.warningWrapper}>
-                  <Text style={styles.subtitle}>
-                    This will permanently delete all of your progress, results,
-                    and account data!
-                  </Text>
-                  <Text style={styles.dangerIcon}>⚠️</Text>
-                  <View style={styles.deleteButtonWrapper}>
-                    <Button
-                      theme="primary_ghost"
-                      onPress={() => props.nukeAccount(data?.me?.email)}
-                    >
-                      <Text style={styles.deleteButtonText}>
-                        Delete all my progress
-                      </Text>
-                    </Button>
-                  </View>
-                </View>
-                <View style={styles.safeButtonWrapper}>
-                  <Button
-                    theme="secondary"
-                    onPress={() => setModalVisible(false)}
-                  >
-                    <Text style={styles.safeButtonText}>Back to safety</Text>
-                  </Button>
-                </View>
-              </View>
-            </OverlayModal>
-          </View>
+          </ScrollView>
         );
       }}
     </MyInfoQuery>

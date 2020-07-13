@@ -107,7 +107,13 @@ function NavRootScreen() {
           headerShown: false,
         }}
       />
-      <NavRoot.Screen name="Lesson" component={LessonScreen} />
+      <NavRoot.Screen
+        name="Lesson"
+        component={LessonScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
       <NavRoot.Screen
         name="Completed Lessons"
         component={CompletedLessonsScreen}
