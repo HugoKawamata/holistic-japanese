@@ -260,7 +260,7 @@ export const getQuestionStage = (
 };
 
 export const getSplitQuestion = (currentTestable: Testable) => {
-  if (!["J_WORD", "KANA_WORD"].includes(currentTestable.question.type)) {
+  if (currentTestable.question.type !== "KANA_WORD") {
     throw new Error("Cannot split a question if it's not a Japanese word");
   }
 

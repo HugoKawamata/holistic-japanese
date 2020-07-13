@@ -49,7 +49,6 @@ export function WordLesson(props: Props) {
     userAnswer,
   } = props;
   const answerRomajiQuestion = () => {
-    const splitQuestion = getSplitQuestion(currentTestable);
     const csvAnswer = getCSVAnswer(userAnswer);
     const splitAnswer = csvAnswer.split(",");
 
@@ -77,29 +76,33 @@ export function WordLesson(props: Props) {
     });
     charSound.release();
 
-    const characterResults = splitQuestion.reduce(
-      (resultsMap, char: string, index: number) => {
-        return {
-          ...resultsMap,
-          [`char-${char}`]: {
-            objectId: null,
-            objectType: "CHARACTER",
-            text: char,
-            answers: [
-              ...(results[`char-${char}`]?.answers || []),
-              splitAnswer[index],
-            ],
-            marks: [
-              ...(results[`char-${char}`]?.marks || []),
-              splitAnswer[index] === hiraganaRomajiMap[char]
-                ? "CORRECT"
-                : "INCORRECT",
-            ],
-          },
-        };
-      },
-      {}
-    );
+    let characterResults = {};
+    if (currentTestable.question.type === "KANA_WORD") {
+      const splitQuestion = getSplitQuestion(currentTestable);
+      characterResults = splitQuestion.reduce(
+        (resultsMap, char: string, index: number) => {
+          return {
+            ...resultsMap,
+            [`char-${char}`]: {
+              objectId: null,
+              objectType: "CHARACTER",
+              text: char,
+              answers: [
+                ...(results[`char-${char}`]?.answers || []),
+                splitAnswer[index],
+              ],
+              marks: [
+                ...(results[`char-${char}`]?.marks || []),
+                splitAnswer[index] === hiraganaRomajiMap[char]
+                  ? "CORRECT"
+                  : "INCORRECT",
+              ],
+            },
+          };
+        },
+        {}
+      );
+    }
 
     props.setResults({
       ...results,

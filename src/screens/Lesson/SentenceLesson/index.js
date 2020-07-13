@@ -103,7 +103,7 @@ export function SentenceLesson(props: Props) {
         objectId: currentTestable.objectId,
         objectType: "TESTABLE",
         text: currentTestable.question.text,
-        answers: [...results[key].answers, userAnswer],
+        answers: [...results[key].answers, cleanedAnswer],
         marks: [...results[key].marks, mark],
       },
     });
