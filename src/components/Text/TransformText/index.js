@@ -81,7 +81,7 @@ const getStyle = (transformableType, style) => {
 
 const splitOnTransformable = (text, style, ignoredDelimiters) => {
   const transformableChars = ['"', "_", "*", "(", "[", "<"].filter(
-    (char) => !ignoredDelimiters.includes(char)
+    (char) => !(ignoredDelimiters || []).includes(char)
   );
   let currentString = "";
   const components = [];

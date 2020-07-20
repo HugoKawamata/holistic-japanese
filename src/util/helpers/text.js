@@ -1,4 +1,5 @@
 /* @flow */
+import type { AvailableLessons_me_splots as Splots } from "../../screens/Learn/__generated__/AvailableLessons";
 
 export const addSplotsToText = (text: string, splots: Splots) => {
   let formatted = text;

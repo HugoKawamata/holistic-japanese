@@ -50,6 +50,11 @@ export const getTopSectionContent = (
         </TouchableOpacity>
       )}
       <View style={styles.questionWrapper}>
+        {currentTestable.question.furigana != null ? (
+          <Text style={styles.questionFurigana}>
+            {currentTestable.question.furigana}
+          </Text>
+        ) : null}
         <Text style={styles.question}>{currentTestable.question.text}</Text>
       </View>
     </View>

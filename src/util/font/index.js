@@ -29,4 +29,5 @@ export const fontSize = {
   question: sizes.DEKKEEE,
   questionEmoji: 44,
   questionType: 16,
+  veryLarge: sizes.VERY_LARGE,
 };

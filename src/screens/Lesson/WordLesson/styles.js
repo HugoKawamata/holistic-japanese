@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
     fontSize: fontSize.question,
     textAlign: "center",
   },
+  questionFurigana: {
+    color: color.WHITE,
+    fontSize: fontSize.veryLarge,
+    textAlign: "center",
+  },
   questionWrapper: {
     alignItems: "stretch",
     justifyContent: "center",

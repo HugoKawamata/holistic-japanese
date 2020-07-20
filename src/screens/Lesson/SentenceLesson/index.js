@@ -2,6 +2,7 @@
 import * as React from "react";
 import { View } from "react-native";
 import color from "../../../util/color";
+import { addSplotsToText } from "../../../util/helpers/text";
 import Icon from "../../../components/Icon";
 import type {
   AvailableLessons_me_availableCourses_availableLessons_testables as Testable,
@@ -16,7 +17,6 @@ import {
   getTopSectionContent,
   getAnswerSection,
   getSentenceQuestion,
-  addSplotsToText,
 } from "./sectionRenderers";
 import styles from "./styles";
 
