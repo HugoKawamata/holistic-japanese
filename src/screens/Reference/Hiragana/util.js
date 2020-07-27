@@ -119,6 +119,9 @@ export const voicedHiraganaMatrix = [
   ["R", "", "", "", "", ""],
   ["W", "", "", "", "", ""],
   // ["N", "", "", "", "", ""],
+  // N line is commented out because of key clash with Na line above.
+  // Not an issue in regular matrix because we use first value as backup key
+  // but both first values here are "".
 ];
 
 export const voicedHiraganaRomajiMatrix = [
@@ -134,6 +137,9 @@ export const voicedHiraganaRomajiMatrix = [
   ["", "", "", "", ""],
   ["", "", "", "", ""],
   // ["", "", "", "", ""],
+  // N line is commented out because of key clash with Na line above.
+  // Not an issue in regular matrix because we use first value as backup key
+  // but both first values here are "".
 ];
 
 export const comboMatrix = [

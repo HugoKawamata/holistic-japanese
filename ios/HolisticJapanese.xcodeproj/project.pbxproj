@@ -22,6 +22,39 @@
 		B04B06F1FA357D29A1275583 /* libPods-HolisticJapanese-HolisticJapaneseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 879B6B5A2F39F91AA10B3889 /* libPods-HolisticJapanese-HolisticJapaneseTests.a */; };
 		D2790126A735258EC9D189EF /* libPods-HolisticJapanese-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D47147A2BC46D5D63729E7F /* libPods-HolisticJapanese-tvOSTests.a */; };
 		D711783138E65F0C7123226F /* libPods-HolisticJapanese.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F07FB03AC778B1D55015F1 /* libPods-HolisticJapanese.a */; };
+		FF56C34A24CEDF74008619EB /* kana_jo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C32924CEDF72008619EB /* kana_jo.mp3 */; };
+		FF56C34B24CEDF74008619EB /* kana_byo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C32A24CEDF72008619EB /* kana_byo.mp3 */; };
+		FF56C34C24CEDF74008619EB /* kana_pya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C32B24CEDF72008619EB /* kana_pya.mp3 */; };
+		FF56C34D24CEDF74008619EB /* kana_hyu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C32C24CEDF72008619EB /* kana_hyu.mp3 */; };
+		FF56C34E24CEDF74008619EB /* kana_byu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C32D24CEDF72008619EB /* kana_byu.mp3 */; };
+		FF56C34F24CEDF74008619EB /* kana_myo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C32E24CEDF72008619EB /* kana_myo.mp3 */; };
+		FF56C35024CEDF74008619EB /* kana_hya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C32F24CEDF72008619EB /* kana_hya.mp3 */; };
+		FF56C35124CEDF74008619EB /* kana_nyo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33024CEDF73008619EB /* kana_nyo.mp3 */; };
+		FF56C35224CEDF74008619EB /* kana_pyu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33124CEDF73008619EB /* kana_pyu.mp3 */; };
+		FF56C35324CEDF74008619EB /* kana_ja.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33224CEDF73008619EB /* kana_ja.mp3 */; };
+		FF56C35424CEDF74008619EB /* kana_kyo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33324CEDF73008619EB /* kana_kyo.mp3 */; };
+		FF56C35524CEDF74008619EB /* kana_hyo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33424CEDF73008619EB /* kana_hyo.mp3 */; };
+		FF56C35624CEDF74008619EB /* kana_gyo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33524CEDF73008619EB /* kana_gyo.mp3 */; };
+		FF56C35724CEDF74008619EB /* kana_kyu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33624CEDF73008619EB /* kana_kyu.mp3 */; };
+		FF56C35824CEDF74008619EB /* kana_bya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33724CEDF73008619EB /* kana_bya.mp3 */; };
+		FF56C35924CEDF74008619EB /* kana_sha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33824CEDF73008619EB /* kana_sha.mp3 */; };
+		FF56C35A24CEDF74008619EB /* kana_gyu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33924CEDF73008619EB /* kana_gyu.mp3 */; };
+		FF56C35B24CEDF74008619EB /* kana_ju.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33A24CEDF73008619EB /* kana_ju.mp3 */; };
+		FF56C35C24CEDF74008619EB /* kana_ryo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33B24CEDF73008619EB /* kana_ryo.mp3 */; };
+		FF56C35D24CEDF74008619EB /* kana_cho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33C24CEDF73008619EB /* kana_cho.mp3 */; };
+		FF56C35E24CEDF74008619EB /* kana_myu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33D24CEDF73008619EB /* kana_myu.mp3 */; };
+		FF56C35F24CEDF74008619EB /* kana_nya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33E24CEDF73008619EB /* kana_nya.mp3 */; };
+		FF56C36024CEDF74008619EB /* kana_cha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C33F24CEDF73008619EB /* kana_cha.mp3 */; };
+		FF56C36124CEDF74008619EB /* kana_chu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34024CEDF74008619EB /* kana_chu.mp3 */; };
+		FF56C36224CEDF74008619EB /* kana_pyo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34124CEDF74008619EB /* kana_pyo.mp3 */; };
+		FF56C36324CEDF74008619EB /* kana_rya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34224CEDF74008619EB /* kana_rya.mp3 */; };
+		FF56C36424CEDF74008619EB /* kana_gya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34324CEDF74008619EB /* kana_gya.mp3 */; };
+		FF56C36524CEDF74008619EB /* kana_nyu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34424CEDF74008619EB /* kana_nyu.mp3 */; };
+		FF56C36624CEDF74008619EB /* kana_sho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34524CEDF74008619EB /* kana_sho.mp3 */; };
+		FF56C36724CEDF74008619EB /* kana_shu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34624CEDF74008619EB /* kana_shu.mp3 */; };
+		FF56C36824CEDF74008619EB /* kana_kya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34724CEDF74008619EB /* kana_kya.mp3 */; };
+		FF56C36924CEDF74008619EB /* kana_ryu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34824CEDF74008619EB /* kana_ryu.mp3 */; };
+		FF56C36A24CEDF74008619EB /* kana_mya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF56C34924CEDF74008619EB /* kana_mya.mp3 */; };
 		FF57398124B2BC710080F2E2 /* kana_de.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57393D24B2BC6D0080F2E2 /* kana_de.mp3 */; };
 		FF57398224B2BC710080F2E2 /* kana_me.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57393E24B2BC6D0080F2E2 /* kana_me.mp3 */; };
 		FF57398324B2BC710080F2E2 /* kana_ho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF57393F24B2BC6D0080F2E2 /* kana_ho.mp3 */; };
@@ -215,6 +248,39 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FD85B0A853857795B171BF00 /* Pods-HolisticJapanese-HolisticJapaneseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolisticJapanese-HolisticJapaneseTests.debug.xcconfig"; path = "Target Support Files/Pods-HolisticJapanese-HolisticJapaneseTests/Pods-HolisticJapanese-HolisticJapaneseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF56C32924CEDF72008619EB /* kana_jo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_jo.mp3; path = ../android/app/src/main/res/raw/kana_jo.mp3; sourceTree = "<group>"; };
+		FF56C32A24CEDF72008619EB /* kana_byo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_byo.mp3; path = ../android/app/src/main/res/raw/kana_byo.mp3; sourceTree = "<group>"; };
+		FF56C32B24CEDF72008619EB /* kana_pya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_pya.mp3; path = ../android/app/src/main/res/raw/kana_pya.mp3; sourceTree = "<group>"; };
+		FF56C32C24CEDF72008619EB /* kana_hyu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_hyu.mp3; path = ../android/app/src/main/res/raw/kana_hyu.mp3; sourceTree = "<group>"; };
+		FF56C32D24CEDF72008619EB /* kana_byu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_byu.mp3; path = ../android/app/src/main/res/raw/kana_byu.mp3; sourceTree = "<group>"; };
+		FF56C32E24CEDF72008619EB /* kana_myo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_myo.mp3; path = ../android/app/src/main/res/raw/kana_myo.mp3; sourceTree = "<group>"; };
+		FF56C32F24CEDF72008619EB /* kana_hya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_hya.mp3; path = ../android/app/src/main/res/raw/kana_hya.mp3; sourceTree = "<group>"; };
+		FF56C33024CEDF73008619EB /* kana_nyo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_nyo.mp3; path = ../android/app/src/main/res/raw/kana_nyo.mp3; sourceTree = "<group>"; };
+		FF56C33124CEDF73008619EB /* kana_pyu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_pyu.mp3; path = ../android/app/src/main/res/raw/kana_pyu.mp3; sourceTree = "<group>"; };
+		FF56C33224CEDF73008619EB /* kana_ja.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ja.mp3; path = ../android/app/src/main/res/raw/kana_ja.mp3; sourceTree = "<group>"; };
+		FF56C33324CEDF73008619EB /* kana_kyo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_kyo.mp3; path = ../android/app/src/main/res/raw/kana_kyo.mp3; sourceTree = "<group>"; };
+		FF56C33424CEDF73008619EB /* kana_hyo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_hyo.mp3; path = ../android/app/src/main/res/raw/kana_hyo.mp3; sourceTree = "<group>"; };
+		FF56C33524CEDF73008619EB /* kana_gyo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_gyo.mp3; path = ../android/app/src/main/res/raw/kana_gyo.mp3; sourceTree = "<group>"; };
+		FF56C33624CEDF73008619EB /* kana_kyu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_kyu.mp3; path = ../android/app/src/main/res/raw/kana_kyu.mp3; sourceTree = "<group>"; };
+		FF56C33724CEDF73008619EB /* kana_bya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_bya.mp3; path = ../android/app/src/main/res/raw/kana_bya.mp3; sourceTree = "<group>"; };
+		FF56C33824CEDF73008619EB /* kana_sha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_sha.mp3; path = ../android/app/src/main/res/raw/kana_sha.mp3; sourceTree = "<group>"; };
+		FF56C33924CEDF73008619EB /* kana_gyu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_gyu.mp3; path = ../android/app/src/main/res/raw/kana_gyu.mp3; sourceTree = "<group>"; };
+		FF56C33A24CEDF73008619EB /* kana_ju.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ju.mp3; path = ../android/app/src/main/res/raw/kana_ju.mp3; sourceTree = "<group>"; };
+		FF56C33B24CEDF73008619EB /* kana_ryo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ryo.mp3; path = ../android/app/src/main/res/raw/kana_ryo.mp3; sourceTree = "<group>"; };
+		FF56C33C24CEDF73008619EB /* kana_cho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_cho.mp3; path = ../android/app/src/main/res/raw/kana_cho.mp3; sourceTree = "<group>"; };
+		FF56C33D24CEDF73008619EB /* kana_myu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_myu.mp3; path = ../android/app/src/main/res/raw/kana_myu.mp3; sourceTree = "<group>"; };
+		FF56C33E24CEDF73008619EB /* kana_nya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_nya.mp3; path = ../android/app/src/main/res/raw/kana_nya.mp3; sourceTree = "<group>"; };
+		FF56C33F24CEDF73008619EB /* kana_cha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_cha.mp3; path = ../android/app/src/main/res/raw/kana_cha.mp3; sourceTree = "<group>"; };
+		FF56C34024CEDF74008619EB /* kana_chu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_chu.mp3; path = ../android/app/src/main/res/raw/kana_chu.mp3; sourceTree = "<group>"; };
+		FF56C34124CEDF74008619EB /* kana_pyo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_pyo.mp3; path = ../android/app/src/main/res/raw/kana_pyo.mp3; sourceTree = "<group>"; };
+		FF56C34224CEDF74008619EB /* kana_rya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_rya.mp3; path = ../android/app/src/main/res/raw/kana_rya.mp3; sourceTree = "<group>"; };
+		FF56C34324CEDF74008619EB /* kana_gya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_gya.mp3; path = ../android/app/src/main/res/raw/kana_gya.mp3; sourceTree = "<group>"; };
+		FF56C34424CEDF74008619EB /* kana_nyu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_nyu.mp3; path = ../android/app/src/main/res/raw/kana_nyu.mp3; sourceTree = "<group>"; };
+		FF56C34524CEDF74008619EB /* kana_sho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_sho.mp3; path = ../android/app/src/main/res/raw/kana_sho.mp3; sourceTree = "<group>"; };
+		FF56C34624CEDF74008619EB /* kana_shu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_shu.mp3; path = ../android/app/src/main/res/raw/kana_shu.mp3; sourceTree = "<group>"; };
+		FF56C34724CEDF74008619EB /* kana_kya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_kya.mp3; path = ../android/app/src/main/res/raw/kana_kya.mp3; sourceTree = "<group>"; };
+		FF56C34824CEDF74008619EB /* kana_ryu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ryu.mp3; path = ../android/app/src/main/res/raw/kana_ryu.mp3; sourceTree = "<group>"; };
+		FF56C34924CEDF74008619EB /* kana_mya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_mya.mp3; path = ../android/app/src/main/res/raw/kana_mya.mp3; sourceTree = "<group>"; };
 		FF57393D24B2BC6D0080F2E2 /* kana_de.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_de.mp3; path = ../android/app/src/main/res/raw/kana_de.mp3; sourceTree = "<group>"; };
 		FF57393E24B2BC6D0080F2E2 /* kana_me.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_me.mp3; path = ../android/app/src/main/res/raw/kana_me.mp3; sourceTree = "<group>"; };
 		FF57393F24B2BC6D0080F2E2 /* kana_ho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = kana_ho.mp3; path = ../android/app/src/main/res/raw/kana_ho.mp3; sourceTree = "<group>"; };
@@ -501,6 +567,39 @@
 		FF06C23E244BBEA400E726EF /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				FF56C33724CEDF73008619EB /* kana_bya.mp3 */,
+				FF56C32A24CEDF72008619EB /* kana_byo.mp3 */,
+				FF56C32D24CEDF72008619EB /* kana_byu.mp3 */,
+				FF56C33F24CEDF73008619EB /* kana_cha.mp3 */,
+				FF56C33C24CEDF73008619EB /* kana_cho.mp3 */,
+				FF56C34024CEDF74008619EB /* kana_chu.mp3 */,
+				FF56C34324CEDF74008619EB /* kana_gya.mp3 */,
+				FF56C33524CEDF73008619EB /* kana_gyo.mp3 */,
+				FF56C33924CEDF73008619EB /* kana_gyu.mp3 */,
+				FF56C32F24CEDF72008619EB /* kana_hya.mp3 */,
+				FF56C33424CEDF73008619EB /* kana_hyo.mp3 */,
+				FF56C32C24CEDF72008619EB /* kana_hyu.mp3 */,
+				FF56C33224CEDF73008619EB /* kana_ja.mp3 */,
+				FF56C32924CEDF72008619EB /* kana_jo.mp3 */,
+				FF56C33A24CEDF73008619EB /* kana_ju.mp3 */,
+				FF56C34724CEDF74008619EB /* kana_kya.mp3 */,
+				FF56C33324CEDF73008619EB /* kana_kyo.mp3 */,
+				FF56C33624CEDF73008619EB /* kana_kyu.mp3 */,
+				FF56C34924CEDF74008619EB /* kana_mya.mp3 */,
+				FF56C32E24CEDF72008619EB /* kana_myo.mp3 */,
+				FF56C33D24CEDF73008619EB /* kana_myu.mp3 */,
+				FF56C33E24CEDF73008619EB /* kana_nya.mp3 */,
+				FF56C33024CEDF73008619EB /* kana_nyo.mp3 */,
+				FF56C34424CEDF74008619EB /* kana_nyu.mp3 */,
+				FF56C32B24CEDF72008619EB /* kana_pya.mp3 */,
+				FF56C34124CEDF74008619EB /* kana_pyo.mp3 */,
+				FF56C33124CEDF73008619EB /* kana_pyu.mp3 */,
+				FF56C34224CEDF74008619EB /* kana_rya.mp3 */,
+				FF56C33B24CEDF73008619EB /* kana_ryo.mp3 */,
+				FF56C34824CEDF74008619EB /* kana_ryu.mp3 */,
+				FF56C33824CEDF73008619EB /* kana_sha.mp3 */,
+				FF56C34524CEDF74008619EB /* kana_sho.mp3 */,
+				FF56C34624CEDF74008619EB /* kana_shu.mp3 */,
 				FFC996F324B3474B0052AE7F /* word_abunai.mp3 */,
 				FFC996DB24B347480052AE7F /* word_aji.mp3 */,
 				FFC996C924B347460052AE7F /* word_aka.mp3 */,
@@ -796,18 +895,25 @@
 				FF5739BE24B2BC710080F2E2 /* kana_e.mp3 in Resources */,
 				FF5739A624B2BC710080F2E2 /* kana_no.mp3 in Resources */,
 				FF5739B324B2BC710080F2E2 /* kana_ke.mp3 in Resources */,
+				FF56C35524CEDF74008619EB /* kana_hyo.mp3 in Resources */,
+				FF56C34A24CEDF74008619EB /* kana_jo.mp3 in Resources */,
 				FFC9971224B3474C0052AE7F /* word_maguro.mp3 in Resources */,
 				FFC9971A24B3474C0052AE7F /* word_iie.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				FF56C35124CEDF74008619EB /* kana_nyo.mp3 in Resources */,
+				FF56C35C24CEDF74008619EB /* kana_ryo.mp3 in Resources */,
 				FFC9971124B3474C0052AE7F /* word_aka.mp3 in Resources */,
 				FF5739C324B2BC710080F2E2 /* kana_mo.mp3 in Resources */,
 				FFC9973C24B3474C0052AE7F /* word_sushi.mp3 in Resources */,
 				FF57399824B2BC710080F2E2 /* kana_tsu.mp3 in Resources */,
 				FFC9971324B3474C0052AE7F /* word_shashin.mp3 in Resources */,
 				FF57399524B2BC710080F2E2 /* kana_ya.mp3 in Resources */,
+				FF56C36424CEDF74008619EB /* kana_gya.mp3 in Resources */,
 				FFC9972A24B3474C0052AE7F /* word_gaikokujin.mp3 in Resources */,
 				FF57399024B2BC710080F2E2 /* kana_be.mp3 in Resources */,
 				FF5739BF24B2BC710080F2E2 /* kana_ko.mp3 in Resources */,
+				FF56C35D24CEDF74008619EB /* kana_cho.mp3 in Resources */,
+				FF56C35224CEDF74008619EB /* kana_pyu.mp3 in Resources */,
 				FFC9973824B3474C0052AE7F /* word_boku.mp3 in Resources */,
 				FF5739AF24B2BC710080F2E2 /* kana_gi.mp3 in Resources */,
 				FF57398424B2BC710080F2E2 /* kana_ki.mp3 in Resources */,
@@ -824,11 +930,13 @@
 				FF57398324B2BC710080F2E2 /* kana_ho.mp3 in Resources */,
 				FF5739BD24B2BC710080F2E2 /* kana_ta.mp3 in Resources */,
 				FFC9973F24B3474C0052AE7F /* word_kagu.mp3 in Resources */,
+				FF56C35424CEDF74008619EB /* kana_kyo.mp3 in Resources */,
 				FFC9971624B3474C0052AE7F /* word_umai.mp3 in Resources */,
 				FFC9970F24B3474C0052AE7F /* word_zou.mp3 in Resources */,
 				FF5739B224B2BC710080F2E2 /* kana_ji.mp3 in Resources */,
 				FFC9972824B3474C0052AE7F /* word_desu.mp3 in Resources */,
 				FFC9971E24B3474C0052AE7F /* word_doushite.mp3 in Resources */,
+				FF56C36024CEDF74008619EB /* kana_cha.mp3 in Resources */,
 				FF57399624B2BC710080F2E2 /* kana_pu.mp3 in Resources */,
 				FFC996FE24B3474B0052AE7F /* word_hai.mp3 in Resources */,
 				FFC9970A24B3474B0052AE7F /* word_zasshi.mp3 in Resources */,
@@ -840,15 +948,22 @@
 				FFC9971924B3474C0052AE7F /* word_kaze.mp3 in Resources */,
 				FFEB9F5E24414CEA002C9F70 /* GoogleService-Info.plist in Resources */,
 				FF57399A24B2BC710080F2E2 /* kana_ra.mp3 in Resources */,
+				FF56C35A24CEDF74008619EB /* kana_gyu.mp3 in Resources */,
 				FFC9970E24B3474C0052AE7F /* word_hen.mp3 in Resources */,
+				FF56C34E24CEDF74008619EB /* kana_byu.mp3 in Resources */,
 				FF5739AB24B2BC710080F2E2 /* kana_he.mp3 in Resources */,
 				FFC9973224B3474C0052AE7F /* word_toshi.mp3 in Resources */,
 				FFC9972324B3474C0052AE7F /* word_aji.mp3 in Resources */,
 				FF5739AC24B2BC710080F2E2 /* kana_zu.mp3 in Resources */,
 				1694817CFA154284A27F519B /* Lato_bold.ttf in Resources */,
+				FF56C36724CEDF74008619EB /* kana_shu.mp3 in Resources */,
+				FF56C35824CEDF74008619EB /* kana_bya.mp3 in Resources */,
+				FF56C35324CEDF74008619EB /* kana_ja.mp3 in Resources */,
+				FF56C35E24CEDF74008619EB /* kana_myu.mp3 in Resources */,
 				FFC9973B24B3474C0052AE7F /* word_abunai.mp3 in Resources */,
 				FFC996F824B3474B0052AE7F /* word_neko.mp3 in Resources */,
 				FF57398624B2BC710080F2E2 /* kana_su.mp3 in Resources */,
+				FF56C35F24CEDF74008619EB /* kana_nya.mp3 in Resources */,
 				FFC9972924B3474C0052AE7F /* word_kawaii.mp3 in Resources */,
 				FFC9971B24B3474C0052AE7F /* word_pen.mp3 in Resources */,
 				FFC9973E24B3474C0052AE7F /* word_eki.mp3 in Resources */,
@@ -861,13 +976,16 @@
 				FF5739A224B2BC710080F2E2 /* kana_ha.mp3 in Resources */,
 				FF5739C124B2BC710080F2E2 /* kana_gu.mp3 in Resources */,
 				FF5739A824B2BC710080F2E2 /* kana_bo.mp3 in Resources */,
+				FF56C36524CEDF74008619EB /* kana_nyu.mp3 in Resources */,
 				FF57398124B2BC710080F2E2 /* kana_de.mp3 in Resources */,
 				FFC9972624B3474C0052AE7F /* word_hito.mp3 in Resources */,
 				FFC9971D24B3474C0052AE7F /* word_watashi.mp3 in Resources */,
 				FF57398224B2BC710080F2E2 /* kana_me.mp3 in Resources */,
 				FFC996FD24B3474B0052AE7F /* word_kuukou.mp3 in Resources */,
 				FF57399B24B2BC710080F2E2 /* kana_yu.mp3 in Resources */,
+				FF56C36324CEDF74008619EB /* kana_rya.mp3 in Resources */,
 				FFC9970D24B3474C0052AE7F /* word_obentou.mp3 in Resources */,
+				FF56C34D24CEDF74008619EB /* kana_hyu.mp3 in Resources */,
 				FFC9972124B3474C0052AE7F /* word_enpitsu.mp3 in Resources */,
 				FF5739B824B2BC710080F2E2 /* kana_ma.mp3 in Resources */,
 				FFC9970624B3474B0052AE7F /* word_mono.mp3 in Resources */,
@@ -876,23 +994,28 @@
 				FFC9973924B3474C0052AE7F /* word_samui.mp3 in Resources */,
 				FFC996FC24B3474B0052AE7F /* word_sumimasen.mp3 in Resources */,
 				FFC9971024B3474C0052AE7F /* word_nani.mp3 in Resources */,
+				FF56C36A24CEDF74008619EB /* kana_mya.mp3 in Resources */,
 				FFC9970324B3474B0052AE7F /* word_inu.mp3 in Resources */,
 				FF57399924B2BC710080F2E2 /* kana_n.mp3 in Resources */,
 				FF5739AE24B2BC710080F2E2 /* kana_fu.mp3 in Resources */,
 				FF57398A24B2BC710080F2E2 /* kana_shi.mp3 in Resources */,
 				FFC9971524B3474C0052AE7F /* word_yuumei.mp3 in Resources */,
 				FF57398524B2BC710080F2E2 /* kana_bu.mp3 in Resources */,
+				FF56C35724CEDF74008619EB /* kana_kyu.mp3 in Resources */,
 				FF57399124B2BC710080F2E2 /* kana_ru.mp3 in Resources */,
 				FFC9973424B3474C0052AE7F /* word_pachinko.mp3 in Resources */,
 				FFC9972F24B3474C0052AE7F /* word_yawarakai.mp3 in Resources */,
 				FFC9970924B3474B0052AE7F /* word_sanpo.mp3 in Resources */,
+				FF56C36224CEDF74008619EB /* kana_pyo.mp3 in Resources */,
 				FF57398C24B2BC710080F2E2 /* kana_ne.mp3 in Resources */,
 				FF5739A424B2BC710080F2E2 /* kana_ni.mp3 in Resources */,
 				FFC996FA24B3474B0052AE7F /* word_naruhodo.mp3 in Resources */,
 				FF57399424B2BC710080F2E2 /* kana_wa.mp3 in Resources */,
 				FFC996FF24B3474B0052AE7F /* word_ao.mp3 in Resources */,
 				FF5739B524B2BC710080F2E2 /* kana_nu.mp3 in Resources */,
+				FF56C35924CEDF74008619EB /* kana_sha.mp3 in Resources */,
 				FFC9970524B3474B0052AE7F /* word_toufu.mp3 in Resources */,
+				FF56C35624CEDF74008619EB /* kana_gyo.mp3 in Resources */,
 				FF57398B24B2BC710080F2E2 /* kana_i.mp3 in Resources */,
 				FFC9971F24B3474C0052AE7F /* word_tsuyoi.mp3 in Resources */,
 				FF57399E24B2BC710080F2E2 /* kana_se.mp3 in Resources */,
@@ -902,14 +1025,19 @@
 				FFC9973624B3474C0052AE7F /* word_arigatou.mp3 in Resources */,
 				FF5739B124B2BC710080F2E2 /* kana_ro.mp3 in Resources */,
 				4C14A2930F034514A6182AAC /* Lato.ttf in Resources */,
+				FF56C36824CEDF74008619EB /* kana_kya.mp3 in Resources */,
 				FFC9971C24B3474C0052AE7F /* word_ue.mp3 in Resources */,
 				FFC9973024B3474C0052AE7F /* word_kippu.mp3 in Resources */,
 				FFC9972524B3474C0052AE7F /* word_takai.mp3 in Resources */,
 				FFC9971724B3474C0052AE7F /* word_baka.mp3 in Resources */,
 				FF5739A324B2BC710080F2E2 /* kana_bi.mp3 in Resources */,
+				FF56C34F24CEDF74008619EB /* kana_myo.mp3 in Resources */,
+				FF56C36924CEDF74008619EB /* kana_ryu.mp3 in Resources */,
 				FFC9970C24B3474C0052AE7F /* word_onsen.mp3 in Resources */,
 				FF5739AA24B2BC710080F2E2 /* kana_ze.mp3 in Resources */,
 				FFC9971424B3474C0052AE7F /* word_chiisai.mp3 in Resources */,
+				FF56C36124CEDF74008619EB /* kana_chu.mp3 in Resources */,
+				FF56C34B24CEDF74008619EB /* kana_byo.mp3 in Resources */,
 				FF57399224B2BC710080F2E2 /* kana_te.mp3 in Resources */,
 				FFC996FB24B3474B0052AE7F /* word_gakusei.mp3 in Resources */,
 				FFC9970B24B3474C0052AE7F /* word_eigo.mp3 in Resources */,
@@ -925,13 +1053,17 @@
 				FF57399C24B2BC710080F2E2 /* kana_o.mp3 in Resources */,
 				FF57399D24B2BC710080F2E2 /* kana_u.mp3 in Resources */,
 				FFC9972C24B3474C0052AE7F /* word_daigaku.mp3 in Resources */,
+				FF56C36624CEDF74008619EB /* kana_sho.mp3 in Resources */,
 				FF57399324B2BC710080F2E2 /* kana_ba.mp3 in Resources */,
 				FF57399F24B2BC710080F2E2 /* kana_re.mp3 in Resources */,
 				FFC9970724B3474B0052AE7F /* word_kirei.mp3 in Resources */,
+				FF56C34C24CEDF74008619EB /* kana_pya.mp3 in Resources */,
 				FF5739A024B2BC710080F2E2 /* kana_yo.mp3 in Resources */,
+				FF56C35B24CEDF74008619EB /* kana_ju.mp3 in Resources */,
 				FF5739C424B2BC710080F2E2 /* kana_a.mp3 in Resources */,
 				FF5739B724B2BC710080F2E2 /* kana_ri.mp3 in Resources */,
 				FF57398F24B2BC710080F2E2 /* kana_sa.mp3 in Resources */,
+				FF56C35024CEDF74008619EB /* kana_hya.mp3 in Resources */,
 				FFC9972424B3474C0052AE7F /* word_genki.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
