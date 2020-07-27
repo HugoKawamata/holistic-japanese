@@ -53,10 +53,16 @@ export function OverlayModal(props: Props) {
         <View style={styles.modalCloseButton}>
           <Icon name="close" size={14} color={color.PRIMARY} />
         </View>
-        <View style={styles.content}>
+        {/* Modal content is a touchable opacity to prevent touches to the content
+        from activating the touchable behind it (which dismisses it) */}
+        <TouchableOpacity
+          style={styles.content}
+          activeOpacity={1}
+          onPress={() => {}}
+        >
           <View style={styles.modalHeaderWrapper}>{title}</View>
           {children}
-        </View>
+        </TouchableOpacity>
       </TouchableOpacity>
     </Modal>
   );
