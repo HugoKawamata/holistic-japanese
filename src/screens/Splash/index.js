@@ -101,7 +101,7 @@ function NavRootScreen() {
       }}
     >
       <NavRoot.Screen
-        name="Tabs"
+        name="Home"
         component={MainTabs}
         options={{
           headerShown: false,

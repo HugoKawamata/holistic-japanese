@@ -4,6 +4,7 @@ import { View, StyleSheet } from "react-native";
 import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { Results } from "../../Lesson/types";
 import Text from "../../../components/Text";
+import TransformText from "../../../components/Text/TransformText";
 import Button from "../../../components/Button";
 import { fontSize } from "../../../util/font";
 import color from "../../../util/color";
@@ -171,7 +172,9 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     height: 10,
   },
-  body: {},
+  body: {
+    marginHorizontal: 30,
+  },
   bodyTextSymbol: {
     fontSize: fontSize.kanaAsImage,
     textAlign: "center",
@@ -205,6 +208,18 @@ const styles = StyleSheet.create({
   emojiTransparent: {
     marginTop: -4,
     opacity: 0,
+  },
+  importantMessage: {
+    backgroundColor: color.IMPORTANT_TEXT_BOX,
+    borderRadius: 7,
+    marginTop: 10,
+  },
+  modalBody: {
+    margin: 10,
+  },
+  modalBodyText: {
+    fontSize: fontSize.hint,
+    color: color.TEXT,
   },
   word: {
     textAlign: "center",
@@ -339,12 +354,109 @@ function CompletedModalContent(props: ContentProps) {
   );
 }
 
+function CompletedHiraganaCourseModal(props: ContentProps) {
+  const { results, testables, children, closeModal } = props;
+  return (
+    <>
+      <View style={styles.topSection}>
+        <View style={styles.body}>
+          <Text style={styles.bodyTextLarge}>Hiragana Course Complete!</Text>
+          <View style={styles.importantMessage}>
+            <View style={styles.modalBody}>
+              <TransformText
+                style={styles.modalBodyText}
+                ignoredDelimiters={["("]}
+              >
+                Now that you've seen every hiragana character, we'll start
+                showing you *kanji*.
+              </TransformText>
+            </View>
+            <View style={styles.modalBody}>
+              <TransformText style={styles.modalBodyText}>
+                Don't worry though, you'll still see hiragana above the kanji so
+                you know how to read it.
+              </TransformText>
+            </View>
+          </View>
+          <View style={styles.wordResults}>
+            <View>
+              {Object.keys(results)
+                .filter((key) => props.results[key].objectType === "WORD")
+                .map((key) => {
+                  return (
+                    <View key={key} style={styles.wordResultContainer}>
+                      <View style={styles.leftCol}>
+                        <Text style={styles.emoji}>
+                          {testables.find((t) => t.question.text === key)
+                            ?.question.emoji || ""}
+                        </Text>
+                        <Text style={styles.word}>{key}</Text>
+                      </View>
+                    </View>
+                  );
+                })}
+            </View>
+            <View style={styles.rightColumn}>
+              {Object.keys(results)
+                .filter((key) => props.results[key].objectType === "WORD")
+                .map((key) => {
+                  const accuracy =
+                    100 *
+                    (props.results[key].marks.filter((m) => m === "CORRECT")
+                      .length /
+                      props.results[key].marks.length);
+                  return (
+                    <View key={key} style={styles.wordResultAccuracy}>
+                      <Text style={styles.emojiTransparent}>✨</Text>
+                      <View style={styles.accuracyContainer}>
+                        <View
+                          style={{
+                            backgroundColor: getColor(accuracy),
+                            borderRadius: 10,
+                            flexGrow: accuracy,
+                          }}
+                        />
+                        <View
+                          style={{
+                            flexGrow: 100 - accuracy,
+                          }}
+                        />
+                      </View>
+                    </View>
+                  );
+                })}
+            </View>
+          </View>
+          {children}
+        </View>
+      </View>
+      <View style={styles.bottomSection}>
+        <Button theme="primary" onPress={closeModal}>
+          <Text style={styles.buttonJapanese}>いいね！</Text>
+          <Text style={styles.buttonEnglish}>Cool!</Text>
+        </Button>
+      </View>
+    </>
+  );
+}
+
 export const getModalContent = (
   completedContent: ?string,
   results: Results,
   testables: $ReadOnlyArray<Testable>,
   closeModal: () => typeof undefined
 ) => {
+  if (completedContent === "HIRAGANA_PA") {
+    return (
+      <CompletedHiraganaCourseModal
+        results={results}
+        closeModal={closeModal}
+        testables={testables}
+      >
+        <Text style={styles.bodyTextLarge}>Hiragana Line Complete!</Text>
+      </CompletedHiraganaCourseModal>
+    );
+  }
   return (
     <CompletedModalContent
       results={results}
@@ -354,17 +466,4 @@ export const getModalContent = (
       <Text style={styles.bodyTextLarge}>Hiragana Line Complete!</Text>
     </CompletedModalContent>
   );
-};
-
-const aCompletedModalTitle = (
-  <Text style={styles.modalTitle}>Congratulations!</Text>
-);
-
-export const getModalTitle = (completedContent: string) => {
-  switch (completedContent) {
-    case "HIRAGANA_A":
-      return aCompletedModalTitle;
-    default:
-      return null;
-  }
 };

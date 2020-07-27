@@ -50,7 +50,9 @@ export default {
   TEXT: grey.g800,
   TEXT_DARK: grey.g999,
 
+  IMPORTANT_TEXT_BOX: yellow.y300,
+
   COMPLETE_CELL: yellow.y500,
-  COMPLETE_CELL_SHADOW: yellow.y300,
+  COMPLETE_CELL_SHADOW: yellow.y700,
   INCOMPLETE_CELL: grey.g100,
 };

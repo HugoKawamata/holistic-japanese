@@ -45,6 +45,7 @@ export const special = {
 };
 
 export const yellow = {
-  y300: "#f0bc02",
+  y300: "#ffeda6",
   y500: "#FFCC12",
+  y700: "#f0bc02",
 };
