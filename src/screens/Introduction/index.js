@@ -1,7 +1,13 @@
 /* @flow */
 
-import React, { useState } from "react";
-import { View, StyleSheet, ImageBackground } from "react-native";
+import React, { useState, useRef } from "react";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  ImageBackground,
+  Dimensions,
+} from "react-native";
 import { connect } from "react-redux";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
@@ -9,9 +15,11 @@ import type { State as StoreState } from "../../store/types/store";
 import Text from "../../components/Text";
 import FuriganaText from "../../components/Text/FuriganaText";
 import Button from "../../components/Button";
-import Icon from "../../components/Icon";
+import Icon, { type IconName } from "../../components/Icon";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
+
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   body: {
@@ -67,6 +75,13 @@ const styles = StyleSheet.create({
   introductionScreenWrapper: {
     backgroundColor: color.WHITE,
     flexGrow: 1,
+  },
+  introPanel: {
+    alignItems: "center",
+    // flexGrow: 1,
+    justifyContent: "space-between",
+    paddingTop: 30,
+    width,
   },
   progressDots: {
     flexDirection: "row",
@@ -131,16 +146,26 @@ const introduction = [
     icon: "wc",
     button: "gender",
   },
-  {
-    header: "Great!",
-    headerJapanese: "いいね！",
-    headerFurigana: "いいね！",
-    body:
-      "It's important to be able to read Japanese words before you do anything else. Let's start out with the \"Intro to Hiragana\" lesson.",
-    icon: "play-arrow",
-    button: "start",
-  },
 ];
+
+const introFinal = {
+  header: "Great!",
+  headerJapanese: "いいね！",
+  headerFurigana: "いいね！",
+  body:
+    "It's important to be able to read Japanese words before you do anything else. Let's start out with the \"Intro to Hiragana\" lesson.",
+  icon: "play-arrow",
+  button: "start",
+};
+
+type PanelInfo = {|
+  header: string,
+  headerJapanese: string,
+  headerFurigana: string,
+  body: string,
+  icon: IconName,
+  button: string,
+|};
 
 export function IntroductionScreen(props: Props) {
   const { refetch, userEmail } = props;
@@ -241,46 +266,72 @@ export function IntroductionScreen(props: Props) {
     );
   };
 
-  return (
-    <View style={styles.introductionScreenWrapper}>
-      <View style={styles.introduction}>
+  const getIntroPanel = (panelInfo: PanelInfo) => {
+    return (
+      <View style={styles.introPanel}>
         <View style={styles.imageWrapper}>
           <ImageBackground
             style={styles.image}
             imageStyle={{ borderRadius: 16 }}
             source={require("../../../assets/images/empty-logo.png")}
           >
-            <Icon name={currentIntro.icon} size={100} color={color.PRIMARY} />
+            <Icon name={panelInfo.icon} size={100} color={color.PRIMARY} />
           </ImageBackground>
         </View>
         <View style={styles.genericWrapper}>
-          {currentIntro.header !== "" ? (
+          {panelInfo.header !== "" ? (
             <View style={styles.header}>
-              <Text style={styles.headerText}>{currentIntro.header}</Text>
+              <Text style={styles.headerText}>{panelInfo.header}</Text>
             </View>
           ) : null}
           <View style={styles.body}>
-            <Text style={styles.bodyText}>{currentIntro.body}</Text>
+            <Text style={styles.bodyText}>{panelInfo.body}</Text>
           </View>
         </View>
-        <View style={styles.genericWrapper}>
-          <View style={styles.progressDots}>
-            {introduction.map((_, i) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <View style={styles.dotWrapper} key={i}>
-                <Icon
-                  name="fiber-manual-record"
-                  size={16}
-                  color={
-                    pageNumber === i ? color.TEXT_M : color.INCOMPLETE_CELL
-                  }
-                />
-              </View>
-            ))}
-          </View>
-          <View style={styles.buttonWrapper}>
-            {getButton(currentIntro.button)}
-          </View>
+        <View style={styles.buttonWrapper}>{getButton(panelInfo.button)}</View>
+      </View>
+    );
+  };
+
+  const onViewRef = useRef(({ viewableItems }) =>
+    viewableItems[0].index ? setPageNumber(viewableItems[0].index) : undefined
+  );
+  const viewConfigRef = useRef({
+    itemVisiblePercentThreshold: 50,
+  });
+
+  return (
+    <View style={styles.introductionScreenWrapper}>
+      <FlatList
+        // style={styles.list}
+        getItemLayout={(_, index) => ({
+          length: width,
+          offset: width * index,
+          index,
+        })}
+        scrollEventThrottle={16} // 60fps
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        initialScrollIndex={0}
+        keyExtractor={(item) => item.header.toString()}
+        renderItem={({ item }) => getIntroPanel(item)}
+        data={introduction}
+        onViewableItemsChanged={onViewRef.current}
+        viewabilityConfig={viewConfigRef.current}
+      />
+      <View style={styles.genericWrapper}>
+        <View style={styles.progressDots}>
+          {introduction.map((_, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <View style={styles.dotWrapper} key={i}>
+              <Icon
+                name="fiber-manual-record"
+                size={16}
+                color={pageNumber === i ? color.TEXT_M : color.INCOMPLETE_CELL}
+              />
+            </View>
+          ))}
         </View>
       </View>
     </View>
