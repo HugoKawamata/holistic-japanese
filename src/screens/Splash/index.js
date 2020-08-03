@@ -17,6 +17,8 @@ import IntroductionScreen from "../Introduction";
 import ReferenceScreen from "../Reference";
 import ProfileScreen from "../Profile";
 import HiraganaReferenceScreen from "../Reference/Hiragana";
+import WordsReferenceScreen from "../Reference/Words";
+import WordsListScreen from "../Reference/Words/WordsList";
 import TabBar from "./TabBar";
 
 type Props = {
@@ -127,6 +129,16 @@ function NavRootScreen() {
         name="Hiragana"
         component={HiraganaReferenceScreen}
         options={{ title: "ひらがな・Hiragana" }}
+      />
+      <NavRoot.Screen
+        name="Words"
+        component={WordsReferenceScreen}
+        options={{ title: "ことば・Words" }}
+      />
+      <NavRoot.Screen
+        name="WordsList"
+        component={WordsListScreen}
+        options={{ title: "" }}
       />
     </NavRoot.Navigator>
   );

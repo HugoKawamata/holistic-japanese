@@ -126,6 +126,9 @@ const splitOnTransformable = (text, style, ignoredDelimiters) => {
 
 export default function TransformText(props: Props): React.Node {
   const { children, noWrapper, style, ignoredDelimiters } = props;
+  if (children == null) {
+    return null;
+  }
   const textBlocks = splitOnTransformable(children, style, ignoredDelimiters);
 
   if (noWrapper) {
