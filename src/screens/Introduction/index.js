@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     alignItems: "center",
-    paddingBottom: 50,
+    paddingBottom: 30,
   },
   dotWrapper: {},
   genderButtonWrapper: {
@@ -78,14 +78,13 @@ const styles = StyleSheet.create({
   },
   introPanel: {
     alignItems: "center",
-    // flexGrow: 1,
     justifyContent: "space-between",
     paddingTop: 30,
     width,
   },
   progressDots: {
     flexDirection: "row",
-    paddingBottom: 20,
+    paddingBottom: 50,
   },
 });
 

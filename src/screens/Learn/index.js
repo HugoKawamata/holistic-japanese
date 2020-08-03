@@ -236,7 +236,10 @@ export function LearnScreen(props: Props): Node {
 
         // If the me was created less than 5 minutes ago and has no gender,
         // show the introduction
-        if (me.gender == null && +new Date() - me.createdAt < 60 * 1000 * 5) {
+        if (
+          true ||
+          (me.gender == null && +new Date() - me.createdAt < 60 * 1000 * 5)
+        ) {
           props.navigation.push("Introduction", {
             refetch,
           });
