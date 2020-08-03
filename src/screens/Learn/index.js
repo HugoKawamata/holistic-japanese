@@ -21,6 +21,7 @@ const AVAILABLE_LESSONS_QUERY = gql`
   query AvailableLessons {
     me {
       id
+      gender
       createdAt
       nextUnlockCourses {
         id
@@ -233,8 +234,9 @@ export function LearnScreen(props: Props): Node {
         const courses = data.me.availableCourses;
         const { nextUnlockCourses } = data.me;
 
-        // If the me was created less than 5 minutes ago, show the introduction
-        if (true || +new Date() - me.createdAt < 60 * 1000 * 5) {
+        // If the me was created less than 5 minutes ago and has no gender,
+        // show the introduction
+        if (me.gender == null && +new Date() - me.createdAt < 60 * 1000 * 5) {
           props.navigation.push("Introduction", {
             refetch,
           });

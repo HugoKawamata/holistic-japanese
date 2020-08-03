@@ -109,7 +109,16 @@ type Props = {|
   userEmail: string,
 |};
 
-const introduction = [
+type PanelInfo = {|
+  header: string,
+  headerJapanese: string,
+  headerFurigana: string,
+  body: string,
+  icon: IconName,
+  button: ?("start" | "gender"),
+|};
+
+const introduction: Array<PanelInfo> = [
   {
     header: "Welcome to Issei!",
     headerJapanese: "Isseiへ　ようこそ",
@@ -117,7 +126,7 @@ const introduction = [
     body:
       "Your journey to conversational Japanese starts here! The aim of the Issei learning method is to get you communicating as soon as possible.",
     icon: "question-answer",
-    button: "next",
+    button: null,
   },
   {
     header: "How?",
@@ -126,7 +135,7 @@ const introduction = [
     body:
       "Learning multiple things at once simulates the experience of being immersed in the language. Instead of learning the Japanese alphabet, vocabulary, and grammar one at a time, you'll learn them together.",
     icon: "whatshot",
-    button: "next",
+    button: null,
   },
   {
     header: "For example?",
@@ -135,7 +144,7 @@ const introduction = [
     body:
       "To start with, you won't just be memorising Hiragana (the Japanese alphabet). You'll be learning common words which use the letters we're teaching. Much more fun, and much more effective!",
     icon: "school",
-    button: "next",
+    button: null,
   },
   {
     header: "",
@@ -148,48 +157,32 @@ const introduction = [
   },
 ];
 
-const introFinal = {
-  header: "Great!",
-  headerJapanese: "いいね！",
-  headerFurigana: "いいね！",
-  body:
-    "It's important to be able to read Japanese words before you do anything else. Let's start out with the \"Intro to Hiragana\" lesson.",
-  icon: "play-arrow",
-  button: "start",
-};
-
-type PanelInfo = {|
-  header: string,
-  headerJapanese: string,
-  headerFurigana: string,
-  body: string,
-  icon: IconName,
-  button: string,
-|};
+const introFinal: Array<PanelInfo> = [
+  {
+    header: "Great!",
+    headerJapanese: "いいね！",
+    headerFurigana: "いいね！",
+    body:
+      "It's important to be able to read Japanese words before you do anything else. Let's start out with the \"Intro to Hiragana\" lesson.",
+    icon: "play-arrow",
+    button: "start",
+  },
+];
 
 export function IntroductionScreen(props: Props) {
-  const { refetch, userEmail } = props;
+  const { refetch, userEmail, navigation } = props;
   const [pageNumber, setPageNumber] = useState(0);
+  const [activeIntro, setActiveIntro] = useState(introduction);
   const [sendGender] = useMutation(SEND_GENDER);
 
-  const currentIntro = introduction[pageNumber];
-
-  const next = () => {
-    if (pageNumber + 1 === introduction.length) {
-      props.navigation.navigate("Learn");
-    } else {
-      setPageNumber(pageNumber + 1);
-    }
-  };
-
-  const getButton = (type: "start" | "gender" | "next") => {
+  const getButton = (type: ?("start" | "gender")) => {
     if (type === "start") {
       return (
         <Button
           theme="primary"
           onPress={() => {
             refetch();
-            next();
+            navigation.navigate("Learn");
           }}
         >
           <FuriganaText
@@ -214,7 +207,10 @@ export function IntroductionScreen(props: Props) {
                     userEmail,
                     gender: "F",
                   },
-                }).then(() => next())
+                }).then(() => {
+                  setPageNumber(0);
+                  setActiveIntro(introFinal);
+                })
               }
             >
               <Text style={styles.buttonText}>Female</Text>
@@ -229,7 +225,10 @@ export function IntroductionScreen(props: Props) {
                     userEmail,
                     gender: "M",
                   },
-                }).then(() => next())
+                }).then(() => {
+                  setPageNumber(0);
+                  setActiveIntro(introFinal);
+                })
               }
             >
               <Text style={styles.buttonText}>Male</Text>
@@ -244,7 +243,10 @@ export function IntroductionScreen(props: Props) {
                     userEmail,
                     gender: "X",
                   },
-                }).then(() => next())
+                }).then(() => {
+                  setPageNumber(0);
+                  setActiveIntro(introFinal);
+                })
               }
             >
               <Text style={styles.buttonText}>Other/Rather not say</Text>
@@ -253,17 +255,7 @@ export function IntroductionScreen(props: Props) {
         </>
       );
     }
-    return (
-      <Button theme="primary" onPress={next}>
-        <FuriganaText
-          furiStyle={styles.buttonText}
-          textStyle={styles.buttonText}
-          kana="つぎへ"
-          text="次へ"
-        />
-        <Text style={styles.buttonText}>Next</Text>
-      </Button>
-    );
+    return null;
   };
 
   const getIntroPanel = (panelInfo: PanelInfo) => {
@@ -303,7 +295,6 @@ export function IntroductionScreen(props: Props) {
   return (
     <View style={styles.introductionScreenWrapper}>
       <FlatList
-        // style={styles.list}
         getItemLayout={(_, index) => ({
           length: width,
           offset: width * index,
@@ -315,14 +306,15 @@ export function IntroductionScreen(props: Props) {
         showsHorizontalScrollIndicator={false}
         initialScrollIndex={0}
         keyExtractor={(item) => item.header.toString()}
+        // $FlowFixMe can't be bothered figuring out the types here
         renderItem={({ item }) => getIntroPanel(item)}
-        data={introduction}
+        data={activeIntro}
         onViewableItemsChanged={onViewRef.current}
         viewabilityConfig={viewConfigRef.current}
       />
       <View style={styles.genericWrapper}>
         <View style={styles.progressDots}>
-          {introduction.map((_, i) => (
+          {activeIntro.map((_, i) => (
             // eslint-disable-next-line react/no-array-index-key
             <View style={styles.dotWrapper} key={i}>
               <Icon
