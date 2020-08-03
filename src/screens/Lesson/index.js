@@ -247,6 +247,13 @@ export function LessonScreen(props: Props): Node {
                   // Otherwise, focus the next one
                   inputRefs[i + 1].current.focus();
                 }
+              } else if (lowerText === "") {
+                // User backspaced.
+                // Do nothing for first input
+                if (i !== 0) {
+                  // Otherwise, focus the prev one
+                  inputRefs[i - 1].current.focus();
+                }
               }
               // $FlowFixMe Not sure what's happening here
               setUserAnswer({
