@@ -264,10 +264,25 @@ export function LessonScreen(props: Props): Node {
           />
         ));
 
+        const prevAnswers = results[currentTestable.question.text].answers;
+        const prevMarks = results[currentTestable.question.text].marks;
+        const prevMistake =
+          prevAnswers.length > 0 &&
+          prevMarks != null &&
+          prevMarks.length > 0 &&
+          prevMarks[prevMarks.length - 1] === "INCORRECT"
+            ? prevAnswers[prevAnswers.length - 1].split(",")
+            : null;
+
         return answerParts.map((charRomaji, i) => (
           /* eslint-disable-next-line react/no-array-index-key */
           <View key={`input-${i}`}>
             {inputs[i]}
+            {prevMistake != null &&
+            currentMark == null &&
+            prevMistake[i] !== charRomaji ? (
+              <Text style={styles.prevMistake}>{prevMistake[i]}</Text>
+            ) : null}
             {currentMark === "INCORRECT" ? (
               <Text style={styles.correction}>{charRomaji}</Text>
             ) : null}

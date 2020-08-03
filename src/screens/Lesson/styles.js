@@ -129,6 +129,12 @@ const myStyles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
   },
+  prevMistake: {
+    color: color.TEXT_P,
+    fontSize: fontSize.answerSingleChar,
+    textAlign: "center",
+    textDecorationLine: "line-through",
+  },
   regularAnswerField: {
     ...answerFieldCommon,
     borderRadius: 16,

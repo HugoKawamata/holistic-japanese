@@ -4,7 +4,7 @@ export type Result = {
   objectId: ?number,
   objectType: "WORD" | "CHARACTER" | "SENTENCE",
   text: string,
-  answers: string,
+  answers: Array<string>,
   marks: Array<"CORRECT" | "INCORRECT">,
 };
 
