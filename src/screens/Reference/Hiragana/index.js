@@ -181,7 +181,6 @@ export function HiraganaReferenceScreen(props: Props) {
   const pageNumbers = [0, 1, 2];
 
   return (
-    // TODO: This probably needs to be a scrollview
     <>
       <FlatList
         style={styles.list}

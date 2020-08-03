@@ -4,6 +4,8 @@ import NativeIcon, {
   type MaterialIconsGlyphs,
 } from "react-native-vector-icons/MaterialIcons";
 
+export type IconName = MaterialIconsGlyphs;
+
 type Props = {
   color: string,
   name: MaterialIconsGlyphs,
