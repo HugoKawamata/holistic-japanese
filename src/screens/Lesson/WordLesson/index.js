@@ -146,9 +146,6 @@ export function WordLesson(props: Props) {
         style={styles.helpGif}
       />
       <Text style={styles.helpModalBody}>
-        Input the English letters that correspond to the Japanese sounds.
-      </Text>
-      <Text style={styles.helpModalBody}>
         🔊 Sound on for pronunciation help 🔊
       </Text>
       <View style={styles.helpModalBottom}>

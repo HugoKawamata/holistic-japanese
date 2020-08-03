@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
     width: 250,
   },
   helpModalBody: {
+    fontSize: fontSize.smallish,
     marginHorizontal: 20,
-    marginBottom: 20,
   },
   helpModalBottom: {
     alignItems: "center",
     flexGrow: 1,
     justifyContent: "flex-end",
-    paddingTop: 40,
+    paddingTop: 20,
   },
   helpModalTitle: {
     fontSize: fontSize.title,
