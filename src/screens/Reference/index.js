@@ -78,8 +78,8 @@ export function LearnScreen(props: Props): Node {
               key: "3",
               bigText: "ことば",
               smallText: "Words",
-              disabled: true,
-              onPress: () => {},
+              disabled: false,
+              onPress: () => props.navigation.navigate("Words"),
             },
             {
               key: "4",
