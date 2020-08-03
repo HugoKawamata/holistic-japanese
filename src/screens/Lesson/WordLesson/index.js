@@ -1,7 +1,10 @@
 /* @flow */
 import * as React from "react";
-import { View } from "react-native";
+import { View, Image } from "react-native";
 import Sound from "react-native-sound";
+import OverlayModal from "../../../components/OverlayModal";
+import Button from "../../../components/Button";
+import Text from "../../../components/Text";
 import type { AvailableLessons_me_availableCourses_availableLessons_testables as Testable } from "../../Learn/__generated__/AvailableLessons";
 import type { UserAnswer, Results } from "../types";
 import {
@@ -48,6 +51,16 @@ export function WordLesson(props: Props) {
     results,
     userAnswer,
   } = props;
+
+  const isFirstTestableEver =
+    currentTestable.question.text === "いえ" &&
+    results[currentTestable.question.text].marks.length === 0 &&
+    Object.keys(results).length === 4; // 1 for each word in lesson HIRAGANA_A
+
+  const [helpModalVisible, setHelpModalVisible] = React.useState(
+    isFirstTestableEver
+  );
+
   const answerRomajiQuestion = () => {
     const csvAnswer = getCSVAnswer(userAnswer);
     const splitAnswer = csvAnswer.split(",");
@@ -122,6 +135,32 @@ export function WordLesson(props: Props) {
     return mark;
   };
 
+  const helpModal = (
+    <OverlayModal
+      closeModal={() => setHelpModalVisible(false)}
+      title={<Text style={styles.helpModalTitle}>How to answer questions</Text>}
+      visible={helpModalVisible}
+    >
+      <Image
+        source={require("../../../../assets/images/how-to-use.gif")}
+        style={styles.helpGif}
+      />
+      <Text style={styles.helpModalBody}>
+        🔊 Sound on for pronunciation help 🔊
+      </Text>
+      <View style={styles.helpModalBottom}>
+        <View style={styles.modalButtonWrapper}>
+          <Button
+            theme="primary_ghost"
+            onPress={() => setHelpModalVisible(false)}
+          >
+            <Text style={styles.buttonQuit}>Close</Text>
+          </Button>
+        </View>
+      </View>
+    </OverlayModal>
+  );
+
   return (
     <>
       <View style={sharedStyles.topSection}>
@@ -130,6 +169,7 @@ export function WordLesson(props: Props) {
           currentTestable,
           lecturesStatus,
           setExitModalVisible,
+          setHelpModalVisible,
           setLecturesStatus
         )}
       </View>
@@ -145,6 +185,7 @@ export function WordLesson(props: Props) {
           />
         </View>
       </View>
+      {helpModal}
     </>
   );
 }

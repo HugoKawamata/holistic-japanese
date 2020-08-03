@@ -16,13 +16,23 @@ export const getTopSectionContent = (
   currentTestable: Testable,
   lecturesStatus: LecturesStatus,
   setExitModalVisible: (boolean) => void,
+  setHelpModalVisible: (boolean) => void,
   setLecturesStatus: (LecturesStatus) => typeof undefined
 ) => {
   return (
     <View style={styles.topSectionInterior}>
       {height > 730 ? (
         <View style={styles.headerWrapper}>
-          <Text style={styles.header}>レッスン・Lesson</Text>
+          <View style={styles.smallHeaderWrapper}>
+            <Text style={styles.header}>レッスン・Lesson</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setHelpModalVisible(true);
+              }}
+            >
+              <Icon color={color.WHITE} name="help" size={32} />
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity
             onPress={() => {
               if (lecturesStatus === "undoable") {
@@ -36,18 +46,28 @@ export const getTopSectionContent = (
           </TouchableOpacity>
         </View>
       ) : (
-        <TouchableOpacity
-          style={styles.exitWrapper}
-          onPress={() => {
-            if (lecturesStatus === "undoable") {
-              setLecturesStatus("active");
-            } else {
-              setExitModalVisible(true);
-            }
-          }}
-        >
-          <Icon color={color.WHITE} name="keyboard-return" size={32} />
-        </TouchableOpacity>
+        <View style={styles.smallHeaderWrapper}>
+          <TouchableOpacity
+            style={styles.exitWrapper}
+            onPress={() => {
+              if (lecturesStatus === "undoable") {
+                setLecturesStatus("active");
+              } else {
+                setExitModalVisible(true);
+              }
+            }}
+          >
+            <Icon color={color.WHITE} name="keyboard-return" size={32} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.helpWrapper}
+            onPress={() => {
+              setHelpModalVisible(true);
+            }}
+          >
+            <Icon color={color.WHITE} name="help" size={32} />
+          </TouchableOpacity>
+        </View>
       )}
       <View style={styles.questionWrapper}>
         {currentTestable.question.furigana != null ? (
@@ -82,8 +102,13 @@ export const displayEmoji = (
 ) => {
   const adjustedQuestionStage =
     currentMark === "CORRECT" ? questionStage - 1 : questionStage;
-  if (adjustedQuestionStage >= 2 && currentTestable.introduction != null) {
-    return <View style={styles.emojiWrapper} />;
+  // Hetawords don't have introductions
+  if (
+    adjustedQuestionStage >= 2 &&
+    currentTestable.introduction != null &&
+    currentMark == null
+  ) {
+    return null;
   }
 
   if (currentTestable.question.emoji != null) {
@@ -103,7 +128,8 @@ export const getHint = (
 ) => {
   const adjustedQuestionStage =
     currentMark === "CORRECT" ? questionStage - 1 : questionStage;
-  if (adjustedQuestionStage === 2) {
+  // Once 3rd stage question is answered, show the emoji again
+  if (adjustedQuestionStage === 2 && currentMark == null) {
     return null;
   }
   let dialogueText = "";
