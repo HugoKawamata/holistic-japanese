@@ -22,6 +22,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 10,
   },
+  helpWrapper: {
+    marginTop: 10,
+    marginRight: 10,
+  },
   header: {
     color: color.WHITE,
     fontSize: 28,
@@ -76,6 +80,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     flexGrow: 1,
+  },
+  smallHeaderWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 

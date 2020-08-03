@@ -169,6 +169,7 @@ export function WordLesson(props: Props) {
           currentTestable,
           lecturesStatus,
           setExitModalVisible,
+          setHelpModalVisible,
           setLecturesStatus
         )}
       </View>
