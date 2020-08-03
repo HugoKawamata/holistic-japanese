@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
   bottomSectionBackground: {
     backgroundColor: color.KANA_Q_BG,
   },
+  buttonQuit: {
+    color: color.TEXT_P,
+  },
   emoji: {
     fontSize: fontSize.questionEmoji,
     lineHeight: 54,
@@ -27,6 +30,31 @@ const styles = StyleSheet.create({
   headerWrapper: {
     paddingHorizontal: 20,
     paddingTop: 20,
+  },
+  helpGif: {
+    borderColor: color.TEXT,
+    borderRadius: 3,
+    borderWidth: 3,
+    marginBottom: 30,
+    height: 250,
+    width: 250,
+  },
+  helpModalBody: {
+    marginHorizontal: 20,
+    marginBottom: 20,
+  },
+  helpModalBottom: {
+    alignItems: "center",
+    flexGrow: 1,
+    justifyContent: "flex-end",
+    paddingTop: 40,
+  },
+  helpModalTitle: {
+    fontSize: fontSize.title,
+  },
+  modalButtonWrapper: {
+    alignItems: "center",
+    marginBottom: 20,
   },
   question: {
     color: color.WHITE,
