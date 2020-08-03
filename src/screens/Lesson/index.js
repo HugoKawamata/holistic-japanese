@@ -128,6 +128,19 @@ export function LessonScreen(props: Props): Node {
       }
       return 0;
     }
+    // If exactly one of the introductions is null, and this is a kana lesson.
+    // This case is for sorting hetaWords to the back of the list, so as to
+    // not interfere with midroll lectures
+    if (
+      ["HIRAGANA", "KATAKANA"].includes(lesson.id.slice(0, 8)) &&
+      ((a.introduction != null && b.introduction == null) ||
+        (a.introduction == null && b.introduction != null))
+    ) {
+      if (a.introduction == null) {
+        return 1;
+      }
+      return -1;
+    }
     if (a.objectId < b.objectId) {
       return -1;
     }
