@@ -102,8 +102,13 @@ export const displayEmoji = (
 ) => {
   const adjustedQuestionStage =
     currentMark === "CORRECT" ? questionStage - 1 : questionStage;
-  if (adjustedQuestionStage >= 2 && currentTestable.introduction != null) {
-    return <View style={styles.emojiWrapper} />;
+  // Hetawords don't have introductions
+  if (
+    adjustedQuestionStage >= 2 &&
+    currentTestable.introduction != null &&
+    currentMark == null
+  ) {
+    return null;
   }
 
   if (currentTestable.question.emoji != null) {
@@ -123,7 +128,8 @@ export const getHint = (
 ) => {
   const adjustedQuestionStage =
     currentMark === "CORRECT" ? questionStage - 1 : questionStage;
-  if (adjustedQuestionStage === 2) {
+  // Once 3rd stage question is answered, show the emoji again
+  if (adjustedQuestionStage === 2 && currentMark == null) {
     return null;
   }
   let dialogueText = "";
