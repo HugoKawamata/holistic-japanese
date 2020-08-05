@@ -77,6 +77,10 @@ const AVAILABLE_LESSONS_QUERY = gql`
               type
               text
             }
+            displayAnswer {
+              text
+              furigana
+            }
             introduction
           }
         }
@@ -116,6 +120,10 @@ const AVAILABLE_LESSONS_QUERY = gql`
             answer {
               type
               text
+            }
+            displayAnswer {
+              text
+              furigana
             }
             introduction
           }

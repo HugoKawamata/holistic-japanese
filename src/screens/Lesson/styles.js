@@ -143,6 +143,14 @@ const myStyles = StyleSheet.create({
     minHeight: 80,
     paddingHorizontal: 15,
   },
+  sentenceCorrectionWrapper: {
+    marginTop: 10,
+    marginLeft: 18,
+  },
+  sentenceCorrection: {
+    // flexGrow: 1,
+    textAlign: "center",
+  },
   singleCharAnswerField: {
     ...answerFieldCommon,
     borderRadius: 3,

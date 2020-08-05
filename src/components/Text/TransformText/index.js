@@ -8,7 +8,7 @@ type Props = {|
   children: string,
   ignoredDelimiters?: Array<'"' | "_" | "*" | "(" | "[" | "<">,
   noWrapper?: ?boolean, // For single word transforms
-  style: typeof StyleSheet | Array<?typeof StyleSheet>,
+  style?: typeof StyleSheet | Array<?typeof StyleSheet>,
 |};
 
 const styles = StyleSheet.create({
@@ -145,4 +145,5 @@ export default function TransformText(props: Props): React.Node {
 TransformText.defaultProps = {
   ignoredDelimiters: [],
   noWrapper: false,
+  style: {},
 };

@@ -35,6 +35,38 @@ type Props = {|
   userAnswer: UserAnswer,
 |};
 
+export const cleanPossibleAnswers = (
+  possibleAnswers: Array<string>,
+  splots: Splots
+): Array<string> => {
+  return possibleAnswers.map((possibleAnswer) => {
+    return addSplotsToText(
+      // eslint-disable-next-line no-irregular-whitespace
+      possibleAnswer.replace(/[.()　]/g, ""),
+      splots
+    ).toLowerCase();
+  });
+};
+
+export const cleanUserAnswer = (answer: string, answerType: string) => {
+  if (answerType === "JAPANESE") {
+    return (
+      answer
+        .toLowerCase()
+        // eslint-disable-next-line no-irregular-whitespace
+        .replace(/[ .()　。！？]/g, "")
+        .trim()
+    );
+  }
+  return (
+    answer
+      .toLowerCase()
+      // eslint-disable-next-line no-irregular-whitespace
+      .replace(/[　’.!?]/g, "")
+      .trim()
+  );
+};
+
 export function SentenceLesson(props: Props) {
   const {
     children,
@@ -49,38 +81,10 @@ export function SentenceLesson(props: Props) {
     userAnswer,
   } = props;
 
-  const cleanPossibleAnswers = (possibleAnswers: Array<string>) => {
-    return possibleAnswers.map((possibleAnswer) => {
-      return addSplotsToText(
-        // eslint-disable-next-line no-irregular-whitespace
-        possibleAnswer.replace(/[.()　]/g, ""),
-        splots
-      ).toLowerCase();
-    });
-  };
-
-  const cleanUserAnswer = (answer: string, answerType: string) => {
-    if (answerType === "JAPANESE") {
-      return (
-        answer
-          .toLowerCase()
-          // eslint-disable-next-line no-irregular-whitespace
-          .replace(/[ .()　。！？]/g, "")
-          .trim()
-      );
-    }
-    return (
-      answer
-        .toLowerCase()
-        // eslint-disable-next-line no-irregular-whitespace
-        .replace(/[　’.!?]/g, "")
-        .trim()
-    );
-  };
-
   const answerQuestion = () => {
     const possibleAnswers = cleanPossibleAnswers(
-      currentTestable.answer.text.split("/")
+      currentTestable.answer.text.split("/"),
+      splots
     );
     const cleanedAnswer = cleanUserAnswer(
       userAnswer["input-0"],

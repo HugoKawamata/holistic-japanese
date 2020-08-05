@@ -14,9 +14,12 @@ import { connect } from "react-redux";
 import Sound from "react-native-sound";
 import { type State as StoreState } from "../../store/types/store";
 import Text from "../../components/Text";
+import FuriganaText from "../../components/Text/FuriganaText";
+import TransformText from "../../components/Text/TransformText";
 import Button from "../../components/Button";
 import OverlayModal from "../../components/OverlayModal";
 import color from "../../util/color";
+import { addSplotsToText } from "../../util/helpers/text";
 import type {
   AvailableLessons_me_splots as Splots,
   AvailableLessons_me_availableCourses_availableLessons as Lesson,
@@ -302,19 +305,69 @@ export function LessonScreen(props: Props): Node {
           </View>
         ));
       }
-      default:
+      case "JAPANESE": {
+        const { displayAnswer } = currentTestable;
+
         return (
-          <TextInput
-            placeholder="Translate here"
-            style={styles.regularAnswerField}
-            value={userAnswer["input-0"]}
-            onChangeText={(text) =>
-              setUserAnswer({
-                "input-0": text,
-              })
+          <>
+            <TextInput
+              placeholder="Translate here"
+              style={styles.regularAnswerField}
+              value={userAnswer["input-0"]}
+              onChangeText={(text) =>
+                setUserAnswer({
+                  "input-0": text,
+                })
+              }
+            />
+            {
+              // eslint-disable-next-line no-nested-ternary
+              currentMark !== "INCORRECT" ? null : displayAnswer.furigana ==
+                null ? (
+                <View style={styles.sentenceCorrectionWrapper}>
+                  <TransformText style={styles.sentenceCorrection}>
+                    {addSplotsToText(displayAnswer.text, splots)}
+                  </TransformText>
+                </View>
+              ) : (
+                <View style={styles.sentenceCorrectionWrapper}>
+                  <FuriganaText
+                    kana={addSplotsToText(displayAnswer.furigana, splots)}
+                    text={addSplotsToText(displayAnswer.text, splots)}
+                    textStyle={styles.sentenceCorrection}
+                  />
+                </View>
+              )
             }
-          />
+          </>
         );
+      }
+      case "ENGLISH":
+      default: {
+        const { displayAnswer } = currentTestable;
+
+        return (
+          <>
+            <TextInput
+              placeholder="Translate here"
+              style={styles.regularAnswerField}
+              value={userAnswer["input-0"]}
+              onChangeText={(text) =>
+                setUserAnswer({
+                  "input-0": text,
+                })
+              }
+            />
+            {currentMark !== "INCORRECT" ? null : (
+              <View style={styles.sentenceCorrectionWrapper}>
+                <TransformText style={styles.sentenceCorrection}>
+                  {addSplotsToText(displayAnswer.text, splots)}
+                </TransformText>
+              </View>
+            )}
+          </>
+        );
+      }
     }
   };
 
