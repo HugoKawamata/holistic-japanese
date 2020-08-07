@@ -1,10 +1,11 @@
 /* @flow */
-import React, { type Node } from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import React, { type Node, useState } from "react";
+import { StyleSheet, View, ScrollView, Alert } from "react-native";
 import { connect } from "react-redux";
 import { Duration } from "luxon";
 import { gql } from "apollo-boost";
 import { Query as ApolloQuery } from "@apollo/react-components";
+import { logout } from "../../store/thunks/loaders";
 import type { State as StoreState } from "../../store/types/store";
 import Text from "../../components/Text";
 import Button from "../../components/Button";
@@ -182,6 +183,7 @@ const styles = StyleSheet.create({
 
 type Props = {|
   navigation: any, // eslint-disable-line flowtype/no-weak-types
+  logout: typeof logout,
   userEmail: string,
   userGivenName: string,
 |};
@@ -198,6 +200,7 @@ const getGreeting = () => {
 };
 
 export function LearnScreen(props: Props): Node {
+  const [currentlyAlerting, setCurrentlyAlerting] = useState(false);
   const { navigation, userGivenName, userEmail } = props;
   navigation.setOptions({
     headerShown: false,
@@ -235,6 +238,26 @@ export function LearnScreen(props: Props): Node {
         }
 
         if (error != null || !data || !data.me || !data.me.availableCourses) {
+          if (
+            error.message.includes("must authenticate") &&
+            !currentlyAlerting
+          ) {
+            setCurrentlyAlerting(true);
+            Alert.alert(
+              "You've been signed out",
+              "Something has happened on our end. Please try signing in again.",
+              [
+                {
+                  text: "Sign in again",
+                  onPress: () => {
+                    setCurrentlyAlerting(false);
+                    props.logout();
+                  },
+                },
+              ],
+              { cancelable: false }
+            );
+          }
           return null; // TODO: error state
         }
 
@@ -334,4 +357,4 @@ function mapStateToProps(state: StoreState) {
   };
 }
 
-export default connect(mapStateToProps)(LearnScreen);
+export default connect(mapStateToProps, { logout })(LearnScreen);
