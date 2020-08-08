@@ -181,8 +181,8 @@ export function ProfileScreen(props: Props) {
                 <Image
                   style={styles.profileImage}
                   source={
-                    data?.me?.image != null
-                      ? { uri: data.me.image }
+                    data?.me?.picture != null
+                      ? { uri: data.me.picture }
                       : require("../../../assets/images/default-profile.png")
                   }
                   resizeMode="contain"
