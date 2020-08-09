@@ -3,6 +3,7 @@
 import React from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
 import { connect } from "react-redux";
+import { sortBy } from "lodash";
 import { type State as StoreState } from "../../../store/types/store";
 import Text from "../../../components/Text";
 import FuriganaText from "../../../components/Text/FuriganaText";
@@ -68,13 +69,15 @@ type Props = {|
 
 export function WordsList(props: Props) {
   const { words } = props;
+  // Sort in reverse order of discovery - new words at the top
+  const sortedWords = sortBy(words, (word) => -Number(word.id));
   return (
     <View style={styles.root}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.wordsList}
       >
-        {words
+        {sortedWords
           .filter(
             (word) =>
               word.hiragana && word.japanese && word.english && word.emoji

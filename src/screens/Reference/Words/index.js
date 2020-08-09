@@ -106,7 +106,14 @@ export function WordsReferenceScreen(props: Props) {
                     />
                   }
                   text="All Words"
-                  onPress={() => {}}
+                  onPress={() =>
+                    props.navigation.push("WordsList", {
+                      words: courses.reduce(
+                        (acc, course) => acc.concat(course.learnedWords),
+                        []
+                      ),
+                    })
+                  }
                 />
                 {courses.map((course) => (
                   <BarLink
