@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   backgroundImage: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: "stretch",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -18,8 +18,9 @@ const styles = StyleSheet.create({
   bottomSectionTip: {
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    paddingTop: 20,
     backgroundColor: color.WHITE,
+    minHeight: 20,
+    height: 20,
     zIndex: 99,
   },
   bottomSection: {
@@ -61,6 +62,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: "space-between",
     marginTop: 60,
+    flexShrink: 1,
+    overflow: "hidden",
   },
   downChevWrapper: {
     alignItems: "center",
