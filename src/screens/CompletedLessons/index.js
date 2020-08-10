@@ -162,20 +162,22 @@ export function CompletedLessonsScreen(props: Props): Node {
               <View style={styles.headingWrapper}>
                 <Text style={styles.heading}>All Completed Lessons</Text>
               </View>
-              {availableCourses.map((course) => {
-                return (
-                  <SideSlider
-                    key={course.id}
-                    heading={course.title}
-                    linkCardProps={course.completedLessons.map((lesson) => ({
-                      key: lesson.id,
-                      bigText: lesson.title,
-                      smallText: "5 min・Beginner",
-                      onPress: () => startLesson(me.id, lesson),
-                    }))}
-                  />
-                );
-              })}
+              {availableCourses
+                .filter((course) => course.completedLessons.length > 0)
+                .map((course) => {
+                  return (
+                    <SideSlider
+                      key={course.id}
+                      heading={course.title}
+                      linkCardProps={course.completedLessons.map((lesson) => ({
+                        key: lesson.id,
+                        bigText: lesson.title,
+                        smallText: "5 min・Beginner",
+                        onPress: () => startLesson(me.id, lesson),
+                      }))}
+                    />
+                  );
+                })}
               {(completedCourses || []).map((course) => {
                 return (
                   <SideSlider
