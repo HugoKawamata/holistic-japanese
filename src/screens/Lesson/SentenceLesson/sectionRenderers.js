@@ -1,6 +1,6 @@
 /* @flow */
 import React, { type Node } from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Image, ImageBackground } from "react-native";
 import Text from "../../../components/Text";
 import FuriganaText from "../../../components/Text/FuriganaText";
 import Button from "../../../components/Button";
@@ -16,6 +16,51 @@ import type { UserAnswer } from "../types";
 import type { LecturesStatus } from "..";
 import { sharedStyles } from "../styles";
 import styles from "./styles";
+
+export const getPersonImage = (personName: string) => {
+  // for placeholders, use same image for all values of a single person.
+  const [person] = personName.split("_");
+  switch (person) {
+    case "YUJI": {
+      return require(`../../../../assets/images/people/yuji_placeholder.png`);
+    }
+    case "CHIEKO": {
+      return require(`../../../../assets/images/people/chieko_placeholder.png`);
+    }
+    case "MARI": {
+      return require(`../../../../assets/images/people/mari_placeholder.png`);
+    }
+    case "HINAKO": {
+      return require(`../../../../assets/images/people/hinako_placeholder.png`);
+    }
+    default: {
+      return null;
+    }
+  }
+};
+
+export const getBackgroundImage = (location: ?string) => {
+  switch (location) {
+    case "TRAIN_STATION": {
+      return require(`../../../../assets/images/locations/TRAIN_STATION.jpg`);
+    }
+    case "RESTAURANT": {
+      return require(`../../../../assets/images/locations/RESTAURANT.jpg`);
+    }
+    case "AIRPORT": {
+      return require(`../../../../assets/images/locations/AIRPORT.jpg`);
+    }
+    case "HOSTEL_LOBBY": {
+      return require(`../../../../assets/images/locations/HOSTEL_LOBBY.jpg`);
+    }
+    case "TOKYO_STREET": {
+      return require(`../../../../assets/images/locations/TOKYO_STREET.jpg`);
+    }
+    default: {
+      return require("../../../../assets/images/akiba.jpg");
+    }
+  }
+};
 
 export const getTopSectionContent = (
   currentTestable: Testable,
@@ -41,36 +86,52 @@ export const getTopSectionContent = (
       >
         <Icon color={color.WHITE} name="keyboard-return" size={32} />
       </TouchableOpacity>
-      {currentTestable.context?.japanese == null &&
-      currentTestable.context?.english == null ? null : (
-        <View style={styles.contextWrapper}>
-          <View style={styles.contextBubbleWrapper}>
-            <View style={styles.speakerNameWrapper}>
-              <Text style={styles.speakerName}>
-                {currentTestable.context?.speaker || ""}
-              </Text>
+      <ImageBackground
+        style={styles.backgroundImage}
+        imageStyle={styles.backgroundImage}
+        source={getBackgroundImage(currentTestable.context?.location)}
+      >
+        {currentTestable.context?.japanese == null &&
+        currentTestable.context?.english == null ? null : (
+          <View style={styles.contextWrapper}>
+            <View style={styles.contextBubbleWrapper}>
+              <View style={styles.speakerNameWrapper}>
+                <Text style={styles.speakerName}>
+                  {currentTestable.context?.speaker || ""}
+                </Text>
+              </View>
+              <View style={styles.contextBubble}>
+                {hasJapanese ? (
+                  <FuriganaText
+                    textStyle={styles.contextJapanese}
+                    furiStyle={styles.contextFurigana}
+                    text={currentTestable.context?.japanese || ""}
+                    kana={currentTestable.context?.furigana || ""}
+                  />
+                ) : null}
+                {/* If theres no japanese in the context, render the english as big as japanese normally is */}
+                <Text
+                  style={
+                    hasJapanese ? styles.contextEnglish : styles.contextJapanese
+                  }
+                >
+                  {currentTestable.context?.english || ""}
+                </Text>
+              </View>
             </View>
-            <View style={styles.contextBubble}>
-              {hasJapanese ? (
-                <FuriganaText
-                  textStyle={styles.contextJapanese}
-                  furiStyle={styles.contextFurigana}
-                  text={currentTestable.context?.japanese || ""}
-                  kana={currentTestable.context?.furigana || ""}
+            {currentTestable.context?.person != null ? (
+              <View style={styles.personWrapper}>
+                <Image
+                  // $FlowFuckOff We know this is a real string lmao
+                  source={getPersonImage(currentTestable.context?.person || "")}
+                  style={{ width: 60, height: 76 }}
                 />
-              ) : null}
-              {/* If theres no japanese in the context, render the english as big as japanese normally is */}
-              <Text
-                style={
-                  hasJapanese ? styles.contextEnglish : styles.contextJapanese
-                }
-              >
-                {currentTestable.context?.english || ""}
-              </Text>
-            </View>
+              </View>
+            ) : null}
           </View>
-        </View>
-      )}
+        )}
+        <View style={styles.bottomSectionTip} />
+      </ImageBackground>
     </>
   );
 };

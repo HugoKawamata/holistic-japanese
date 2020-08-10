@@ -6,7 +6,6 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   Platform,
-  ImageBackground,
 } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
@@ -93,10 +92,6 @@ const initResults = (testables: $ReadOnlyArray<Testable>) => {
       [`testable-${testable.objectId}`]: testableResults,
     };
   }, {});
-};
-
-export const getBackgroundImage = (location: ?string) => {
-  return location == null ? null : require("../../../assets/images/akiba.jpg");
 };
 
 export function LessonScreen(props: Props): Node {
@@ -579,49 +574,43 @@ export function LessonScreen(props: Props): Node {
         style={styles.lessonScreenWrapper}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <ImageBackground
-          style={styles.backgroundImage}
-          imageStyle={styles.backgroundImage}
-          source={getBackgroundImage(currentTestable.context?.location)}
-        >
-          {["KANA_WORD", "J_WORD"].includes(currentTestable.question.type) ? (
-            <WordLesson
-              currentMark={currentMark}
-              currentTestable={currentTestable}
-              goToNextQuestion={
-                ["HIRAGANA", "KATAKANA"].includes(lesson.id.slice(0, 8))
-                  ? nextQuestionKanaLesson
-                  : nextQuestion
-              }
-              lecturesStatus={lecturesStatus}
-              setExitModalVisible={setExitModalVisible}
-              questionStage={questionStage}
-              results={results}
-              setCurrentMark={setCurrentMark}
-              setLecturesStatus={setLecturesStatus}
-              setResults={setResults}
-              userAnswer={userAnswer}
-            >
-              {getAnswerFields()}
-            </WordLesson>
-          ) : (
-            <SentenceLesson
-              currentMark={currentMark}
-              currentTestable={currentTestable}
-              goToNextQuestion={nextQuestion}
-              lecturesStatus={lecturesStatus}
-              setExitModalVisible={setExitModalVisible}
-              results={results}
-              setCurrentMark={setCurrentMark}
-              setLecturesStatus={setLecturesStatus}
-              setResults={setResults}
-              splots={splots}
-              userAnswer={userAnswer}
-            >
-              {getAnswerFields()}
-            </SentenceLesson>
-          )}
-        </ImageBackground>
+        {["KANA_WORD", "J_WORD"].includes(currentTestable.question.type) ? (
+          <WordLesson
+            currentMark={currentMark}
+            currentTestable={currentTestable}
+            goToNextQuestion={
+              ["HIRAGANA", "KATAKANA"].includes(lesson.id.slice(0, 8))
+                ? nextQuestionKanaLesson
+                : nextQuestion
+            }
+            lecturesStatus={lecturesStatus}
+            setExitModalVisible={setExitModalVisible}
+            questionStage={questionStage}
+            results={results}
+            setCurrentMark={setCurrentMark}
+            setLecturesStatus={setLecturesStatus}
+            setResults={setResults}
+            userAnswer={userAnswer}
+          >
+            {getAnswerFields()}
+          </WordLesson>
+        ) : (
+          <SentenceLesson
+            currentMark={currentMark}
+            currentTestable={currentTestable}
+            goToNextQuestion={nextQuestion}
+            lecturesStatus={lecturesStatus}
+            setExitModalVisible={setExitModalVisible}
+            results={results}
+            setCurrentMark={setCurrentMark}
+            setLecturesStatus={setLecturesStatus}
+            setResults={setResults}
+            splots={splots}
+            userAnswer={userAnswer}
+          >
+            {getAnswerFields()}
+          </SentenceLesson>
+        )}
       </KeyboardAvoidingView>
       {overlayModal}
     </SafeAreaView>

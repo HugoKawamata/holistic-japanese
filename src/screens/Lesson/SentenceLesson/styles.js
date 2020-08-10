@@ -8,6 +8,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingTop: 10,
   },
+  backgroundImage: {
+    flex: 1,
+    alignItems: "stretch",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    justifyContent: "center",
+  },
+  bottomSectionTip: {
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingTop: 20,
+    backgroundColor: color.WHITE,
+    zIndex: 99,
+  },
   bottomSection: {
     alignItems: "stretch",
     backgroundColor: color.WHITE,
@@ -15,8 +29,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     flexDirection: "column",
     justifyContent: "flex-end",
-    // marginTop: 20,
-    paddingTop: 40,
+    paddingTop: 10,
     paddingBottom: 10,
     width: "100%",
   },
@@ -29,7 +42,9 @@ const styles = StyleSheet.create({
   contextBubbleWrapper: {
     alignItems: "flex-start",
     flexDirection: "column",
+    justifyContent: "flex-end",
     marginHorizontal: 16,
+    marginBottom: 20,
   },
   contextFurigana: {
     fontSize: fontSize.smallish,
@@ -42,8 +57,10 @@ const styles = StyleSheet.create({
   },
   contextWrapper: {
     alignItems: "stretch",
-    justifyContent: "center",
+    flexDirection: "row",
     flexGrow: 1,
+    justifyContent: "space-between",
+    marginTop: 60,
   },
   downChevWrapper: {
     alignItems: "center",
@@ -60,6 +77,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 45,
     zIndex: 1,
+  },
+  personWrapper: {
+    justifyContent: "flex-start",
+    marginBottom: 20,
+    marginHorizontal: 20,
   },
   questionBubble: {
     // alignItems: "center",
