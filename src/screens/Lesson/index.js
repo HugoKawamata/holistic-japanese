@@ -238,12 +238,13 @@ export function LessonScreen(props: Props): Node {
                   Sound.MAIN_BUNDLE,
                   (error) => {
                     if (error) {
-                      console.log("Sound error!", error);
                       // do something
                     }
 
                     // play when loaded
-                    charSound.play();
+                    charSound.play(() => {
+                      charSound.release();
+                    });
                   }
                 );
                 charSound.release();
