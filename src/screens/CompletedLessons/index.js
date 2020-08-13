@@ -12,12 +12,18 @@ import { fontSize } from "../../util/font";
 import type {
   CompletedLessons as TCompletedLessonsQuery,
   CompletedLessons_me_completedCourses_lessons as Lesson,
+  CompletedLessons_me_splots as Splots,
 } from "./__generated__/CompletedLessons";
 
 const COMPLETED_LESSONS_QUERY = gql`
   query CompletedLessons {
     me {
       id
+      splots {
+        me
+        meFuri
+        fname
+      }
       completedCourses {
         id
         title
@@ -129,10 +135,17 @@ type Props = {|
 export function CompletedLessonsScreen(props: Props): Node {
   const { userEmail } = props;
 
-  const startLesson = (userId: string, lesson: Lesson) => {
+  const startLesson = (
+    userId: string,
+    lesson: Lesson,
+    refetch: () => {},
+    splots: Splots
+  ) => {
     props.navigation.push("Lesson", {
       lesson,
       userId,
+      refetch,
+      splots,
     });
   };
 
@@ -142,7 +155,7 @@ export function CompletedLessonsScreen(props: Props): Node {
       variables={{ email: userEmail }}
       fetchPolicy="network-only"
     >
-      {({ loading, data, error }) => {
+      {({ loading, data, error, refetch }) => {
         if (loading && (!data || Object.keys(data).length === 0)) {
           return null; // TODO: loading state
         }
@@ -173,7 +186,8 @@ export function CompletedLessonsScreen(props: Props): Node {
                         key: lesson.id,
                         bigText: lesson.title,
                         smallText: "5 min・Beginner",
-                        onPress: () => startLesson(me.id, lesson),
+                        onPress: () =>
+                          startLesson(me.id, lesson, refetch, me.splots),
                       }))}
                     />
                   );
@@ -187,7 +201,8 @@ export function CompletedLessonsScreen(props: Props): Node {
                       key: lesson.id,
                       bigText: lesson.title,
                       smallText: "5 min・Beginner",
-                      onPress: () => {},
+                      onPress: () =>
+                        startLesson(me.id, lesson, refetch, me.splots),
                     }))}
                   />
                 );

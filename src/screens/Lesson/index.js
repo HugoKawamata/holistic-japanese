@@ -319,18 +319,21 @@ export function LessonScreen(props: Props): Node {
             />
             {
               // eslint-disable-next-line no-nested-ternary
-              currentMark !== "INCORRECT" ? null : displayAnswer.furigana ==
+              currentMark !== "INCORRECT" ? null : displayAnswer?.furigana ==
                 null ? (
                 <View style={styles.sentenceCorrectionWrapper}>
                   <TransformText style={styles.sentenceCorrection}>
-                    {addSplotsToText(displayAnswer.text, splots)}
+                    {addSplotsToText(displayAnswer?.text || "", splots)}
                   </TransformText>
                 </View>
               ) : (
                 <View style={styles.sentenceCorrectionWrapper}>
                   <FuriganaText
-                    kana={addSplotsToText(displayAnswer.furigana, splots)}
-                    text={addSplotsToText(displayAnswer.text, splots)}
+                    kana={addSplotsToText(
+                      displayAnswer?.furigana || "",
+                      splots
+                    )}
+                    text={addSplotsToText(displayAnswer?.text || "", splots)}
                     textStyle={styles.sentenceCorrection}
                   />
                 </View>
@@ -358,7 +361,7 @@ export function LessonScreen(props: Props): Node {
             {currentMark !== "INCORRECT" ? null : (
               <View style={styles.sentenceCorrectionWrapper}>
                 <TransformText style={styles.sentenceCorrection}>
-                  {addSplotsToText(displayAnswer.text, splots)}
+                  {addSplotsToText(displayAnswer?.text || "", splots)}
                 </TransformText>
               </View>
             )}
