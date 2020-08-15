@@ -125,6 +125,15 @@ const myStyles = StyleSheet.create({
     flexDirection: "column",
     flexGrow: 1,
   },
+  longdashField: {
+    backgroundColor: color.WHITE,
+    color: color.PLACEHOLDER,
+    fontSize: fontSize.answerSingleChar,
+    minWidth: 50,
+    paddingBottom: 5,
+    paddingTop: 13,
+    textAlign: "center",
+  },
   modalButtonWrapper: {
     alignItems: "center",
     marginBottom: 20,

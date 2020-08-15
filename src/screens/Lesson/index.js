@@ -27,6 +27,7 @@ import type {
 import {
   possibleSokuon,
   romajiHiraganaMap,
+  romajiKatakanaMap,
   formatResultsForMutation,
   getQuestionStage,
   getKeyForTestable,
@@ -116,6 +117,7 @@ export function LessonScreen(props: Props): Node {
   if (lesson.testables == null) {
     throw new Error("Lesson does not exist");
   }
+
   const testables = lesson.testables.filter(Boolean).sort((a, b) => {
     if (a.orderInLesson != null && b.orderInLesson != null) {
       if (a.orderInLesson < b.orderInLesson) {
@@ -157,6 +159,8 @@ export function LessonScreen(props: Props): Node {
   );
   const [testableQueue, setTestableQueue] = useState(testables.slice(0, 2));
 
+  const currentTestable = testableQueue[0];
+
   const [lectures, setLectures] = useState(
     lesson.lectures != null
       ? lesson.lectures.filter((lec) => lec.position === "PRETEST")
@@ -170,7 +174,15 @@ export function LessonScreen(props: Props): Node {
 
   const [loading, setLoading] = useState(false);
 
-  const [userAnswer, setUserAnswer] = useState({});
+  const [userAnswer, setUserAnswer] = useState(
+    currentTestable.answer.text.split(",").reduce(
+      (acc, cur, i) => ({
+        ...acc,
+        [`input-${i}`]: cur === "ー" ? "ー" : null,
+      }),
+      {}
+    )
+  );
 
   const [results: Results, setResults] = useState(initResults(testables));
 
@@ -190,8 +202,6 @@ export function LessonScreen(props: Props): Node {
     );
   }, [testableQueue[0]]);
 
-  const currentTestable = testableQueue[0];
-
   const getAnswerFields = () => {
     const { answer } = currentTestable;
     switch (answer.type) {
@@ -203,23 +213,35 @@ export function LessonScreen(props: Props): Node {
             // eslint-disable-next-line react/no-array-index-key
             key={`${currentTestable.question.text}-${i}`}
             ref={inputRefs[i]}
-            style={[
-              styles.singleCharAnswerField,
-              currentMark !== null && userAnswer[`input-${i}`] === charRomaji
-                ? styles.correctAnswerField
-                : null,
-              currentMark !== null && userAnswer[`input-${i}`] !== charRomaji
-                ? styles.incorrectAnswerField
-                : null,
-            ]}
+            style={
+              charRomaji === "ー"
+                ? styles.longdashField
+                : [
+                    styles.singleCharAnswerField,
+                    currentMark !== null &&
+                    userAnswer[`input-${i}`] === charRomaji
+                      ? styles.correctAnswerField
+                      : null,
+                    currentMark !== null &&
+                    userAnswer[`input-${i}`] !== charRomaji
+                      ? styles.incorrectAnswerField
+                      : null,
+                  ]
+            }
             keyboardType={
               Platform.OS === "android" ? "visible-password" : "default"
             } // Prevents autocorrect on android
             autoCorrect={false}
             editable={
-              currentMark == null || userAnswer[`input-${i}`] !== charRomaji
+              (currentMark == null ||
+                userAnswer[`input-${i}`] !== charRomaji) &&
+              charRomaji !== "ー"
             }
-            placeholder={romajiHiraganaMap[charRomaji] || "っ"}
+            placeholder={
+              lesson.id.slice(0, 8) === "HIRAGANA"
+                ? romajiHiraganaMap[charRomaji] || "っ"
+                : romajiKatakanaMap[charRomaji] || "ッ"
+            }
             value={userAnswer[`input-${i}`]}
             onChangeText={(text) => {
               const lowerText = text.toLowerCase();
@@ -244,9 +266,16 @@ export function LessonScreen(props: Props): Node {
                 );
                 charSound.release();
                 // When text changes to a valid hiragana character's romaji, if this is the last input
-                if (answerParts.length - 1 === i) {
+                // OR if it's the second last input and the last char is a longdash
+                if (
+                  answerParts.length - 1 === i ||
+                  (answerParts.length - 2 === i && answerParts[i + 1] === "ー")
+                ) {
                   // Blur self
                   inputRefs[i].current.blur();
+                } else if (answerParts[i + 1] === "ー") {
+                  // If next one is longdash, skip it
+                  inputRefs[i + 2].current.focus();
                 } else {
                   // Otherwise, focus the next one
                   inputRefs[i + 1].current.focus();
@@ -265,7 +294,11 @@ export function LessonScreen(props: Props): Node {
                 // Do nothing for first input
                 if (i !== 0) {
                   // Otherwise, focus the prev one
-                  inputRefs[i - 1].current.focus();
+                  if (inputRefs[i - 1] === "ー") {
+                    inputRefs[i - 2].current.focus();
+                  } else {
+                    inputRefs[i - 1].current.focus();
+                  }
                 }
               }
               // $FlowFixMe Not sure what's happening here
@@ -310,6 +343,7 @@ export function LessonScreen(props: Props): Node {
             <TextInput
               placeholder="Translate here"
               style={styles.regularAnswerField}
+              // $FlowFixMe userAnswer probably has input-0 at this point
               value={userAnswer["input-0"]}
               onChangeText={(text) =>
                 setUserAnswer({
@@ -351,6 +385,7 @@ export function LessonScreen(props: Props): Node {
             <TextInput
               placeholder="Translate here"
               style={styles.regularAnswerField}
+              // $FlowFixMe userAnswer probably has input-0 at this point
               value={userAnswer["input-0"]}
               onChangeText={(text) =>
                 setUserAnswer({
@@ -514,7 +549,16 @@ export function LessonScreen(props: Props): Node {
         setUnqueuedTestables(unqueuedTestables.slice(1));
       }
       setCurrentMark(null);
-      setUserAnswer({});
+      setUserAnswer(
+        // Why is flow so upset? $FlowFixMe
+        nextTestable.answer.text.split(",").reduce(
+          (acc, cur, i) => ({
+            ...acc,
+            [`input-${i}`]: cur === "ー" ? "ー" : null,
+          }),
+          {}
+        )
+      );
 
       // If we have any midroll lectures that need to appear, show them
       showMidrollLecture(nextTestable);
