@@ -36,6 +36,9 @@ const AVAILABLE_LESSONS_QUERY = gql`
       availableCourses {
         id
         title
+        unavailableLessons {
+          id
+        }
         nextUnlockLessons {
           id
           title
@@ -263,6 +266,7 @@ export function LearnScreen(props: Props): Node {
 
         const { me } = data;
         const courses = data.me.availableCourses;
+
         const { nextUnlockCourses } = data.me;
 
         // If the me was created less than 5 minutes ago and has no gender,
@@ -319,6 +323,10 @@ export function LearnScreen(props: Props): Node {
                     linkCardProps={completedLessons
                       .concat(availableLessons)
                       .concat(nextUnlockLessons)}
+                    additionalHidden={
+                      course.unavailableLessons.length -
+                      nextUnlockLessons.length
+                    }
                   />
                 );
               })}

@@ -1,6 +1,7 @@
 /* @flow */
 import * as React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
+import { noop } from "lodash/fp";
 import color from "../../util/color";
 import { fontSize } from "../../util/font";
 import Text from "../Text";
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
 });
 
 type Props = {|
+  additionalHidden?: ?number,
   heading: string,
   initialScrollIndex?: number,
   linkCardProps: Array<{|
@@ -40,11 +42,17 @@ export default class SideSlider extends React.PureComponent<Props> {
 
   // eslint-disable-next-line react/static-property-placement
   static defaultProps = {
+    additionalHidden: null,
     initialScrollIndex: 0,
   };
 
   render() {
-    const { heading, linkCardProps, initialScrollIndex } = this.props;
+    const {
+      heading,
+      linkCardProps,
+      initialScrollIndex,
+      additionalHidden,
+    } = this.props;
     return (
       <View style={styles.wrapper}>
         <View style={styles.headingWrapper}>
@@ -70,7 +78,22 @@ export default class SideSlider extends React.PureComponent<Props> {
           horizontal
           renderItem={({ item }) => <LinkCard key={item.key} {...item} />}
           keyExtractor={(item) => item.key}
-          data={linkCardProps}
+          data={linkCardProps
+            .concat(
+              // If additionalHidden is 0 or null, don't show the final card
+              !additionalHidden
+                ? null
+                : [
+                    {
+                      key: "plus extra",
+                      bigText: `Plus ${additionalHidden} more...`,
+                      disabled: true,
+                      onPress: noop,
+                      smallText: "",
+                    },
+                  ]
+            )
+            .filter(Boolean)}
           initialScrollIndex={initialScrollIndex}
         />
         {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
