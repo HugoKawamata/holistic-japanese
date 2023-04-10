@@ -1,3 +1,5 @@
+See also the repo containing the server and DB: https://github.com/HugoKawamata/holistic-server
+
 # TODO
 
 - Add sounds to lessons on answer submission "\*_ping_\* 青"
